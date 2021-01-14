@@ -12,7 +12,7 @@
 ## Descrizione
 
 #### Mandato:
-Mandato: [QdC_SecondoSemestre(LM)_pilotaggioDrone.docx](Documenti/QdC_SecondoSemestre(LM)_pilotaggioDrone.docx)
+[QdC Secondo Semestre Pilotaggio Drone](Documenti/QdC_SecondoSemestre_pilotaggioDrone.pdf)
 
 #### Struttura:
 - [Codice](src/)
