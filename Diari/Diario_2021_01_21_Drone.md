@@ -30,7 +30,7 @@
 
 
 
-##  Problemi riscontrati e soluzioni adottate
+## Problemi riscontrati e soluzioni adottate
 
 1.	Sviluppando l'interfaccia garfica non siamo inzialmente riusciti a visionare in maniera efficace tutti gli elementi. Per esmepio non risucivano a figuare come impostare la pagina in cui inserie tutti i dati e le differenti "maschere" richieste. Tuttavia siamo partiti dalle basi della `view`, come per esempio la finestra principale con la live, per poi arrivare a disporre i pulsanti per l'apparizione delle maschere.
  
@@ -48,7 +48,9 @@
 
 Ecco quindi le soluzioni riassunte:
 
-> 1.	Iniziare dagli elementi alla base della GUI e procedere passo-passo.
+> 1.	Iniziare dagli elementi alla base della GUI e procedere passo-passo. Alleghaimo i due design.
+> ![Design Home](../documenti/img/Desing_home.PNG)
+> ![Design vista Drone ](../documenti/img/Desing_vista_drone.PNG)
 > 2.	Consultazione tabella requisiti e stima dei tempi secondo le esperienze passate.
 > 3.	Abbiamo rivisto le tempistiche del Gantt, facendo delle nuove stime.
 > 4. 	Ricerca focalizzata sulla guida del drone.
@@ -59,6 +61,6 @@ Ecco quindi le soluzioni riassunte:
 
 
 ##  Punto della situazione rispetto alla pianificazione
-
-Pianificazione in sviluppo
+Benchè la pianificazione non sia del tutto conclusa, non siamo arrivati fino a dove volevamo arrivare. Infatti delle difficoltà nello sviluppo del diagramma Gantt no ce lo hanno permesso.
 ## Programma di massima per la prossima giornata di lavoro
+Volgiamo fare il diagramma di flusso, e arrivare a poter contrllare il drone da una semplice GUI, con magari quattro frecce direzionali. O almeno a instaurare una comunicazione tra drone e pc.
