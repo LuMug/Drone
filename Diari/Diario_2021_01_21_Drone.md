@@ -49,8 +49,8 @@
 Ecco quindi le soluzioni riassunte:
 
 > 1.	Iniziare dagli elementi alla base della GUI e procedere passo-passo. Alleghaimo i due design.
-> ![Design Home](../documenti/img/Desing_home.PNG)
-> ![Design vista Drone ](../documenti/img/Desing_vista_drone.PNG)
+> ![Design Home](../Documenti/img/Desing_home.PNG)
+> ![Design vista Drone ](../Documenti/img/Desing_vista_drone.PNG)
 > 2.	Consultazione tabella requisiti e stima dei tempi secondo le esperienze passate.
 > 3.	Abbiamo rivisto le tempistiche del Gantt, facendo delle nuove stime.
 > 4. 	Ricerca focalizzata sulla guida del drone.
