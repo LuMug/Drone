@@ -19,6 +19,6 @@
 
 - [Documentazione](Documenti/Documentazione.md)
 
-- [Gantt](Documenti/Drone_Gantt.pod)
+- [Gantt preventivo](Documenti/GANTT_Preventivo.mpp)
 
 - [Diari di lavoro](Diari/)
