@@ -45,9 +45,23 @@
 5. Abbiamo avuto problemi a definire con precisione lo schema di flusso, per questo la prossima lezione ci confronteremo per apporre le eventuali modifiche per una maggiore precisione.
 
 6. Durante le prove per ottenere i dati dal `leap motion` abbiamo dovuto intepretare molti dati. Inizialmente venivano restituiti solamente alcuni dati inutili (numero di dita ecc.). Per questo abbiamo dovuto fare altre ricerche per ottenere i dati giusti (posizione x,y,z)
+
 7. Abbiamo avuto un problema nella comunicazione tra l'interfaccia e la logica sviluppata prima, abbiamo quindi simulato che un pc fosse il drone e l'altro pc generava dei comandi. Dopo alcuni test abbiamo trovato un errore di sintassi che faceva bloccare tutto.
+Nello specifico avevano scordato un `this`.
+
+	```java    
+	public BottoniPanel() {
+		initComponents();
+		drone = new Drone(this);
+		drone.start();
+	}  
+	```         
+
+8. Abbiamo riscontrato un problema nella comunciazione con la simulazione del drone citata in precedenza. Quando viene inviato un istruzione al "drone" da un PC, il secodno terminale con la simulazione del drone, non risponde. Dovrebbe invece rispondere con un **OK**               
+##### Soluzione ancora da trovare
 
 Ecco quindi le soluzioni riassunte:
+
 
 > 1. Ricerca `leap motion` e creazione di due socket da far comunicare.
 > 2. Sviluppo schematico con Trello.
