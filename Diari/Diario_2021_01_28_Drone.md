@@ -38,7 +38,7 @@
 
 2. Per quanto riguarda il Trello, ci siamo consultati con il docente e abbiamo optato per un approccio molto schematico. Ognuno si occuperà di una singola attività inserita in Trello, che è stato fatto piuttosto specifico apposta. Questo ci permetterà di monitorare non solo l'andamento del progetto ma anche chi ha fatto cosa, così da sapere come agire in caso qualcosa non funzioni.
 
-3. Un altro problema si è posto nella ricerca di informazioni per il sensore `leap motion`. Infatti in internet pochi siti erano chiari e in pochi parlavano di come gestire il sensore in `Java`. Tuttavia dopo una consultazione con il professore e una ricerca approfondita si è riusciti a trovare delle informazioni che hanno ci permesso di procedere nell'implementazione.
+3. Un altro problema si è posto nella ricerca di librerie per il sensore `leap motion`. Infatti in internet le librerie ufficiali erano reperibili solo dal sito del `leap motion`, eppure su quest'ultimo è risultato impossibile inizialmente trovare le SDK per sviluppare in `Java`. Successivamente dopo una consultazione con il professore e una ricerca approfondita si è riusciti a trovare in un link del sito ufficiale la SDK corretta aggiornata all'ultima versione. Ciò ci ha permesso di procedere nell'implementazione.
 
 4. Abbiamo avuto problemi a definire con precisione lo schema di flusso, per questo la prossima lezione ci confronteremo per apporre le eventuali modifiche per una maggiore precisione.
 
