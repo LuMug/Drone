@@ -15,7 +15,7 @@
 |10:10 - ??:?? | Ricerca leap motion                                |Samuele             |
 |10:10 - ??:?? | Creazione interfaccia principale                   |Alessandro          |
 |10:10 - ??:?? | Creazione classe drone                             |Gianni              |
-|10:10 - ??:?? | Diario                                             |Michea              |
+|10:10 - 10:40 | Diario                                             |Michea              |
 
 
 
