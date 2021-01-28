@@ -2,7 +2,7 @@
 ## Progetto
 |Titolo             |Autori           |Responsabile               |
 |:------------------|:------------------|:--------------------------|
-|Drone    |<b>Alessandro Aloise,</b> <b>Gianni Grosso,</b>  <b>Michea Colautti</b>,<b>Samuele Ganci</b> |Luca Muggiasca|
+|Drone    |<b>Alessandro Aloise,</b> <b>Gianni Grasso,</b>  <b>Michea Colautti</b>,<b>Samuele Ganci</b> |Luca Muggiasca|
 
 ## Info
 **Inizio:** 14.01.2021
