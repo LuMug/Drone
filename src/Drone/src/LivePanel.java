@@ -1,15 +1,15 @@
 /**
- * Panel che contiene la grafiche dell'applicazione.
+ * Panel che contiene la live della camera.
  * 
  * @author Alessandro Aloise
  * @version 28.01.2021
  */
-public class DronePanel extends javax.swing.JPanel {
+public class LivePanel extends javax.swing.JPanel {
 
     /**
      * Creates new form DronePanel
      */
-    public DronePanel() {
+    public LivePanel() {
         initComponents();
     }
 
