@@ -61,4 +61,8 @@ Ecco quindi le soluzioni riassunte:
 Siamo nei tempi previsti, anche se abbiamo dovuto rivedere alcune tempistiche e precedenze dopo la consultazione con il professore e gli imprevisti sulla batteria.
 
 ## Programma di massima per la prossima giornata di lavoro
-Non ancora definito.
+Vorremmo procedere con i lavori correnti, e approvare quelli svolti oggi, nello specifico:
+1. Rivedere il diagramma di fulusso.
+2. Riprendere e procedere con la gestione dell'interfaccia + comunicazione.
+3. Riprendere il cotrollo tramite leap motion.
+4. Se è arrivata la batteria, smettere di simulare il drone con un PC e usare il dorne appunto.
