@@ -1,3 +1,5 @@
+
+
 /**
  * Panel che contiene la live della camera.
  * 

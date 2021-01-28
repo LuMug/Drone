@@ -6,6 +6,9 @@
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
     </Property>
   </Properties>
+  <Events>
+    <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="formComponentShown"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -77,6 +80,10 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Sinistra"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sinistraMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sinistraActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="destra">
       <Properties>

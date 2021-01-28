@@ -5,13 +5,17 @@
  * @author Alessandro Aloise
  * @version 28.01.2021
  */
-public class BottoniPanel extends javax.swing.JPanel {
-
+public class BottoniPanel extends javax.swing.JPanel implements MessageListener{
+    
+    private Drone drone;
+    
     /**
      * Creates new form BottiniPanel
      */
     public BottoniPanel() {
         initComponents();
+        drone = new Drone(this);
+        drone.start();
     }
 
     /**
@@ -29,12 +33,27 @@ public class BottoniPanel extends javax.swing.JPanel {
         destra = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         avanti.setText("Avanti");
 
         indietro.setText("Indietro");
 
         sinistra.setText("Sinistra");
+        sinistra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sinistraMouseClicked(evt);
+            }
+        });
+        sinistra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sinistraActionPerformed(evt);
+            }
+        });
 
         destra.setText("Destra");
 
@@ -59,9 +78,9 @@ public class BottoniPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(avanti, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(113, 113, 113))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,6 +92,34 @@ public class BottoniPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void sinistraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sinistraActionPerformed
+
+    }//GEN-LAST:event_sinistraActionPerformed
+
+    private void sinistraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sinistraMouseClicked
+        /**
+         * L'ip del drone.
+         */
+        String ip = "192.168.162.104";
+        
+        /**
+         * La porta d'ascolto del drone.
+         */
+        int port = 65064;
+        
+        /**
+         * Il comando da eseguire.
+         */
+        String message = "left 50";
+        
+        drone.setInfo(ip, port, message);
+        drone.sendMessage();
+    }//GEN-LAST:event_sinistraMouseClicked
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+
+    }//GEN-LAST:event_formComponentShown
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton avanti;
@@ -80,4 +127,9 @@ public class BottoniPanel extends javax.swing.JPanel {
     private javax.swing.JButton indietro;
     private javax.swing.JButton sinistra;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void messageReceived() {
+        System.out.println(drone.getMessageReceived());
+    }
 }

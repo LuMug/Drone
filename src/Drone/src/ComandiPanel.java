@@ -1,3 +1,5 @@
+
+
 /**
  * Panel che contiene gli ultimi comandi eseguiti. 
  * 

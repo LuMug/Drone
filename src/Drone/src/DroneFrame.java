@@ -4,13 +4,13 @@
  * @author Alessandro Aloise
  * @version 28.01.2021
  */
-public class DroneFrame extends javax.swing.JFrame {
-
+public class DroneFrame extends javax.swing.JFrame{
     /**
      * Il costruttore della applicazione.
      */
     public DroneFrame() {
         initComponents();
+        
     }
 
 
