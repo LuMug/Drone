@@ -27,7 +27,7 @@
 |14:30 - 15:45 | Interpretazione dati leap motion e ottenimento dati         |Samuele             |
 |14:45 - 15:25 | Diario di lavoro con problematiche                          |Michea              |
 |15:25 - 15:30 | Aggiornato file .gitignore (no file .DS_Store)              |Michea              |
-|15:15 - ??:?? | Implementazione interfaccia grafica con codice comunicazine |Alessandro e Gianni |
+|15:15 - 15:45 | Implementazione interfaccia grafica con codice comunicazine |Alessandro e Gianni |
 
 
 
@@ -42,9 +42,10 @@
 
 4. Stiamo avendo problemi nell'instaurazione del `socket` per la comunicazione. Dopo aver ri-letto il codice con attenzione abbiamo trovato il problema, avevamo scritto in maniera errata alcuni parametri della comunicazione (porta, ecc.)
 
-5. abbiamo avuto problemi a definire con precisione lo schema di flusso, per questo la prossima lezione ci confronteremo per apporre le eventuali modifiche per una maggiore precisione.
+5. Abbiamo avuto problemi a definire con precisione lo schema di flusso, per questo la prossima lezione ci confronteremo per apporre le eventuali modifiche per una maggiore precisione.
 
 6. Durante le prove per ottenere i dati dal `leap motion` abbiamo dovuto intepretare molti dati. Inizialmente venivano restituiti solamente alcuni dati inutili (numero di dita ecc.). Per questo abbiamo dovuto fare altre ricerche per ottenere i dati giusti (posizione x,y,z)
+7. Abbiamo avuto un problema nella comunicazione tra l'interfaccia e la logica sviluppata prima, abbiamo quindi simulato che un pc fosse il drone e l'altro pc generava dei comandi. Dopo alcuni test abbiamo trovato un errore di sintassi che faceva bloccare tutto.
 
 Ecco quindi le soluzioni riassunte:
 
@@ -54,6 +55,7 @@ Ecco quindi le soluzioni riassunte:
 > 4. Rilettura del codice e correzzioni.
 > 5. Riunione con il gruppo.
 > 6. Ricerche e molti test.
+> 7. Correzzione errore di sintassi nel codice
 
 ##  Punto della situazione rispetto alla pianificazione
 Siamo nei tempi previsti, anche se abbiamo dovuto rivedere alcune tempistiche e precedenze dopo la consultazione con il professore e gli imprevisti sulla batteria.
