@@ -44,8 +44,8 @@
 
 5. Durante le prove per ottenere i dati dal `leap motion` abbiamo dovuto interpretare molti dati. Inizialmente venivano restituiti solamente alcuni dati inutili (numero di dita ecc.). Per questo abbiamo dovuto fare altre ricerche per ottenere i dati giusti (posizione x,y,z)
 
-6. Abbiamo avuto un problema nella comunicazione tra l'interfaccia e la logica sviluppata prima, abbiamo quindi simulato che un pc fosse il drone e l'altro pc generava dei comandi. Dopo alcuni test abbiamo trovato un errore di sintassi che faceva bloccare tutto.
-Nello specifico avevano scordato un `this`.
+6. Abbiamo avuto un problema nella comunicazione tra il "simulatore del drone" e il PC. Infatti per questa parte abbiamo usato un programma di base già creato; esso era stato creato da Alessandro un anno fa, nell'ambito del modulo 226B.
+Dopo aluni test abbiamo identificato un errore di trascrizione, dovuto alla trascrizione dal programma con l'intrfaccia grafica di base (sviluppato in precedenza da Alessandro) al nuovo programma.
 
 	```java    
 	public BottoniPanel() {
@@ -55,8 +55,8 @@ Nello specifico avevano scordato un `this`.
 	}  
 	```         
 
-8. Abbiamo riscontrato un problema nella comunicazione con la simulazione del drone citata in precedenza. Quando viene inviato un istruzione al "drone" da un PC, il secondo terminale con la simulazione del drone, non risponde. Dovrebbe invece rispondere con un **OK**               
-##### Soluzione ancora da trovare
+7. Abbiamo riscontrato un problema nella comunicazione con la simulazione dal drone citata in precedenza. Quando il PC iniava delle istruzioni al "simulatore del drone" esso, dopo aver ricevuto il messaggio, rispondeva ma il pc di partenza non riceveva alcun messaggio.            
+
 
 Ecco quindi le soluzioni riassunte:
 
@@ -67,6 +67,7 @@ Ecco quindi le soluzioni riassunte:
 > 4. Riunione con il gruppo.
 > 5. Ricerche e molti test.
 > 6. Correzione errore di sintassi nel codice
+> 7. Soluzione ancora da trovare
 
 ##  Punto della situazione rispetto alla pianificazione
 Siamo nei tempi previsti, anche se abbiamo dovuto rivedere alcune tempistiche e precedenze dopo la consultazione con il professore e gli imprevisti sulla batteria.
