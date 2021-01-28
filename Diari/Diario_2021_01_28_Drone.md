@@ -40,13 +40,11 @@
 
 3. Un altro problema si è posto nella ricerca di informazioni per il sensore `leap motion`. Infatti in internet pochi siti erano chiari e in pochi parlavano di come gestire il sensore in `Java`. Tuttavia dopo una consultazione con il professore e una ricerca approfondita si è riusciti a trovare delle informazioni che hanno ci permesso di procedere nell'implementazione.
 
-4. Stiamo avendo problemi nell'instaurazione del `socket` per la comunicazione. Dopo aver ri-letto il codice con attenzione abbiamo trovato il problema, avevamo scritto in maniera errata alcuni parametri della comunicazione (porta, ecc.)
+4. Abbiamo avuto problemi a definire con precisione lo schema di flusso, per questo la prossima lezione ci confronteremo per apporre le eventuali modifiche per una maggiore precisione.
 
-5. Abbiamo avuto problemi a definire con precisione lo schema di flusso, per questo la prossima lezione ci confronteremo per apporre le eventuali modifiche per una maggiore precisione.
+5. Durante le prove per ottenere i dati dal `leap motion` abbiamo dovuto interpretare molti dati. Inizialmente venivano restituiti solamente alcuni dati inutili (numero di dita ecc.). Per questo abbiamo dovuto fare altre ricerche per ottenere i dati giusti (posizione x,y,z)
 
-6. Durante le prove per ottenere i dati dal `leap motion` abbiamo dovuto interpretare molti dati. Inizialmente venivano restituiti solamente alcuni dati inutili (numero di dita ecc.). Per questo abbiamo dovuto fare altre ricerche per ottenere i dati giusti (posizione x,y,z)
-
-7. Abbiamo avuto un problema nella comunicazione tra l'interfaccia e la logica sviluppata prima, abbiamo quindi simulato che un pc fosse il drone e l'altro pc generava dei comandi. Dopo alcuni test abbiamo trovato un errore di sintassi che faceva bloccare tutto.
+6. Abbiamo avuto un problema nella comunicazione tra l'interfaccia e la logica sviluppata prima, abbiamo quindi simulato che un pc fosse il drone e l'altro pc generava dei comandi. Dopo alcuni test abbiamo trovato un errore di sintassi che faceva bloccare tutto.
 Nello specifico avevano scordato un `this`.
 
 	```java    
@@ -66,10 +64,9 @@ Ecco quindi le soluzioni riassunte:
 > 1. Ricerca `leap motion` e creazione di due socket da far comunicare.
 > 2. Sviluppo schematico con Trello.
 > 3. Ricerca approfondita e consultazione con il professore.
-> 4. Rilettura del codice e correzioni.
-> 5. Riunione con il gruppo.
-> 6. Ricerche e molti test.
-> 7. Correzione errore di sintassi nel codice
+> 4. Riunione con il gruppo.
+> 5. Ricerche e molti test.
+> 6. Correzione errore di sintassi nel codice
 
 ##  Punto della situazione rispetto alla pianificazione
 Siamo nei tempi previsti, anche se abbiamo dovuto rivedere alcune tempistiche e precedenze dopo la consultazione con il professore e gli imprevisti sulla batteria.
