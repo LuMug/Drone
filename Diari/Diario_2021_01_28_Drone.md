@@ -77,4 +77,4 @@ Vorremmo procedere con i lavori correnti, e approvare quelli svolti oggi, nello 
 1. Rivedere il diagramma di flusso.
 2. Riprendere e procedere con la gestione dell'interfaccia + comunicazione.
 3. Riprendere il controllo tramite leap motion.
-4. Se sarà arrivata la batteria, smettere di simulare il drone con un PC e usare il drone appunto.
+4. Se sarà arrivata la batteria, smettere di simulare il drone con un PC e usare il drone.
