@@ -1,3 +1,5 @@
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * Panel che si occupa di gestire i bottoni.
@@ -6,17 +8,20 @@
  * @author Alessandro Aloise
  * @version 28.01.2021
  */
-public class BottoniPanel extends javax.swing.JPanel implements MessageListener {
-
-    /**
+public class BottoniPanel extends javax.swing.JPanel implements MessageListener, KeyListener {
+    /** 
      * Istanziamento dell'oggetto drone.
      */
     private Drone drone;
-
+    
+    /**
+     * Istanziamento di una variabile di errore.
+     */
     public boolean error = false;
 
     /**
-     * Creates new form BottiniPanel
+     * Costruttore del panel, crea un nuovo oggetto drone
+     * e gli assegna l'indirizzo ip e la porta.
      */
     public BottoniPanel() {
         initComponents();
@@ -24,6 +29,8 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener 
         setUp();
         drone.start();
         command();
+        
+        coordinateTB.addKeyListener(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -71,7 +78,7 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener 
             }
         });
 
-        emergenzaB.setText("Emergenza");
+        emergenzaB.setText("Test");
         emergenzaB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emergenzaBActionPerformed(evt);
@@ -128,7 +135,6 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener 
                         .addComponent(destraB, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(emergenzaB)
                         .addContainerGap())))
         );
@@ -192,27 +198,36 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener 
 
     private void emergenzaBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emergenzaBActionPerformed
         /**
-         * In caso di emergenza.
+         * Bottone di test per le funzionalità da implementare.
          */
-        String message = "cw 180";
+        //String message = "cw 180";
+        String message = "stop";
         invioMessaggio(message);
-
     }//GEN-LAST:event_emergenzaBActionPerformed
 
     private void decollaBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decollaBActionPerformed
+        /**
+         * Fa decollare il drone.
+         */
         String message = "takeoff";
         invioMessaggio(message);
         drone.setStato();
     }//GEN-LAST:event_decollaBActionPerformed
 
     private void atteraBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atteraBActionPerformed
+        /**
+         * Fa atterrare il drone.
+         */
         String message = "land";
         invioMessaggio(message);
         drone.setStato();
     }//GEN-LAST:event_atteraBActionPerformed
 
     private void invioBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invioBActionPerformed
-        drone.setX(20);
+        /**
+         * Muove il drone tramite le coordinate inserite
+         * nel text box.
+         */
         String message = "go " + coordinateTB.getText();
         invioMessaggio(message);
     }//GEN-LAST:event_invioBActionPerformed
@@ -258,4 +273,40 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener 
         drone.setIpDrone("192.168.10.1");
         drone.setPorta(8889);
     }
+    
+    public void keyPressed(KeyEvent e) {
+        String message;
+
+        
+        int keyCode = e.getKeyCode();
+        if(keyCode == 37){
+            message = "go 0 -20 0 20";
+            invioMessaggio(message);
+            System.out.println("Sinistra");
+        }if(keyCode == 38){
+            message = "go 20 0 0 20";
+            invioMessaggio(message);
+            System.out.println("Su");
+        }if(keyCode == 39){
+            message = "go 0 20 0 20";
+            invioMessaggio(message);
+            System.out.println("Destra");
+        }if(keyCode == 40){
+            message = "go -20 0 0 20";
+            invioMessaggio(message);
+            System.out.println("Giù");
+        }
+    
+
+    }
+
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    
+    public void keyReleased(KeyEvent e) {
+        
+    }
+    
 }
