@@ -1,0 +1,14 @@
+Protocollo UDP -> porta 8889
+IP drone: 192.168.10.1
+Lista comandi
+Tello sdk -> basata su java (Vedi meglio sulla guida)
+https://stemrobotics.cs.pdx.edu/node/10474, 21.01.2021
+https://github.com/grofattila/dji-tello, 21.01.2021
+
+
+
+https://dl-cdn.ryzerobotics.com/downloads/tello/0228/Tello+SDK+Readme.pdf, 28.01.2021
+
+https://www.youtube.com/watch?v=DbFB3hvcybg, 28.01.2021
+
+https://fabryrunner.blogspot.com/2018/04/java-udp-drone-tello.html, 28.01.2021
