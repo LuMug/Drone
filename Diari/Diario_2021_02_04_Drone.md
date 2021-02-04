@@ -25,6 +25,7 @@
 |12:45 - 13:15 | Conversione da GUI a controlli con tasi                             |Gianni                     |
 |12:45 - 13:15 | Prove di connessione tra drone e leap motion                        |Samuele                    |
 |13:15 - ??:?? | Prove di volo con leap motion                                       |Samuele e Gianni           |
+|13:45 - 14:00 | Sistemate le immagini del drone e delle frecce, rese trasparenti    |Michea                     |
 
 ## Problemi riscontrati e soluzioni adottate
 1. Nel nostro programma c'era ancora un errore di comunicazione, che non ci permetteva di comunicare con il "simulatore del drone". Abbiamo scoperto che l'antivrus su uno dei nostri PC bloccava la connessione. Quindi, sfruttando il fatto che Samuele era riusicto a procurare delle batterie compatibili con il nostro drone, abbiamo saltato lo step finale della simulazione, per passare alla pratica. Abbiamo quindi connesso il drone e provato a farlo decollare.
