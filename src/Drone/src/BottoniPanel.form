@@ -6,9 +6,6 @@
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
     </Property>
   </Properties>
-  <Events>
-    <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="formComponentShown"/>
-  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -28,19 +25,33 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="sinistra" min="-2" pref="113" max="-2" attributes="0"/>
+                      <Component id="sinistraB" min="-2" pref="113" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="212" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="atteraB" max="32767" attributes="0"/>
+                          <Component id="decollaB" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="indietro" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
-                          <Component id="avanti" min="-2" pref="124" max="-2" attributes="0"/>
+                          <Component id="indietroB" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                          <Component id="avantiB" min="-2" pref="124" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
-              <Component id="destra" min="-2" pref="112" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+                      <Component id="destraB" min="-2" pref="112" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="emergenzaB" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,45 +61,87 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="avanti" min="-2" pref="63" max="-2" attributes="0"/>
+                      <Component id="avantiB" min="-2" pref="63" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="destra" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                      <Component id="sinistra" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="destraB" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="sinistraB" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="29" max="32767" attributes="0"/>
-              <Component id="indietro" min="-2" pref="75" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="indietroB" alignment="3" min="-2" pref="75" max="-2" attributes="0"/>
+                          <Component id="decollaB" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="atteraB" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="emergenzaB" alignment="1" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="avanti">
+    <Component class="javax.swing.JButton" name="avantiB">
       <Properties>
         <Property name="text" type="java.lang.String" value="Avanti"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="avantiBActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="indietro">
+    <Component class="javax.swing.JButton" name="indietroB">
       <Properties>
         <Property name="text" type="java.lang.String" value="Indietro"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="indietroBActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="sinistra">
+    <Component class="javax.swing.JButton" name="sinistraB">
       <Properties>
         <Property name="text" type="java.lang.String" value="Sinistra"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sinistraMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sinistraActionPerformed"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sinistraBMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="destra">
+    <Component class="javax.swing.JButton" name="destraB">
       <Properties>
         <Property name="text" type="java.lang.String" value="Destra"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="destraBActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="emergenzaB">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Emergenza"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emergenzaBActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="decollaB">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="DECOLLA"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="decollaBActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="atteraB">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ATTERRA"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="atteraBActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
