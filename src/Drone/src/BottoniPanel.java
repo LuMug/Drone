@@ -1,3 +1,4 @@
+import com.leapmotion.leap.Controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -15,6 +16,11 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
     private Drone drone;
     
     /**
+     * Contiene l'istanza del Leap Motion.
+     */
+    private LeapMotion leapMotion;
+    
+    /**
      * Istanziamento di una variabile di errore.
      */
     public boolean error = false;
@@ -29,8 +35,14 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
         setUp();
         drone.start();
         command();
+        //live();
         
         coordinateTB.addKeyListener(this);
+
+        //Gestione del LeapMotion
+        LeapMotion listener = new LeapMotion(this);
+        Controller controller = new Controller();
+        controller.addListener(listener);
     }
 
     @SuppressWarnings("unchecked")
@@ -275,9 +287,7 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
     }
     
     public void keyPressed(KeyEvent e) {
-        String message;
-
-        
+        String message;      
         int keyCode = e.getKeyCode();
         if(keyCode == 37){
             message = "go 0 -20 0 20";
@@ -296,17 +306,15 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
             invioMessaggio(message);
             System.out.println("Giù");
         }
-    
-
     }
 
-    public void keyTyped(KeyEvent e) {
-
-    }
+    public void keyTyped(KeyEvent e) {}
 
     
-    public void keyReleased(KeyEvent e) {
-        
-    }
+    public void keyReleased(KeyEvent e) {}
     
+    public void live() {  
+        String message = "streamOn";
+        invioMessaggio(message);
+    }
 }
