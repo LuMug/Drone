@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -39,6 +38,11 @@ public class Drone extends Thread {
      * Rappresenta la posizione del drone sull'asse y.
      */
     public double y = 0;
+    
+    /**
+     * Rappresenta la velocità del drone in percentuale.
+     */
+    public int velocità;
 
     /**
      * Il socket di dati.
@@ -174,6 +178,26 @@ public class Drone extends Thread {
     }
 
     /**
+     * Getter della velocità del drone.
+     *
+     * @return la velocità attuale del drone
+     */
+    public int getVelocità() {
+        return this.velocità;
+    }
+
+    /**
+     * Setter della velocità del drone.
+     *
+     * @param velocità la velocità attuale del drone.
+     */
+    public void setVelocità(int velocità) {
+        if(velocità < 100 && velocità > 10){
+            this.velocità = velocità;
+        }
+    }
+    
+    /**
      * Metodo costruttore personalizzato con 1 parametro.
      *
      * @param jp Il frame in cui avviene la comunicazione.
@@ -198,7 +222,7 @@ public class Drone extends Thread {
      * @return Il messaggio ricevuto.
      */
     public String getMessageReceived() {
-        System.out.println(messageReceived);
+        //System.out.println(messageReceived);
         return messageReceived;
     }
 
@@ -265,6 +289,10 @@ public class Drone extends Thread {
     }
     
     
+    
+    
+    
+    
 
     /**
      * Rappresenta lo stato della telecamera del drone (accesa o spenta).
@@ -275,11 +303,6 @@ public class Drone extends Thread {
      * Rappresenta la posizione del drone sull'asse z.
      */
     private double z;
-
-    /**
-     * Rappresenta la velocità del drone in percentuale.
-     */
-    private int velocità;
 
     /**
      * Rappresenta la rotazione del drone in gradi rispetto al punto iniziale.
@@ -318,24 +341,6 @@ public class Drone extends Thread {
      */
     public void setZ(double z) {
         this.z = z;
-    }
-
-    /**
-     * Getter della velocità del drone.
-     *
-     * @return la velocità attuale del drone
-     */
-    public int getVelocità() {
-        return this.velocità;
-    }
-
-    /**
-     * Setter della velocità del drone.
-     *
-     * @param velocità la velocità attuale del drone.
-     */
-    public void setVelocità(int velocità) {
-        this.velocità = velocità;
     }
 
     /**
