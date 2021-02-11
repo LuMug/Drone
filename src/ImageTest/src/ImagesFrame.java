@@ -26,36 +26,24 @@ public class ImagesFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        empty1 = new Empty();
+        empty2 = new Altitudine();
         imagePanelFront1 = new ImagePanelFront();
         imagePanelLat1 = new ImagePanelLat();
         imagePanelUp1 = new ImagePanelUp();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(2, 2));
-
-        javax.swing.GroupLayout empty1Layout = new javax.swing.GroupLayout(empty1);
-        empty1.setLayout(empty1Layout);
-        empty1Layout.setHorizontalGroup(
-            empty1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 257, Short.MAX_VALUE)
-        );
-        empty1Layout.setVerticalGroup(
-            empty1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(empty1);
+        getContentPane().add(empty2);
 
         javax.swing.GroupLayout imagePanelFront1Layout = new javax.swing.GroupLayout(imagePanelFront1);
         imagePanelFront1.setLayout(imagePanelFront1Layout);
         imagePanelFront1Layout.setHorizontalGroup(
             imagePanelFront1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 257, Short.MAX_VALUE)
+            .addGap(0, 227, Short.MAX_VALUE)
         );
         imagePanelFront1Layout.setVerticalGroup(
             imagePanelFront1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+            .addGap(0, 157, Short.MAX_VALUE)
         );
 
         getContentPane().add(imagePanelFront1);
@@ -64,11 +52,11 @@ public class ImagesFrame extends javax.swing.JFrame {
         imagePanelLat1.setLayout(imagePanelLat1Layout);
         imagePanelLat1Layout.setHorizontalGroup(
             imagePanelLat1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 257, Short.MAX_VALUE)
+            .addGap(0, 227, Short.MAX_VALUE)
         );
         imagePanelLat1Layout.setVerticalGroup(
             imagePanelLat1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+            .addGap(0, 157, Short.MAX_VALUE)
         );
 
         getContentPane().add(imagePanelLat1);
@@ -77,11 +65,11 @@ public class ImagesFrame extends javax.swing.JFrame {
         imagePanelUp1.setLayout(imagePanelUp1Layout);
         imagePanelUp1Layout.setHorizontalGroup(
             imagePanelUp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 257, Short.MAX_VALUE)
+            .addGap(0, 227, Short.MAX_VALUE)
         );
         imagePanelUp1Layout.setVerticalGroup(
             imagePanelUp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+            .addGap(0, 157, Short.MAX_VALUE)
         );
 
         getContentPane().add(imagePanelUp1);
@@ -125,7 +113,7 @@ public class ImagesFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Empty empty1;
+    private Altitudine empty2;
     private ImagePanelFront imagePanelFront1;
     private ImagePanelLat imagePanelLat1;
     private ImagePanelUp imagePanelUp1;
