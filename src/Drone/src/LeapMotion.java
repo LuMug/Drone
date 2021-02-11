@@ -95,11 +95,13 @@ public class LeapMotion extends Listener {
                             Thread.sleep(500);
                         }
                         if (yaw >= -0.20 && yaw <= 0.20) {
-                            //System.out.println("Fermo Asse Y.");
+                            System.out.println("Fermo Asse Y.");
                         } else if (yaw > 0.20) {
-                            //System.out.println("Verso destra.");
+                            System.out.println("Rotazione a destra.");
+                            bp.invioMessaggio("cw 1");
                         } else if (yaw < -0.20) {
-                            //System.out.println("Verso sinistra.");
+                            System.out.println("Rotazione a sinistra.");
+                            bp.invioMessaggio("ccw -1");
                         }
                         if (roll >= -0.40 && roll <= 0.40) {
                             System.out.println("Fermo asse Z.");
