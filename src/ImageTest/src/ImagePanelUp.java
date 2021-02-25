@@ -22,7 +22,7 @@ public class ImagePanelUp extends ImageModel implements KeyListener {
     public void paintComponent(Graphics g) {
 
         g.setColor(Color.white);
-        g.fillRect(0, 0, width, height);
+        g.fillRect(0, 0, getWidth(), getHeight());
         panelH = getHeight();
         panelW = getWidth();
         if (panelW < panelH) {

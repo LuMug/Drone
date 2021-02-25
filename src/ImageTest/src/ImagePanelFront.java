@@ -1,13 +1,8 @@
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import static java.lang.Thread.sleep;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 public class ImagePanelFront extends ImageModel implements KeyListener {

@@ -15,6 +15,7 @@ public class ImageFrame extends JFrame implements KeyListener{
     private ImagePanelFront imagePanelFront;
     private ImagePanelLat imagePanelLat;
     private ImagePanelUp imagePanelUp;
+    private Altitudine altitudine;
 
     public ImageFrame() {
        addKeyListener((KeyListener) this);
@@ -42,10 +43,11 @@ public class ImageFrame extends JFrame implements KeyListener{
         imagePanelFront = new ImagePanelFront();
         imagePanelLat = new ImagePanelLat();
         imagePanelUp = new ImagePanelUp();
-        add(imagePanelLat);
+        altitudine = new Altitudine();
         add(imagePanelLat);
         add(imagePanelUp);
         add(imagePanelFront);
+        add(altitudine);
         pack();
     }
 
@@ -82,5 +84,4 @@ public class ImageFrame extends JFrame implements KeyListener{
     public boolean isFocusTraversable() {
         return true;
     }
-
 }
