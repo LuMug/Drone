@@ -13,23 +13,41 @@ import java.io.IOException;
  */
 public class LeapMotion extends Listener {
 
-    private MessageListener messageListener;
-
+    /**
+     * Riferimento alla contenitore.
+     */
     private BottoniPanel bp;
 
+    /**
+     * Costruttore della classe
+     * @param bp riferimento del contenitore
+     */
     public LeapMotion(BottoniPanel bp) {
         this.bp = bp;
     }
 
+    /**
+     * Viene richiamato quando viene connesso un controller.
+     * @param controller connesso
+     */
     public void onConnect(Controller controller) {
         System.out.println("Connected");
     }
 
+    /**
+     * Viene richiamato quando un nuovo pacchetto di dati arriva.
+     * @param controller connesso
+     */
     public void onFrame(Controller controller) {
-        try {
+//        try {
+            
+            //Legge il pacchetto
             Frame frame = controller.frame();
 
+            //Verifica se ci sono 2 mani
             if (frame.hands().count() == 2) {
+                
+                //Assegna la mano destra e la mano sinistra
                 Hand rightHand = frame.hands().rightmost();
                 Hand leftHand = frame.hands().leftmost();
                 if (!rightHand.isRight()) {
@@ -37,63 +55,55 @@ public class LeapMotion extends Listener {
                     rightHand = frame.hands().leftmost();
                 }
                 
+                //Gestisce il comando per alzare o abbassare il drone
                 float highCommand = leftHand.palmPosition().getY();
-                if (highCommand >= 120 && highCommand <= 180) {
-                    System.out.println("Quota costante.");
-                    Thread.sleep(500);
-                } else if (highCommand < 120) {
-                    System.out.println("Perdita di quota.");
-                    bp.invioMessaggio("go 0 0 -20 20");
-                    Thread.sleep(500);
-                } else if (highCommand > 180) {
-                    System.out.println("Presa di quota.");
-                    bp.invioMessaggio("go 0 0 20 20");
-                    Thread.sleep(500);
-                }
                 
+                //Controlla tutto ciò che è il movimento orizzontale del drone
                 float pitch = rightHand.direction().pitch();
                 float yaw = rightHand.direction().yaw();
                 float roll = rightHand.palmNormal().roll();
-                if (pitch >= -0.40 && pitch <= 0.40) {
-                    //System.out.println("Fermo Asse X.");
-                } else if (pitch > 0.40) {
-                    //System.out.println("Indietro.");
-                } else if (pitch < -0.40) {
-                    //System.out.println("Avanti.");
-                }
-                if (yaw >= -0.20 && yaw <= 0.20) {
-                    //System.out.println("Fermo Asse Y.");
-                } else if (yaw > 0.20) {
-                    //System.out.println("Verso destra.");
-                } else if (yaw < -0.20) {
-                    //System.out.println("Verso sinistra.");
-                }
-                if (roll >= -0.40 && roll <= 0.40) {
-                    System.out.println("Fermo Asse Z.");
-                } else if (roll < -0.40) {
-                    System.out.println("Destra.");
-                } else if (roll > 0.40) {
-                    System.out.println("Sinistra.");
-                }
+                
             } else {
+                
+                //Richiamato quando solo una mano è presente
                 if (!frame.hands().isEmpty()) {
+                    
+                    //Prende il riferimento della mano
                     Hand hand = frame.hands().get(0);
+                    
+                    //Controlla se è la mano destra o sinistra
                     if (hand.isRight()) {
+                        int speed = 0;
+                        
+                        //Gestione comandi su asse X (avanti e indietro)
                         float pitch = hand.direction().pitch();
-                        float yaw = hand.direction().yaw();
-                        float roll = hand.palmNormal().roll();
-                        if (pitch >= -0.40 && pitch <= 0.40) {
-                            System.out.println("Fermo Asse X.");
-                            Thread.sleep(500);
-                        } else if (pitch > 0.40) {
+                        if (pitch >= 0.25) {
                             System.out.println("Indietro.");
-                            bp.invioMessaggio("go -20 0 0 40");
-                            Thread.sleep(500);
-                        } else if (pitch < -0.40) {
+                            System.out.println(pitch);
+                            if(pitch <= 0.60) {
+                                speed = convertRange(pitch, 0.35, 0.60, 10, 60);
+                                bp.invioMessaggio("go -20 0 0 " + speed);
+                            }else{
+                                speed = 60;
+                                bp.invioMessaggio("go -20 0 0 " + speed);
+                            }
+                        } else if (pitch <= -0.25) {
                             System.out.println("Avanti.");
-                            bp.invioMessaggio("go 20 0 0 40");
-                            Thread.sleep(500);
+                            System.out.println(pitch);
+                            if(pitch >= -0.60) {
+                                speed = convertRange(pitch, -0.35, -0.60, 10, 60);
+                                bp.invioMessaggio("go -20 0 0 " + speed);
+                            }else{
+                                speed = 60;
+                                bp.invioMessaggio("go -20 0 0 " + speed);
+                            }
+                        }else{
+                            System.out.println(pitch);
+                            bp.invioMessaggio("stop");
                         }
+                        
+                        //Gestione comandi su asse Y (rotazione destra e sinistra)
+                        float yaw = hand.direction().yaw();
                         if (yaw >= -0.20 && yaw <= 0.20) {
                             System.out.println("Fermo Asse Y.");
                         } else if (yaw > 0.20) {
@@ -103,37 +113,67 @@ public class LeapMotion extends Listener {
                             System.out.println("Rotazione a sinistra.");
                             bp.invioMessaggio("ccw -1");
                         }
-                        if (roll >= -0.40 && roll <= 0.40) {
-                            System.out.println("Fermo asse Z.");
-                            Thread.sleep(500);
-                        } else if (roll < -0.40) {
+                        
+                        //Gestione comandi asse Z (destra e sinistra)
+                        float roll = hand.palmNormal().roll();
+                        if (roll <= -0.40) {
                             System.out.println("Destra.");
-                            bp.invioMessaggio("go 0 20 0 40");
-                            Thread.sleep(500);
-                        } else if (roll > 0.40) {
+                            System.out.println(roll);
+                            if(roll >= -0.60) {
+                                speed = convertRange(roll, -0.40, -0.60, 10, 60);
+                                bp.invioMessaggio("go 0 20 0 " + speed);
+                            }else{
+                                speed = 60;
+                                bp.invioMessaggio("go 0 20 0 " + speed);
+                            }
+                        } else if (roll >= 0.40) {
                             System.out.println("Sinistra.");
-                            bp.invioMessaggio("go 0 -20 0 40");
-                            Thread.sleep(500);
+                            System.out.println(roll);
+                            if(roll <= 0.60) {
+                                speed = convertRange(roll, 0.40, 0.60, 10, 60);
+                                bp.invioMessaggio("go 0 -20 0 " + speed);
+                            }else{
+                                speed = 60;
+                                bp.invioMessaggio("go 0 -20 0 " + speed);
+                            }
+                        }else{
+                            System.out.println(roll);
+                            bp.invioMessaggio("stop");
                         }
+                        
                     } else {
+                        
+                        //Gestione comandi verticali
                         float highCommand = hand.palmPosition().getY();
-                        if (highCommand >= 120 && highCommand <= 180) {
-                            System.out.println("Quota costante.");
-                            Thread.sleep(500);
-                        } else if (highCommand < 120) {
-                            System.out.println("Perdita di quota.");
-                            bp.invioMessaggio("go 0 0 -20 40");
-                            Thread.sleep(500);
-                        } else if (highCommand > 180) {
-                            System.out.println("Presa di quota.");
-                            bp.invioMessaggio("go 0 0 20 40");
-                            Thread.sleep(500);
+                        int speed = 0;
+                        System.out.println(highCommand);
+                        if(highCommand >= 75 && highCommand <= 175) {
+                            speed = 70 - convertRange((int)highCommand, 75, 175, 10, 60);
+                            bp.invioMessaggio("go 0 0 -40 " + speed);
+                        }else if(highCommand >= 225 && highCommand <= 325){
+                            speed = convertRange(highCommand, 225, 325, 10, 60);
+                            bp.invioMessaggio("go 0 0 40 " + speed);
+                        }else{
+                            bp.invioMessaggio("stop");
                         }
                     }
                 }
             }
-        } catch (InterruptedException e) {
-            return;
-        }
+//        } catch (InterruptedException e) {
+//            return;
+//        }
+    }
+    
+    /**
+     * Ritorna un valore convertito da un range ad un altro range
+     * @param value da convertire
+     * @param r1 massimo del range iniziale
+     * @param r2 massimo del range finale
+     * @param m1 minimo del range iniziale
+     * @param m2 massimo del range finale
+     * @return valore convertito
+     */
+    public int convertRange(double value, double r1Min, double r1Max, double r2Min, double r2Max) {
+        return (int)(((value - r1Min) * (r2Max - r2Min)) / (r1Max - r1Min) + r2Min);
     }
 }

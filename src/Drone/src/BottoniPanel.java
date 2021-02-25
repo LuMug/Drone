@@ -213,7 +213,7 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
          * Bottone di test per le funzionalità da implementare.
          */
         //String message = "cw 180";
-        String message = "stop";
+        String message = "asdasd";
         invioMessaggio(message);
     }//GEN-LAST:event_emergenzaBActionPerformed
 
@@ -265,7 +265,7 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
 
     @Override
     public void messageReceived() {
-        if ("false".equals(drone.getMessageReceived())) {
+        if ("error".equals(drone.getMessageReceived())) {
             System.out.println("Error drone: " + drone.getMessageReceived());
             error = !error;
         }
@@ -278,6 +278,8 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
         if (!error) {
             //debug 
             System.out.println("Messaggio mandato:" + message); 
+        }else{
+            error = !error;
         }
     }
 
