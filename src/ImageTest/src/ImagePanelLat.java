@@ -21,7 +21,7 @@ public class ImagePanelLat extends ImageModel implements KeyListener {
         rot = true;
         press = true;
         type = e.getKeyCode();
-        if (type == 38) {
+        if (type == 87) {
 
             if (rotDeg > -MAXDEG) {
 
@@ -29,10 +29,10 @@ public class ImagePanelLat extends ImageModel implements KeyListener {
             }
         } else {
             int dum = e.getKeyCode();
-            if (dum == 40) {
+            if (dum == 83) {
                 type = dum;
             }
-            if (type == 40) {
+            if (type == 83) {
                 if (rotDeg < MAXDEG) {
 
                     rotDeg += 5;

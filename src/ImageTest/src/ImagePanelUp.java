@@ -45,15 +45,13 @@ public class ImagePanelUp extends ImageModel implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e
     ) {
-        //65->A 68->
-        //int key1=e.getKeyCode();
         rot = true;
         press = true;
         type = e.getKeyCode();
-        if (type == 65) {;
+        if (type == 37) {;
             rotDeg -= 5;
             repaint();
-        } else if (type == 68) {
+        } else if (type == 39) {
             rotDeg += 5;
             repaint();
 

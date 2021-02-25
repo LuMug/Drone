@@ -22,19 +22,19 @@ public class ImagePanelFront extends ImageModel implements KeyListener {
         press = true;
         type = e.getKeyCode();
 
-        if (type == 37) {
+        if (type == 65) {
 
-            if (rotDeg > -MAXDEG) {
+            if (rotDeg > -40) {
 
                 rotDeg -= 5;
             }
         } else {
             int dum = e.getKeyCode();
-            if (dum == 39) {
+            if (dum == 68) {
                 type = dum;
             }
-            if (type == 39) {
-                if (rotDeg < MAXDEG) {
+            if (type == 68) {
+                if (rotDeg < 40) {
 
                     rotDeg += 5;
                 }

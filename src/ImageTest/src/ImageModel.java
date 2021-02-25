@@ -88,20 +88,20 @@ public class ImageModel extends JPanel {
             image = resize(imageBig, panelW - 100, panelH - 100);
             rotatedImage = rotate(image, rotDeg);
 
-            if (type == 37 || type ==38) {
+            if (type == 68 || type ==65) {
                 if (rotDeg < 0) {
                     g.drawImage(rotatedImage, x, y + rotDeg, this);
                 }else{
                     g.drawImage(rotatedImage, x, y +(-rotDeg), this);      
                 }
-            } else if (type == 39 || type==40) {
+            } else if (type == 87 || type==83) {
                 if(rotDeg>0){
                     g.drawImage(rotatedImage, x, y + (-rotDeg), this);
                 }else{
                     g.drawImage(rotatedImage, x, y + rotDeg, this);
                 }
             }
-        } else {
+        } else if(imageBig != null) {
             image = resize(imageBig, panelW - 100, panelH - 100);
             x = (this.getWidth() - image.getWidth(null)) / 2;
             y = (this.getHeight() - image.getHeight(null)) / 2;

@@ -3,7 +3,6 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 
 /**
@@ -54,31 +53,29 @@ public class ImageFrame extends JFrame implements KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
         int type = e.getKeyCode();
-        if(type==37 || type==39){
+        if(type==68 || type==65){
             imagePanelFront.keyPressed(e);
-        }else if(type==38 || type==40){
+        }else if(type==87 || type==83){
             imagePanelLat.keyPressed(e);
-        }else if(type==65 || type==68){
-            System.out.println(e);
+        }else if(type==37 || type==39){
             imagePanelUp.keyPressed(e);
+        }else if(type==38 || type==40){
+            altitudine.keyPressed(e);
         }
+        
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         int type = e.getKeyCode();
-        if(type==37 || type==39){
+        if(type==68 || type==65){
             imagePanelFront.keyReleased(e);
-        }else if(type==38 || type==40){
+        }else if(type==87 || type==83){
             imagePanelLat.keyReleased(e);
-        }else if(type==65 || type==68){
-            System.out.println(e);
-            imagePanelUp.keyReleased(e);
         }
     }
 
-    public void keyTyped(KeyEvent e) {
-    }
+    public void keyTyped(KeyEvent e) {}
     
     @Override
     public boolean isFocusTraversable() {
