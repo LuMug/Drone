@@ -235,7 +235,8 @@ public class Drone extends Thread {
                 DatagramPacket packet = new DatagramPacket(sendBuf, sendBuf.length);
                 socket.receive(packet);
                 messageReceived = new String(packet.getData(), 0, packet.getLength());
-                messageListener.messageReceived();
+                System.out.println(messageReceived);
+               // messageListener.messageReceived();
             }
         } catch (SocketException ex) {
             System.out.println("ERRORE: " + ex.getMessage());

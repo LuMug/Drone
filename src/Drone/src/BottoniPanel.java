@@ -1,6 +1,8 @@
 import com.leapmotion.leap.Controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Panel che si occupa di gestire i bottoni.
@@ -240,7 +242,7 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
          * Muove il drone tramite le coordinate inserite
          * nel text box.
          */
-        String message = "go " + coordinateTB.getText();
+        String message =  coordinateTB.getText();
         invioMessaggio(message);
     }//GEN-LAST:event_invioBActionPerformed
 
@@ -265,19 +267,20 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
 
     @Override
     public void messageReceived() {
-        if ("false".equals(drone.getMessageReceived())) {
-            System.out.println("Error drone: " + drone.getMessageReceived());
-            error = !error;
-        }
     }
 
-    public void invioMessaggio(String message) {
-        drone.setInfo(drone.ipDrone, drone.porta, message);
-        drone.sendMessage();
-        messageReceived();
-        if (!error) {
-            //debug 
-            System.out.println("Messaggio mandato:" + message); 
+    public void invioMessaggio(String message)  {
+        try {
+            drone.setInfo(drone.ipDrone, drone.porta, message);
+            drone.sendMessage();
+                //debug
+                System.out.println("Messaggio mandato a il seguente ip:" + drone.ipDrone +  
+                        " sulla seguente porta:" + drone.porta + 
+                        " porta locale:" + drone.getPorta() +
+                        " Messaggio mandato: "+ message );
+                Thread.sleep(1000);
+                System.out.println( "Messaggio ricevuto dal drone" + drone.getMessageReceived());
+        } catch (InterruptedException ex) {
         }
     }
 
@@ -314,7 +317,7 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
     public void keyReleased(KeyEvent e) {}
     
     public void live() {  
-        String message = "streamOn";
+        String message = "streamon";
         invioMessaggio(message);
     }
 }
