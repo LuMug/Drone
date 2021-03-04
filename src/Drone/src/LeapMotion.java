@@ -150,30 +150,20 @@ public class LeapMotion extends Listener {
                             if(highCommand < 75) {
                                 speed = 60;
                                 bp.invioMessaggio("go 0 0 -40 " + speed);
-                                System.out.println("go 0 0 -40 " + speed);
-                                System.out.println("--------------------");
                             }else{
                                 speed = 70 - convertRange((int)highCommand, 75, 175, 10, 60);
                                 bp.invioMessaggio("go 0 0 -40 " + speed);
-                                System.out.println("go 0 0 -40 " + speed);
-                                System.out.println("--------------------");
                             }
                         }else if(highCommand >= 225){
                             if(highCommand > 325) {
                                 speed = 60;
                                 bp.invioMessaggio("go 0 0 40 " + speed);
-                                System.out.println("go 0 0 40 " + speed);
-                                System.out.println("--------------------");
                             }else{
                                 speed = convertRange(highCommand, 225, 325, 10, 60);
                                 bp.invioMessaggio("go 0 0 40 " + speed);
-                                System.out.println("go 0 0 40 " + speed);
-                                System.out.println("--------------------");
                             }
                         }else{
                             bp.invioMessaggio("stop");
-                            System.out.println("stop");
-                            System.out.println("--------------------");
                         }
                     }
                 }
