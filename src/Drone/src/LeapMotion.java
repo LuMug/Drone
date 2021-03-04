@@ -1,9 +1,7 @@
-
 import com.leapmotion.leap.Controller;
 import com.leapmotion.leap.Frame;
 import com.leapmotion.leap.Hand;
 import com.leapmotion.leap.Listener;
-import java.io.IOException;
 
 /**
  * Listener per un controller leap motion.
