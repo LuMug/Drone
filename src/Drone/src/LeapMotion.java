@@ -31,7 +31,8 @@ public class LeapMotion extends Listener {
      * @param controller connesso
      */
     public void onConnect(Controller controller) {
-        System.out.println("Connected");
+        System.out.println("LeapMotion Connected");
+        System.out.println("------------------------");
     }
 
     /**
@@ -39,8 +40,6 @@ public class LeapMotion extends Listener {
      * @param controller connesso
      */
     public void onFrame(Controller controller) {
-//        try {
-            
             //Legge il pacchetto
             Frame frame = controller.frame();
 
@@ -97,22 +96,19 @@ public class LeapMotion extends Listener {
                                 speed = 60;
                                 bp.invioMessaggio("go -20 0 0 " + speed);
                             }
-                        }else{
-                            System.out.println(pitch);
-                            bp.invioMessaggio("stop");
                         }
                         
                         //Gestione comandi su asse Y (rotazione destra e sinistra)
-                        float yaw = hand.direction().yaw();
-                        if (yaw >= -0.20 && yaw <= 0.20) {
-                            System.out.println("Fermo Asse Y.");
-                        } else if (yaw > 0.20) {
-                            System.out.println("Rotazione a destra.");
-                            bp.invioMessaggio("cw 1");
-                        } else if (yaw < -0.20) {
-                            System.out.println("Rotazione a sinistra.");
-                            bp.invioMessaggio("ccw -1");
-                        }
+//                        float yaw = hand.direction().yaw();
+//                        if (yaw >= -0.20 && yaw <= 0.20) {
+//                            System.out.println("Fermo Asse Y.");
+//                        } else if (yaw > 0.20) {
+//                            System.out.println("Rotazione a destra.");
+//                            bp.invioMessaggio("cw 1");
+//                        } else if (yaw < -0.20) {
+//                            System.out.println("Rotazione a sinistra.");
+//                            bp.invioMessaggio("ccw -1");
+//                        }
                         
                         //Gestione comandi asse Z (destra e sinistra)
                         float roll = hand.palmNormal().roll();
@@ -136,9 +132,6 @@ public class LeapMotion extends Listener {
                                 speed = 60;
                                 bp.invioMessaggio("go 0 -20 0 " + speed);
                             }
-                        }else{
-                            System.out.println(roll);
-                            bp.invioMessaggio("stop");
                         }
                         
                     } else {
@@ -168,9 +161,6 @@ public class LeapMotion extends Listener {
                     }
                 }
             }
-//        } catch (InterruptedException e) {
-//            return;
-//        }
     }
     
     /**
