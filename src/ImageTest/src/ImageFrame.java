@@ -55,11 +55,14 @@ public class ImageFrame extends JFrame implements KeyListener{
         int type = e.getKeyCode();
         if(type==68 || type==65){
             imagePanelFront.keyPressed(e);
-        }else if(type==87 || type==83){
+        }
+        if(type==87 || type==83){
             imagePanelLat.keyPressed(e);
-        }else if(type==37 || type==39){
+        }
+        if(type==37 || type==39){
             imagePanelUp.keyPressed(e);
-        }else if(type==38 || type==40){
+        }
+        if(type==38 || type==40){
             altitudine.keyPressed(e);
         }
         
@@ -70,7 +73,8 @@ public class ImageFrame extends JFrame implements KeyListener{
         int type = e.getKeyCode();
         if(type==68 || type==65){
             imagePanelFront.keyReleased(e);
-        }else if(type==87 || type==83){
+        } 
+        if(type==87 || type==83){
             imagePanelLat.keyReleased(e);
         }
     }
