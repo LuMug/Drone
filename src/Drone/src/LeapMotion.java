@@ -146,15 +146,34 @@ public class LeapMotion extends Listener {
                         //Gestione comandi verticali
                         float highCommand = hand.palmPosition().getY();
                         int speed = 0;
-                        System.out.println(highCommand);
-                        if(highCommand >= 75 && highCommand <= 175) {
-                            speed = 70 - convertRange((int)highCommand, 75, 175, 10, 60);
-                            bp.invioMessaggio("go 0 0 -40 " + speed);
-                        }else if(highCommand >= 225 && highCommand <= 325){
-                            speed = convertRange(highCommand, 225, 325, 10, 60);
-                            bp.invioMessaggio("go 0 0 40 " + speed);
+                        if(highCommand <= 175) {
+                            if(highCommand < 75) {
+                                speed = 60;
+                                bp.invioMessaggio("go 0 0 -40 " + speed);
+                                System.out.println("go 0 0 -40 " + speed);
+                                System.out.println("--------------------");
+                            }else{
+                                speed = 70 - convertRange((int)highCommand, 75, 175, 10, 60);
+                                bp.invioMessaggio("go 0 0 -40 " + speed);
+                                System.out.println("go 0 0 -40 " + speed);
+                                System.out.println("--------------------");
+                            }
+                        }else if(highCommand >= 225){
+                            if(highCommand > 325) {
+                                speed = 60;
+                                bp.invioMessaggio("go 0 0 40 " + speed);
+                                System.out.println("go 0 0 40 " + speed);
+                                System.out.println("--------------------");
+                            }else{
+                                speed = convertRange(highCommand, 225, 325, 10, 60);
+                                bp.invioMessaggio("go 0 0 40 " + speed);
+                                System.out.println("go 0 0 40 " + speed);
+                                System.out.println("--------------------");
+                            }
                         }else{
                             bp.invioMessaggio("stop");
+                            System.out.println("stop");
+                            System.out.println("--------------------");
                         }
                     }
                 }
