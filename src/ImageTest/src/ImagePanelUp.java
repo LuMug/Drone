@@ -20,9 +20,11 @@ public class ImagePanelUp extends ImageModel implements KeyListener {
 
     @Override
     public void paintComponent(Graphics g) {
-
-        g.setColor(Color.white);
+        g.setColor(Color.WHITE);
         g.fillRect(0, 0, getWidth(), getHeight());
+        g.setColor(Color.BLACK);
+        g.drawRect(0, 0, getWidth(),getHeight());
+        
         panelH = getHeight();
         panelW = getWidth();
         if (panelW < panelH) {
@@ -30,15 +32,15 @@ public class ImagePanelUp extends ImageModel implements KeyListener {
         } else {
             panelW = panelH;
         }
-        image = resize(imageBig, panelW, panelH);
+        image = resize(imageBig, panelW-65, panelH-65);
         int x = (this.getWidth() - image.getWidth(null)) / 2;
         int y = (this.getHeight() - image.getHeight(null)) / 2;
         if (rot) {
-            image = resize(imageBig, panelW-50, panelH-50);
+            //image = resize(imageBig, panelW-50, panelH-50);
             rotatedImage = rotate(image, rotDeg);
-            g.drawImage(rotatedImage, x, y, this);
+            g.drawImage(rotatedImage, x, y-25, this);
         } else {
-            g.drawImage(image, x, y, this);
+            g.drawImage(image, x, y-25, this);
         }
     }
 

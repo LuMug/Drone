@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -73,6 +74,8 @@ public class ImageModel extends JPanel {
         height = panelH;
         width = panelW;
         g.clearRect(0, 0, width, height);
+        g.setColor(Color.BLACK);
+        g.drawRect(0, 0, getWidth(),getHeight());
 
         if (panelH > panelW) {
             panelH = panelW;
