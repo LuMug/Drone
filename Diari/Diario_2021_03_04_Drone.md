@@ -1,6 +1,6 @@
 # Drone | Diario di lavoro
 ##### Michea Colautti, Alessandro Aloise, Gianni Grasso, Samuele Ganci
-### Centro Professionale Trevano, 25.02.2021
+### Centro Professionale Trevano, 04.03.2021
 
 ## Lavori svolti
 
@@ -15,7 +15,7 @@
 |09:30 - 09:50 | Calibrazione Leap Motion                                            |Samuele                     |
 |09:30 - 09:50 | Ricerche possibili soluzioni per batteria                           |Alessandro, Gianni e Michea |
 |10:05 - 10:15 | Consultazione docente su procedimento                               |Tutti                       |
-|10:15 - 10:30 | Creazione di un simulatore per testare la comunicazione con il drone |Alessandro e Gianni        |
+|10:15 - 10:30 | Creazione di un simulatore per testare la comunicazione con il drone|Alessandro e Gianni        |
 |10:15 - 10:30 | Ricerca e fix impostazioni / calibrazione Leap Motion               |Michea e Samuele            |
 |10:30 - 11:35 | Consultazione elettronici per batteria                              |Alessandro e Michea         |
 |10:30 - 11:35 | Instaurazione Socket per comunicazione con il drone                 |Gianni                      |
@@ -33,7 +33,7 @@
 
 ## Problemi riscontrati e soluzioni adottate
 
-1. Poco dopo aver iniziato a lavorare, il primo problema della giornata ci si è palesato. Benché la batteria del drone fornitaci dalla scuola fosse stata costantemente sotto carica per tutto il giorno precedente (Mercoledì 3 marzo 2020), al nostro arrivo essa era completamente scarica. Non solo era scarica, ma non dava segni di caricamento, anche dopo una buona mezz'ora in carica il livello indicato dall'app mobile di `DJI` indicava il livello sempre vicino allo 0%.
+1. Poco dopo aver iniziato a lavorare, il primo problema della giornata ci si è palesato. Benché la batteria del drone fornitaci dalla scuola fosse stata costantemente sotto carica per tutto il giorno precedente (Mercoledì 3 marzo 2020), al nostro arrivo il drone presentava alcuni problemi. Abbiamo infatti provato a testare alcune cose senza farlo decollare ma il drone si è scaricato dopo 2 minuti. Inoltre la batteria dava segni di caricamento, anche dopo una buona mezz'ora in carica il livello indicato dall'app mobile di `DJI` indicava il livello sempre vicino allo 0%.
 Per questo ci siamo consultati con il docente temevamo infatti che il problema stesse nelle componenti del drone, come ad esempio un chip danneggiato dall'rigonfiamento della batteria originale.
 Dopo una consultazione con il docente, abbiamo provato a cercare soluzioni online, abbiamo aperto il drone per verificare se a vista ci fossero pezzi danneggiati, ma non abbiamo trovato nulla. Perciò siamo andati dai docenti Bartesaghi e Scheurer, sezione elettronica, che tramite una scarica elettrica più forte di quella abituale per la ricarica ha come "sbloccato" i circuiti.
 
