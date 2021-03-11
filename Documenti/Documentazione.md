@@ -61,11 +61,11 @@ Data di consegna: 13 maggio 2021.
 
   > *Nowadays, technology around us is costantly evolving, even becoming vital. Thanks
   to computer system, the way we entertain ourselves has changed in recent times,
-  technology enternains us. Recently, augmented reality devices such as VR devices,
-  hands and arms sensors, and more have become increasingly common in the market.
-  In this project we managed to implement piloting a drone with our hands, thanks
+  technology enternains us. Recently, aumented reality devices such as VR devices,
+  hands and arms sensors, and more. These things have become increasingly common in the
+  market. In this project we managed to implement piloting a drone with our hands, thanks
   to the help of a device called Leap Motion. With little money now you can buy
-  a Leap Motion and a Drone to be able to enjoy driving the latter using only
+  a Leap Motion and a Drone to be able to enjoy driving the DJI Tello using only
   your hands in a very intuitive and simple way.*
 
 ### Scopo
@@ -119,7 +119,7 @@ Data di consegna: 13 maggio 2021.
   
   ||**ID: Req-003**|
   |----|-
-  |**Nome**| § |
+  |**Nome**| Interfaccia statistiche |
   |**Priorità**|1|
   |**Versione**|1.0|
   |**Note**|Inizialmente sito web, su accordo è stato modificato in interfaccia. Utilizzare Java|
