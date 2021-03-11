@@ -1,0 +1,3 @@
+ cose da cambiare il drone lo abbiao usato e dopo che é stato usato si é scaricato lo abbiamo usasto per circa 2 min senza averlo fatto decollare
+
+invece prima la cosa da cambiare riguarda il soket udp come dicevo
