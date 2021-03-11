@@ -12,6 +12,10 @@ import java.util.logging.Logger;
  * @version 28.01.2021
  */
 public class BottoniPanel extends javax.swing.JPanel implements MessageListener, KeyListener {
+    int moveStep = 25;
+    int altStep = 25;
+    int yawStep = 25;
+    
     /** 
      * Istanziamento dell'oggetto drone.
      */
@@ -291,44 +295,87 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
     }
     
     public void keyPressed(KeyEvent e) {
-        boolean avanti;
-        boolean indietro;
-        boolean destra;
-        boolean sinistra;
+        try {
+            Thread.sleep(250);
+        } catch (InterruptedException ex) {
+            System.out.println("Errore nel Thread.sleep");
+        }
+        //boolean x = true;
+        int leftRight = 0;
+        int backForward = 0;
+        int upDown = 0;
+        int yaw = 0;
         
         String message;      
         int keyCode = e.getKeyCode();
         if(keyCode == 37){
+            //message = "go 0 20 0 100";
+            //message = "Turn Left";
+            //invioMessaggio(message);
+            leftRight -= moveStep;
+            System.out.println("Sinistra");
+        }if(keyCode == 38){
+            //message = "go 20 0 0 100";
+            //message = "Up";
+            //invioMessaggio(message);
+            backForward += moveStep;
+            System.out.println("Avanti");
+        }if(keyCode == 39){
+            //message = "go 0 -20 0 100";
+            //message = "Turn Right";
+            //invioMessaggio(message);
+            leftRight += moveStep;
+            System.out.println("Destra");
+        }if(keyCode == 40){
+            //message = "go -20 0 0 100";
+            //message = "Down";
+            //invioMessaggio(message);
+            backForward -= moveStep;
+            System.out.println("Indietro");
+        }if(keyCode == 83){
+            upDown -= altStep;
+            System.out.println("Giù");
+        }
+        if(keyCode == 87){
+            upDown += altStep;
+            System.out.println("Su");
+        }if(keyCode == 65){
+            yaw -= yawStep;
+            System.out.println("Ruota sx");
+        }if(keyCode == 68){
+            yaw += yawStep;
+            System.out.println("Ruota dx");
+        }
+        message = "rc " + leftRight + " " + backForward + " " + upDown + " " +  yaw;
+        invioMessaggio(message);
+    }
+
+    public void keyTyped(KeyEvent e) {
+        //invioMessaggio("rc 0 20 0 0");
+        //System.out.println("hai tappato un tasto");
+    }
+
+    
+    public void keyReleased(KeyEvent e) {
+        //invioMessaggio("rc 0 0 0 0");
+        /**
+         * String message;      
+        int keyCode = e.getKeyCode();
+        if(keyCode == 37){
             message = "stop";
             invioMessaggio(message);
-            message = "go 0 20 0 100";
-            invioMessaggio(message);
-            System.out.println("Sinistra");
         }if(keyCode == 38){
             message = "stop";
             invioMessaggio(message);
-            message = "go 20 0 0 100";
-            invioMessaggio(message);
-            System.out.println("Su");
         }if(keyCode == 39){
-            System.out.println("Destra");
             message = "stop";
-            message = "go 0 -20 0 100";
-            invioMessaggio(message);
             invioMessaggio(message);
         }if(keyCode == 40){
             message = "stop";
             invioMessaggio(message);
-            message = "go -20 0 0 100";
-            invioMessaggio(message);
-            System.out.println("Giù");
         }
+         */
     }
-
-    public void keyTyped(KeyEvent e) {}
-
-    
-    public void keyReleased(KeyEvent e) {}
     
     public void live() {  
         String message = "streamon";
