@@ -280,7 +280,7 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
                 System.out.println("Message sent: " + message);
                 System.out.println( "Message received: " + drone.getMessageReceived());
                 System.out.println("------------------------");
-                Thread.sleep(125);
+                Thread.sleep(250);
         } catch (InterruptedException ex) {
         }
     }
