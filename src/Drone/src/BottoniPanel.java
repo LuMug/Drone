@@ -291,22 +291,35 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
     }
     
     public void keyPressed(KeyEvent e) {
+        boolean avanti;
+        boolean indietro;
+        boolean destra;
+        boolean sinistra;
+        
         String message;      
         int keyCode = e.getKeyCode();
         if(keyCode == 37){
-            message = "go 0 -20 0 20";
+            message = "stop";
+            invioMessaggio(message);
+            message = "go 0 20 0 100";
             invioMessaggio(message);
             System.out.println("Sinistra");
         }if(keyCode == 38){
-            message = "go 20 0 0 20";
+            message = "stop";
+            invioMessaggio(message);
+            message = "go 20 0 0 100";
             invioMessaggio(message);
             System.out.println("Su");
         }if(keyCode == 39){
-            message = "go 0 20 0 20";
-            invioMessaggio(message);
             System.out.println("Destra");
+            message = "stop";
+            message = "go 0 -20 0 100";
+            invioMessaggio(message);
+            invioMessaggio(message);
         }if(keyCode == 40){
-            message = "go -20 0 0 20";
+            message = "stop";
+            invioMessaggio(message);
+            message = "go -20 0 0 100";
             invioMessaggio(message);
             System.out.println("Giù");
         }
