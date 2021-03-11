@@ -66,5 +66,3 @@ Per la prima volta ci traviamo stringato con i tempi, oggi avremmo dovuto preced
 2. Trovare una soluzione per la guida tramite tasti.
 3. Implementare la possibilità di combinare 2 o più istruzioni con i tasti.
 4. Sistemare lo stream del video live.
-
-
