@@ -191,11 +191,13 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
     }//GEN-LAST:event_sinistraBMouseClicked
 
     private void avantiBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avantiBActionPerformed
-        if (drone.getX() <= 180 && drone.getStato()) {
+        /**if (drone.getX() <= 180 && drone.getStato()) {
             drone.setX(20);
             String message = "forward 20";
             invioMessaggio(message);
-        }
+        }*/
+        invioMessaggio("rc 0 25 0 0");
+        
     }//GEN-LAST:event_avantiBActionPerformed
 
     private void destraBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_destraBActionPerformed
@@ -296,7 +298,7 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
     
     public void keyPressed(KeyEvent e) {
         try {
-            Thread.sleep(250);
+            Thread.sleep(750);
         } catch (InterruptedException ex) {
             System.out.println("Errore nel Thread.sleep");
         }
@@ -350,14 +352,11 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
         invioMessaggio(message);
     }
 
-    public void keyTyped(KeyEvent e) {
-        //invioMessaggio("rc 0 20 0 0");
-        //System.out.println("hai tappato un tasto");
-    }
+    public void keyTyped(KeyEvent e) {}
 
     
     public void keyReleased(KeyEvent e) {
-        //invioMessaggio("rc 0 0 0 0");
+        invioMessaggio("rc 0 0 0 0");
         /**
          * String message;      
         int keyCode = e.getKeyCode();
