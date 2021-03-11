@@ -1,0 +1,8 @@
+8.20 - 8.30 riunione mattutina
+8.30 - 9.15 GANTT consuntivo
+9.15 - 9.50 Aiuto fix netbeans Alessandro, non gli funzionava la build perché non trovava dei file dll
+essenziali per il funzionamento del programma. Alla fine era perché gli mancava qualche pacchetto di C++.
+9.50 - 13.00 Documentazione e riordinamento files progettazione
+13.00 - 13.15 Stesura proprio diario
+13.15 - 14.00 Consultazione con Gianni su come muovere in modo fluido il drone (ha trovato lui una soluzione)
+14.15 - 15.45 Implementazione del LeapMotion in modo fluido
