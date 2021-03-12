@@ -16,11 +16,13 @@
 |10:05 - 11:35 | Documentazione e riordinamento files progettazione                  |Samuele                     |
 |10:05 - 11:35 | Ricerca per dati statistici del drone                               |Alessandro                  |
 |10:05 - 11:35 | Implementazione comando rc                                          |Gianni e Michea             |
-|12:30 - 13:15 | Stesura proprio diario                                              |Samuele                     |
+|12:30 - 13:00 | Documentazione                                                      |Samuele                     |
 |12:30 - 15:00 | Ricerca + implementazione interfaccia per statistiche               |Alessandro                  |
 |12:30 - 15:45 | Implementazione e calibrazione guida con frecce direzionali         |Gianni                      |
-|13:15 - 13:40 | Consultazione Gianni per muovere fluidamente il drone               |Samuele                     |
 |12:30 - 14:00 | Ricerca per implementare la possibilità di premere più tasti        |Michea                      |
+|13:00 - 13:15 | Stesura proprio diario                                              |Samuele                     |
+|13:15 - 13:40 | Consultazione Gianni per muovere fluidamente il drone               |Samuele                     |
+|13:40 - 14:00 | Ricerca fluidità dei comandi RC + setSpeed                          |Samuele                     |
 |14:00 - 14:45 | Ricerca e download software per creazione DB Sqlite                 |Michea                      |
 |14:15 - 15:45 | Implementazione del LeapMotion in modo fluido (con comando RC)      |Samuele                     |
 |15:00 - 15:45 | Classe di log                                                       |Alessandro                  |
