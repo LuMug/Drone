@@ -21,37 +21,28 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="atteraB" max="32767" attributes="0"/>
-                          <Component id="decollaB" max="32767" attributes="0"/>
+                      <Component id="decollaB" min="-2" pref="77" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jScrollPane1" min="-2" pref="124" max="-2" attributes="0"/>
+                              <EmptySpace pref="284" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="invioB" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="sinistraB" min="-2" pref="113" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="indietroB" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="124" max="-2" attributes="0"/>
-                  <Component id="avantiB" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
-                  <Component id="invioB" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
-                      <Component id="destraB" min="-2" pref="112" max="-2" attributes="0"/>
+                      <Component id="atteraB" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="emergenzaB" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="batteria" min="-2" pref="107" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -60,76 +51,26 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="avantiB" min="-2" pref="63" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="destraB" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                  <Component id="sinistraB" min="-2" pref="80" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="invioB" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="invioB" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="decollaB" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="atteraB" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="94" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="indietroB" alignment="3" min="-2" pref="75" max="-2" attributes="0"/>
-                          <Component id="decollaB" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="atteraB" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="emergenzaB" alignment="1" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="batteria" min="-2" pref="39" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="avantiB">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Avanti"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="avantiBActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="indietroB">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Indietro"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="indietroBActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="sinistraB">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Sinistra"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sinistraBMouseClicked"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="destraB">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Destra"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="destraBActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="emergenzaB">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Test"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emergenzaBActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="decollaB">
       <Properties>
         <Property name="text" type="java.lang.String" value="DECOLLA"/>
@@ -164,6 +105,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="invioBActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="batteria">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Bat: 0%"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
