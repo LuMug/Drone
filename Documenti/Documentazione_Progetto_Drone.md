@@ -129,7 +129,7 @@ Data di consegna: 13 maggio 2021.
 ### Use case
 
 Ecco il nostro Use Case
-![Use Case](/Users/micheacolautti/Documents/GitHub/Drone/Documenti/Progettazione/Use_Case/UseCase.png)
+![Use Case](../Drone/Documenti/Progettazione/Use_Case/UseCase.png)
 
 ### Pianificazione
 
