@@ -1,4 +1,4 @@
-package Drone;
+package DronePk;
 
 /**
  * Frame che si occupa di contenere il panel dell'aplicazione.
@@ -20,26 +20,12 @@ public class DroneFrame extends javax.swing.JFrame{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        comandiPanel = new ComandiPanel();
-        funzionePanel = new FunzionePanel();
-        livePanel1 = new LivePanel();
+        comandiPanel = new DronePk.ComandiPanel();
+        funzionePanel = new DronePk.FunzionePanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().add(comandiPanel, java.awt.BorderLayout.LINE_START);
-        getContentPane().add(funzionePanel, java.awt.BorderLayout.PAGE_END);
-
-        javax.swing.GroupLayout livePanel1Layout = new javax.swing.GroupLayout(livePanel1);
-        livePanel1.setLayout(livePanel1Layout);
-        livePanel1Layout.setHorizontalGroup(
-            livePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 605, Short.MAX_VALUE)
-        );
-        livePanel1Layout.setVerticalGroup(
-            livePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 358, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(livePanel1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(comandiPanel, java.awt.BorderLayout.WEST);
+        getContentPane().add(funzionePanel, java.awt.BorderLayout.SOUTH);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -80,8 +66,7 @@ public class DroneFrame extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private ComandiPanel comandiPanel;
-    private FunzionePanel funzionePanel;
-    private LivePanel livePanel1;
+    private DronePk.ComandiPanel comandiPanel;
+    private DronePk.FunzionePanel funzionePanel;
     // End of variables declaration//GEN-END:variables
 }

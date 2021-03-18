@@ -1,6 +1,4 @@
-package Drone;
-
-
+package DronePk;
 
 /**
  * Panel che contiene gli ultimi comandi eseguiti. 
@@ -29,7 +27,6 @@ public class ComandiPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(javax.swing.BorderFactory.createLineBorder(null));
         setLayout(new java.awt.BorderLayout());
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));

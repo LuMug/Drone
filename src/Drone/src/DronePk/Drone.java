@@ -1,7 +1,4 @@
-<<<<<<< Updated upstream:src/Drone/src/Drone.java
-=======
-package Drone;
->>>>>>> Stashed changes:src/Drone/src/Drone/Drone.java
+package DronePk;
 
 import com.leapmotion.leap.Controller;
 import java.awt.event.KeyEvent;
