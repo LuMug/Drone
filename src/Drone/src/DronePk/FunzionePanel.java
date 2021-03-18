@@ -96,7 +96,7 @@ public class FunzionePanel extends javax.swing.JPanel {
     private void vistaDroneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaDroneActionPerformed
         ImageFrame vista = new ImageFrame();
         vista.setVisible(true);
-        batteriaText.setText(drone.batteria());
+        batteriaCampo.setText(drone.batteria());
     }//GEN-LAST:event_vistaDroneActionPerformed
 
     private void decollaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decollaActionPerformed

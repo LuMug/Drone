@@ -2,11 +2,11 @@ package DronePk;
 
 
 import com.leapmotion.leap.Controller;
+import com.leapmotion.leap.Finger;
+import com.leapmotion.leap.FingerList;
 import com.leapmotion.leap.Frame;
 import com.leapmotion.leap.Hand;
 import com.leapmotion.leap.Listener;
-import com.leapmotion.leap.Pointable;
-import com.leapmotion.leap.Vector;
 
 /**
  * Listener per un controller leap motion.
@@ -21,6 +21,11 @@ public class LeapMotion extends Listener {
      */
     private Drone drone;
 
+    /**
+     * Contiene se il drone è in volo o meno.
+     */
+    private boolean inFlight = false;
+    
     /**
      * Costruttore della classe
      *
@@ -166,9 +171,19 @@ public class LeapMotion extends Listener {
                 if (betweenExcluded(pitch, -0.25, 0.25)
                         && betweenExcluded(roll, -0.40, 0.40)
                         && betweenExcluded(yaw, -0.45, 0.45)) {
-                    drone.invioMessaggio("rc 0 0 0 0");
-
-                    System.out.println(hand.fingers().frontmost().isExtended());
+                    FingerList indexFingerList = hand.fingers().fingerType(Finger.Type.TYPE_INDEX);
+                    Finger indexFinger = indexFingerList.get(0);
+                    if(indexFinger.isExtended()) {
+                        drone.invioMessaggio("rc 0 0 0 0");
+                    }else{
+                        if(inFlight) {
+                            drone.invioMessaggio("land");
+                            inFlight = false;
+                        }else{
+                            drone.invioMessaggio("takeoff");
+                            inFlight = true;
+                        }
+                    }
 
                 } else {
                     if (pitch >= 0.25) {

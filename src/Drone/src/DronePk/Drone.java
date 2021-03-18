@@ -140,12 +140,11 @@ public class Drone extends Thread implements KeyListener {
         port = socket.getLocalPort();
         setPortAsTitle(jp);
         messageListener = jp;
-
+        status.start();
         //Gestione del LeapMotion
         LeapMotion listener = new LeapMotion(this);
         Controller controller = new Controller();
         controller.addListener(listener);
-
         setUp();
 
     }
@@ -292,11 +291,11 @@ public class Drone extends Thread implements KeyListener {
             sendMessage();
 
             //debug
-//            System.out.println("IP: " + ip
-//                    + ", Port: " + porta);
-//            System.out.println("Message sent: " + message);
-//            System.out.println("Message received: " + getMessageReceived());
-//            System.out.println("------------------------");
+            System.out.println("IP: " + ip
+                    + ", Port: " + porta);
+            System.out.println("Message sent: " + message);
+            System.out.println("Message received: " + getMessageReceived());
+            System.out.println("------------------------");
 
             Thread.sleep(125);
         } catch (InterruptedException ex) {
