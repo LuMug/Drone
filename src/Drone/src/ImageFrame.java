@@ -37,7 +37,7 @@ public class ImageFrame extends JFrame implements KeyListener{
         setMaximumSize(new Dimension(700, 500));
         GridLayout ImageFrameLayout = new GridLayout(2, 2);
         setLayout(ImageFrameLayout);
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         imagePanelFront = new ImagePanelFront();
         imagePanelLat = new ImagePanelLat();
