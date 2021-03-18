@@ -220,9 +220,8 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
         /**
          * Bottone di test per le funzionalità da implementare.
          */
-        //String message = "cw 180";
-        String message = "stop";
-        invioMessaggio(message);
+        //invioMessaggio("stop");
+        invioMessaggio("rc 0 0 0 0");
     }//GEN-LAST:event_emergenzaBActionPerformed
 
     private void decollaBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decollaBActionPerformed
@@ -296,13 +295,13 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
         drone.setPorta(8889);
     }
     
+    //public int state = 0;
     public void keyPressed(KeyEvent e) {
         try {
             Thread.sleep(750);
         } catch (InterruptedException ex) {
             System.out.println("Errore nel Thread.sleep");
         }
-        //boolean x = true;
         int leftRight = 0;
         int backForward = 0;
         int upDown = 0;
@@ -357,6 +356,7 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
     
     public void keyReleased(KeyEvent e) {
         invioMessaggio("rc 0 0 0 0");
+        //state = 0;
         /**
          * String message;      
         int keyCode = e.getKeyCode();

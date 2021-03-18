@@ -148,21 +148,19 @@ public class LeapMotion extends Listener {
                         if (highCommand < 75) {
                             speed = 100;
                             bp.invioMessaggio("speed " + speed);
-                            bp.invioMessaggio("rc 0 0 -50 0");
+                            bp.invioMessaggio("rc 0 0 -" + speed + " 0");
                         } else {
                             speed = 110 - convertRange(highCommand, 75, 175, 10, 100);
                             bp.invioMessaggio("speed " + speed);
-                            bp.invioMessaggio("rc 0 0 -50 0");
+                            bp.invioMessaggio("rc 0 0 -" + speed + " 0");
                         }
                     } else if (highCommand >= 225) {
                         if (highCommand > 325) {
                             speed = 100;
-                            bp.invioMessaggio("speed " + speed);
-                            bp.invioMessaggio("rc 0 0 50 0");
+                            bp.invioMessaggio("rc 0 0 " + speed + " 0");
                         } else {
                             speed = convertRange(highCommand, 225, 325, 10, 100);
-                            bp.invioMessaggio("speed " + speed);
-                            bp.invioMessaggio("rc 0 0 50 0");
+                            bp.invioMessaggio("rc 0 0 " + speed + " 0");
                         }
                     } else {
                         bp.invioMessaggio("rc 0 0 0 0");
