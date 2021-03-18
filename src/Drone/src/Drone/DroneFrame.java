@@ -1,3 +1,5 @@
+package Drone;
+
 /**
  * Frame che si occupa di contenere il panel dell'aplicazione.
  * 

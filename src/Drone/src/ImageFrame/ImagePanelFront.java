@@ -1,3 +1,5 @@
+package ImageFrame;
+
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -5,11 +7,11 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class ImagePanelLat extends ImageModel implements KeyListener {
+public class ImagePanelFront extends ImageModel implements KeyListener {
 
-    public ImagePanelLat() {
+    public ImagePanelFront() {
         try {
-            imageBig = ImageIO.read(new File("bin/DroneLaterale.png"));
+            imageBig = ImageIO.read(new File("bin/DroneFrontale.png"));
 
         } catch (IOException ex) {
             System.out.println("Errore");
@@ -21,19 +23,20 @@ public class ImagePanelLat extends ImageModel implements KeyListener {
         rot = true;
         press = true;
         type = e.getKeyCode();
-        if (type == 87) {
 
-            if (rotDeg > -MAXDEG) {
+        if (type == 65) {
+
+            if (rotDeg > -40) {
 
                 rotDeg -= 5;
             }
         } else {
             int dum = e.getKeyCode();
-            if (dum == 83) {
+            if (dum == 68) {
                 type = dum;
             }
-            if (type == 83) {
-                if (rotDeg < MAXDEG) {
+            if (type == 68) {
+                if (rotDeg < 40) {
 
                     rotDeg += 5;
                 }
@@ -42,14 +45,13 @@ public class ImagePanelLat extends ImageModel implements KeyListener {
         repaint();
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
+    public void keyTyped(KeyEvent e){}
 
     @Override
     public void keyReleased(KeyEvent e) {
+        //try{
         press = false;
-        while (!press && rotDeg != 0) {
+        while (!press && rotDeg !=0) {
             if (rotDeg > 0) {
                 //Thread.sleep(90);
                 rotDeg--;
@@ -60,5 +62,6 @@ public class ImagePanelLat extends ImageModel implements KeyListener {
                 repaint();
             }
         }
+        //}catch(InterruptedException ex){}
     }
 }

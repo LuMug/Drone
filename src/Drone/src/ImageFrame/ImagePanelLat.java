@@ -1,3 +1,5 @@
+package ImageFrame;
+
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -5,11 +7,11 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class ImagePanelFront extends ImageModel implements KeyListener {
+public class ImagePanelLat extends ImageModel implements KeyListener {
 
-    public ImagePanelFront() {
+    public ImagePanelLat() {
         try {
-            imageBig = ImageIO.read(new File("bin/DroneFrontale.png"));
+            imageBig = ImageIO.read(new File("bin/DroneLaterale.png"));
 
         } catch (IOException ex) {
             System.out.println("Errore");
@@ -21,20 +23,19 @@ public class ImagePanelFront extends ImageModel implements KeyListener {
         rot = true;
         press = true;
         type = e.getKeyCode();
+        if (type == 87) {
 
-        if (type == 65) {
-
-            if (rotDeg > -40) {
+            if (rotDeg > -MAXDEG) {
 
                 rotDeg -= 5;
             }
         } else {
             int dum = e.getKeyCode();
-            if (dum == 68) {
+            if (dum == 83) {
                 type = dum;
             }
-            if (type == 68) {
-                if (rotDeg < 40) {
+            if (type == 83) {
+                if (rotDeg < MAXDEG) {
 
                     rotDeg += 5;
                 }
@@ -43,13 +44,14 @@ public class ImagePanelFront extends ImageModel implements KeyListener {
         repaint();
     }
 
-    public void keyTyped(KeyEvent e){}
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        //try{
         press = false;
-        while (!press && rotDeg !=0) {
+        while (!press && rotDeg != 0) {
             if (rotDeg > 0) {
                 //Thread.sleep(90);
                 rotDeg--;
@@ -60,6 +62,5 @@ public class ImagePanelFront extends ImageModel implements KeyListener {
                 repaint();
             }
         }
-        //}catch(InterruptedException ex){}
     }
 }
