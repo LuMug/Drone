@@ -15,6 +15,10 @@ import javax.swing.JPanel;
 public class Drone extends Thread {
 
 
+   /**
+     * Rappresenta lo stato del drone (acceso o spento).
+     */
+    public boolean stato;
 
     /**
      * Rappresenta l'indirizzo IP del drone.
@@ -204,4 +208,12 @@ public class Drone extends Thread {
         }
 
     }
+    
+    /**
+     * Inverte lo stato del drone.
+     */
+    public void setStato() {
+        this.stato = !this.stato;
+    }
 }
+
