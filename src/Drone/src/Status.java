@@ -147,6 +147,10 @@ public class Status extends Thread {
         System.out.println(new String(new char[50]).replace("\0", "\r\n"));
     }
     
+    public String getbatteria(){
+        return bat;
+    }
+    
     public void setIp(String ip){
         this.ip=ip;
     }
