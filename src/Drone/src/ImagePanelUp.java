@@ -11,7 +11,7 @@ public class ImagePanelUp extends ImageModel implements KeyListener {
 
     public ImagePanelUp() {
         try {
-            imageBig = ImageIO.read(new File("../bin/DroneSuperiore.png"));
+            imageBig = ImageIO.read(new File("bin/DroneSuperiore.png"));
 
         } catch (IOException ex) {
             System.out.println("Errore");

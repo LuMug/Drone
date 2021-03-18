@@ -17,7 +17,7 @@ public class ImageFrame extends JFrame implements KeyListener{
     private Altitudine altitudine;
 
     public ImageFrame() {
-       addKeyListener((KeyListener) this);
+       addKeyListener((KeyListener)this);
        initComponents();
     }
 

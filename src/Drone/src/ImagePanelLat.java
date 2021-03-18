@@ -9,7 +9,7 @@ public class ImagePanelLat extends ImageModel implements KeyListener {
 
     public ImagePanelLat() {
         try {
-            imageBig = ImageIO.read(new File("../bin/DroneLaterale.png"));
+            imageBig = ImageIO.read(new File("bin/DroneLaterale.png"));
 
         } catch (IOException ex) {
             System.out.println("Errore");
