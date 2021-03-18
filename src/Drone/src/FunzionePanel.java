@@ -8,11 +8,19 @@
  */
 public class FunzionePanel extends javax.swing.JPanel {
 
+   /** 
+     * Istanziamento dell'oggetto drone.
+     */
+    private Drone drone;
+    
     /**
      * Creates new form FunzionePanel
      */
     public FunzionePanel() {
         initComponents();
+        drone = new Drone(this);
+        drone.start();
+        drone.command();
     }
 
     /**
@@ -27,9 +35,11 @@ public class FunzionePanel extends javax.swing.JPanel {
         sequenzaTasti = new javax.swing.JButton();
         Statistiche = new javax.swing.JButton();
         vistaDrone = new javax.swing.JButton();
+        decolla = new javax.swing.JButton();
+        atterra = new javax.swing.JButton();
         spazio = new javax.swing.JSeparator();
-        velocitàText = new javax.swing.JLabel();
-        velocitàCampo = new javax.swing.JTextField();
+        batteriaText = new javax.swing.JLabel();
+        batteriaCampo = new javax.swing.JTextField();
         percentuale = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -48,15 +58,31 @@ public class FunzionePanel extends javax.swing.JPanel {
         });
         add(vistaDrone);
 
+        decolla.setText("DECOLLA");
+        decolla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decollaActionPerformed(evt);
+            }
+        });
+        add(decolla);
+
+        atterra.setText("ATTERA");
+        atterra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atterraActionPerformed(evt);
+            }
+        });
+        add(atterra);
+
         spazio.setForeground(new java.awt.Color(255, 255, 255));
         spazio.setPreferredSize(new java.awt.Dimension(100, 10));
         add(spazio);
 
-        velocitàText.setText("Velocità");
-        add(velocitàText);
+        batteriaText.setText("Batteria");
+        add(batteriaText);
 
-        velocitàCampo.setText("             ");
-        add(velocitàCampo);
+        batteriaCampo.setText("             ");
+        add(batteriaCampo);
 
         percentuale.setText("%");
         add(percentuale);
@@ -65,16 +91,27 @@ public class FunzionePanel extends javax.swing.JPanel {
     private void vistaDroneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaDroneActionPerformed
         ImageFrame vista = new ImageFrame();
         vista.setVisible(true);
+        batteriaText.setText(drone.batteria());
     }//GEN-LAST:event_vistaDroneActionPerformed
+
+    private void decollaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decollaActionPerformed
+       drone.decolla();
+    }//GEN-LAST:event_decollaActionPerformed
+
+    private void atterraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atterraActionPerformed
+     drone.atterra();
+    }//GEN-LAST:event_atterraActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Statistiche;
+    private javax.swing.JButton atterra;
+    private javax.swing.JTextField batteriaCampo;
+    private javax.swing.JLabel batteriaText;
+    private javax.swing.JButton decolla;
     private javax.swing.JLabel percentuale;
     private javax.swing.JButton sequenzaTasti;
     private javax.swing.JSeparator spazio;
-    private javax.swing.JTextField velocitàCampo;
-    private javax.swing.JLabel velocitàText;
     private javax.swing.JButton vistaDrone;
     // End of variables declaration//GEN-END:variables
 }
