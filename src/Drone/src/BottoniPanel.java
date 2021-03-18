@@ -1,8 +1,7 @@
 import com.leapmotion.leap.Controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  * Panel che si occupa di gestire i bottoni.
@@ -12,9 +11,16 @@ import java.util.logging.Logger;
  * @version 28.01.2021
  */
 public class BottoniPanel extends javax.swing.JPanel implements MessageListener, KeyListener {
+    Status status= new Status();
     int moveStep = 25;
     int altStep = 25;
     int yawStep = 25;
+    
+    public String ip ="192.168.10.1";
+    public int port =8889;
+    
+    
+    Log log = new Log();
     
     /** 
      * Istanziamento dell'oggetto drone.
@@ -25,11 +31,6 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
      * Contiene l'istanza del Leap Motion.
      */
     private LeapMotion leapMotion;
-    
-    /**
-     * Istanziamento di una variabile di errore.
-     */
-    public boolean error = false;
 
     /**
      * Costruttore del panel, crea un nuovo oggetto drone
@@ -232,6 +233,7 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
         String message = "takeoff";
         invioMessaggio(message);
         drone.setStato();
+        status.start();
     }//GEN-LAST:event_decollaBActionPerformed
 
     private void atteraBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atteraBActionPerformed
@@ -292,8 +294,10 @@ public class BottoniPanel extends javax.swing.JPanel implements MessageListener,
     }
 
     public void setUp() {
-        drone.setIpDrone("192.168.10.1");
-        drone.setPorta(8889);
+        drone.setIpDrone(ip);
+        drone.setPorta(port);
+        status.setIp(ip);
+        status.setport(port);
     }
     
     public void keyPressed(KeyEvent e) {
