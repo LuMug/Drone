@@ -131,6 +131,17 @@ public class Status extends Thread {
         return valori;
     }
 
+    public int[] getPos(){
+        
+        int[] values={
+            Integer.parseInt(pich),
+            Integer.parseInt(roll),
+            Integer.parseInt(yaw),
+        };
+        return null;
+        
+    
+    }
     public void stampa() {
         System.out.println("Valori del Drone:");
         System.out.print("Batteria: ");

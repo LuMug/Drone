@@ -15,6 +15,7 @@ public class ImageFrame extends JFrame implements KeyListener{
     private ImagePanelLat imagePanelLat;
     private ImagePanelUp imagePanelUp;
     private Altitudine altitudine;
+    public Status status=new Status();
 
     public ImageFrame() {
        addKeyListener((KeyListener)this);

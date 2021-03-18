@@ -20,7 +20,7 @@ public class Altitudine extends ImageModel implements KeyListener {
     public BufferedImage up;
     public BufferedImage down;
     public JLabel alt;
-    private int altitude = 1;
+    private short altitude = 0;
 
     public Altitudine() {
         try {
