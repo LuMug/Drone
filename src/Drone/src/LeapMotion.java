@@ -1,3 +1,4 @@
+
 import com.leapmotion.leap.Controller;
 import com.leapmotion.leap.Frame;
 import com.leapmotion.leap.Hand;
@@ -78,12 +79,10 @@ public class LeapMotion extends Listener {
                     float roll = hand.palmNormal().roll();
                     float yaw = hand.direction().yaw();
 
-                    if (
-                        betweenExcluded(pitch, -0.25, 0.25) && 
-                        betweenExcluded(roll, -0.40, 0.40) && 
-                        betweenExcluded(yaw, -0.45, 0.45)
-                    ) {
-                        bp.invioMessaggio("stop");
+                    if (betweenExcluded(pitch, -0.25, 0.25)
+                            && betweenExcluded(roll, -0.40, 0.40)
+                            && betweenExcluded(yaw, -0.45, 0.45)) {
+                        bp.invioMessaggio("rc 0 0 0 0");
                     } else {
                         if (pitch >= 0.25) {
 
@@ -181,18 +180,19 @@ public class LeapMotion extends Listener {
     public int convertRange(double value, double r1Min, double r1Max, double r2Min, double r2Max) {
         return (int) (((value - r1Min) * (r2Max - r2Min)) / (r1Max - r1Min) + r2Min);
     }
-    
+
     /**
      * Ritorna se il valore è tra nel range passato, (esclusi il max e min).
+     *
      * @param value da controllare
      * @param min valore minimo
      * @param max valore massimo
      * @return true se il valore è incluso, altrimenti false
      */
     public boolean betweenExcluded(double value, double min, double max) {
-        if(value > min && value < max) {
+        if (value > min && value < max) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
