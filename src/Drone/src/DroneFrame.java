@@ -20,10 +20,12 @@ public class DroneFrame extends javax.swing.JFrame{
 
         comandiPanel = new ComandiPanel();
         funzionePanel = new FunzionePanel();
+        bottoniPanel1 = new BottoniPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().add(comandiPanel, java.awt.BorderLayout.LINE_START);
         getContentPane().add(funzionePanel, java.awt.BorderLayout.PAGE_END);
+        getContentPane().add(bottoniPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -64,6 +66,7 @@ public class DroneFrame extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private BottoniPanel bottoniPanel1;
     private ComandiPanel comandiPanel;
     private FunzionePanel funzionePanel;
     // End of variables declaration//GEN-END:variables
