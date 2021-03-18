@@ -66,9 +66,12 @@ public class Status extends Thread {
                 socket.receive(packet);
 
                 StringTokenizer st = new StringTokenizer(received, " ;");
-                pich = st.nextToken();
-                roll = st.nextToken();
+                pich = st.nextToken().substring(5);
+                roll = st.nextToken().substring(5);
+                System.out.println("rool"+ roll);
+                System.out.println("pcih: "+ pich);
                 yaw = st.nextToken().substring(4);
+                System.out.println("yaw" + yaw);
                 spX = st.nextToken().substring(4);
                 spY = st.nextToken().substring(4);
                 spZ = st.nextToken().substring(4);
