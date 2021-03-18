@@ -128,8 +128,8 @@ Data di consegna: 13 maggio 2021.
 
 ### Use case
 
-I casi d’uso rappresentano l’interazione tra i vari attori e le
-funzionalità del prodotto.
+Ecco il nostro Use Case
+![Use Case](../Drone/Documenti/Progettazione/Use_Case/UseCase.png)
 
 ### Pianificazione
 
