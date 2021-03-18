@@ -15,15 +15,15 @@ public class LeapMotion extends Listener {
     /**
      * Riferimento alla contenitore.
      */
-    private BottoniPanel bp;
+    private Drone drone;
 
     /**
      * Costruttore della classe
      *
-     * @param bp riferimento del contenitore
+     * @param drone riferimento del contenitore
      */
-    public LeapMotion(BottoniPanel bp) {
-        this.bp = bp;
+    public LeapMotion(Drone drone) {
+       this.drone = drone;
     }
 
     /**
@@ -71,7 +71,7 @@ public class LeapMotion extends Listener {
                     && betweenExcluded(roll, -0.40, 0.40)
                     && betweenExcluded(yaw, -0.45, 0.45)
                     && betweenExcluded(highCommand, 175, 225)) {
-                bp.invioMessaggio("rc 0 0 0 0");
+                drone.invioMessaggio("rc 0 0 0 0");
             } else {
                 if (pitch >= 0.25) {
 
@@ -141,7 +141,7 @@ public class LeapMotion extends Listener {
                     }
                 }
 
-                bp.invioMessaggio("rc " + rollSpeed + " " + pitchSpeed + " " + highSpeed + " " + yawSpeed);
+                drone.invioMessaggio("rc " + rollSpeed + " " + pitchSpeed + " " + highSpeed + " " + yawSpeed);
             }
 
         } else if (frame.hands().count() == 1) {
@@ -165,7 +165,7 @@ public class LeapMotion extends Listener {
                     if (betweenExcluded(pitch, -0.25, 0.25)
                             && betweenExcluded(roll, -0.40, 0.40)
                             && betweenExcluded(yaw, -0.45, 0.45)) {
-                        bp.invioMessaggio("rc 0 0 0 0");
+                        drone.invioMessaggio("rc 0 0 0 0");
                     } else {
                         if (pitch >= 0.25) {
 
@@ -220,7 +220,7 @@ public class LeapMotion extends Listener {
                                 yawSpeed = -100;
                             }
                         }
-                        bp.invioMessaggio("rc " + rollSpeed + " " + pitchSpeed + " 0 " + yawSpeed);
+                        drone.invioMessaggio("rc " + rollSpeed + " " + pitchSpeed + " 0 " + yawSpeed);
                     }
                 } else {
 
@@ -230,26 +230,26 @@ public class LeapMotion extends Listener {
                     if (highCommand <= 175) {
                         if (highCommand < 75) {
                             speed = 100;
-                            bp.invioMessaggio("rc 0 0 -" + speed + " 0");
+                            drone.invioMessaggio("rc 0 0 -" + speed + " 0");
                         } else {
                             speed = 110 - convertRange(highCommand, 75, 175, 10, 100);
-                            bp.invioMessaggio("rc 0 0 -" + speed + " 0");
+                            drone.invioMessaggio("rc 0 0 -" + speed + " 0");
                         }
                     } else if (highCommand >= 225) {
                         if (highCommand > 325) {
                             speed = 100;
-                            bp.invioMessaggio("rc 0 0 " + speed + " 0");
+                            drone.invioMessaggio("rc 0 0 " + speed + " 0");
                         } else {
                             speed = convertRange(highCommand, 225, 325, 10, 100);
-                            bp.invioMessaggio("rc 0 0 " + speed + " 0");
+                            drone.invioMessaggio("rc 0 0 " + speed + " 0");
                         }
                     } else {
-                        bp.invioMessaggio("rc 0 0 0 0");
+                        drone.invioMessaggio("rc 0 0 0 0");
                     }
                 }
             }
         } else {
-            bp.invioMessaggio("rc 0 0 0 0");
+            drone.invioMessaggio("rc 0 0 0 0");
         }
     }
 
