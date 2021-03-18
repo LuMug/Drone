@@ -14,10 +14,7 @@ import javax.swing.JPanel;
  */
 public class Drone extends Thread {
 
-    /**
-     * Rappresenta lo stato del drone (acceso o spento).
-     */
-    public boolean stato;
+
 
     /**
      * Rappresenta l'indirizzo IP del drone.
@@ -29,20 +26,7 @@ public class Drone extends Thread {
      */
     public int porta;
 
-    /**
-     * Rappresenta la posizione del drone sull'asse x.
-     */
-    public double x = 0;
 
-    /**
-     * Rappresenta la posizione del drone sull'asse y.
-     */
-    public double y = 0;
-    
-    /**
-     * Rappresenta la velocità del drone in percentuale.
-     */
-    public int velocità;
 
     /**
      * Il socket di dati.
@@ -67,7 +51,7 @@ public class Drone extends Thread {
     /**
      * La porta di destinazione.
      */
-    private int destinationPort = 0;
+    private int destinationPort;
 
     /**
      * L'ip di destinazione.
@@ -125,77 +109,9 @@ public class Drone extends Thread {
         this.porta = porta;
     }
 
-    /**
-     * Getter della posizione x del drone.
-     *
-     * @return la posizione del drone sull'asse x.
-     */
-    public double getX() {
-        return this.x;
-    }
 
-    /**
-     * Setter della posizione x del drone.
-     *
-     * @param x la nuova posizione del drone sull'asse x
-     */
-    public void setX(double x) {
-        this.x = this.x +x;
-    }
 
-    /**
-     * Getter della posizione ydel drone.
-     *
-     * @return la posizione del drone sull'asse y
-     */
-    public double getY() {
-        return this.y;
-    }
 
-    /**
-     * Setter della posizione y del drone.
-     *
-     * @param y la nuova posizione del drone sull'asse y
-     */
-    public void setY(double y) {
-        this.y = this.y + y;
-    }
-
-    /**
-     * Getter dello stato del drone.
-     *
-     * @return lo stato attuale del drone (on/off).
-     */
-    public boolean getStato() {
-        return this.stato;
-    }
-
-    /**
-     * Inverte lo stato del drone.
-     */
-    public void setStato() {
-        this.stato = !this.stato;
-    }
-
-    /**
-     * Getter della velocità del drone.
-     *
-     * @return la velocità attuale del drone
-     */
-    public int getVelocità() {
-        return this.velocità;
-    }
-
-    /**
-     * Setter della velocità del drone.
-     *
-     * @param velocità la velocità attuale del drone.
-     */
-    public void setVelocità(int velocità) {
-        if(velocità < 100 && velocità > 10){
-            this.velocità = velocità;
-        }
-    }
     
     /**
      * Metodo costruttore personalizzato con 1 parametro.
@@ -286,115 +202,6 @@ public class Drone extends Thread {
         } catch (UnknownHostException | NullPointerException ex) {
             System.err.println("ERRORE: IP inserito non valido!");
         }
-
-    }
-    
-    
-    
-    
-    
-    
-
-    /**
-     * Rappresenta lo stato della telecamera del drone (accesa o spenta).
-     */
-    private boolean telecamera;
-
-    /**
-     * Rappresenta la posizione del drone sull'asse z.
-     */
-    private double z;
-
-    /**
-     * Rappresenta la rotazione del drone in gradi rispetto al punto iniziale.
-     */
-    private double verso;
-
-    /**
-     * Getter della telecamera del drone.
-     *
-     * @return lo stato attuale della telecamera(on/off).
-     */
-    public boolean getTelecamera() {
-        return this.telecamera;
-    }
-
-    /**
-     * Inverte lo stato della telecamera.
-     */
-    public void setTelecamera() {
-        this.telecamera = !this.telecamera;
-    }
-
-    /**
-     * Getter della posizione z cdel drone.
-     *
-     * @return la posizione del drone sull'asse z.
-     */
-    public double getZ() {
-        return this.z;
-    }
-
-    /**
-     * Setter della posizione z del drone.
-     *
-     * @param z la nuova posizione del drone sull'asse z
-     */
-    public void setZ(double z) {
-        this.z = z;
-    }
-
-    /**
-     * Getter del verso del drone.
-     *
-     * @return il verso attuale del drone
-     */
-    public double getVerso() {
-        return this.verso;
-    }
-
-    /**
-     * Setter del verso del drone.
-     *
-     * @param verso il verso attuale del drone.
-     */
-    public void setVerso(double verso) {
-        this.verso = verso;
-    }
-
-    /**
-     * Alza o abbassa il drone di x centimetri.
-     *
-     * @param x l'altezza da aggiungere o diminuire al drone in cm.
-     */
-    public void upDown(double x) {
-
-    }
-
-    /**
-     * Fa andare a destra o sinistra il drone di x centimetri.
-     *
-     * @param x il valore (destra o sinistra) da modificare in cm
-     */
-    public void leftRight(double x) {
-
-    }
-
-    /**
-     * Ruota il drone di x centimetri
-     *
-     * @param x il valore in gradi di quanto deve ruotare il drone
-     */
-    public void ruota(double x) {
-
-    }
-
-    /**
-     * Fa andare avanti o indietro il drone di x centimetri.
-     *
-     * @param x il valore (avanti o indietro) da modificare in cm
-     */
-    public void forwardBack(double x) {
 
     }
 }
