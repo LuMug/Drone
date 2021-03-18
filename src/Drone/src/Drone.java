@@ -1,3 +1,6 @@
+import com.leapmotion.leap.Controller;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -12,9 +15,19 @@ import javax.swing.JPanel;
  * @author Gianni Grasso
  * @version 28.01.2021
  */
-public class Drone extends Thread {
+public class Drone extends Thread implements KeyListener {
 
-
+    private int moveStep = 25;
+    private int altStep = 25;
+    private int yawStep = 25;
+    
+    
+    private String ip ="192.168.10.1";
+    private int portD =8889;
+    
+    Status status= new Status();
+    Log log = new Log();
+    
    /**
      * Rappresenta lo stato del drone (acceso o spento).
      */
@@ -130,10 +143,13 @@ public class Drone extends Thread {
         }
 
         port = socket.getLocalPort();
-
         setPortAsTitle(jp);
-
         messageListener = jp;
+        //Gestione del LeapMotion
+        LeapMotion listener = new LeapMotion(this);
+        Controller controller = new Controller();
+        controller.addListener(listener);
+        
     }
 
     /**
@@ -214,6 +230,99 @@ public class Drone extends Thread {
      */
     public void setStato() {
         this.stato = !this.stato;
+    }
+    
+    public void keyPressed(KeyEvent e) {
+        try {
+            Thread.sleep(750);
+        } catch (InterruptedException ex) {
+            System.out.println("Errore nel Thread.sleep");
+        }
+        int leftRight = 0;
+        int backForward = 0;
+        int upDown = 0;
+        int yaw = 0;
+        
+        String message;      
+        int keyCode = e.getKeyCode();
+        if(keyCode == 37){
+            leftRight -= moveStep;
+            System.out.println("Sinistra");
+        }if(keyCode == 38){
+            backForward += moveStep;
+            System.out.println("Avanti");
+        }if(keyCode == 39){
+            leftRight += moveStep;
+            System.out.println("Destra");
+        }if(keyCode == 40){
+            backForward -= moveStep;
+            System.out.println("Indietro");
+        }if(keyCode == 83){
+            upDown -= altStep;
+            System.out.println("Giù");
+        }
+        if(keyCode == 87){
+            upDown += altStep;
+            System.out.println("Su");
+        }if(keyCode == 65){
+            yaw -= yawStep;
+            System.out.println("Ruota sx");
+        }if(keyCode == 68){
+            yaw += yawStep;
+            System.out.println("Ruota dx");
+        }
+        message = "rc " + leftRight + " " + backForward + " " + upDown + " " +  yaw;
+        invioMessaggio(message);
+    }
+
+    public void keyTyped(KeyEvent e) {}
+
+    
+    public void keyReleased(KeyEvent e) {
+        invioMessaggio("rc 0 0 0 0");
+    }
+    
+    
+        public void invioMessaggio(String message)  {
+        try {
+            setInfo(ipDrone,porta, message);
+            sendMessage();   
+            Thread.sleep(125);
+        } catch (InterruptedException ex) {
+        }
+    }
+        
+        
+    public void setUp() {
+        setIpDrone(ip);
+        setPorta(portD);
+        status.setIp(ip);
+        status.setport(portD);
+    }
+    
+    public void decolla(){
+        /**
+         * Fa decollare il drone.
+         */
+        String message = "takeoff";
+        invioMessaggio(message);
+        setStato();
+    }
+    
+    
+    public void atterra(){
+        /**
+         * Fa atterrare il drone.
+         */
+        String message = "land";
+        invioMessaggio(message);
+        setStato();
+    }
+    
+    
+    public void command() {
+        String message = "command";
+        invioMessaggio(message);
     }
 }
 
