@@ -24,7 +24,6 @@ public class LivePanel extends javax.swing.JPanel implements Runnable {
     public LivePanel() {
         initComponents();
         isStreamOn = true;
-        setUp();
     }
 
     @SuppressWarnings("unchecked")
@@ -77,11 +76,5 @@ public class LivePanel extends javax.swing.JPanel implements Runnable {
 
     public void setStreamOn(boolean streamOn) {
         isStreamOn = streamOn;
-    }
-    
-    
-    public void setUp() {
-        drone.setIpDrone("192.168.10.1");
-        drone.setPorta(11111);
-    }
+    }   
 }
