@@ -9,7 +9,7 @@ public class ImagePanelFront extends ImageModel implements KeyListener {
 
     public ImagePanelFront() {
         try {
-            imageBig = ImageIO.read(new File("../bin/DroneFrontale.png"));
+            imageBig = ImageIO.read(new File("bin/DroneFrontale.png"));
 
         } catch (IOException ex) {
             System.out.println("Errore");
