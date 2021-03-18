@@ -63,7 +63,8 @@ public class FunzionePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void vistaDroneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaDroneActionPerformed
-       
+        ImageFrame vista = new ImageFrame();
+        vista.setVisible(true);
     }//GEN-LAST:event_vistaDroneActionPerformed
 
 

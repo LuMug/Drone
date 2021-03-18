@@ -58,13 +58,93 @@ public class LeapMotion extends Listener {
 
             //Gestisce il comando per alzare o abbassare il drone
             float highCommand = leftHand.palmPosition().getY();
+            int highSpeed = 0;
 
             //Controlla tutto ciò che è il movimento orizzontale del drone
             float pitch = rightHand.direction().pitch();
             float yaw = rightHand.direction().yaw();
             float roll = rightHand.palmNormal().roll();
+            int pitchSpeed = 0;
+            int rollSpeed = 0;
+            int yawSpeed = 0;
+            if (betweenExcluded(pitch, -0.25, 0.25)
+                    && betweenExcluded(roll, -0.40, 0.40)
+                    && betweenExcluded(yaw, -0.45, 0.45)
+                    && betweenExcluded(highCommand, 175, 225)) {
+                bp.invioMessaggio("rc 0 0 0 0");
+            } else {
+                if (pitch >= 0.25) {
 
-        } else {
+                    //Indietro
+                    if (pitch <= 0.60) {
+                        pitchSpeed = -1 * convertRange(pitch, 0.25, 0.60, 10, 100);
+                    } else {
+                        pitchSpeed = -100;
+                    }
+                } else if (pitch <= -0.25) {
+
+                    //Avanti
+                    if (pitch >= -0.60) {
+                        pitchSpeed = convertRange(pitch, -0.25, -0.60, 10, 100);
+                    } else {
+                        pitchSpeed = 100;
+                    }
+                }
+
+                //Gestione comandi asse Z (destra e sinistra)
+                if (roll <= -0.40) {
+
+                    //Destra
+                    if (roll >= -0.75) {
+                        rollSpeed = convertRange(roll, -0.40, -0.75, 10, 100);
+                    } else {
+                        rollSpeed = 100;
+                    }
+                } else if (roll >= 0.40) {
+
+                    //Sinistra
+                    if (roll <= 0.75) {
+                        rollSpeed = -1 * convertRange(roll, 0.40, 0.75, 10, 100);
+                    } else {
+                        rollSpeed = -100;
+                    }
+                }
+
+                //Gestione comandi su asse Y (rotazione destra e sinistra)
+                if (yaw >= 0.35) {
+                    //Rotazione a destra
+                    if (yaw <= 1) {
+                        yawSpeed = convertRange(yaw, 0.45, 1, 10, 100);
+                    } else {
+                        yawSpeed = 100;
+                    }
+                } else if (yaw <= -0.45) {
+                    //Rotazione a sinistra
+                    if (yaw >= -1) {
+                        yawSpeed = -1 * convertRange(yaw, -0.45, -1, 10, 100);
+                    } else {
+                        yawSpeed = -100;
+                    }
+                }
+
+                if (highCommand <= 175) {
+                    if (highCommand < 75) {
+                        highSpeed = 100;
+                    } else {
+                        highSpeed = 110 - convertRange(highCommand, 75, 175, 10, 100);
+                    }
+                } else if (highCommand >= 225) {
+                    if (highCommand > 325) {
+                        highSpeed = 100;
+                    } else {
+                        highSpeed = convertRange(highCommand, 225, 325, 10, 100);
+                    }
+                }
+
+                bp.invioMessaggio("rc " + rollSpeed + " " + pitchSpeed + " " + highSpeed + " " + yawSpeed);
+            }
+
+        } else if (frame.hands().count() == 1) {
 
             //Richiamato quando solo una mano è presente
             if (!frame.hands().isEmpty()) {
@@ -78,6 +158,9 @@ public class LeapMotion extends Listener {
                     float pitch = hand.direction().pitch();
                     float roll = hand.palmNormal().roll();
                     float yaw = hand.direction().yaw();
+                    int pitchSpeed = 0;
+                    int rollSpeed = 0;
+                    int yawSpeed = 0;
 
                     if (betweenExcluded(pitch, -0.25, 0.25)
                             && betweenExcluded(roll, -0.40, 0.40)
@@ -88,21 +171,17 @@ public class LeapMotion extends Listener {
 
                             //Indietro
                             if (pitch <= 0.60) {
-                                speed = convertRange(pitch, 0.25, 0.60, 10, 60);
-                                bp.invioMessaggio("go -40 0 0 " + speed);
+                                pitchSpeed = -1 * convertRange(pitch, 0.25, 0.60, 10, 100);
                             } else {
-                                speed = 60;
-                                bp.invioMessaggio("go -40 0 0 " + speed);
+                                pitchSpeed = -100;
                             }
                         } else if (pitch <= -0.25) {
 
                             //Avanti
                             if (pitch >= -0.60) {
-                                speed = convertRange(pitch, -0.25, -0.60, 10, 60);
-                                bp.invioMessaggio("go 40 0 0 " + speed);
+                                pitchSpeed = convertRange(pitch, -0.25, -0.60, 10, 100);
                             } else {
-                                speed = 60;
-                                bp.invioMessaggio("go 40 0 0 " + speed);
+                                pitchSpeed = 100;
                             }
                         }
 
@@ -111,32 +190,37 @@ public class LeapMotion extends Listener {
 
                             //Destra
                             if (roll >= -0.75) {
-                                speed = convertRange(roll, -0.40, -0.75, 10, 60);
-                                bp.invioMessaggio("go 0 -40 0 " + speed);
+                                rollSpeed = convertRange(roll, -0.40, -0.75, 10, 100);
                             } else {
-                                speed = 60;
-                                bp.invioMessaggio("go 0 -40 0 " + speed);
+                                rollSpeed = 100;
                             }
                         } else if (roll >= 0.40) {
 
                             //Sinistra
                             if (roll <= 0.75) {
-                                speed = convertRange(roll, 0.40, 0.75, 10, 60);
-                                bp.invioMessaggio("go 0 40 0 " + speed);
+                                rollSpeed = -1 * convertRange(roll, 0.40, 0.75, 10, 100);
                             } else {
-                                speed = 60;
-                                bp.invioMessaggio("go 0 40 0 " + speed);
+                                rollSpeed = -100;
                             }
                         }
 
                         //Gestione comandi su asse Y (rotazione destra e sinistra)
-                        if (yaw > 0.45) {
+                        if (yaw >= 0.35) {
                             //Rotazione a destra
-                            bp.invioMessaggio("cw 22");
-                        } else if (yaw < -0.45) {
+                            if (yaw <= 1) {
+                                yawSpeed = convertRange(yaw, 0.45, 1, 10, 100);
+                            } else {
+                                yawSpeed = 100;
+                            }
+                        } else if (yaw <= -0.45) {
                             //Rotazione a sinistra
-                            bp.invioMessaggio("ccw 22");
+                            if (yaw >= -1) {
+                                yawSpeed = -1 * convertRange(yaw, -0.45, -1, 10, 100);
+                            } else {
+                                yawSpeed = -100;
+                            }
                         }
+                        bp.invioMessaggio("rc " + rollSpeed + " " + pitchSpeed + " 0 " + yawSpeed);
                     }
                 } else {
 
@@ -164,6 +248,8 @@ public class LeapMotion extends Listener {
                     }
                 }
             }
+        } else {
+            bp.invioMessaggio("rc 0 0 0 0");
         }
     }
 
