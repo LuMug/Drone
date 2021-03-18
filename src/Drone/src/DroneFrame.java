@@ -18,15 +18,12 @@ public class DroneFrame extends javax.swing.JFrame{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        funzionePanel1 = new FunzionePanel();
         comandiPanel = new ComandiPanel();
         funzionePanel = new FunzionePanel();
-        bottoniPanel = new BottoniPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().add(comandiPanel, java.awt.BorderLayout.LINE_START);
         getContentPane().add(funzionePanel, java.awt.BorderLayout.PAGE_END);
-        getContentPane().add(bottoniPanel, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -67,9 +64,7 @@ public class DroneFrame extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private BottoniPanel bottoniPanel;
     private ComandiPanel comandiPanel;
     private FunzionePanel funzionePanel;
-    private FunzionePanel funzionePanel1;
     // End of variables declaration//GEN-END:variables
 }
