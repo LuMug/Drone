@@ -88,7 +88,7 @@ public class Drone extends Thread implements KeyListener {
     /**
      * Istanza del frame.
      */
-    private BottoniPanel messageListener;
+    private FunzionePanel messageListener;
 
     /**
      * Getter dell'ip del drone.
@@ -135,7 +135,7 @@ public class Drone extends Thread implements KeyListener {
      *
      * @param jp Il frame in cui avviene la comunicazione.
      */
-    public Drone(BottoniPanel jp) {
+    public Drone(FunzionePanel jp) {
         try {
             socket = new DatagramSocket();
         } catch (SocketException ex) {
@@ -323,6 +323,11 @@ public class Drone extends Thread implements KeyListener {
     public void command() {
         String message = "command";
         invioMessaggio(message);
+    }
+    
+    public String batteria(){
+        return status.getbatteria();
+        
     }
 }
 
