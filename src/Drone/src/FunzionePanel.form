@@ -51,7 +51,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="velocit&#xe0;Text">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Velocit&#xe0;"/>
+        <Property name="text" type="java.lang.String" value="Batteria"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="velocit&#xe0;Campo">

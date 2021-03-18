@@ -52,7 +52,7 @@ public class FunzionePanel extends javax.swing.JPanel {
         spazio.setPreferredSize(new java.awt.Dimension(100, 10));
         add(spazio);
 
-        velocitàText.setText("Velocità");
+        velocitàText.setText("Batteria");
         add(velocitàText);
 
         velocitàCampo.setText("             ");
