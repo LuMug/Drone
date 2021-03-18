@@ -1,171 +1,47 @@
-Thu Mar 18 11:13:54 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-9.00 AccelerazioneZ:-1004.00 TempoCm: 19
-Thu Mar 18 11:13:55 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:42.00 AccelerazioneY:-21.00 AccelerazioneZ:-1018.00 TempoCm: 19
-Thu Mar 18 11:13:56 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:-7.00 AccelerazioneY:1.00 AccelerazioneZ:-988.00 TempoCm: 19
-Thu Mar 18 11:13:57 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:-1 Altezza:0 AccelerazioneX:5.00 AccelerazioneY:-16.00 AccelerazioneZ:-1293.00 TempoCm: 20
-Thu Mar 18 11:13:58 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:-6 Altezza:0 AccelerazioneX:0.00 AccelerazioneY:-6.00 AccelerazioneZ:-1099.00 TempoCm: 20
-Thu Mar 18 11:13:59 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:-7 Altezza:20 AccelerazioneX:-2.00 AccelerazioneY:-7.00 AccelerazioneZ:-984.00 TempoCm: 20
-Thu Mar 18 11:14:00 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:-7 Altezza:30 AccelerazioneX:-29.00 AccelerazioneY:-3.00 AccelerazioneZ:-914.00 TempoCm: 20
-Thu Mar 18 11:14:01 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:-5 Altezza:40 AccelerazioneX:20.00 AccelerazioneY:-27.00 AccelerazioneZ:-900.00 TempoCm: 20
-Thu Mar 18 11:14:02 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:-3 Altezza:50 AccelerazioneX:-12.00 AccelerazioneY:-4.00 AccelerazioneZ:-912.00 TempoCm: 21
-Thu Mar 18 11:14:03 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:-2 Altezza:60 AccelerazioneX:10.00 AccelerazioneY:-14.00 AccelerazioneZ:-945.00 TempoCm: 21
-Thu Mar 18 11:14:04 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:-1 Altezza:60 AccelerazioneX:0.00 AccelerazioneY:1.00 AccelerazioneZ:-1001.00 TempoCm: 21
-Thu Mar 18 11:14:05 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:-1 Altezza:70 AccelerazioneX:21.00 AccelerazioneY:-6.00 AccelerazioneZ:-1008.00 TempoCm: 21
-Thu Mar 18 11:14:06 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:-1 Altezza:70 AccelerazioneX:12.00 AccelerazioneY:-17.00 AccelerazioneZ:-1017.00 TempoCm: 21
-Thu Mar 18 11:14:07 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:-1 Altezza:70 AccelerazioneX:-2.00 AccelerazioneY:8.00 AccelerazioneZ:-994.00 TempoCm: 22
-Thu Mar 18 11:14:08 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:-1 Altezza:70 AccelerazioneX:-16.00 AccelerazioneY:-7.00 AccelerazioneZ:-1007.00 TempoCm: 22
-Thu Mar 18 11:14:09 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:-1 Altezza:70 AccelerazioneX:-14.00 AccelerazioneY:-14.00 AccelerazioneZ:-1022.00 TempoCm: 22
-Thu Mar 18 11:14:10 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:-1 Altezza:70 AccelerazioneX:3.00 AccelerazioneY:-9.00 AccelerazioneZ:-1026.00 TempoCm: 22
-Thu Mar 18 11:14:11 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:-1 Altezza:80 AccelerazioneX:2.00 AccelerazioneY:-18.00 AccelerazioneZ:-1025.00 TempoCm: 22
-Thu Mar 18 11:14:12 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:-1 Altezza:80 AccelerazioneX:2.00 AccelerazioneY:-1.00 AccelerazioneZ:-993.00 TempoCm: 23
-Thu Mar 18 11:14:13 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:-1 Altezza:80 AccelerazioneX:-14.00 AccelerazioneY:-13.00 AccelerazioneZ:-1017.00 TempoCm: 23
-Thu Mar 18 11:14:14 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:-1 Altezza:80 AccelerazioneX:-3.00 AccelerazioneY:4.00 AccelerazioneZ:-1008.00 TempoCm: 23
-Thu Mar 18 11:14:15 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:-1 Altezza:80 AccelerazioneX:-6.00 AccelerazioneY:-3.00 AccelerazioneZ:-1003.00 TempoCm: 23
-Thu Mar 18 11:14:16 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:-1 Altezza:80 AccelerazioneX:-30.00 AccelerazioneY:2.00 AccelerazioneZ:-1012.00 TempoCm: 23
-Thu Mar 18 11:14:17 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:-1 Altezza:80 AccelerazioneX:-14.00 AccelerazioneY:2.00 AccelerazioneZ:-984.00 TempoCm: 24
-Thu Mar 18 11:14:18 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:80 AccelerazioneX:353.00 AccelerazioneY:233.00 AccelerazioneZ:-1230.00 TempoCm: 24
-Thu Mar 18 11:14:19 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:80 AccelerazioneX:28.00 AccelerazioneY:44.00 AccelerazioneZ:-1033.00 TempoCm: 24
-Thu Mar 18 11:14:20 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:80 AccelerazioneX:37.00 AccelerazioneY:34.00 AccelerazioneZ:-952.00 TempoCm: 24
-Thu Mar 18 11:14:21 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:80 AccelerazioneX:3.00 AccelerazioneY:9.00 AccelerazioneZ:-1009.00 TempoCm: 24
-Thu Mar 18 11:14:22 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:80 AccelerazioneX:30.00 AccelerazioneY:11.00 AccelerazioneZ:-992.00 TempoCm: 25
-Thu Mar 18 11:14:23 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:80 AccelerazioneX:-31.00 AccelerazioneY:8.00 AccelerazioneZ:-1020.00 TempoCm: 25
-Thu Mar 18 11:14:24 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:80 AccelerazioneX:-20.00 AccelerazioneY:0.00 AccelerazioneZ:-1019.00 TempoCm: 25
-Thu Mar 18 11:14:25 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:80 AccelerazioneX:-40.00 AccelerazioneY:8.00 AccelerazioneZ:-994.00 TempoCm: 25
-Thu Mar 18 11:14:26 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:80 AccelerazioneX:34.00 AccelerazioneY:3.00 AccelerazioneZ:-943.00 TempoCm: 25
-Thu Mar 18 11:14:27 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:80 AccelerazioneX:-17.00 AccelerazioneY:-8.00 AccelerazioneZ:-946.00 TempoCm: 26
-Thu Mar 18 11:14:28 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:2 Altezza:80 AccelerazioneX:18.00 AccelerazioneY:-7.00 AccelerazioneZ:-915.00 TempoCm: 26
-Thu Mar 18 11:14:29 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:3 Altezza:70 AccelerazioneX:-42.00 AccelerazioneY:-11.00 AccelerazioneZ:-944.00 TempoCm: 26
-Thu Mar 18 11:14:30 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:4 Altezza:60 AccelerazioneX:1.00 AccelerazioneY:-5.00 AccelerazioneZ:-989.00 TempoCm: 26
-Thu Mar 18 11:14:31 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:5 Altezza:50 AccelerazioneX:-16.00 AccelerazioneY:5.00 AccelerazioneZ:-967.00 TempoCm: 26
-Thu Mar 18 11:14:32 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:4 Altezza:40 AccelerazioneX:5.00 AccelerazioneY:15.00 AccelerazioneZ:-988.00 TempoCm: 27
-Thu Mar 18 11:14:33 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:4 Altezza:30 AccelerazioneX:6.00 AccelerazioneY:-2.00 AccelerazioneZ:-1034.00 TempoCm: 27
-Thu Mar 18 11:14:34 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:4 Altezza:30 AccelerazioneX:20.00 AccelerazioneY:15.00 AccelerazioneZ:-990.00 TempoCm: 27
-Thu Mar 18 11:14:35 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:4 Altezza:20 AccelerazioneX:-16.00 AccelerazioneY:-4.00 AccelerazioneZ:-1015.00 TempoCm: 27
-Thu Mar 18 11:14:36 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:3 Altezza:10 AccelerazioneX:27.00 AccelerazioneY:-15.00 AccelerazioneZ:-1127.00 TempoCm: 27
-Thu Mar 18 11:14:37 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:10 AccelerazioneX:40.00 AccelerazioneY:-23.00 AccelerazioneZ:-1092.00 TempoCm: 28
-Thu Mar 18 11:14:38 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:10 AccelerazioneX:16.00 AccelerazioneY:-20.00 AccelerazioneZ:-969.00 TempoCm: 28
-Thu Mar 18 11:14:39 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:10 AccelerazioneX:5.00 AccelerazioneY:-11.00 AccelerazioneZ:-979.00 TempoCm: 28
-Thu Mar 18 11:14:40 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:10 AccelerazioneX:4.00 AccelerazioneY:-12.00 AccelerazioneZ:-989.00 TempoCm: 28
-Thu Mar 18 11:14:41 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:10 AccelerazioneX:5.00 AccelerazioneY:-21.00 AccelerazioneZ:-997.00 TempoCm: 28
-Thu Mar 18 11:14:42 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:15.00 AccelerazioneY:-14.00 AccelerazioneZ:-1011.00 TempoCm: 29
-Thu Mar 18 11:14:43 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-10.00 AccelerazioneZ:-1007.00 TempoCm: 29
-Thu Mar 18 11:14:44 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:14.00 AccelerazioneY:-12.00 AccelerazioneZ:-1007.00 TempoCm: 29
-Thu Mar 18 11:14:45 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-13.00 AccelerazioneZ:-1003.00 TempoCm: 29
-Thu Mar 18 11:14:46 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-10.00 AccelerazioneZ:-998.00 TempoCm: 29
-Thu Mar 18 11:14:47 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-14.00 AccelerazioneZ:-996.00 TempoCm: 29
-Thu Mar 18 11:14:48 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:13.00 AccelerazioneY:-10.00 AccelerazioneZ:-995.00 TempoCm: 29
-Thu Mar 18 11:14:49 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-12.00 AccelerazioneZ:-994.00 TempoCm: 29
-Thu Mar 18 11:14:51 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:9.00 AccelerazioneY:-14.00 AccelerazioneZ:-992.00 TempoCm: 29
-Thu Mar 18 11:14:52 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-11.00 AccelerazioneZ:-997.00 TempoCm: 29
-Thu Mar 18 11:14:53 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:10.00 AccelerazioneY:-11.00 AccelerazioneZ:-998.00 TempoCm: 29
-Thu Mar 18 11:14:54 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:15.00 AccelerazioneY:-10.00 AccelerazioneZ:-1000.00 TempoCm: 29
-Thu Mar 18 11:14:55 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:14.00 AccelerazioneY:-11.00 AccelerazioneZ:-999.00 TempoCm: 29
-Thu Mar 18 11:14:56 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:6.00 AccelerazioneY:-11.00 AccelerazioneZ:-995.00 TempoCm: 29
-Thu Mar 18 11:14:57 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:12.00 AccelerazioneY:-14.00 AccelerazioneZ:-1000.00 TempoCm: 29
-Thu Mar 18 11:14:58 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:15.00 AccelerazioneY:-11.00 AccelerazioneZ:-1001.00 TempoCm: 29
-Thu Mar 18 11:14:59 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:10.00 AccelerazioneY:-16.00 AccelerazioneZ:-1001.00 TempoCm: 29
-Thu Mar 18 11:15:00 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:8.00 AccelerazioneY:-14.00 AccelerazioneZ:-997.00 TempoCm: 29
-Thu Mar 18 11:15:01 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:15.00 AccelerazioneY:-6.00 AccelerazioneZ:-997.00 TempoCm: 29
-Thu Mar 18 11:15:02 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:12.00 AccelerazioneY:-10.00 AccelerazioneZ:-997.00 TempoCm: 29
-Thu Mar 18 11:15:03 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:13.00 AccelerazioneY:-9.00 AccelerazioneZ:-999.00 TempoCm: 29
-Thu Mar 18 11:15:04 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-14.00 AccelerazioneZ:-999.00 TempoCm: 29
-Thu Mar 18 11:15:05 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:12.00 AccelerazioneY:-11.00 AccelerazioneZ:-1000.00 TempoCm: 29
-Thu Mar 18 11:15:06 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:12.00 AccelerazioneY:-13.00 AccelerazioneZ:-996.00 TempoCm: 29
-Thu Mar 18 11:15:07 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:15.00 AccelerazioneY:-10.00 AccelerazioneZ:-1002.00 TempoCm: 29
-Thu Mar 18 11:15:08 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:12.00 AccelerazioneY:-9.00 AccelerazioneZ:-1002.00 TempoCm: 29
-Thu Mar 18 11:15:09 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-12.00 AccelerazioneZ:-999.00 TempoCm: 29
-Thu Mar 18 11:15:10 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:14.00 AccelerazioneY:-16.00 AccelerazioneZ:-1004.00 TempoCm: 29
-Thu Mar 18 11:15:11 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:15.00 AccelerazioneY:-11.00 AccelerazioneZ:-999.00 TempoCm: 29
-Thu Mar 18 11:15:12 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:9.00 AccelerazioneY:-14.00 AccelerazioneZ:-1001.00 TempoCm: 29
-Thu Mar 18 11:15:13 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:13.00 AccelerazioneY:-14.00 AccelerazioneZ:-998.00 TempoCm: 29
-Thu Mar 18 11:15:14 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-11.00 AccelerazioneZ:-997.00 TempoCm: 29
-Thu Mar 18 11:15:15 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:9.00 AccelerazioneY:-9.00 AccelerazioneZ:-1000.00 TempoCm: 29
-Thu Mar 18 11:15:16 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-9.00 AccelerazioneZ:-999.00 TempoCm: 29
-Thu Mar 18 11:15:17 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:10.00 AccelerazioneY:-13.00 AccelerazioneZ:-998.00 TempoCm: 29
-Thu Mar 18 11:15:18 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:12.00 AccelerazioneY:-11.00 AccelerazioneZ:-999.00 TempoCm: 29
-Thu Mar 18 11:15:19 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-11.00 AccelerazioneZ:-998.00 TempoCm: 29
-Thu Mar 18 11:15:20 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:8.00 AccelerazioneY:-14.00 AccelerazioneZ:-999.00 TempoCm: 29
-Thu Mar 18 11:15:21 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:17.00 AccelerazioneY:-16.00 AccelerazioneZ:-1000.00 TempoCm: 29
-Thu Mar 18 11:15:22 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:16.00 AccelerazioneY:-10.00 AccelerazioneZ:-1000.00 TempoCm: 29
-Thu Mar 18 11:15:23 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:12.00 AccelerazioneY:-13.00 AccelerazioneZ:-997.00 TempoCm: 29
-Thu Mar 18 11:15:24 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:7.00 AccelerazioneY:-13.00 AccelerazioneZ:-998.00 TempoCm: 29
-Thu Mar 18 11:15:25 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:6.00 AccelerazioneY:-7.00 AccelerazioneZ:-994.00 TempoCm: 29
-Thu Mar 18 11:15:26 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-15.00 AccelerazioneZ:-996.00 TempoCm: 29
-Thu Mar 18 11:15:27 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:14.00 AccelerazioneY:-10.00 AccelerazioneZ:-1001.00 TempoCm: 29
-Thu Mar 18 11:15:28 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:14.00 AccelerazioneY:-13.00 AccelerazioneZ:-999.00 TempoCm: 29
-Thu Mar 18 11:15:29 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:14.00 AccelerazioneY:-11.00 AccelerazioneZ:-996.00 TempoCm: 29
-Thu Mar 18 11:15:30 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:10.00 AccelerazioneY:-11.00 AccelerazioneZ:-997.00 TempoCm: 29
-Thu Mar 18 11:15:31 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:14.00 AccelerazioneY:-13.00 AccelerazioneZ:-997.00 TempoCm: 29
-Thu Mar 18 11:15:32 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:9.00 AccelerazioneY:-9.00 AccelerazioneZ:-998.00 TempoCm: 29
-Thu Mar 18 11:15:33 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:10.00 AccelerazioneY:-9.00 AccelerazioneZ:-1002.00 TempoCm: 29
-Thu Mar 18 11:15:34 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:18.00 AccelerazioneY:-11.00 AccelerazioneZ:-1004.00 TempoCm: 29
-Thu Mar 18 11:15:35 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-15.00 AccelerazioneZ:-998.00 TempoCm: 29
-Thu Mar 18 11:15:36 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:14.00 AccelerazioneY:-12.00 AccelerazioneZ:-998.00 TempoCm: 29
-Thu Mar 18 11:15:37 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:7.00 AccelerazioneY:-10.00 AccelerazioneZ:-997.00 TempoCm: 29
-Thu Mar 18 11:15:38 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:12.00 AccelerazioneY:-11.00 AccelerazioneZ:-1001.00 TempoCm: 29
-Thu Mar 18 11:15:39 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:12.00 AccelerazioneY:-11.00 AccelerazioneZ:-997.00 TempoCm: 29
-Thu Mar 18 11:15:40 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:10.00 AccelerazioneY:-11.00 AccelerazioneZ:-998.00 TempoCm: 29
-Thu Mar 18 11:15:41 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:16.00 AccelerazioneY:-13.00 AccelerazioneZ:-1004.00 TempoCm: 29
-Thu Mar 18 11:15:42 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:9.00 AccelerazioneY:-14.00 AccelerazioneZ:-1001.00 TempoCm: 29
-Thu Mar 18 11:15:43 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:13.00 AccelerazioneY:-5.00 AccelerazioneZ:-996.00 TempoCm: 29
-Thu Mar 18 11:15:44 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:10.00 AccelerazioneY:-6.00 AccelerazioneZ:-998.00 TempoCm: 29
-Thu Mar 18 11:15:45 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:6.00 AccelerazioneY:-18.00 AccelerazioneZ:-992.00 TempoCm: 29
-Thu Mar 18 11:15:46 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:13.00 AccelerazioneY:-12.00 AccelerazioneZ:-988.00 TempoCm: 29
-Thu Mar 18 11:15:47 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:28.00 AccelerazioneY:-2.00 AccelerazioneZ:-998.00 TempoCm: 29
-Thu Mar 18 11:15:48 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:14.00 AccelerazioneY:-9.00 AccelerazioneZ:-1002.00 TempoCm: 29
-Thu Mar 18 11:15:49 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:4.00 AccelerazioneY:-16.00 AccelerazioneZ:-1004.00 TempoCm: 29
-Thu Mar 18 11:15:50 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-13.00 AccelerazioneZ:-1005.00 TempoCm: 29
-Thu Mar 18 11:15:51 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:16.00 AccelerazioneY:-10.00 AccelerazioneZ:-1004.00 TempoCm: 29
-Thu Mar 18 11:15:52 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:0.00 AccelerazioneY:-13.00 AccelerazioneZ:-997.00 TempoCm: 29
-Thu Mar 18 11:15:53 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:18.00 AccelerazioneY:-3.00 AccelerazioneZ:-1001.00 TempoCm: 29
-Thu Mar 18 11:15:54 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:25.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:10.00 AccelerazioneY:-13.00 AccelerazioneZ:-994.00 TempoCm: 29
-Thu Mar 18 11:15:55 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:12.00 AccelerazioneY:-6.00 AccelerazioneZ:-993.00 TempoCm: 29
-Thu Mar 18 11:15:56 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:17.00 AccelerazioneY:-6.00 AccelerazioneZ:-995.00 TempoCm: 29
-Thu Mar 18 11:15:57 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:7.00 AccelerazioneY:-16.00 AccelerazioneZ:-992.00 TempoCm: 29
-Thu Mar 18 11:15:58 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:9.00 AccelerazioneY:-11.00 AccelerazioneZ:-996.00 TempoCm: 29
-Thu Mar 18 11:15:59 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-6.00 AccelerazioneZ:-1001.00 TempoCm: 29
-Thu Mar 18 11:16:00 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:14.00 AccelerazioneY:-14.00 AccelerazioneZ:-999.00 TempoCm: 29
-Thu Mar 18 11:16:01 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:12.00 AccelerazioneY:-8.00 AccelerazioneZ:-1002.00 TempoCm: 29
-Thu Mar 18 11:16:02 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:12.00 AccelerazioneY:-12.00 AccelerazioneZ:-1002.00 TempoCm: 29
-Thu Mar 18 11:16:03 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:9.00 AccelerazioneY:-14.00 AccelerazioneZ:-1002.00 TempoCm: 29
-Thu Mar 18 11:16:04 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:12.00 AccelerazioneY:-8.00 AccelerazioneZ:-999.00 TempoCm: 29
-Thu Mar 18 11:16:05 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:16.00 AccelerazioneY:-10.00 AccelerazioneZ:-1000.00 TempoCm: 29
-Thu Mar 18 11:16:06 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:9.00 AccelerazioneY:-14.00 AccelerazioneZ:-998.00 TempoCm: 29
-Thu Mar 18 11:16:07 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:12.00 AccelerazioneY:-14.00 AccelerazioneZ:-1002.00 TempoCm: 29
-Thu Mar 18 11:16:08 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:10.00 AccelerazioneY:-6.00 AccelerazioneZ:-998.00 TempoCm: 29
-Thu Mar 18 11:16:09 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-13.00 AccelerazioneZ:-1001.00 TempoCm: 29
-Thu Mar 18 11:16:10 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:18.00 AccelerazioneY:-16.00 AccelerazioneZ:-1006.00 TempoCm: 29
-Thu Mar 18 11:16:11 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:7.00 AccelerazioneY:-4.00 AccelerazioneZ:-997.00 TempoCm: 29
-Thu Mar 18 11:16:12 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-9.00 AccelerazioneZ:-998.00 TempoCm: 29
-Thu Mar 18 11:16:13 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-30.00 AccelerazioneZ:-999.00 TempoCm: 29
-Thu Mar 18 11:16:14 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:14.00 AccelerazioneY:-4.00 AccelerazioneZ:-999.00 TempoCm: 29
-Thu Mar 18 11:16:15 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:12.00 AccelerazioneY:-1.00 AccelerazioneZ:-1000.00 TempoCm: 29
-Thu Mar 18 11:16:16 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:13.00 AccelerazioneY:-21.00 AccelerazioneZ:-1003.00 TempoCm: 29
-Thu Mar 18 11:16:17 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:9.00 AccelerazioneY:-13.00 AccelerazioneZ:-996.00 TempoCm: 29
-Thu Mar 18 11:16:18 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:16.00 AccelerazioneY:0.00 AccelerazioneZ:-1001.00 TempoCm: 29
-Thu Mar 18 11:16:19 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:6.00 AccelerazioneY:-14.00 AccelerazioneZ:-998.00 TempoCm: 29
-Thu Mar 18 11:16:20 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:13.00 AccelerazioneY:-10.00 AccelerazioneZ:-1002.00 TempoCm: 29
-Thu Mar 18 11:16:21 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-13.00 AccelerazioneZ:-1001.00 TempoCm: 29
-Thu Mar 18 11:16:22 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:12.00 AccelerazioneY:-16.00 AccelerazioneZ:-998.00 TempoCm: 29
-Thu Mar 18 11:16:23 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:14.00 AccelerazioneY:-8.00 AccelerazioneZ:-1000.00 TempoCm: 29
-Thu Mar 18 11:16:24 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:9.00 AccelerazioneY:-9.00 AccelerazioneZ:-1001.00 TempoCm: 29
-Thu Mar 18 11:16:25 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:11.00 AccelerazioneY:-13.00 AccelerazioneZ:-997.00 TempoCm: 29
-Thu Mar 18 11:16:26 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:10.00 AccelerazioneY:-13.00 AccelerazioneZ:-1000.00 TempoCm: 29
-Thu Mar 18 11:16:27 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:14.00 AccelerazioneY:-10.00 AccelerazioneZ:-1001.00 TempoCm: 29
-Thu Mar 18 11:16:28 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:4.00 AccelerazioneY:-14.00 AccelerazioneZ:-996.00 TempoCm: 29
-Thu Mar 18 11:16:29 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:17.00 AccelerazioneY:-9.00 AccelerazioneZ:-999.00 TempoCm: 29
-Thu Mar 18 11:16:30 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:27.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:18.00 AccelerazioneY:-11.00 AccelerazioneZ:-1002.00 TempoCm: 29
-Thu Mar 18 11:16:31 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:27.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:2.00 AccelerazioneY:-14.00 AccelerazioneZ:-994.00 TempoCm: 29
-Thu Mar 18 11:16:32 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:27.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:8.00 AccelerazioneY:-10.00 AccelerazioneZ:-998.00 TempoCm: 29
-Thu Mar 18 11:16:33 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:27.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:16.00 AccelerazioneY:-10.00 AccelerazioneZ:-1002.00 TempoCm: 29
-Thu Mar 18 11:16:34 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:27.0 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:13.00 AccelerazioneY:-8.00 AccelerazioneZ:-1000.00 TempoCm: 29
-Thu Mar 18 11:16:35 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:18.00 AccelerazioneY:-17.00 AccelerazioneZ:-1006.00 TempoCm: 29
-Thu Mar 18 11:16:36 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:55.00 AccelerazioneY:-6.00 AccelerazioneZ:-1018.00 TempoCm: 29
-Thu Mar 18 11:16:37 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:-12.00 AccelerazioneY:-43.00 AccelerazioneZ:-982.00 TempoCm: 29
-Thu Mar 18 11:16:38 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:9.00 AccelerazioneY:-17.00 AccelerazioneZ:-972.00 TempoCm: 29
-Thu Mar 18 11:16:39 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:14.00 AccelerazioneY:-12.00 AccelerazioneZ:-1012.00 TempoCm: 29
-Thu Mar 18 11:16:40 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:0.00 AccelerazioneY:-17.00 AccelerazioneZ:-1017.00 TempoCm: 29
-Thu Mar 18 11:16:41 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:0 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:9.00 AccelerazioneY:-8.00 AccelerazioneZ:-1008.00 TempoCm: 29
-Thu Mar 18 11:16:42 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:1 VelocitaY:0 VelocitaZ:0 Altezza:0 AccelerazioneX:65.00 AccelerazioneY:65.00 AccelerazioneZ:-1000.00 TempoCm: 29
-Thu Mar 18 11:16:43 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:7 VelocitaY:-6 VelocitaZ:-4 Altezza:0 AccelerazioneX:770.00 AccelerazioneY:-598.00 AccelerazioneZ:-734.00 TempoCm: 29
-Thu Mar 18 11:16:44 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:12 VelocitaY:-7 VelocitaZ:-3 Altezza:0 AccelerazioneX:-362.00 AccelerazioneY:1019.00 AccelerazioneZ:-963.00 TempoCm: 29
-Thu Mar 18 11:16:45 CET 2021 ip:192.168.10.1 porta:8889  Bat:41 TemeraturaMax:26.5 VelocitaX:4 VelocitaY:-5 VelocitaZ:-2 Altezza:10 AccelerazioneX:-264.00 AccelerazioneY:87.00 AccelerazioneZ:-705.00 TempoCm: 29
+18 marzo 2021 192.168.10.1:8889 Bat:22 TMax:29.0 Vx:0 Vy:0 Vz:0 h:0 Ax:1.00 Ay:20.00 Az:-999.00 TCm: 0
+18 marzo 2021 192.168.10.1:8889 Bat:22 TMax:29.0 Vx:0 Vy:0 Vz:0 h:0 Ax:2.00 Ay:18.00 Az:-996.00 TCm: 0
+18 marzo 2021 192.168.10.1:8889 Bat:22 TMax:29.0 Vx:0 Vy:0 Vz:0 h:0 Ax:-2.00 Ay:29.00 Az:-1005.00 TCm: 0
+18 marzo 2021 192.168.10.1:8889 Bat:22 TMax:29.0 Vx:0 Vy:0 Vz:0 h:0 Ax:-1.00 Ay:-1.00 Az:-1339.00 TCm: 0
+18 marzo 2021 192.168.10.1:8889 Bat:22 TMax:29.0 Vx:0 Vy:0 Vz:-5 h:0 Ax:-7.00 Ay:-12.00 Az:-1126.00 TCm: 0
+18 marzo 2021 192.168.10.1:8889 Bat:22 TMax:29.0 Vx:0 Vy:0 Vz:-7 h:10 Ax:-16.00 Ay:-4.00 Az:-1017.00 TCm: 1
+18 marzo 2021 192.168.10.1:8889 Bat:22 TMax:29.0 Vx:0 Vy:0 Vz:-7 h:20 Ax:-3.00 Ay:-18.00 Az:-939.00 TCm: 1
+18 marzo 2021 192.168.10.1:8889 Bat:22 TMax:29.0 Vx:0 Vy:0 Vz:-5 h:30 Ax:-3.00 Ay:0.00 Az:-914.00 TCm: 1
+18 marzo 2021 192.168.10.1:8889 Bat:22 TMax:29.0 Vx:0 Vy:0 Vz:-3 h:40 Ax:-24.00 Ay:-2.00 Az:-898.00 TCm: 1
+18 marzo 2021 192.168.10.1:8889 Bat:22 TMax:29.0 Vx:0 Vy:0 Vz:-1 h:40 Ax:-9.00 Ay:-14.00 Az:-921.00 TCm: 1
+18 marzo 2021 192.168.10.1:8889 Bat:22 TMax:29.0 Vx:0 Vy:0 Vz:0 h:50 Ax:-9.00 Ay:-9.00 Az:-954.00 TCm: 2
+18 marzo 2021 192.168.10.1:8889 Bat:22 TMax:29.5 Vx:0 Vy:0 Vz:0 h:50 Ax:0.00 Ay:-7.00 Az:-971.00 TCm: 2
+18 marzo 2021 192.168.10.1:8889 Bat:21 TMax:29.5 Vx:0 Vy:0 Vz:0 h:50 Ax:-8.00 Ay:-7.00 Az:-994.00 TCm: 2
+18 marzo 2021 192.168.10.1:8889 Bat:21 TMax:29.5 Vx:0 Vy:0 Vz:0 h:50 Ax:0.00 Ay:2.00 Az:-983.00 TCm: 2
+18 marzo 2021 192.168.10.1:8889 Bat:21 TMax:29.5 Vx:0 Vy:0 Vz:0 h:60 Ax:-11.00 Ay:-8.00 Az:-974.00 TCm: 2
+18 marzo 2021 192.168.10.1:8889 Bat:21 TMax:29.5 Vx:0 Vy:0 Vz:0 h:60 Ax:-10.00 Ay:1.00 Az:-974.00 TCm: 3
+18 marzo 2021 192.168.10.1:8889 Bat:21 TMax:29.0 Vx:0 Vy:0 Vz:0 h:60 Ax:-11.00 Ay:-9.00 Az:-983.00 TCm: 3
+18 marzo 2021 192.168.10.1:8889 Bat:21 TMax:29.0 Vx:0 Vy:0 Vz:1 h:60 Ax:3.00 Ay:0.00 Az:-989.00 TCm: 3
+18 marzo 2021 192.168.10.1:8889 Bat:21 TMax:29.0 Vx:0 Vy:0 Vz:0 h:60 Ax:-13.00 Ay:-8.00 Az:-1000.00 TCm: 3
+18 marzo 2021 192.168.10.1:8889 Bat:21 TMax:29.0 Vx:0 Vy:0 Vz:0 h:50 Ax:-5.00 Ay:-17.00 Az:-1020.00 TCm: 3
+18 marzo 2021 192.168.10.1:8889 Bat:21 TMax:29.0 Vx:0 Vy:0 Vz:0 h:50 Ax:-1.00 Ay:-11.00 Az:-1022.00 TCm: 4
+18 marzo 2021 192.168.10.1:8889 Bat:21 TMax:29.5 Vx:0 Vy:0 Vz:0 h:50 Ax:-27.00 Ay:-9.00 Az:-1040.00 TCm: 4
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:29.5 Vx:0 Vy:0 Vz:0 h:50 Ax:10.00 Ay:-14.00 Az:-997.00 TCm: 4
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:29.5 Vx:1 Vy:0 Vz:0 h:50 Ax:-27.00 Ay:-14.00 Az:-987.00 TCm: 4
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:29.5 Vx:1 Vy:0 Vz:0 h:50 Ax:-39.00 Ay:-3.00 Az:-967.00 TCm: 4
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:29.5 Vx:1 Vy:0 Vz:0 h:50 Ax:-47.00 Ay:-19.00 Az:-985.00 TCm: 5
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:29.0 Vx:1 Vy:0 Vz:0 h:50 Ax:-19.00 Ay:-27.00 Az:-988.00 TCm: 5
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:29.0 Vx:2 Vy:0 Vz:0 h:50 Ax:-47.00 Ay:-24.00 Az:-1028.00 TCm: 5
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:29.0 Vx:2 Vy:0 Vz:0 h:50 Ax:-36.00 Ay:-28.00 Az:-1023.00 TCm: 5
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:29.0 Vx:2 Vy:0 Vz:0 h:50 Ax:-48.00 Ay:-30.00 Az:-1004.00 TCm: 5
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:29.0 Vx:1 Vy:0 Vz:0 h:50 Ax:-53.00 Ay:-14.00 Az:-1003.00 TCm: 6
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:29.0 Vx:1 Vy:0 Vz:0 h:50 Ax:-43.00 Ay:-22.00 Az:-1019.00 TCm: 6
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:29.0 Vx:0 Vy:0 Vz:0 h:50 Ax:-20.00 Ay:-30.00 Az:-1000.00 TCm: 6
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:29.0 Vx:0 Vy:0 Vz:0 h:50 Ax:-19.00 Ay:-18.00 Az:-1000.00 TCm: 6
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:29.0 Vx:0 Vy:0 Vz:0 h:50 Ax:-15.00 Ay:-17.00 Az:-988.00 TCm: 6
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:29.0 Vx:0 Vy:0 Vz:0 h:50 Ax:3.00 Ay:-21.00 Az:-997.00 TCm: 7
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:29.0 Vx:0 Vy:0 Vz:0 h:50 Ax:-11.00 Ay:-9.00 Az:-997.00 TCm: 7
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:29.0 Vx:0 Vy:1 Vz:0 h:50 Ax:-15.00 Ay:-25.00 Az:-996.00 TCm: 7
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:29.0 Vx:0 Vy:1 Vz:0 h:60 Ax:-7.00 Ay:-22.00 Az:-983.00 TCm: 7
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:29.0 Vx:0 Vy:2 Vz:0 h:60 Ax:-10.00 Ay:-23.00 Az:-1009.00 TCm: 7
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:29.0 Vx:0 Vy:1 Vz:0 h:60 Ax:-2.00 Ay:-31.00 Az:-1017.00 TCm: 8
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:28.5 Vx:0 Vy:1 Vz:0 h:60 Ax:-19.00 Ay:-15.00 Az:-979.00 TCm: 8
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:28.5 Vx:0 Vy:0 Vz:0 h:60 Ax:-25.00 Ay:-7.00 Az:-987.00 TCm: 8
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:28.5 Vx:0 Vy:0 Vz:0 h:60 Ax:-12.00 Ay:-30.00 Az:-992.00 TCm: 8
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:28.5 Vx:0 Vy:0 Vz:0 h:60 Ax:-14.00 Ay:-11.00 Az:-1003.00 TCm: 8
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:28.5 Vx:0 Vy:0 Vz:0 h:60 Ax:-9.00 Ay:-1.00 Az:-1004.00 TCm: 9
+18 marzo 2021 192.168.10.1:8889 Bat:20 TMax:29.0 Vx:0 Vy:0 Vz:0 h:60 Ax:-29.00 Ay:-12.00 Az:-977.00 TCm: 9
