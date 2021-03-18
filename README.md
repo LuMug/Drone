@@ -12,13 +12,13 @@
 ## Descrizione
 
 #### Mandato:
-[QdC Secondo Semestre Pilotaggio Drone](Documenti/QdC_SecondoSemestre_pilotaggioDrone.pdf)
+[QdC Secondo Semestre Pilotaggio Drone](Documenti/QdC/QdC_SecondoSemestre_pilotaggioDrone.pdf)
 
 #### Struttura:
 - [Codice](src/)
 
-- [Documentazione](Documenti/Documentazione.md)
+- [Documentazione](Documenti/Documentazione_Progetto_Drone.md)
 
-- [Gantt preventivo](Documenti/GANTT_Preventivo.mpp)
+- [Gantt preventivo](/Documenti/Gantt/GANTT_Preventivo.mpp)
 
 - [Diari di lavoro](Diari/)
