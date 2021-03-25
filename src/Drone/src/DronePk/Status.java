@@ -44,6 +44,8 @@ public class Status extends Thread {
     public String agy="";
     public String agz="";
     public int port;
+    
+    
     public String ip;
     DateFormat dateFormat;
     Date data = new Date();
@@ -68,12 +70,9 @@ public class Status extends Thread {
                 socket.receive(packet);
 
                 StringTokenizer st = new StringTokenizer(received, " ;");
-                pich = st.nextToken().substring(5);
+                pich = st.nextToken().substring(6);
                 roll = st.nextToken().substring(5);
-                System.out.println("rool"+ roll);
-                System.out.println("pcih: "+ pich);
                 yaw = st.nextToken().substring(4);
-                System.out.println("yaw" + yaw);
                 spX = st.nextToken().substring(4);
                 spY = st.nextToken().substring(4);
                 spZ = st.nextToken().substring(4);
@@ -91,7 +90,6 @@ public class Status extends Thread {
                 agx = st.nextToken().substring(4);
                 agy = st.nextToken().substring(4);
                 agz = st.nextToken().substring(4);
-
                 Thread.sleep(1000);
                 String valori = " Bat:" + bat
                         + " TMax:" + temMaxC
@@ -105,7 +103,7 @@ public class Status extends Thread {
                         + " TCm: " + time;
                 String finale= dateFormat.format(data) + " "+ ip + ":"+ port + valori;
                 log.scritturaFile(finale);
-
+                
                 if (temMinC == 100) {
                     fine = false;
                     socket.close();
@@ -134,13 +132,14 @@ public class Status extends Thread {
     }
 
     public int[] getPos(){
-        
+       
         int[] values={
             Integer.parseInt(pich),
             Integer.parseInt(roll),
             Integer.parseInt(yaw),
+            Integer.parseInt(altezza),
         };
-        return null;
+        return values;
         
     
     }
