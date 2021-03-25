@@ -142,7 +142,7 @@ public class Drone extends Thread implements KeyListener {
         messageListener = jp;
         status.start();
         //Gestione del LeapMotion
-        LeapMotion listener = new LeapMotion(this);
+        LeapMotion listener = new LeapMotion(this, jp);
         Controller controller = new Controller();
         controller.addListener(listener);
         setUp();

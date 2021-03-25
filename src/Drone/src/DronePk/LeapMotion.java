@@ -31,27 +31,29 @@ public class LeapMotion extends Listener {
     private boolean comReqSeq = false;
 
     /**
-     * Contiene il riferimento del file contenente le sequenze.
+     * Contiene il riferimento della classe registratrice delle sequenze.
      */
     private CommandsRecorder cr;
-
+    
+    /**
+     * Contiene il riferimento della classe runnatrice delle sequenze.
+     */
+    private CommandSequenceRunner csr;
+    
+    /**
+     * Contiene il riferimento del funzionePanel.
+     */
+    private FunzionePanel funzionePanel;
+    
     /**
      * Costruttore della classe
      *
      * @param drone riferimento del contenitore
      */
-    public LeapMotion(Drone drone) {
+    public LeapMotion(Drone drone, FunzionePanel funzionePanel) {
         this.drone = drone;
-    }
-
-    /**
-     * Viene richiamato quando viene connesso un controller.
-     *
-     * @param controller connesso
-     */
-    public void onConnect(Controller controller) {
-        System.out.println("LeapMotion Connected");
-        System.out.println("------------------------");
+        this.funzionePanel = funzionePanel;
+        funzionePanel.setLM(this);
     }
 
     /**
@@ -83,17 +85,25 @@ public class LeapMotion extends Listener {
             float pitch = rightHand.direction().pitch();
             float yaw = rightHand.direction().yaw();
             float roll = rightHand.palmNormal().roll();
+            
+            //Velocità degli assi del drone
             int pitchSpeed = 0;
             int rollSpeed = 0;
             int yawSpeed = 0;
-            if (betweenExcluded(pitch, -0.25, 0.25)
+            
+            if (
+                    betweenExcluded(pitch, -0.25, 0.25)
                     && betweenExcluded(roll, -0.40, 0.40)
                     && betweenExcluded(yaw, -0.35, 0.15)
-                    && betweenExcluded(highCommand, 175, 225)) {
+                    && betweenExcluded(highCommand, 175, 225)
+                ) {
+                
+                //Contiene i riferimenti agli indici delle 2 mani.
                 FingerList rightHandIndexFingerList = rightHand.fingers().fingerType(Finger.Type.TYPE_INDEX);
                 Finger rightHandIndexFinger = rightHandIndexFingerList.get(0);
                 FingerList leftHandIndexFingerList = leftHand.fingers().fingerType(Finger.Type.TYPE_INDEX);
                 Finger leftHandIndexFinger = leftHandIndexFingerList.get(0);
+                
                 if (rightHandIndexFinger.isExtended()) {
                     command = "rc 0 0 0 0";
                     drone.invioMessaggio(command);
@@ -102,11 +112,9 @@ public class LeapMotion extends Listener {
                     }
                     if (!leftHandIndexFinger.isExtended()) {
                         if (comReqSeq) {
-                            System.out.println("FFFFFFFFFFFFFF");
                             comReqSeq = false;
                         } else {
-                            cr = new CommandsRecorder("Seq1");
-                            System.out.println("NNNNNNNNNNNNNNN");
+                            cr = new CommandsRecorder(funzionePanel.getSeqName());
                             comReqSeq = true;
                         }
                     }
@@ -219,7 +227,8 @@ public class LeapMotion extends Listener {
 
                 if (betweenExcluded(pitch, -0.25, 0.25)
                         && betweenExcluded(roll, -0.40, 0.40)
-                        && betweenExcluded(yaw, -0.35, 0.15)) {
+                        && betweenExcluded(yaw, -0.35, 0.15)
+                    ) {
                     FingerList indexFingerList = hand.fingers().fingerType(Finger.Type.TYPE_INDEX);
                     Finger indexFinger = indexFingerList.get(0);
                     if (indexFinger.isExtended()) {
@@ -355,7 +364,7 @@ public class LeapMotion extends Listener {
                         if (comReqSeq) {
                             comReqSeq = false;
                         } else {
-                            cr = new CommandsRecorder("Seq1");
+                            cr = new CommandsRecorder(funzionePanel.getSeqName());
                             comReqSeq = true;
                         }
                     }
@@ -368,6 +377,14 @@ public class LeapMotion extends Listener {
                 cr.sequenceWriter(command);
             }
         }
+    }
+    
+    /**
+     * Esegue la sequenza registrata.
+     */
+    public void runSequence() {
+        csr = new CommandSequenceRunner(funzionePanel.getSeqName(), drone);
+        csr.sequenceRepeater();
     }
 
     /**

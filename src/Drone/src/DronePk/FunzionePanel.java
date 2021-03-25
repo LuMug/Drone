@@ -1,23 +1,22 @@
 package DronePk;
 
-
 import ImageFrame.ImageFrame;
-
-
 
 /**
  * Panel che si occupa dei bottoni.
- * 
+ *
  * @author Alessandro Aloise
  * @version 28.01.2021
  */
 public class FunzionePanel extends javax.swing.JPanel {
 
-   /** 
+    /**
      * Istanziamento dell'oggetto drone.
      */
     private Drone drone;
     
+    private LeapMotion lm;
+
     /**
      * Creates new form FunzionePanel
      */
@@ -26,6 +25,10 @@ public class FunzionePanel extends javax.swing.JPanel {
         drone = new Drone(this);
         drone.start();
         drone.command();
+    }
+    
+    public void setLM(LeapMotion lm) {
+        this.lm = lm;
     }
 
     /**
@@ -38,19 +41,27 @@ public class FunzionePanel extends javax.swing.JPanel {
     private void initComponents() {
 
         sequenzaTasti = new javax.swing.JButton();
+        seqName = new javax.swing.JTextField();
         Statistiche = new javax.swing.JButton();
         vistaDrone = new javax.swing.JButton();
         decolla = new javax.swing.JButton();
         atterra = new javax.swing.JButton();
-        spazio = new javax.swing.JSeparator();
         batteriaText = new javax.swing.JLabel();
         batteriaCampo = new javax.swing.JTextField();
         percentuale = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        sequenzaTasti.setText("SEQUENZA COMANDI");
+        sequenzaTasti.setText("ESEGUI SEQUENZA");
+        sequenzaTasti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sequenzaTastiActionPerformed(evt);
+            }
+        });
         add(sequenzaTasti);
+
+        seqName.setText("EXAMPLE");
+        add(seqName);
 
         Statistiche.setText("STATISTICHE");
         add(Statistiche);
@@ -79,10 +90,6 @@ public class FunzionePanel extends javax.swing.JPanel {
         });
         add(atterra);
 
-        spazio.setForeground(new java.awt.Color(255, 255, 255));
-        spazio.setPreferredSize(new java.awt.Dimension(100, 10));
-        add(spazio);
-
         batteriaText.setText("Batteria");
         add(batteriaText);
 
@@ -100,15 +107,23 @@ public class FunzionePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_vistaDroneActionPerformed
 
     private void decollaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decollaActionPerformed
-       drone.decolla();
+        drone.decolla();
     }//GEN-LAST:event_decollaActionPerformed
 
     private void atterraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atterraActionPerformed
-     //drone.atterra();
-     CommandSequenceRunner cr = new CommandSequenceRunner("Seq1", drone);
-     cr.sequenceRepeater();
+        drone.atterra();
     }//GEN-LAST:event_atterraActionPerformed
 
+    private void sequenzaTastiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sequenzaTastiActionPerformed
+        lm.runSequence();
+    }//GEN-LAST:event_sequenzaTastiActionPerformed
+
+    /**
+     * Ritorna il nome della sequenza del textbox.
+     */
+    public String getSeqName() {
+        return seqName.getText();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Statistiche;
@@ -117,8 +132,8 @@ public class FunzionePanel extends javax.swing.JPanel {
     private javax.swing.JLabel batteriaText;
     private javax.swing.JButton decolla;
     private javax.swing.JLabel percentuale;
+    private javax.swing.JTextField seqName;
     private javax.swing.JButton sequenzaTasti;
-    private javax.swing.JSeparator spazio;
     private javax.swing.JButton vistaDrone;
     // End of variables declaration//GEN-END:variables
 }
