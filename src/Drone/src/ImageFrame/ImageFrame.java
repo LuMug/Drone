@@ -34,13 +34,7 @@ public class ImageFrame extends JFrame implements KeyListener {
     }
 
     public void obt() {
-        while (true) {
-            pitch = stat.getPitch();
-            roll = stat.getRoll();
-            yaw = stat.getYaw();
-            alt = stat.getAlt();
-            
-        }
+        
 
     }
 

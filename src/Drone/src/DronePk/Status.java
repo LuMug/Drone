@@ -132,7 +132,7 @@ public class Status extends Thread {
         return valori;
     }
 
-    public int getPitch() {
+    /*public int getPitch() {
         try {
             return Integer.parseInt(pitch);
         } catch (NumberFormatException ex) {
@@ -162,7 +162,7 @@ public class Status extends Thread {
         } catch (NumberFormatException ex) {
             return 0;
         }
-    }
+    }*/
 
     public void stampa() {
         System.out.println("Valori del Drone:");
