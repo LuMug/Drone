@@ -334,6 +334,5 @@ public class Drone extends Thread implements KeyListener {
     
     public String batteria(){
         return status.getbatteria();
-        
     }
 }

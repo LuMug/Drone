@@ -104,7 +104,9 @@ public class FunzionePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_decollaActionPerformed
 
     private void atterraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atterraActionPerformed
-     drone.atterra();
+     //drone.atterra();
+     CommandSequenceRunner cr = new CommandSequenceRunner("Seq1", drone);
+     cr.sequenceRepeater();
     }//GEN-LAST:event_atterraActionPerformed
 
 

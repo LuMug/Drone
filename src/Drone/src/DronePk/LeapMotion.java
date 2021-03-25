@@ -31,6 +31,11 @@ public class LeapMotion extends Listener {
     private boolean comReqSeq = false;
 
     /**
+     * Contiene il riferimento del file contenente le sequenze.
+     */
+    private CommandsRecorder cr;
+
+    /**
      * Costruttore della classe
      *
      * @param drone riferimento del contenitore
@@ -57,6 +62,7 @@ public class LeapMotion extends Listener {
     public void onFrame(Controller controller) {
         //Legge il pacchetto
         Frame frame = controller.frame();
+        String command = "";
 
         //Verifica se ci sono 2 mani
         if (frame.hands().count() == 2) {
@@ -89,14 +95,36 @@ public class LeapMotion extends Listener {
                 FingerList leftHandIndexFingerList = leftHand.fingers().fingerType(Finger.Type.TYPE_INDEX);
                 Finger leftHandIndexFinger = leftHandIndexFingerList.get(0);
                 if (rightHandIndexFinger.isExtended()) {
-                    drone.invioMessaggio("rc 0 0 0 0");
+                    command = "rc 0 0 0 0";
+                    drone.invioMessaggio(command);
+                    if (comReqSeq) {
+                        cr.sequenceWriter(command);
+                    }
+                    if (!leftHandIndexFinger.isExtended()) {
+                        if (comReqSeq) {
+                            System.out.println("FFFFFFFFFFFFFF");
+                            comReqSeq = false;
+                        } else {
+                            cr = new CommandsRecorder("Seq1");
+                            System.out.println("NNNNNNNNNNNNNNN");
+                            comReqSeq = true;
+                        }
+                    }
                 } else {
                     if (inFlight) {
-                        drone.invioMessaggio("land");
+                        command = "land";
+                        drone.invioMessaggio(command);
                         inFlight = false;
+                        if (comReqSeq) {
+                            cr.sequenceWriter(command);
+                        }
                     } else {
-                        drone.invioMessaggio("takeoff");
+                        command = "takeoff";
+                        drone.invioMessaggio(command);
                         inFlight = true;
+                        if (comReqSeq) {
+                            cr.sequenceWriter(command);
+                        }
                     }
                 }
             } else {
@@ -167,8 +195,11 @@ public class LeapMotion extends Listener {
                         highSpeed = convertRange(highCommand, 225, 325, 10, 100);
                     }
                 }
-
-                drone.invioMessaggio("rc " + rollSpeed + " " + pitchSpeed + " " + highSpeed + " " + yawSpeed);
+                command = "rc " + rollSpeed + " " + pitchSpeed + " " + highSpeed + " " + yawSpeed;
+                drone.invioMessaggio(command);
+                if (comReqSeq) {
+                    cr.sequenceWriter(command);
+                }
             }
 
         } else if (frame.hands().count() == 1) {
@@ -192,14 +223,26 @@ public class LeapMotion extends Listener {
                     FingerList indexFingerList = hand.fingers().fingerType(Finger.Type.TYPE_INDEX);
                     Finger indexFinger = indexFingerList.get(0);
                     if (indexFinger.isExtended()) {
-                        drone.invioMessaggio("rc 0 0 0 0");
+                        command = "rc 0 0 0 0";
+                        drone.invioMessaggio(command);
+                        if (comReqSeq) {
+                            cr.sequenceWriter(command);
+                        }
                     } else {
                         if (inFlight) {
-                            drone.invioMessaggio("land");
+                            command = "land";
+                            drone.invioMessaggio(command);
                             inFlight = false;
+                            if (comReqSeq) {
+                                cr.sequenceWriter(command);
+                            }
                         } else {
-                            drone.invioMessaggio("takeoff");
+                            command = "takeoff";
+                            drone.invioMessaggio(command);
                             inFlight = true;
+                            if (comReqSeq) {
+                                cr.sequenceWriter(command);
+                            }
                         }
                     }
 
@@ -257,7 +300,11 @@ public class LeapMotion extends Listener {
                             yawSpeed = -100;
                         }
                     }
-                    drone.invioMessaggio("rc " + rollSpeed + " " + pitchSpeed + " 0 " + yawSpeed);
+                    command = "rc " + rollSpeed + " " + pitchSpeed + " 0 " + yawSpeed;
+                    drone.invioMessaggio(command);
+                    if (comReqSeq) {
+                        cr.sequenceWriter(command);
+                    }
                 }
             } else {
 
@@ -267,26 +314,59 @@ public class LeapMotion extends Listener {
                 if (highCommand <= 175) {
                     if (highCommand < 75) {
                         speed = 100;
-                        drone.invioMessaggio("rc 0 0 -" + speed + " 0");
+                        command = "rc 0 0 -" + speed + " 0";
+                        drone.invioMessaggio(command);
+                        if (comReqSeq) {
+                            cr.sequenceWriter(command);
+                        }
                     } else {
                         speed = 110 - convertRange(highCommand, 75, 175, 10, 100);
-                        drone.invioMessaggio("rc 0 0 -" + speed + " 0");
+                        command = "rc 0 0 -" + speed + " 0";
+                        drone.invioMessaggio(command);
+                        if (comReqSeq) {
+                            cr.sequenceWriter(command);
+                        }
                     }
                 } else if (highCommand >= 225) {
                     if (highCommand > 325) {
                         speed = 100;
-                        drone.invioMessaggio("rc 0 0 " + speed + " 0");
+                        command = "rc 0 0 " + speed + " 0";
+                        drone.invioMessaggio(command);
+                        if (comReqSeq) {
+                            cr.sequenceWriter(command);
+                        }
                     } else {
                         speed = convertRange(highCommand, 225, 325, 10, 100);
-                        drone.invioMessaggio("rc 0 0 " + speed + " 0");
+                        command = "rc 0 0 " + speed + " 0";
+                        drone.invioMessaggio(command);
+                        if (comReqSeq) {
+                            cr.sequenceWriter(command);
+                        }
                     }
                 } else {
-                    drone.invioMessaggio("rc 0 0 0 0");
+                    command = "rc 0 0 0 0";
+                    drone.invioMessaggio(command);
+                    if (comReqSeq) {
+                        cr.sequenceWriter(command);
+                    }
+                    FingerList leftHandIndexFingerList = hand.fingers().fingerType(Finger.Type.TYPE_INDEX);
+                    Finger leftHandIndexFinger = leftHandIndexFingerList.get(0);
+                    if (!leftHandIndexFinger.isExtended()) {
+                        if (comReqSeq) {
+                            comReqSeq = false;
+                        } else {
+                            cr = new CommandsRecorder("Seq1");
+                            comReqSeq = true;
+                        }
+                    }
                 }
             }
-
         } else {
-            drone.invioMessaggio("rc 0 0 0 0");
+            command = "rc 0 0 0 0";
+            drone.invioMessaggio(command);
+            if (comReqSeq) {
+                cr.sequenceWriter(command);
+            }
         }
     }
 
