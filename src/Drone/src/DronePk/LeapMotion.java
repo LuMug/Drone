@@ -1,6 +1,5 @@
 package DronePk;
 
-
 import com.leapmotion.leap.Controller;
 import com.leapmotion.leap.Finger;
 import com.leapmotion.leap.FingerList;
@@ -25,7 +24,12 @@ public class LeapMotion extends Listener {
      * Contiene se il drone è in volo o meno.
      */
     private boolean inFlight = false;
-    
+
+    /**
+     * Contiene se il drone sta registrando la sequenza dei comandi o meno.
+     */
+    private boolean comReqSeq = false;
+
     /**
      * Costruttore della classe
      *
@@ -78,9 +82,23 @@ public class LeapMotion extends Listener {
             int yawSpeed = 0;
             if (betweenExcluded(pitch, -0.25, 0.25)
                     && betweenExcluded(roll, -0.40, 0.40)
-                    && betweenExcluded(yaw, -0.45, 0.45)
+                    && betweenExcluded(yaw, -0.35, 0.15)
                     && betweenExcluded(highCommand, 175, 225)) {
-                drone.invioMessaggio("rc 0 0 0 0");
+                FingerList rightHandIndexFingerList = rightHand.fingers().fingerType(Finger.Type.TYPE_INDEX);
+                Finger rightHandIndexFinger = rightHandIndexFingerList.get(0);
+                FingerList leftHandIndexFingerList = leftHand.fingers().fingerType(Finger.Type.TYPE_INDEX);
+                Finger leftHandIndexFinger = leftHandIndexFingerList.get(0);
+                if (rightHandIndexFinger.isExtended()) {
+                    drone.invioMessaggio("rc 0 0 0 0");
+                } else {
+                    if (inFlight) {
+                        drone.invioMessaggio("land");
+                        inFlight = false;
+                    } else {
+                        drone.invioMessaggio("takeoff");
+                        inFlight = true;
+                    }
+                }
             } else {
                 if (pitch >= 0.25) {
 
@@ -120,17 +138,17 @@ public class LeapMotion extends Listener {
                 }
 
                 //Gestione comandi su asse Y (rotazione destra e sinistra)
-                if (yaw >= 0.35) {
+                if (yaw >= 0.15) {
                     //Rotazione a destra
-                    if (yaw <= 1) {
-                        yawSpeed = convertRange(yaw, 0.45, 1, 10, 100);
+                    if (yaw <= 0.25) {
+                        yawSpeed = convertRange(yaw, 0.15, 0.25, 10, 100);
                     } else {
                         yawSpeed = 100;
                     }
-                } else if (yaw <= -0.45) {
+                } else if (yaw <= -0.35) {
                     //Rotazione a sinistra
-                    if (yaw >= -1) {
-                        yawSpeed = -1 * convertRange(yaw, -0.45, -1, 10, 100);
+                    if (yaw >= -0.75) {
+                        yawSpeed = -1 * convertRange(yaw, -0.35, -0.75, 10, 100);
                     } else {
                         yawSpeed = -100;
                     }
@@ -170,16 +188,16 @@ public class LeapMotion extends Listener {
 
                 if (betweenExcluded(pitch, -0.25, 0.25)
                         && betweenExcluded(roll, -0.40, 0.40)
-                        && betweenExcluded(yaw, -0.45, 0.45)) {
+                        && betweenExcluded(yaw, -0.35, 0.15)) {
                     FingerList indexFingerList = hand.fingers().fingerType(Finger.Type.TYPE_INDEX);
                     Finger indexFinger = indexFingerList.get(0);
-                    if(indexFinger.isExtended()) {
+                    if (indexFinger.isExtended()) {
                         drone.invioMessaggio("rc 0 0 0 0");
-                    }else{
-                        if(inFlight) {
+                    } else {
+                        if (inFlight) {
                             drone.invioMessaggio("land");
                             inFlight = false;
-                        }else{
+                        } else {
                             drone.invioMessaggio("takeoff");
                             inFlight = true;
                         }
@@ -224,17 +242,17 @@ public class LeapMotion extends Listener {
                     }
 
                     //Gestione comandi su asse Y (rotazione destra e sinistra)
-                    if (yaw >= 0.35) {
+                    if (yaw >= 0.15) {
                         //Rotazione a destra
-                        if (yaw <= 1) {
-                            yawSpeed = convertRange(yaw, 0.45, 1, 10, 100);
+                        if (yaw <= 0.25) {
+                            yawSpeed = convertRange(yaw, 0.15, 0.25, 10, 100);
                         } else {
                             yawSpeed = 100;
                         }
-                    } else if (yaw <= -0.45) {
+                    } else if (yaw <= -0.35) {
                         //Rotazione a sinistra
-                        if (yaw >= -1) {
-                            yawSpeed = -1 * convertRange(yaw, -0.45, -1, 10, 100);
+                        if (yaw >= -0.75) {
+                            yawSpeed = -1 * convertRange(yaw, -0.35, -0.75, 10, 100);
                         } else {
                             yawSpeed = -100;
                         }
