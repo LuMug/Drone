@@ -30,12 +30,6 @@ public class ImageFrame extends JFrame implements KeyListener {
     public ImageFrame() {
         addKeyListener((KeyListener) this);
         initComponents();
-        obt();
-    }
-
-    public void obt() {
-        
-
     }
 
     public static void main(String args[]) {
@@ -55,8 +49,6 @@ public class ImageFrame extends JFrame implements KeyListener {
         GridLayout ImageFrameLayout = new GridLayout(2, 2);
         setLayout(ImageFrameLayout);
         setResizable(false);
-        //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        //view();
         imagePanelFront = new ImagePanelFront();
         imagePanelLat = new ImagePanelLat();
         imagePanelUp = new ImagePanelUp();
@@ -66,7 +58,23 @@ public class ImageFrame extends JFrame implements KeyListener {
         add(imagePanelFront);
         add(altitudine);
         pack();
+        
 
+    }
+
+    public void move(String commands) {
+        //rc roll pitch alt yaw
+        if (commands.charAt(0) == 'r' && commands.charAt(1) == 'c') {
+            String[] istr = commands.split(" ");
+
+            roll = Integer.parseInt(istr[1]);
+            pitch = Integer.parseInt(istr[2]);
+            alt = Integer.parseInt(istr[3]);
+            yaw = Integer.parseInt(istr[4]);
+            System.out.println(roll + " | " + pitch + " | " + alt + " | " + yaw);
+            imagePanelFront.moving(roll);
+            imagePanelLat.moving(roll);
+        }
     }
 
     @Override

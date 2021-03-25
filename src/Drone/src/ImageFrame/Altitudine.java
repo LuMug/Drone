@@ -59,7 +59,7 @@ public class Altitudine extends ImageModel implements KeyListener {
         y = (this.getHeight() - down.getHeight(null)) / 2;
         g.drawImage(up, x, y, this);
         g.drawImage(down, x + panelW, y, this);
-        alt.setText(altitude + " m");
+        alt.setText(altitude + " cm");
 
     }
 

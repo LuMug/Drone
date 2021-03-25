@@ -1,6 +1,5 @@
 package ImageFrame;
 
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
@@ -8,9 +7,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * Pannello numero 3 del frame principale
- * Questo pannello si occupa di gestire la visione laterale
- * del drone.
+ * Pannello numero 3 del frame principale Questo pannello si occupa di gestire
+ * la visione laterale del drone.
+ *
  * @author Michea Colautti
  * @version 25.03.21
  */
@@ -23,6 +22,27 @@ public class ImagePanelLat extends ImageModel implements KeyListener {
         } catch (IOException ex) {
             System.out.println("Errore");
         }
+    }
+
+    public void moving(int rotDeg) {
+        rot = true;
+        press = true;
+
+        if (rotDeg < 0) {
+
+            if (rotDeg > -MAXDEG) {
+
+                rotDeg -= 5;
+            }
+        } else {
+
+            if (rotDeg < MAXDEG) {
+
+                rotDeg += 5;
+
+            }
+        }
+        repaint();
     }
 
     @Override

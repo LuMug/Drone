@@ -1,6 +1,5 @@
 package ImageFrame;
 
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -10,10 +9,9 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 /**
- * Modello di un immagine
- * Questa classe rappresente il modello di base per mostrare un
- * immagine in Java
- * Contiene anche i metodi per la rotazione.
+ * Modello di un immagine Questa classe rappresente il modello di base per
+ * mostrare un immagine in Java Contiene anche i metodi per la rotazione.
+ *
  * @author Michea Colautti
  * @version 25.03.21
  */
@@ -35,7 +33,8 @@ public class ImageModel extends JPanel {
 
     public static final int MAXDEG = 40;
 
-    public ImageModel() {}
+    public ImageModel() {
+    }
 
     public static BufferedImage resize(BufferedImage img, int newW, int newH) {
         if (img == null) {
@@ -85,7 +84,7 @@ public class ImageModel extends JPanel {
         width = panelW;
         g.clearRect(0, 0, width, height);
         g.setColor(Color.BLACK);
-        g.drawRect(0, 0, getWidth(),getHeight());
+        g.drawRect(0, 0, getWidth(), getHeight());
 
         if (panelH > panelW) {
             panelH = panelW;
@@ -93,32 +92,33 @@ public class ImageModel extends JPanel {
         }
 
         int x = 0, y = 0;
+        if (image != null) {
+            if (rot) {
+                x = (this.getWidth() - image.getWidth(null)) / 2;
+                y = (this.getHeight() - image.getHeight(null)) / 2;
 
-        if (rot) {
-            x = (this.getWidth() - image.getWidth(null)) / 2;
-            y = (this.getHeight() - image.getHeight(null)) / 2;
+                image = resize(imageBig, panelW - 100, panelH - 100);
+                rotatedImage = rotate(image, rotDeg);
 
-            image = resize(imageBig, panelW - 100, panelH - 100);
-            rotatedImage = rotate(image, rotDeg);
-
-            if (type == 68 || type ==65) {
-                if (rotDeg < 0) {
-                    g.drawImage(rotatedImage, x, y + rotDeg, this);
-                }else{
-                    g.drawImage(rotatedImage, x, y +(-rotDeg), this);      
+                if (type == 68 || type == 65) {
+                    if (rotDeg < 0) {
+                        g.drawImage(rotatedImage, x, y + rotDeg, this);
+                    } else {
+                        g.drawImage(rotatedImage, x, y + (-rotDeg), this);
+                    }
+                } else if (type == 87 || type == 83) {
+                    if (rotDeg > 0) {
+                        g.drawImage(rotatedImage, x, y + (-rotDeg), this);
+                    } else {
+                        g.drawImage(rotatedImage, x, y + rotDeg, this);
+                    }
                 }
-            } else if (type == 87 || type==83) {
-                if(rotDeg>0){
-                    g.drawImage(rotatedImage, x, y + (-rotDeg), this);
-                }else{
-                    g.drawImage(rotatedImage, x, y + rotDeg, this);
-                }
+            } else if (imageBig != null) {
+                image = resize(imageBig, panelW - 100, panelH - 100);
+                x = (this.getWidth() - image.getWidth(null)) / 2;
+                y = (this.getHeight() - image.getHeight(null)) / 2;
+                g.drawImage(image, x, y, this);
             }
-        } else if(imageBig != null) {
-            image = resize(imageBig, panelW - 100, panelH - 100);
-            x = (this.getWidth() - image.getWidth(null)) / 2;
-            y = (this.getHeight() - image.getHeight(null)) / 2;
-            g.drawImage(image, x, y, this);
         }
     }
 }

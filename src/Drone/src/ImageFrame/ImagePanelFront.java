@@ -1,6 +1,5 @@
 package ImageFrame;
 
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
@@ -8,9 +7,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * Pannello numero 1 del frame principale
- * Questo pannello si occupa di gestire la visione anteriore
- * del drone.
+ * Pannello numero 1 del frame principale Questo pannello si occupa di gestire
+ * la visione anteriore del drone.
+ *
  * @author Michea Colautti
  * @version 25.03.21
  */
@@ -24,6 +23,29 @@ public class ImagePanelFront extends ImageModel implements KeyListener {
             System.out.println("Errore");
         }
     }
+    
+    public void moving(int rotDeg){
+        rot = true;
+        press = true;
+
+        if (rotDeg < 0) {
+
+            if (rotDeg > -MAXDEG) {
+
+                rotDeg -= 5;
+            }
+        } else {
+
+            if (rotDeg < MAXDEG) {
+
+                rotDeg += 5;
+
+            }
+        }
+        repaint();
+    }
+    
+    
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -51,14 +73,13 @@ public class ImagePanelFront extends ImageModel implements KeyListener {
         }
         repaint();
     }
-
-    public void keyTyped(KeyEvent e){}
-
+    public void keyTyped(KeyEvent e) {
+    }
     @Override
     public void keyReleased(KeyEvent e) {
         //try{
         press = false;
-        while (!press && rotDeg !=0) {
+        while (!press && rotDeg != 0) {
             if (rotDeg > 0) {
                 //Thread.sleep(90);
                 rotDeg--;
