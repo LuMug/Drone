@@ -9,6 +9,14 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
+/**
+ * Modello di un immagine
+ * Questa classe rappresente il modello di base per mostrare un
+ * immagine in Java
+ * Contiene anche i metodi per la rotazione.
+ * @author Michea Colautti
+ * @version 25.03.21
+ */
 public class ImageModel extends JPanel {
 
     public BufferedImage imageBig;

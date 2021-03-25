@@ -9,8 +9,11 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 
 /**
- *
- * @author micheacolautti
+ * Frame principale dell'intero package
+ * Questo frame si occupa di contenre i 4 frame con le info
+ * del drone.
+ * @author Michea Colautti
+ * @version 25.03.21
  */
 public class ImageFrame extends JFrame implements KeyListener{
 
@@ -41,6 +44,7 @@ public class ImageFrame extends JFrame implements KeyListener{
         setMaximumSize(new Dimension(700, 500));
         GridLayout ImageFrameLayout = new GridLayout(2, 2);
         setLayout(ImageFrameLayout);
+        setResizable(false);
         //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         imagePanelFront = new ImagePanelFront();

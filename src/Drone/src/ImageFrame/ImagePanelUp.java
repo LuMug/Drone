@@ -9,6 +9,14 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+
+/**
+ * Pannello numero 2 del frame principale
+ * Questo pannello si occupa di gestire la visione superiore
+ * del drone.
+ * @author Michea Colautti
+ * @version 25.03.21
+ */
 public class ImagePanelUp extends ImageModel implements KeyListener {
 
     public ImagePanelUp() {

@@ -14,8 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**
- *
- * @author micheacolautti
+ *Pannello numero 4 del frame principale
+ * Questo pannello si occupa di gestire l'incremento/decremento
+ * del valore dell'altitudine.
+ * @author Michea Colautti
+ * @version 25.03.21
  */
 public class Altitudine extends ImageModel implements KeyListener {
 

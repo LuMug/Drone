@@ -7,6 +7,13 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+/**
+ * Pannello numero 1 del frame principale
+ * Questo pannello si occupa di gestire la visione anteriore
+ * del drone.
+ * @author Michea Colautti
+ * @version 25.03.21
+ */
 public class ImagePanelFront extends ImageModel implements KeyListener {
 
     public ImagePanelFront() {
