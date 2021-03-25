@@ -22,6 +22,11 @@ public class ImageFrame extends JFrame implements KeyListener {
     private Altitudine altitudine;
     public Status stat = new Status();
 
+    private int pitch;
+    private int yaw;
+    private int roll;
+    private int alt;
+
     public ImageFrame() {
         addKeyListener((KeyListener) this);
         initComponents();
@@ -29,13 +34,13 @@ public class ImageFrame extends JFrame implements KeyListener {
     }
 
     public void obt() {
-        System.out.println("hjcejbfub");
-        int[] pos = new int[4];
-        //pos = stat.getPos();
-        System.out.println(pos[0]);
-        System.out.println(pos[1]);
-        System.out.println(pos[2]);
-        System.out.println(pos[3]);
+        while (true) {
+            pitch = stat.getPitch();
+            roll = stat.getRoll();
+            yaw = stat.getYaw();
+            alt = stat.getAlt();
+            
+        }
 
     }
 
