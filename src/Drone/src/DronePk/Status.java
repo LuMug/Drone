@@ -1,6 +1,5 @@
 package DronePk;
 
-
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -23,33 +22,31 @@ public class Status extends Thread {
 
     Log log = new Log();
 
-    public String pich ="";
-    public String roll="";
-    public String yaw="";
-    public String spX="";
-    public String spY="";
-    public String spZ="";
-    public String templ="";
+    public String pitch = "";
+    public String roll = "";
+    public String yaw = "";
+    public String spX = "";
+    public String spY = "";
+    public String spZ = "";
+    public String templ = "";
     public double temMinF;
     public double temMinC;
-    public String temph="";
+    public String temph = "";
     public double temMaxF;
     public double temMaxC;
-    public String tof="";
-    public String altezza="";
-    public String bat="";
-    public String baro="";
-    public String time="";
-    public String agx="";
-    public String agy="";
-    public String agz="";
+    public String tof = "";
+    public String altezza = "";
+    public String bat = "";
+    public String baro = "";
+    public String time = "";
+    public String agx = "";
+    public String agy = "";
+    public String agz = "";
     public int port;
-    
-    
+
     public String ip;
     DateFormat dateFormat;
     Date data = new Date();
-
 
     public void run() {
         dateFormat = DateFormat.getDateInstance(DateFormat.LONG, Locale.ITALY);
@@ -70,7 +67,7 @@ public class Status extends Thread {
                 socket.receive(packet);
 
                 StringTokenizer st = new StringTokenizer(received, " ;");
-                pich = st.nextToken().substring(6);
+                pitch = st.nextToken().substring(6);
                 roll = st.nextToken().substring(5);
                 yaw = st.nextToken().substring(4);
                 spX = st.nextToken().substring(4);
@@ -91,6 +88,10 @@ public class Status extends Thread {
                 agy = st.nextToken().substring(4);
                 agz = st.nextToken().substring(4);
                 Thread.sleep(1000);
+                System.out.println("P: "+getPitch());
+                System.out.println("Y: "+getYaw());
+                System.out.println("R: "+getRoll());
+                System.out.println("A: "+getAlt());
                 String valori = " Bat:" + bat
                         + " TMax:" + temMaxC
                         + " Vx:" + spX
@@ -101,9 +102,9 @@ public class Status extends Thread {
                         + " Ay:" + agy
                         + " Az:" + agz
                         + " TCm: " + time;
-                String finale= dateFormat.format(data) + " "+ ip + ":"+ port + valori;
+                String finale = dateFormat.format(data) + " " + ip + ":" + port + valori;
                 log.scritturaFile(finale);
-                
+
                 if (temMinC == 100) {
                     fine = false;
                     socket.close();
@@ -131,18 +132,38 @@ public class Status extends Thread {
         return valori;
     }
 
-    public int[] getPos(){
-       
-        int[] values={
-            Integer.parseInt(pich),
-            Integer.parseInt(roll),
-            Integer.parseInt(yaw),
-            Integer.parseInt(altezza),
-        };
-        return values;
-        
-    
+    public int getPitch() {
+        try {
+            return Integer.parseInt(pitch);
+        } catch (NumberFormatException ex) {
+            return 0;
+        }
     }
+
+    public int getYaw() {
+        try {
+            return Integer.parseInt(yaw);
+        } catch (NumberFormatException ex) {
+            return 0;
+        }
+    }
+
+    public int getRoll() {
+         try {
+            return Integer.parseInt(roll);
+        } catch (NumberFormatException ex) {
+            return 0;
+        }
+    }
+
+    public int getAlt() {
+         try {
+            return Integer.parseInt(altezza);
+        } catch (NumberFormatException ex) {
+            return 0;
+        }
+    }
+
     public void stampa() {
         System.out.println("Valori del Drone:");
         System.out.print("Batteria: ");
@@ -161,17 +182,17 @@ public class Status extends Thread {
         System.out.println(altezza);
         System.out.println(new String(new char[50]).replace("\0", "\r\n"));
     }
-    
-    public String getbatteria(){
+
+    public String getbatteria() {
         return bat;
     }
-    
-    public void setIp(String ip){
-        this.ip=ip;
+
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
     void setport(int porta) {
-        this.port=porta;
+        this.port = porta;
     }
 
 }
