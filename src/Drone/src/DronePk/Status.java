@@ -88,10 +88,6 @@ public class Status extends Thread {
                 agy = st.nextToken().substring(4);
                 agz = st.nextToken().substring(4);
                 Thread.sleep(1000);
-                System.out.println("P: "+getPitch());
-                System.out.println("Y: "+getYaw());
-                System.out.println("R: "+getRoll());
-                System.out.println("A: "+getAlt());
                 String valori = " Bat:" + bat
                         + " TMax:" + temMaxC
                         + " Vx:" + spX
