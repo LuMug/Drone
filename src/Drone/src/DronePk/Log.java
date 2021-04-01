@@ -24,7 +24,7 @@ public class Log {
             Date data = new Date();
             DateFormat dateFormat;
             dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.ITALY);
-            String path = "log/Log_" + dateFormat.format(data).replace(' ', '_') + ".log";
+            String path = "log/Log_" + dateFormat.format(data).replace(' ', '_') + ".txt";
             file = new File(path);
             file.createNewFile();
             fw = new FileWriter(file);

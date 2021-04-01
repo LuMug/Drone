@@ -23,21 +23,21 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
   <SubComponents>
-    <Component class="DronePk.ComandiPanel" name="comandiPanel">
+    <Component class="DronePk.ComandiPanel" name="comandiPanel1">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
           <BorderConstraints direction="Before"/>
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="DronePk.FunzionePanel" name="funzionePanel">
+    <Component class="DronePk.FunzionePanel" name="funzionePanel1">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
           <BorderConstraints direction="South"/>
         </Constraint>
       </Constraints>
     </Component>
-    <Container class="DronePk.LivePanel" name="livePanel">
+    <Container class="DronePk.LivePanel" name="livePanel1">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
           <BorderConstraints direction="Center"/>

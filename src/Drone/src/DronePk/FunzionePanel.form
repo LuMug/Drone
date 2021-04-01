@@ -68,9 +68,14 @@
         <Property name="text" type="java.lang.String" value="Batteria"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="batteriaL">
+    <Component class="javax.swing.JTextField" name="batteriaCampo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="                  "/>
+        <Property name="text" type="java.lang.String" value="             "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="percentuale">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="%"/>
       </Properties>
     </Component>
   </SubComponents>

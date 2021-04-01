@@ -1,14 +1,3 @@
-<<<<<<< Updated upstream:src/Drone/log/SequencesRecorded/EXAMPLE.txt
-rc 0 0 0 0
-rc 0 0 0 0
-rc 0 0 0 0
-rc 0 0 0 0
-rc 0 0 0 0
-rc 0 0 0 0
-rc 0 0 0 0
-rc 0 0 0 0
-rc 0 0 0 0
-=======
 rc 0 0 0 0
 rc 0 0 0 0
 rc 0 0 0 0
@@ -38,4 +27,3 @@ rc 0 0 100 0
 rc 0 0 100 0
 rc 0 0 100 0
 rc 0 0 100 0
->>>>>>> Stashed changes:src/Drone/SequencesRecorded/EXAMPLE.txt

@@ -1,6 +1,7 @@
 package ImageFrame;
 
 import DronePk.Drone;
+import DronePk.Status;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
