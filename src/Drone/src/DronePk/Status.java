@@ -89,9 +89,9 @@ public class Status extends Thread {
                 Thread.sleep(1000);
                 String valori = " Bat:" + bat
                         + " TMax:" + temMaxC
-                        + " pitch" + pitch
-                        + "roll " + roll
-                        + "yaw " + yaw
+                        + " pitch:" + pitch
+                        + " roll:" + roll
+                        + " yaw:" + yaw
                         + " Vx:" + spX
                         + " Vy:" + spY
                         + " Vz:" + spZ

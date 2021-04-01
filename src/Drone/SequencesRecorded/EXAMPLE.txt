@@ -1,5 +1,16 @@
 takeoff
-rc 0 -17 0 0
+rc 0 0 0 0
+rc 0 0 11 0
+rc 0 0 11 0
+rc 0 0 11 0
+rc 0 0 0 0
+rc 0 0 0 0
+rc 0 0 0 0
+rc 0 0 0 0
+rc 0 0 0 0
+rc 0 0 0 0
+rc 0 0 0 0
+takeoff
 rc 0 0 0 0
 rc 0 0 0 0
 rc 0 0 0 0
@@ -9,4 +20,17 @@ rc 0 0 0 0
 rc 0 0 0 0
 rc 0 0 0 0
 rc 0 0 0 0
+rc 0 0 0 0
+rc 0 0 0 0
+rc 0 0 0 0
+rc 0 0 0 0
+rc 0 0 0 0
+rc 0 0 0 0
+rc 0 0 0 0
+rc 0 0 -22 0
+rc 0 0 -31 0
+rc 0 0 -37 0
+rc 0 0 -37 -24
+takeoff
+rc 38 -38 -34 -26
 land
