@@ -132,7 +132,7 @@ public class Drone extends Thread implements KeyListener {
      *
      * @param jp Il frame in cui avviene la comunicazione.
      */
-    public Drone(FunzionePanel jp) {
+    public Drone(FunzionePanel jp) throws IOException {
         try {
             socket = new DatagramSocket();
         } catch (SocketException ex) {
@@ -143,6 +143,13 @@ public class Drone extends Thread implements KeyListener {
         setPortAsTitle(jp);
         messageListener = jp;
         status.start();
+        //Gestione del LeapMotion
+        LeapMotion listener = new LeapMotion(this, jp);
+        Controller controller = new Controller();
+        controller.addListener(listener);
+        LivePanel live = new LivePanel();
+        Thread liveThread = new Thread(live);
+        liveThread.start();
         setUp();
 
     }
@@ -335,6 +342,8 @@ public class Drone extends Thread implements KeyListener {
     public void command() {
         String message = "command";
         invioMessaggio(message);
+        String liveMessage = "streamon";
+        invioMessaggio(liveMessage);
     }
 
     public String batteria() {

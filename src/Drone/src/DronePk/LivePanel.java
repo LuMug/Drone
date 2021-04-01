@@ -1,11 +1,17 @@
 package DronePk;
 
-
+import static DronePk.Log.file;
+import static DronePk.Log.fw;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.IntStream;
 
 /**
  * Panel che contiene la live della camera.
@@ -20,12 +26,19 @@ public class LivePanel extends javax.swing.JPanel implements Runnable {
     private byte[] receiveData = new byte[1470];
     private Drone drone;
 
+    public static File file;
+    public static FileWriter fw;
+
     /**
      * Creates new form DronePanel
      */
-    public LivePanel() {
+    public LivePanel() throws IOException {
         initComponents();
         isStreamOn = true;
+
+        file = new File("C:\\Users\\giann\\OneDrive\\Documenti\\GitHub\\Drone\\ProvaStream\\Prova.mp4");
+        file.createNewFile();
+        fw = new FileWriter(file);
     }
 
     @SuppressWarnings("unchecked")
@@ -61,14 +74,24 @@ public class LivePanel extends javax.swing.JPanel implements Runnable {
                 DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
                 serverSocket.receive(receivePacket);
 
-                String z = new String(receivePacket.getData());
-                System.out.println(z);
+                //String z = new String(receivePacket.getData());
+                byte[] bytes = receivePacket.getData();
+                
+                //byte[] byteArrray = z.getBytes();
+                fw.write("" + bytes);
+                fw.flush();
+                System.out.println(bytes);
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            isStreamOn = false;
         }
+        try {
+            fw.close();
+        } catch (IOException ex) {
+            
+        }
+        isStreamOn = false;
         serverSocket.close();
     }
 
@@ -78,5 +101,5 @@ public class LivePanel extends javax.swing.JPanel implements Runnable {
 
     public void setStreamOn(boolean streamOn) {
         isStreamOn = streamOn;
-    }   
+    }
 }
