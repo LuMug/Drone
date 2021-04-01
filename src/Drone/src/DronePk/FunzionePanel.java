@@ -17,7 +17,7 @@ public class FunzionePanel extends javax.swing.JPanel {
      * Istanziamento dell'oggetto drone.
      */
     private Drone drone;
-    
+
     private LeapMotionProject lm;
 
     /**
@@ -30,7 +30,7 @@ public class FunzionePanel extends javax.swing.JPanel {
         drone.command();
         caricamento();
     }
-    
+
     public void setLM(LeapMotionProject lm) {
         this.lm = lm;
     }
@@ -103,7 +103,7 @@ public class FunzionePanel extends javax.swing.JPanel {
     private void vistaDroneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaDroneActionPerformed
         ImageFrame vista = new ImageFrame();
         vista.setVisible(true);
-
+        vista.imgTh = true;
     }//GEN-LAST:event_vistaDroneActionPerformed
 
     private void decollaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decollaActionPerformed
@@ -143,6 +143,6 @@ public class FunzionePanel extends javax.swing.JPanel {
         } catch (InterruptedException ex) {
             System.out.println("Error:"+ex);
         }
-        
+
     }
 }

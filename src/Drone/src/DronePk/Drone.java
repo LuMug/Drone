@@ -29,8 +29,6 @@ public class Drone extends Thread implements KeyListener {
     Status status = new Status();
     Log log = new Log();
 
-    private String rcView;
-
     /**
      * Rappresenta lo stato del drone (acceso o spento).
      */
@@ -90,6 +88,11 @@ public class Drone extends Thread implements KeyListener {
      * Istanza del frame.
      */
     private FunzionePanel messageListener;
+
+    /**
+     * Stringa per ottenere il comando da ImageFrame.
+     */
+    private String istru;
 
     /**
      * Getter dell'ip del drone.
@@ -295,7 +298,7 @@ public class Drone extends Thread implements KeyListener {
     public void invioMessaggio(String message) {
         try {
             setInfo(ipDrone, porta, message);
-            rcView = message;
+            istru = message;
             sendMessage();
 
             //debug
@@ -308,6 +311,17 @@ public class Drone extends Thread implements KeyListener {
             Thread.sleep(125);
         } catch (InterruptedException ex) {
         }
+    }
+
+    /**
+     * Meotodo per ottenre la stringa con il comando da ImageFrame.
+     *
+     * @return la stringa con il comando
+     */
+    public String getIstruction() {
+        System.out.println(istru);
+        System.out.println("rehbehivi");
+        return istru;
     }
 
     public void setUp() {
