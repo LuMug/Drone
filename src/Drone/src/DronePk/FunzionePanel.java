@@ -1,6 +1,9 @@
 package DronePk;
 
 import ImageFrame.ImageFrame;
+import static java.lang.Thread.sleep;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Panel che si occupa dei bottoni.
@@ -25,6 +28,7 @@ public class FunzionePanel extends javax.swing.JPanel {
         drone = new Drone(this);
         drone.start();
         drone.command();
+        batteria();
     }
     
     public void setLM(LeapMotion lm) {
@@ -47,8 +51,7 @@ public class FunzionePanel extends javax.swing.JPanel {
         decolla = new javax.swing.JButton();
         atterra = new javax.swing.JButton();
         batteriaText = new javax.swing.JLabel();
-        batteriaCampo = new javax.swing.JTextField();
-        percentuale = new javax.swing.JLabel();
+        batteriaL = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -93,17 +96,13 @@ public class FunzionePanel extends javax.swing.JPanel {
         batteriaText.setText("Batteria");
         add(batteriaText);
 
-        batteriaCampo.setText("             ");
-        add(batteriaCampo);
-
-        percentuale.setText("%");
-        add(percentuale);
+        batteriaL.setText("                  ");
+        add(batteriaL);
     }// </editor-fold>//GEN-END:initComponents
 
     private void vistaDroneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaDroneActionPerformed
         ImageFrame vista = new ImageFrame();
         vista.setVisible(true);
-        batteriaCampo.setText(drone.batteria());
     }//GEN-LAST:event_vistaDroneActionPerformed
 
     private void decollaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decollaActionPerformed
@@ -124,14 +123,23 @@ public class FunzionePanel extends javax.swing.JPanel {
     public String getSeqName() {
         return seqName.getText();
     }
+    
+    
+    public void batteria(){
+        try {
+            sleep(1000);
+            batteriaL.setText(drone.batteria() + "%   ");
+        } catch (InterruptedException ex) {
+            Logger.getLogger(FunzionePanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Statistiche;
     private javax.swing.JButton atterra;
-    private javax.swing.JTextField batteriaCampo;
+    private javax.swing.JLabel batteriaL;
     private javax.swing.JLabel batteriaText;
     private javax.swing.JButton decolla;
-    private javax.swing.JLabel percentuale;
     private javax.swing.JTextField seqName;
     private javax.swing.JButton sequenzaTasti;
     private javax.swing.JButton vistaDrone;
