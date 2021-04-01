@@ -1,16 +1,16 @@
 package DronePk;
 
-
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.net.SocketException;
 
 /**
  * Panel che contiene la live della camera.
  *
- * @author Alessandro Aloise
+ * @author Alessandro Aloise e Gianni
  * @version 28.01.2021
  */
 public class LivePanel extends javax.swing.JPanel implements Runnable {
@@ -20,12 +20,16 @@ public class LivePanel extends javax.swing.JPanel implements Runnable {
     private byte[] receiveData = new byte[1470];
     private Drone drone;
 
+    public static File file;
+    public static FileWriter fw;
+
     /**
      * Creates new form DronePanel
      */
     public LivePanel() {
         initComponents();
         isStreamOn = true;
+        creaFile();
     }
 
     @SuppressWarnings("unchecked")
@@ -61,14 +65,24 @@ public class LivePanel extends javax.swing.JPanel implements Runnable {
                 DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
                 serverSocket.receive(receivePacket);
 
-                String z = new String(receivePacket.getData());
-                System.out.println(z);
+                //String z = new String(receivePacket.getData());
+                byte[] bytes = receivePacket.getData();
+
+                //byte[] byteArrray = z.getBytes();
+                fw.write("" + bytes);
+                fw.flush();
+                System.out.println(bytes);
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            isStreamOn = false;
         }
+        try {
+            fw.close();
+        } catch (IOException ex) {
+
+        }
+        isStreamOn = false;
         serverSocket.close();
     }
 
@@ -78,5 +92,15 @@ public class LivePanel extends javax.swing.JPanel implements Runnable {
 
     public void setStreamOn(boolean streamOn) {
         isStreamOn = streamOn;
-    }   
+    }
+
+    public void creaFile() {
+        try {
+            file = new File("Prova.mp4");
+            file.createNewFile();
+            fw = new FileWriter(file);
+        } catch (IOException ex) {
+            System.out.println("Error:"+ex);
+        }
+    }
 }

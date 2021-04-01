@@ -20,24 +20,24 @@ public class DroneFrame extends javax.swing.JFrame{
 
         comandiPanel1 = new DronePk.ComandiPanel();
         funzionePanel1 = new DronePk.FunzionePanel();
-        livePanel1 = new DronePk.LivePanel();
+        livePanel = new DronePk.LivePanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().add(comandiPanel1, java.awt.BorderLayout.LINE_START);
         getContentPane().add(funzionePanel1, java.awt.BorderLayout.SOUTH);
 
-        javax.swing.GroupLayout livePanel1Layout = new javax.swing.GroupLayout(livePanel1);
-        livePanel1.setLayout(livePanel1Layout);
-        livePanel1Layout.setHorizontalGroup(
-            livePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout livePanelLayout = new javax.swing.GroupLayout(livePanel);
+        livePanel.setLayout(livePanelLayout);
+        livePanelLayout.setHorizontalGroup(
+            livePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 746, Short.MAX_VALUE)
         );
-        livePanel1Layout.setVerticalGroup(
-            livePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        livePanelLayout.setVerticalGroup(
+            livePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 389, Short.MAX_VALUE)
         );
 
-        getContentPane().add(livePanel1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(livePanel, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -80,6 +80,6 @@ public class DroneFrame extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private DronePk.ComandiPanel comandiPanel1;
     private DronePk.FunzionePanel funzionePanel1;
-    private DronePk.LivePanel livePanel1;
+    private DronePk.LivePanel livePanel;
     // End of variables declaration//GEN-END:variables
 }

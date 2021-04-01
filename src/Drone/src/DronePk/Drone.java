@@ -28,7 +28,7 @@ public class Drone extends Thread implements KeyListener {
 
     Status status = new Status();
     Log log = new Log();
-    
+
     private String rcView;
 
     /**
@@ -143,6 +143,10 @@ public class Drone extends Thread implements KeyListener {
         setPortAsTitle(jp);
         messageListener = jp;
         status.start();
+        LivePanel live = new LivePanel();
+        Thread liveThread = new Thread(live);
+        liveThread.start();
+
         setUp();
     }
 
@@ -291,7 +295,7 @@ public class Drone extends Thread implements KeyListener {
     public void invioMessaggio(String message) {
         try {
             setInfo(ipDrone, porta, message);
-            rcView=message;
+            rcView = message;
             sendMessage();
 
             //debug
@@ -300,7 +304,7 @@ public class Drone extends Thread implements KeyListener {
             System.out.println("Message sent: " + message);
             System.out.println("Message received: " + getMessageReceived());
             System.out.println("------------------------");
-            
+
             Thread.sleep(125);
         } catch (InterruptedException ex) {
         }
@@ -334,6 +338,8 @@ public class Drone extends Thread implements KeyListener {
     public void command() {
         String message = "command";
         invioMessaggio(message);
+        String liveMessage = "streamon";
+        invioMessaggio(liveMessage);
     }
 
     public String batteria() {
