@@ -331,8 +331,8 @@ public class Drone extends Thread implements KeyListener {
         String message = "command";
         invioMessaggio(message);
     }
-    
-    public String batteria(){
+
+    public String batteria() {
         return status.getbatteria();
     }
 }
