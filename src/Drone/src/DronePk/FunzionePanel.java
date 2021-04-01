@@ -1,6 +1,7 @@
 package DronePk;
 
 import ImageFrame.ImageFrame;
+import java.io.IOException;
 import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +26,11 @@ public class FunzionePanel extends javax.swing.JPanel {
      */
     public FunzionePanel() {
         initComponents();
-        drone = new Drone(this);
+        try {
+            drone = new Drone(this);
+        } catch (IOException ex) {
+            Logger.getLogger(FunzionePanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         drone.start();
         drone.command();
         batteria();
