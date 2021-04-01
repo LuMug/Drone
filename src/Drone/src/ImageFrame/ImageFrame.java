@@ -28,19 +28,22 @@ public class ImageFrame extends JFrame implements KeyListener, Runnable {
     private int alt;
 
     private Drone drone;
-    public boolean imgTh=false;
+    public boolean imgTh = false;
 
-
+    private Status stat=new Status();
     public ImageFrame() {
         addKeyListener((KeyListener) this);
         initComponents();
+        
     }
 
+    
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ImageFrame().setVisible(true);
+                Thread imageFrame = new Thread();
 
             }
         });
@@ -107,7 +110,6 @@ public class ImageFrame extends JFrame implements KeyListener, Runnable {
         for (int i = 0; i < 10; i++) {
             //String istru=drone.getIstruction();
             String istru = "rc 0 0 0 0";
-            System.out.println(istru);
             try {
                 if (istru.charAt(0) == 'r' && istru.charAt(1) == 'c') {
                     String[] istr = istru.split(" ");
@@ -116,7 +118,7 @@ public class ImageFrame extends JFrame implements KeyListener, Runnable {
                     pitch = Integer.parseInt(istr[2]);
                     alt = Integer.parseInt(istr[3]);
                     yaw = Integer.parseInt(istr[4]);
-                    System.out.println(roll + " | " + pitch + " | " + alt + " | " + yaw);
+                    //System.out.println(roll + " | " + pitch + " | " + alt + " | " + yaw);
                     imagePanelFront.moving(roll);
                     imagePanelLat.moving(pitch);
                 }

@@ -25,7 +25,6 @@ public class ImagePanelLat extends ImageModel implements KeyListener {
     }
 
     public void moving(int rotDeg) {
-        rot = true;
         press = true;
 
         if (rotDeg < 0) {
