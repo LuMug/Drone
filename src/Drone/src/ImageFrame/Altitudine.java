@@ -29,8 +29,8 @@ public class Altitudine extends ImageModel implements KeyListener {
 
     public Altitudine() {
         try {
-            up = ImageIO.read(new File("bin/Frecce/Up.png"));
-            down = ImageIO.read(new File("bin/Frecce/Down.png"));
+            up = ImageIO.read(new File("src/ImageFrame/bin/Frecce/Up.png"));
+            down = ImageIO.read(new File("src/ImageFrame/bin/Frecce/Down.png"));
 
         } catch (IOException ex) {
             System.out.println("Errore");
