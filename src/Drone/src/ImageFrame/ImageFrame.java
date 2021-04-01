@@ -15,19 +15,22 @@ import javax.swing.JFrame;
  * @author Michea Colautti
  * @version 25.03.21
  */
-public class ImageFrame extends JFrame implements KeyListener,Runnable {
+public class ImageFrame extends JFrame implements KeyListener, Runnable {
 
     private ImagePanelFront imagePanelFront;
     private ImagePanelLat imagePanelLat;
     private ImagePanelUp imagePanelUp;
     private Altitudine altitudine;
-    
+
     private int pitch;
     private int yaw;
     private int roll;
     private int alt;
 
     private Drone drone;
+    public boolean imgTh=false;
+
+
     public ImageFrame() {
         addKeyListener((KeyListener) this);
         initComponents();
@@ -59,10 +62,8 @@ public class ImageFrame extends JFrame implements KeyListener,Runnable {
         add(imagePanelFront);
         add(altitudine);
         pack();
-        
 
     }
-
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -103,18 +104,27 @@ public class ImageFrame extends JFrame implements KeyListener,Runnable {
 
     @Override
     public void run() {
-         System.out.println("MOVEEEEEEEEEEEEE");
-        /*if (commands.charAt(0) == 'r' && commands.charAt(1) == 'c') {
-            String[] istr = commands.split(" ");
+        for (int i = 0; i < 10; i++) {
+            //String istru=drone.getIstruction();
+            String istru = "rc 0 0 0 0";
+            System.out.println(istru);
+            try {
+                if (istru.charAt(0) == 'r' && istru.charAt(1) == 'c') {
+                    String[] istr = istru.split(" ");
 
-            roll = Integer.parseInt(istr[1]);
-            pitch = Integer.parseInt(istr[2]);
-            alt = Integer.parseInt(istr[3]);
-            yaw = Integer.parseInt(istr[4]);
-            System.out.println(roll + " | " + pitch + " | " + alt + " | " + yaw);
-            imagePanelFront.moving(roll);
-            imagePanelLat.moving(roll);
-        }*/
-        
+                    roll = Integer.parseInt(istr[1]);
+                    pitch = Integer.parseInt(istr[2]);
+                    alt = Integer.parseInt(istr[3]);
+                    yaw = Integer.parseInt(istr[4]);
+                    System.out.println(roll + " | " + pitch + " | " + alt + " | " + yaw);
+                    imagePanelFront.moving(roll);
+                    imagePanelLat.moving(pitch);
+                }
+                Thread.sleep(250);
+            } catch (Exception ex) {
+                System.out.println("Errore nella thread ImageFrame");
+            }
+        }
+
     }
 }
