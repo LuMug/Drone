@@ -28,6 +28,8 @@ public class Drone extends Thread implements KeyListener {
 
     Status status = new Status();
     Log log = new Log();
+    
+    private String rcView;
 
     /**
      * Rappresenta lo stato del drone (acceso o spento).
@@ -290,6 +292,7 @@ public class Drone extends Thread implements KeyListener {
     public void invioMessaggio(String message) {
         try {
             setInfo(ipDrone, porta, message);
+            rcView=message;
             sendMessage();
 
             //debug
@@ -298,7 +301,7 @@ public class Drone extends Thread implements KeyListener {
             System.out.println("Message sent: " + message);
             System.out.println("Message received: " + getMessageReceived());
             System.out.println("------------------------");
-
+            
             Thread.sleep(125);
         } catch (InterruptedException ex) {
         }
