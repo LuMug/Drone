@@ -97,7 +97,6 @@ public class ImageModel extends JPanel {
         image = resize(imageBig, panelW - 50, panelH - 50);
         x = (this.getWidth() - image.getWidth()) / 2;
         y = (this.getHeight() - image.getHeight()) / 2;
-        System.out.println(x + " | " + y);
 
         if (rotDeg < 0) {
             g.drawImage(image, x, y, this);

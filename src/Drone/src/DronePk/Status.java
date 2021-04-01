@@ -130,7 +130,7 @@ public class Status extends Thread {
         return valori;
     }
 
-    /*public int getPitch() {
+   public int getPitch() {
         try {
             return Integer.parseInt(pitch);
         } catch (NumberFormatException ex) {
@@ -147,6 +147,7 @@ public class Status extends Thread {
     }
 
     public int getRoll() {
+        System.out.println(roll);
          try {
             return Integer.parseInt(roll);
         } catch (NumberFormatException ex) {
@@ -160,26 +161,9 @@ public class Status extends Thread {
         } catch (NumberFormatException ex) {
             return 0;
         }
-    }*/
-
-    public void stampa() {
-        System.out.println("Valori del Drone:");
-        System.out.print("Batteria: ");
-        System.out.println(bat);
-        System.out.print("Temeratura minima: ");
-        System.out.println(temMinC);
-        System.out.print("Temeratura massima: ");
-        System.out.println(temMaxC);
-        System.out.print("Velocita x: ");
-        System.out.println(spX);
-        System.out.print("Velocita y: ");
-        System.out.println(spY);
-        System.out.print("Velocita Z: ");
-        System.out.println(spZ);
-        System.out.print("Altezza: ");
-        System.out.println(altezza);
-        System.out.println(new String(new char[50]).replace("\0", "\r\n"));
     }
+
+
 
     public String getbatteria() {
         return bat;

@@ -30,14 +30,14 @@ public class ImageFrame extends JFrame implements KeyListener, Runnable {
     private Drone drone;
     public boolean imgTh = false;
 
-    private Status stat=new Status();
+    private Status stat;
+
     public ImageFrame() {
         addKeyListener((KeyListener) this);
         initComponents();
-        
+
     }
 
-    
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -107,26 +107,18 @@ public class ImageFrame extends JFrame implements KeyListener, Runnable {
 
     @Override
     public void run() {
-        for (int i = 0; i < 10; i++) {
-            //String istru=drone.getIstruction();
-            String istru = "rc 0 0 0 0";
-            try {
-                if (istru.charAt(0) == 'r' && istru.charAt(1) == 'c') {
-                    String[] istr = istru.split(" ");
+        for (int i = 0; i < 1000; i++) {
 
-                    roll = Integer.parseInt(istr[1]);
-                    pitch = Integer.parseInt(istr[2]);
-                    alt = Integer.parseInt(istr[3]);
-                    yaw = Integer.parseInt(istr[4]);
-                    //System.out.println(roll + " | " + pitch + " | " + alt + " | " + yaw);
-                    imagePanelFront.moving(roll);
-                    imagePanelLat.moving(pitch);
-                }
-                Thread.sleep(250);
-            } catch (Exception ex) {
-                System.out.println("Errore nella thread ImageFrame");
-            }
+            roll = stat.getRoll();
+            pitch = stat.getPitch();
+            alt = stat.getAlt();
+            yaw = stat.getYaw();
+            //System.out.println(roll + " | " + pitch + " | " + alt + " | " + yaw);
+            imagePanelFront.moving(roll);
+            imagePanelLat.moving(pitch);
+
         }
 
     }
+
 }
