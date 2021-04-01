@@ -14,6 +14,8 @@ public class LeapMotionProject extends Listener {
 
     private FunzionePanel funzionePanel;
 
+    private boolean inFlight = false;
+
     public LeapMotionProject(Drone drone, FunzionePanel funzionePanel) {
         this.drone = drone;
         this.funzionePanel = funzionePanel;
@@ -67,35 +69,41 @@ public class LeapMotionProject extends Listener {
             yaw = rightHand.direction().yaw();
             roll = rightHand.palmNormal().roll();
         }
+        if (rightHand == null || leftHand == null) {
+            command = "rc 0 0 0 0";
+            sendMessage(command);
+            command = "land";
+            sendMessage(command);
+            inFlight = false;
+        }
+        if (!rightHandIndexFinger.isExtended()) {
+            inFlight = true;
+            command = "takeoff";
+            sendMessage(command);
+        } else if (!rightHandMiddleFinger.isExtended()) {
+            command = "rc 0 0 0 0";
+            sendMessage(command);
+            command = "land";
+            sendMessage(command);
+            inFlight = false;
+        }
+        if (!leftHandIndexFinger.isExtended()) {
+            if (!comReqSeq) {
+                comReqSeq = true;
+                cr = new CommandsRecorder(funzionePanel.getSeqName());
+            }
+        } else if (!leftHandMiddleFinger.isExtended()) {
+            if (comReqSeq) {
+                comReqSeq = false;
+            }
+        }
         if (betweenExcluded(pitch, -0.25, 0.25)
                 && betweenExcluded(roll, -0.40, 0.40)
                 && betweenExcluded(yaw, -0.35, 0.15)
                 && betweenExcluded(highCommand, 175, 225)) {
-            if (!rightHandIndexFinger.isExtended()) {
-                command = "takeoff";
-                sendMessage(command);
-            } else if (!rightHandMiddleFinger.isExtended()) {
-                command = "land";
-                sendMessage(command);
-            }
 
-            if (!leftHandIndexFinger.isExtended()) {
-                if (!comReqSeq) {
-                    comReqSeq = true;
-                    cr = new CommandsRecorder(funzionePanel.getSeqName());
-                }
-            } else if (!leftHandMiddleFinger.isExtended()) {
-                if (comReqSeq) {
-                    comReqSeq = false;
-                }
-            }
-            if (rightHandIndexFinger.isExtended()
-                    && rightHandMiddleFinger.isExtended()
-                    && leftHandIndexFinger.isExtended()
-                    && leftHandMiddleFinger.isExtended()) {
-                command = "rc 0 0 0 0";
-                sendMessage(command);
-            }
+            command = "rc 0 0 0 0";
+            sendMessage(command);
         } else {
             if (pitch >= 0.25) {
                 if (pitch <= 0.60) {
@@ -139,9 +147,9 @@ public class LeapMotionProject extends Listener {
             if (highCommand <= 175) {
                 if (highCommand != 0) {
                     if (highCommand < 75) {
-                        highSpeed = 100;
+                        highSpeed = -100;
                     } else {
-                        highSpeed = 110 - convertRange(highCommand, 75, 175, 10, 100);
+                        highSpeed = -1 * (110 - convertRange(highCommand, 75, 175, 10, 100));
                     }
                 }
             } else if (highCommand >= 225) {
@@ -157,9 +165,16 @@ public class LeapMotionProject extends Listener {
     }
 
     public void sendMessage(String command) {
-        drone.invioMessaggio(command);
-        if (comReqSeq) {
-            cr.sequenceWriter(command);
+        try {
+            if (inFlight) {
+                drone.invioMessaggio(command);
+                Thread.sleep(100);
+                if (comReqSeq) {
+                    cr.sequenceWriter(command);
+                }
+            }
+        } catch (InterruptedException e) {
+            System.out.println(e);
         }
     }
 

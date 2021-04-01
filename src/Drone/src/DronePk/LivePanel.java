@@ -71,7 +71,7 @@ public class LivePanel extends javax.swing.JPanel implements Runnable {
                 //byte[] byteArrray = z.getBytes();
                 fw.write("" + bytes);
                 fw.flush();
-                System.out.println(bytes);
+                //System.out.println(bytes);
 
             } catch (IOException e) {
                 e.printStackTrace();

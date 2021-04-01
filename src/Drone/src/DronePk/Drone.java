@@ -177,7 +177,6 @@ public class Drone extends Thread implements KeyListener {
                 messageReceived = new String(packet.getData(), 0, packet.getLength());
                 System.out.println(messageReceived);
                 // messageListener.messageReceived();
-                leapController.removeListener(leapListener);
             }
         } catch (SocketException ex) {
             System.out.println("ERRORE: " + ex.getMessage());
@@ -296,21 +295,16 @@ public class Drone extends Thread implements KeyListener {
     }
 
     public void invioMessaggio(String message) {
-        try {
-            setInfo(ipDrone, porta, message);
-            istru = message;
-            sendMessage();
+        setInfo(ipDrone, porta, message);
+        istru = message;
+        sendMessage();
 
-            //debug
-            System.out.println("IP: " + ip
-                    + ", Port: " + porta);
-            System.out.println("Message sent: " + message);
-            System.out.println("Message received: " + getMessageReceived());
-            System.out.println("------------------------");
-
-            Thread.sleep(125);
-        } catch (InterruptedException ex) {
-        }
+        //debug
+        System.out.println("IP: " + ip
+                + ", Port: " + porta);
+        System.out.println("Message sent: " + message);
+        System.out.println("Message received: " + getMessageReceived());
+        System.out.println("------------------------");
     }
 
     /**
