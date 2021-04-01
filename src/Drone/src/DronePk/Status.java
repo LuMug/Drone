@@ -65,7 +65,6 @@ public class Status extends Thread {
                 packet = new DatagramPacket(buf, buf.length, address, port);
                 String received = new String(packet.getData(), 0, packet.getLength());
                 socket.receive(packet);
-
                 StringTokenizer st = new StringTokenizer(received, " ;");
                 pitch = st.nextToken().substring(6);
                 roll = st.nextToken().substring(5);
@@ -90,6 +89,9 @@ public class Status extends Thread {
                 Thread.sleep(1000);
                 String valori = " Bat:" + bat
                         + " TMax:" + temMaxC
+                        + " pitch" + pitch
+                        + "roll " + roll
+                        + "yaw " + yaw
                         + " Vx:" + spX
                         + " Vy:" + spY
                         + " Vz:" + spZ
