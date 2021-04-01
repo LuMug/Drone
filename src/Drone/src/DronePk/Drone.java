@@ -1,6 +1,6 @@
 package DronePk;
 
-import com.leapmotion.leap.*;
+import com.leapmotion.leap.Controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
@@ -143,6 +143,7 @@ public class Drone extends Thread implements KeyListener {
         setPortAsTitle(jp);
         messageListener = jp;
         status.start();
+
         //Gestione del LeapMotion
         LeapMotion listener = new LeapMotion(this, jp);
         Controller controller = new Controller();
@@ -151,6 +152,7 @@ public class Drone extends Thread implements KeyListener {
         Thread liveThread = new Thread(live);
         liveThread.start();
         setUp();
+        
     }
 
     /**
@@ -167,9 +169,9 @@ public class Drone extends Thread implements KeyListener {
      * Metodo che viene chiamato dalle thread e serve per ricevere i messaggi.
      */
     public void run() {
-        LeapMotionProject leapListener = new LeapMotionProject(this, messageListener);
-        Controller leapController = new Controller();
-        leapController.addListener(leapListener);
+        LeapMotion listener = new LeapMotion(this, messageListener);
+        Controller controller = new Controller();
+        controller.addListener(listener);
         try {
             while (true) {
                 DatagramPacket packet = new DatagramPacket(sendBuf, sendBuf.length);
@@ -177,14 +179,14 @@ public class Drone extends Thread implements KeyListener {
                 messageReceived = new String(packet.getData(), 0, packet.getLength());
                 System.out.println(messageReceived);
                 // messageListener.messageReceived();
-                leapController.removeListener(leapListener);
+                controller.addListener(listener);
             }
         } catch (SocketException ex) {
             System.out.println("ERRORE: " + ex.getMessage());
-            leapController.removeListener(leapListener);
+            controller.addListener(listener);
         } catch (IOException ex) {
             System.out.println("ERRORE: " + ex.getMessage());
-            leapController.removeListener(leapListener);
+            controller.addListener(listener);
         }
     }
 

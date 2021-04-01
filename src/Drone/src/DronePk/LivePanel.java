@@ -1,17 +1,13 @@
 package DronePk;
 
-import static DronePk.Log.file;
-import static DronePk.Log.fw;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.net.SocketException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.stream.IntStream;
+
+
 
 /**
  * Panel che contiene la live della camera.
@@ -32,13 +28,11 @@ public class LivePanel extends javax.swing.JPanel implements Runnable {
     /**
      * Creates new form DronePanel
      */
-    public LivePanel() throws IOException {
+    public LivePanel() {
         initComponents();
         isStreamOn = true;
+        creazione();
 
-        file = new File("C:\\Users\\giann\\OneDrive\\Documenti\\GitHub\\Drone\\ProvaStream\\Prova.mp4");
-        file.createNewFile();
-        fw = new FileWriter(file);
     }
 
     @SuppressWarnings("unchecked")
@@ -101,5 +95,14 @@ public class LivePanel extends javax.swing.JPanel implements Runnable {
 
     public void setStreamOn(boolean streamOn) {
         isStreamOn = streamOn;
+    }    
+    public void creazione(){
+        try {
+            file = new File("Prova.mp4");
+            file.createNewFile();
+            fw = new FileWriter(file);
+        } catch (IOException ex) {
+            System.out.println("Error" + ex);
+        }
     }
 }
