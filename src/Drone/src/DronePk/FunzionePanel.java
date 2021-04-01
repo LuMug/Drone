@@ -104,6 +104,8 @@ public class FunzionePanel extends javax.swing.JPanel {
         ImageFrame vista = new ImageFrame();
         vista.setVisible(true);
         vista.imgTh = true;
+        Thread vistaThread = new Thread(vista);
+        vistaThread.start();
     }//GEN-LAST:event_vistaDroneActionPerformed
 
     private void decollaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decollaActionPerformed
@@ -137,12 +139,8 @@ public class FunzionePanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void caricamento() {
-        try {
-            sleep(2000);
-            batteriaL.setText(drone.batteria()+"%");
-        } catch (InterruptedException ex) {
-            System.out.println("Error:"+ex);
-        }
+        // sleep(2000);
+        batteriaL.setText(drone.batteria()+"%");
 
     }
 }

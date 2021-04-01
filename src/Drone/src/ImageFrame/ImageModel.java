@@ -91,34 +91,20 @@ public class ImageModel extends JPanel {
             panelH /= 1.5;
         }
 
-        int x = 0, y = 0;
-        if (image != null) {
-            if (rot) {
-                x = (this.getWidth() - image.getWidth(null)) / 2;
-                y = (this.getHeight() - image.getHeight(null)) / 2;
+        int x, y = 0;
+        image = imageBig;
 
-                image = resize(imageBig, panelW - 100, panelH - 100);
-                rotatedImage = rotate(image, rotDeg);
+        image = resize(imageBig, panelW - 50, panelH - 50);
+        x = (this.getWidth() - image.getWidth()) / 2;
+        y = (this.getHeight() - image.getHeight()) / 2;
+        System.out.println(x + " | " + y);
 
-                if (type == 68 || type == 65) {
-                    if (rotDeg < 0) {
-                        g.drawImage(rotatedImage, x, y + rotDeg, this);
-                    } else {
-                        g.drawImage(rotatedImage, x, y + (-rotDeg), this);
-                    }
-                } else if (type == 87 || type == 83) {
-                    if (rotDeg > 0) {
-                        g.drawImage(rotatedImage, x, y + (-rotDeg), this);
-                    } else {
-                        g.drawImage(rotatedImage, x, y + rotDeg, this);
-                    }
-                }
-            } else if (imageBig != null) {
-                image = resize(imageBig, panelW - 100, panelH - 100);
-                x = (this.getWidth() - image.getWidth(null)) / 2;
-                y = (this.getHeight() - image.getHeight(null)) / 2;
-                g.drawImage(image, x, y, this);
-            }
+        if (rotDeg < 0) {
+            g.drawImage(image, x, y, this);
+        } else {
+            g.drawImage(image, x, y, this);
+
         }
+
     }
 }

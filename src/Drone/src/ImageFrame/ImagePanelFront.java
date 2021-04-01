@@ -25,7 +25,6 @@ public class ImagePanelFront extends ImageModel implements KeyListener {
     }
     
     public void moving(int rotDeg){
-        rot = true;
         press = true;
 
         if (rotDeg < 0) {
@@ -49,7 +48,6 @@ public class ImagePanelFront extends ImageModel implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        rot = true;
         press = true;
         type = e.getKeyCode();
 
@@ -81,11 +79,10 @@ public class ImagePanelFront extends ImageModel implements KeyListener {
         press = false;
         while (!press && rotDeg != 0) {
             if (rotDeg > 0) {
-                //Thread.sleep(90);
+               
                 rotDeg--;
                 repaint();
             } else {
-                //Thread.sleep(90);
                 rotDeg++;
                 repaint();
             }
