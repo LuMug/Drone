@@ -86,7 +86,7 @@ public class Status extends Thread {
                 agx = st.nextToken().substring(4);
                 agy = st.nextToken().substring(4);
                 agz = st.nextToken().substring(4);
-                Thread.sleep(1000);
+                Thread.sleep(100);
                 String valori = " Bat:" + bat
                         + " TMax:" + temMaxC
                         + " pitch:" + pitch

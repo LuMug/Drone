@@ -177,7 +177,6 @@ public class Drone extends Thread implements KeyListener {
                 messageReceived = new String(packet.getData(), 0, packet.getLength());
                 System.out.println(messageReceived);
                 // messageListener.messageReceived();
-                leapController.removeListener(leapListener);
             }
         } catch (SocketException ex) {
             System.out.println("ERRORE: " + ex.getMessage());
