@@ -70,6 +70,8 @@ public class LeapMotionProject extends Listener {
             roll = rightHand.palmNormal().roll();
         }
         if (rightHand == null || leftHand == null) {
+            command = "rc 0 0 0 0";
+            sendMessage(command);
             command = "land";
             sendMessage(command);
             inFlight = false;
@@ -79,6 +81,8 @@ public class LeapMotionProject extends Listener {
             command = "takeoff";
             sendMessage(command);
         } else if (!rightHandMiddleFinger.isExtended()) {
+            command = "rc 0 0 0 0";
+            sendMessage(command);
             command = "land";
             sendMessage(command);
             inFlight = false;
