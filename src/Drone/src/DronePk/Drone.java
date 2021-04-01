@@ -1,6 +1,6 @@
 package DronePk;
 
-import com.leapmotion.leap.Controller;
+import com.leapmotion.leap.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
@@ -151,7 +151,6 @@ public class Drone extends Thread implements KeyListener {
         Thread liveThread = new Thread(live);
         liveThread.start();
         setUp();
-
     }
 
     /**
@@ -168,9 +167,9 @@ public class Drone extends Thread implements KeyListener {
      * Metodo che viene chiamato dalle thread e serve per ricevere i messaggi.
      */
     public void run() {
-        LeapMotion listener = new LeapMotion(this, messageListener);
-        Controller controller = new Controller();
-        controller.addListener(listener);
+        LeapMotionProject leapListener = new LeapMotionProject(this, messageListener);
+        Controller leapController = new Controller();
+        leapController.addListener(leapListener);
         try {
             while (true) {
                 DatagramPacket packet = new DatagramPacket(sendBuf, sendBuf.length);
@@ -178,14 +177,14 @@ public class Drone extends Thread implements KeyListener {
                 messageReceived = new String(packet.getData(), 0, packet.getLength());
                 System.out.println(messageReceived);
                 // messageListener.messageReceived();
-                controller.addListener(listener);
+                leapController.removeListener(leapListener);
             }
         } catch (SocketException ex) {
             System.out.println("ERRORE: " + ex.getMessage());
-            controller.addListener(listener);
+            leapController.removeListener(leapListener);
         } catch (IOException ex) {
             System.out.println("ERRORE: " + ex.getMessage());
-            controller.addListener(listener);
+            leapController.removeListener(leapListener);
         }
     }
 

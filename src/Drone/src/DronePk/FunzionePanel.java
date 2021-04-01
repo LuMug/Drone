@@ -18,7 +18,7 @@ public class FunzionePanel extends javax.swing.JPanel {
      */
     private Drone drone;
     
-    private LeapMotion lm;
+    private LeapMotionProject lm;
 
     /**
      * Creates new form FunzionePanel
@@ -31,7 +31,7 @@ public class FunzionePanel extends javax.swing.JPanel {
         batteria();
     }
     
-    public void setLM(LeapMotion lm) {
+    public void setLM(LeapMotionProject lm) {
         this.lm = lm;
     }
 

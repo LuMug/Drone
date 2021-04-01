@@ -30,11 +30,11 @@ public class DroneFrame extends javax.swing.JFrame{
         livePanel1.setLayout(livePanel1Layout);
         livePanel1Layout.setHorizontalGroup(
             livePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 622, Short.MAX_VALUE)
+            .addGap(0, 746, Short.MAX_VALUE)
         );
         livePanel1Layout.setVerticalGroup(
             livePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
+            .addGap(0, 389, Short.MAX_VALUE)
         );
 
         getContentPane().add(livePanel1, java.awt.BorderLayout.CENTER);
