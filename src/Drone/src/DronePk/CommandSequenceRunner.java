@@ -12,7 +12,7 @@ import java.util.List;
  * @version 25 febbraio 2021
  */
 public class CommandSequenceRunner {
-    public static final String root = "SequencesRecorded";
+    public static final String root = "log/SequencesRecorded";
 
     private Path file;
     
