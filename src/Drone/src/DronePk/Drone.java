@@ -352,4 +352,8 @@ public class Drone extends Thread implements KeyListener {
     public void setComandiPanel(ComandiPanel comandiPanel) {
         this.comandiPanel = comandiPanel;
     }
+    
+    public void refreshCommandsD(String message) {
+        comandiPanel.refreshCommands(message);
+    }
 }

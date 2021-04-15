@@ -172,4 +172,8 @@ public class FunzionePanel extends javax.swing.JPanel {
         // sleep(2000);
         batteriaL.setText(drone.batteria() + "%");
     }
+    
+    public void refreshCommandsF(String command) {
+        drone.refreshCommandsD(command);
+    }
 }

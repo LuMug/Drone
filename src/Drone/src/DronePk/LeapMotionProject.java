@@ -89,12 +89,18 @@ public class LeapMotionProject extends Listener {
         }
         if (!leftHandIndexFinger.isExtended()) {
             if (!comReqSeq) {
-                comReqSeq = true;
-                cr = new CommandsRecorder(funzionePanel.getSeqNameSave());
+                if (!inFlight) {
+                    comReqSeq = true;
+                    cr = new CommandsRecorder(funzionePanel.getSeqNameSave());
+                    funzionePanel.refreshCommandsF("REC ON: " + funzionePanel.getSeqNameSave() + "\n");
+                }
             }
         } else if (!leftHandMiddleFinger.isExtended()) {
             if (comReqSeq) {
-                comReqSeq = false;
+                if (!inFlight) {
+                    comReqSeq = false;
+                    funzionePanel.refreshCommandsF("REC OFF: " + funzionePanel.getSeqNameSave() + "\n");
+                }
             }
         }
         if (betweenExcluded(pitch, -0.25, 0.25)
