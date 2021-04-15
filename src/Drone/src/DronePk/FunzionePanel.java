@@ -104,7 +104,7 @@ public class FunzionePanel extends javax.swing.JPanel {
         });
         add(atterra);
 
-        batteriaText.setText("Batteria --%");
+        batteriaText.setText("Batteria");
         add(batteriaText);
 
         batteriaL.setText("          ");

@@ -75,7 +75,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="batteriaText">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Batteria --%"/>
+        <Property name="text" type="java.lang.String" value="Batteria"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="batteriaL">
