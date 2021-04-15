@@ -2,6 +2,7 @@ package DronePk;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.KeyStroke;
 
 /**
  * Frame che si occupa di contenere il panel dell'aplicazione.
@@ -9,16 +10,15 @@ import java.awt.event.KeyListener;
  * @author Alessandro Aloise
  * @version 28.01.2021
  */
-public class DroneFrame extends javax.swing.JFrame implements KeyListener {
+public class DroneFrame extends javax.swing.JFrame {
 
     /**
      * Il costruttore della applicazione.
      */
     public DroneFrame() {
         initComponents();
-        this.addKeyListener(this);
     }
-    
+
     private Drone drone;
 
     @SuppressWarnings("unchecked")
@@ -92,21 +92,6 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener {
     private DronePk.LivePanel livePanel;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-       drone.keyTyped(e);
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-       drone.keyPressed(e);
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-       drone.keyReleased(e);
-    }
-
     public FunzionePanel getFunzionePanel() {
         return funzionePanel1;
     }
@@ -115,5 +100,4 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener {
         return comandiPanel1;
     }
 
-    
 }

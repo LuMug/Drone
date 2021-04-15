@@ -1,7 +1,6 @@
 package DronePk;
 import com.leapmotion.leap.*;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -16,7 +15,7 @@ import javax.swing.JPanel;
  * @author Gianni Grasso
  * @version 28.01.2021
  */
-public class Drone extends Thread implements KeyListener {
+public class Drone extends Thread {
 
     private int moveStep = 25;
     private int altStep = 25;
@@ -237,62 +236,6 @@ public class Drone extends Thread implements KeyListener {
      */
     public void setStato() {
         this.stato = !this.stato;
-    }
-
-    public void keyPressed(KeyEvent e) {
-        try {
-            Thread.sleep(750);
-        } catch (InterruptedException ex) {
-            System.out.println("Errore nel Thread.sleep");
-        }
-        int leftRight = 0;
-        int backForward = 0;
-        int upDown = 0;
-        int yaw = 0;
-
-        String message;
-        int keyCode = e.getKeyCode();
-        if (keyCode == 37) {
-            leftRight -= moveStep;
-            System.out.println("Sinistra");
-        }
-        if (keyCode == 38) {
-            backForward += moveStep;
-            System.out.println("Avanti");
-        }
-        if (keyCode == 39) {
-            leftRight += moveStep;
-            System.out.println("Destra");
-        }
-        if (keyCode == 40) {
-            backForward -= moveStep;
-            System.out.println("Indietro");
-        }
-        if (keyCode == 83) {
-            upDown -= altStep;
-            System.out.println("Giù");
-        }
-        if (keyCode == 87) {
-            upDown += altStep;
-            System.out.println("Su");
-        }
-        if (keyCode == 65) {
-            yaw -= yawStep;
-            System.out.println("Ruota sx");
-        }
-        if (keyCode == 68) {
-            yaw += yawStep;
-            System.out.println("Ruota dx");
-        }
-        message = "rc " + leftRight + " " + backForward + " " + upDown + " " + yaw;
-        invioMessaggio(message);
-    }
-
-    public void keyTyped(KeyEvent e) {
-    }
-
-    public void keyReleased(KeyEvent e) {
-        invioMessaggio("rc 0 0 0 0");
     }
 
     public void invioMessaggio(String message) {
