@@ -1,18 +1,26 @@
 package DronePk;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 /**
  * Frame che si occupa di contenere il panel dell'aplicazione.
- * 
+ *
  * @author Alessandro Aloise
  * @version 28.01.2021
  */
-public class DroneFrame extends javax.swing.JFrame{
+public class DroneFrame extends javax.swing.JFrame implements KeyListener {
+
     /**
      * Il costruttore della applicazione.
      */
     public DroneFrame() {
         initComponents();
+        this.addKeyListener(this);
+        
+
     }
+    private Drone drone;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -82,4 +90,20 @@ public class DroneFrame extends javax.swing.JFrame{
     private DronePk.FunzionePanel funzionePanel1;
     private DronePk.LivePanel livePanel;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+       drone.keyTyped(e);
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+       drone.keyPressed(e);
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+       drone.keyReleased(e);
+    }
+
 }

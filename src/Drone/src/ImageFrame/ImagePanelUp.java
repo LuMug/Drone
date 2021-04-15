@@ -1,24 +1,33 @@
 package ImageFrame;
 
-
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-
 /**
- * Pannello numero 2 del frame principale
- * Questo pannello si occupa di gestire la visione superiore
- * del drone.
+ * Pannello numero 2 del frame principale. 
+ * Questo pannello si occupa di gestire la visione superiore del drone. 
+ * NB: ho usato un approccio diverso rispetto ai
+ * due pannelli 'ImagePanelLat' e 'ImagePanelFront', poichè il drone, visto
+ * dalla prospettiva rappresentata tramite quest'immagine, si comporta in modo
+ * diverso rispetto ai casi precedenti. Quidndi cambia anche il modo in cui
+ * richiamo la movenza dell'immagine.
+ *
  * @author Michea Colautti
- * @version 25.03.21
+ * @version 04.04.21
  */
-public class ImagePanelUp extends ImageModel implements KeyListener {
+public class ImagePanelUp extends ImageModel {
 
+    /**
+     * I gradi di rotazione dell'immagine.
+     */
+    public int deg;
+
+    /**
+     * Costruttore della classe. Permette di istanziare l'immagine.
+     */
     public ImagePanelUp() {
         try {
             imageBig = ImageIO.read(new File("src/ImageFrame/bin/DroneSuperiore.png"));
@@ -29,51 +38,25 @@ public class ImagePanelUp extends ImageModel implements KeyListener {
     }
 
     @Override
+    /**
+     * Metodo che mi peremtte di disegnare le componenti. Non eseguo un
+     * controllo sui gradi massimi poichè quest'immagine è libera di muoversi su
+     * 360 gradi.
+     */
     public void paintComponent(Graphics g) {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, getWidth(), getHeight());
         g.setColor(Color.BLACK);
-        g.drawRect(0, 0, getWidth(),getHeight());
-        
+        g.drawRect(0, 0, getWidth(), getHeight());
+
         panelH = getHeight();
         panelW = getWidth();
-        if (panelW < panelH) {
-            panelH = panelW;
-        } else {
-            panelW = panelH;
-        }
-        image = resize(imageBig, panelW-65, panelH-65);
-        int x = (this.getWidth() - image.getWidth(null)) / 2;
-        int y = (this.getHeight() - image.getHeight(null)) / 2;
-        if (rot) {
-            //image = resize(imageBig, panelW-50, panelH-50);
-            rotatedImage = rotate(image, rotDeg);
-            g.drawImage(rotatedImage, x, y-25, this);
-        } else {
-            g.drawImage(image, x, y-25, this);
-        }
+
+        image = resize(imageBig, panelW - 175, panelH - 75);
+        int x = (this.getWidth() - image.getWidth()) / 2;
+        int y = (this.getHeight() - image.getHeight()) / 2;
+        rotatedImage = rotate(image, deg);
+        g.drawImage(rotatedImage, x, y - 25, this);
+
     }
-
-    @Override
-    public void keyPressed(KeyEvent e
-    ) {
-        rot = true;
-        press = true;
-        type = e.getKeyCode();
-        if (type == 37) {;
-            rotDeg -= 5;
-            repaint();
-        } else if (type == 39) {
-            rotDeg += 5;
-            repaint();
-
-        }
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e){}
-
-    @Override
-    public void keyReleased(KeyEvent e){}
-
 }

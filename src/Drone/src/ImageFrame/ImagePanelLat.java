@@ -1,20 +1,21 @@
 package ImageFrame;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * Pannello numero 3 del frame principale Questo pannello si occupa di gestire
- * la visione laterale del drone.
+ * Pannello numero 3 del frame principale. 
+ * Questo pannello si occupa di gestire la visione laterale del drone.
  *
  * @author Michea Colautti
- * @version 25.03.21
+ * @version 04.04.21
  */
-public class ImagePanelLat extends ImageModel implements KeyListener {
+public class ImagePanelLat extends ImageModel {
 
+    /**
+     * Costruttore della classe. Permette di istanziare l'immagine.
+     */
     public ImagePanelLat() {
         try {
             imageBig = ImageIO.read(new File("src/ImageFrame/bin/DroneLaterale.png"));
@@ -24,67 +25,27 @@ public class ImagePanelLat extends ImageModel implements KeyListener {
         }
     }
 
-    public void moving(int rotDeg) {
-        press = true;
-
+    /**
+     * Metodo per il movimento dell'immagine. Aggiorna il valore
+     * dell'inclinazione, verificando che i valori registrati dal drone non
+     * superino l'inclinazione massima permessa dalla costante
+     * ImageModel.MAXDEG.
+     *
+     * @param rotate è l'inclinazione in gradi.
+     */
+    public void moving(int rotate) {
         if (rotDeg < 0) {
 
-            if (rotDeg > -MAXDEG) {
-
-                rotDeg -= 5;
-            }
-        } else {
-
-            if (rotDeg < MAXDEG) {
-
-                rotDeg += 5;
-
-            }
-        }
-        repaint();
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        rot = true;
-        press = true;
-        type = e.getKeyCode();
-        if (type == 87) {
-
-            if (rotDeg > -MAXDEG) {
-
-                rotDeg -= 5;
-            }
-        } else {
-            int dum = e.getKeyCode();
-            if (dum == 83) {
-                type = dum;
-            }
-            if (type == 83) {
-                if (rotDeg < MAXDEG) {
-
-                    rotDeg += 5;
-                }
-            }
-        }
-        repaint();
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        press = false;
-        while (!press && rotDeg != 0) {
-            if (rotDeg > 0) {
-                //Thread.sleep(90);
-                rotDeg--;
+            if (rotate > -MAXDEG) {
+                rotDeg = rotate;
+                validate();
                 repaint();
-            } else {
-                //Thread.sleep(90);
-                rotDeg++;
+            }
+        } else {
+
+            if (rotate < MAXDEG) {
+                rotDeg = rotate;
+                validate();
                 repaint();
             }
         }

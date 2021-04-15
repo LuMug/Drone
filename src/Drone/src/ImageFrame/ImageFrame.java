@@ -1,11 +1,10 @@
 package ImageFrame;
 
 import DronePk.Drone;
-import DronePk.Status;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+
+
 import javax.swing.JFrame;
 
 /**
@@ -13,42 +12,88 @@ import javax.swing.JFrame;
  * frame con le info del drone.
  *
  * @author Michea Colautti
- * @version 25.03.21
+ * @version 04.04.21
  */
-public class ImageFrame extends JFrame implements KeyListener, Runnable {
+public class ImageFrame extends JFrame implements Runnable {
 
+    
+    /**
+     * Il riferimento al pannello "imagePanelFront".
+     */
     private ImagePanelFront imagePanelFront;
+    
+    /**
+     * Il riferimento al pannello "imagePanelLat".
+     */
     private ImagePanelLat imagePanelLat;
+    
+    /**
+     * Il riferimento al pannello "imagePanelUp".
+     */
     private ImagePanelUp imagePanelUp;
-    private Altitudine altitudine;
+    
+    /**
+     * Il riferimento al pannello "imagePanelAlt".
+     */
+    private ImagePanelAlt imagePanelAlt;
 
-    private int pitch;
-    private int yaw;
-    private int roll;
-    private int alt;
+    /**
+     * Valore del beccheggio.
+     */
+    private static volatile int pitch;
+    
+    /**
+     * Valore dell'imbardata.
+     */
+    private static volatile int yaw;
+    
+    /**
+     * Valore del rollio.
+     */
+    private static volatile int roll;
+    
+    /**
+     * Valore dell'altitudine.
+     */
+    private static volatile int alt;
 
+    /**
+     * Riferiemnto al drone.
+     */
     private Drone drone;
+    
+    /**
+     * Flag per la vista del drone.
+     */
     public boolean imgTh = false;
 
-    private Status stat;
-
+    /**
+     * Metodo costruttore.
+     */
     public ImageFrame() {
-        addKeyListener((KeyListener) this);
         initComponents();
 
     }
 
+    /**
+     * Metodo main, rende visibile il frame.
+     * @param args l'array di argomenti, non usato.
+     */
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ImageFrame().setVisible(true);
-                Thread imageFrame = new Thread();
-
             }
         });
     }
 
+    
+     /**
+     * Questo metodo inizializza tutti i componenti:
+     * Imposta la dimensione del Frame, istanzia e aggiunge i pannelli 
+     * al frame 
+     */
     private void initComponents() {
 
         setMinimumSize(new Dimension(700, 500));
@@ -59,66 +104,74 @@ public class ImageFrame extends JFrame implements KeyListener, Runnable {
         imagePanelFront = new ImagePanelFront();
         imagePanelLat = new ImagePanelLat();
         imagePanelUp = new ImagePanelUp();
-        altitudine = new Altitudine();
+        imagePanelAlt = new ImagePanelAlt();
         add(imagePanelLat);
         add(imagePanelUp);
         add(imagePanelFront);
-        add(altitudine);
+        add(imagePanelAlt);
         pack();
 
     }
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-        /*    int type = e.getKeyCode();
-        if(type==68 || type==65){
-            imagePanelFront.keyPressed(e);
-        }
-        if(type==87 || type==83){
-            imagePanelLat.keyPressed(e);
-        }
-        if(type==37 || type==39){
-            imagePanelUp.keyPressed(e);
-        }
-        if(type==38 || type==40){
-            altitudine.keyPressed(e);
-        }*/
-
+    /**
+     * Setter dell'altitudine, richiamato da DronePk.Status
+     * @param statAlt è il valore dell'altitudine.
+     */
+    public void setAlt(int statAlt) {
+        alt = statAlt;
     }
 
-    @Override
-    public void keyReleased(KeyEvent e) {
-        /*    int type = e.getKeyCode();
-        if(type==68 || type==65){
-            imagePanelFront.keyReleased(e);
-        } 
-        if(type==87 || type==83){
-            imagePanelLat.keyReleased(e);
-        }*/
+    /**
+     * Setter del beccheggio, richiamato da DronePk.Status
+     * @param statPitch è il valore del beccheggio.
+     */
+    public void setPitch(int statPitch) {
+        pitch = statPitch;
     }
 
-    public void keyTyped(KeyEvent e) {
+    /**
+     * Setter del rolllio, richiamato da DronePk.Status
+     * @param statRoll è il valore del rollio.
+     */
+    public void setRoll(int statRoll) {
+        roll = statRoll;
+    }
+    
+    /**
+     * Setter dell'imbardata, richiamato da DronePk.Status
+     * @param statYaw è il valore dell'imbardata.
+     */
+    public void setYaw(int statYaw) {
+        yaw = statYaw;
     }
 
+    /**
+     * Questo metodo, o Thread, permette di aggiornare i vari pannelli
+     * presenti nel frame.
+     * Dopo aver ottenuto i valori dai setter, esegue i metodi
+     * predisposti per il movimento passando il valore adeguato.
+     */
+    public void run() {
+        while (imgTh) {
+
+            imagePanelFront.moving(roll);
+            imagePanelLat.moving(pitch);
+            imagePanelAlt.setAltitude(alt);
+            imagePanelUp.deg = yaw;
+            imagePanelUp.validate();
+            imagePanelUp.repaint();
+           
+        }
+
+    }
+    
+    /**
+     * Metodo si sistema, permette di rendere visualizzabile e operativo
+     * il frame.
+     * @return sempre true, il frame è sempre attivo.
+     */
     @Override
     public boolean isFocusTraversable() {
         return true;
     }
-
-    @Override
-    public void run() {
-        for (int i = 0; i < 1000; i++) {
-
-            roll = stat.getRoll();
-            pitch = stat.getPitch();
-            alt = stat.getAlt();
-            yaw = stat.getYaw();
-            //System.out.println(roll + " | " + pitch + " | " + alt + " | " + yaw);
-            imagePanelFront.moving(roll);
-            imagePanelLat.moving(pitch);
-
-        }
-
-    }
-
 }

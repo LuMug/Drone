@@ -1,5 +1,6 @@
 package DronePk;
 
+import ImageFrame.ImageFrame;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -43,10 +44,11 @@ public class Status extends Thread {
     public String agy = "";
     public String agz = "";
     public int port;
-
+   
     public String ip;
     DateFormat dateFormat;
     Date data = new Date();
+    ImageFrame view=new ImageFrame();
 
     public void run() {
         dateFormat = DateFormat.getDateInstance(DateFormat.LONG, Locale.ITALY);
@@ -79,13 +81,17 @@ public class Status extends Thread {
                 temMaxF = Integer.parseInt(temph.substring(6));
                 temMaxC = (temMaxF - 32) * 0.5;
                 tof = st.nextToken();
-                altezza = st.nextToken().substring(2);
+                altezza = st.nextToken().substring(2);                 
                 bat = st.nextToken().substring(4);
                 baro = st.nextToken().substring(5);
                 time = st.nextToken().substring(5);
                 agx = st.nextToken().substring(4);
                 agy = st.nextToken().substring(4);
                 agz = st.nextToken().substring(4);
+                view.setPitch(Integer.parseInt(pitch));
+                view.setRoll(Integer.parseInt(roll));
+                view.setYaw(Integer.parseInt(yaw));
+                view.setAlt(Integer.parseInt(altezza));
                 Thread.sleep(100);
                 String valori = " Bat:" + bat
                         + " TMax:" + temMaxC
@@ -127,43 +133,9 @@ public class Status extends Thread {
                 + " AccelerazioneY:" + agy
                 + " AccelerazioneZ:" + agz
                 + "TempoCm" + time;
+        System.out.println("Valori:"+valori);
         return valori;
     }
-
-   public int getPitch() {
-        try {
-            return Integer.parseInt(pitch);
-        } catch (NumberFormatException ex) {
-            return 0;
-        }
-    }
-
-    public int getYaw() {
-        try {
-            return Integer.parseInt(yaw);
-        } catch (NumberFormatException ex) {
-            return 0;
-        }
-    }
-
-    public int getRoll() {
-        System.out.println(roll);
-         try {
-            return Integer.parseInt(roll);
-        } catch (NumberFormatException ex) {
-            return 0;
-        }
-    }
-
-    public int getAlt() {
-         try {
-            return Integer.parseInt(altezza);
-        } catch (NumberFormatException ex) {
-            return 0;
-        }
-    }
-
-
 
     public String getbatteria() {
         return bat;

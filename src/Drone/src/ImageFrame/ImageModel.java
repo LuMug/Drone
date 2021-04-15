@@ -9,33 +9,68 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 /**
- * Modello di un immagine Questa classe rappresente il modello di base per
- * mostrare un immagine in Java Contiene anche i metodi per la rotazione.
- *
+ * Modello di un immagine. 
+ * Questa classe rappresente il modello di base per
+ * mostrare un immagine in Java, contiene anche il metodi per la rotazione
+ * e il ridimensionamento.
+ * 
  * @author Michea Colautti
- * @version 25.03.21
+ * @version 04.04.21
  */
 public class ImageModel extends JPanel {
 
+    /**
+     * L'immagine originale, quindi grande.
+     */
     public BufferedImage imageBig;
+
+    /**
+     * L'immagine ruotata.
+     */
     public BufferedImage rotatedImage;
+
+    /**
+     * L'immagine originale ridimensionata.
+     */
     public BufferedImage image;
 
-    public int height;
-    public int width;
+    /**
+     * Valore fisso dell'altezza del pannello.
+     */
     public int panelH;
+
+    /**
+     * Valore fisso della la argezza del pannello.
+     */
     public int panelW;
 
-    public boolean rot = false;
-    public boolean press = false;
-    public int rotDeg = 0;
-    public int type;
+    
+    /**
+     * I gradi di rotazione delle immagini.
+     */
+    public int rotDeg;
 
+    /**
+     * I gradi massimi rotazione delle immagini.
+     */
     public static final int MAXDEG = 40;
 
+    
+    /**
+     * Costruttore vuoto, ogni casse figlia avrà il suo 
+     * personalizzato. 
+     */
     public ImageModel() {
     }
 
+    
+    /**
+     * Questo metodo mi peremtte di ridimensionare una BufferdImage.
+     * @param img è l'immagine che va ridimensionata.
+     * @param newW è la nuova larghezza dell'immagine.
+     * @param newH è la nuova altezza dell'immagine.
+     * @return l'immagine ridimensionata.
+     */
     public static BufferedImage resize(BufferedImage img, int newW, int newH) {
         if (img == null) {
             return null;
@@ -51,6 +86,13 @@ public class ImageModel extends JPanel {
         return dimg;
     }
 
+    
+    /**
+     * Questo metodo mi permette di ruotare una BuffeerdImage.
+     * @param img è l'immagine da ruotare.
+     * @param angle è l'angolo di rotazione.
+     * @return l'immagine ruotata.
+     */
     public BufferedImage rotate(BufferedImage img, double angle) {
 
         double rads = Math.toRadians(angle);
@@ -73,36 +115,34 @@ public class ImageModel extends JPanel {
         g2d.setTransform(at);
         g2d.drawImage(img, 0, 0, this);
         g2d.dispose();
-
         return rotated;
     }
 
+    /**
+     * Metodo per disegnare le componenti sul frame.
+     * Si adatta sia per 'ImagePanelFront' che per 'ImagePanelLat'.
+     * Permette quindi di ridimensionare le immagini e di ruotarle.
+     * @param g è il parametro di default per la grafica.
+     */
     public void paintComponent(Graphics g) {
+
         panelH = getHeight();
         panelW = getWidth();
-        height = panelH;
-        width = panelW;
-        g.clearRect(0, 0, width, height);
+        g.clearRect(0, 0, panelW, panelH);
         g.setColor(Color.BLACK);
         g.drawRect(0, 0, getWidth(), getHeight());
 
-        if (panelH > panelW) {
-            panelH = panelW;
-            panelH /= 1.5;
-        }
-
         int x, y = 0;
-        image = imageBig;
 
-        image = resize(imageBig, panelW - 50, panelH - 50);
+        image = resize(imageBig, panelW - 75, panelH - 75);
         x = (this.getWidth() - image.getWidth()) / 2;
         y = (this.getHeight() - image.getHeight()) / 2;
 
-        if (rotDeg < 0) {
-            g.drawImage(image, x, y, this);
+        image = rotate(image, rotDeg);
+        if (rotDeg > 0) {
+            g.drawImage(image, x, y - rotDeg, this);
         } else {
-            g.drawImage(image, x, y, this);
-
+            g.drawImage(image, x, y + rotDeg, this);
         }
 
     }

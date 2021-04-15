@@ -1,7 +1,5 @@
 package ImageFrame;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -11,10 +9,14 @@ import javax.imageio.ImageIO;
  * la visione anteriore del drone.
  *
  * @author Michea Colautti
- * @version 25.03.21
+ * @version 04.04.21
  */
-public class ImagePanelFront extends ImageModel implements KeyListener {
+public class ImagePanelFront extends ImageModel{
 
+    
+    /**
+     * Costruttore della classe. Permette di istanziare l'immagine.
+    */
     public ImagePanelFront() {
         try {
             imageBig = ImageIO.read(new File("src/ImageFrame/bin/DroneFrontale.png"));
@@ -23,70 +25,29 @@ public class ImagePanelFront extends ImageModel implements KeyListener {
             System.out.println("Errore");
         }
     }
-    
-    public void moving(int rotDeg){
-        press = true;
 
-        if (rotDeg < 0) {
+    /**
+     * Metodo per il movimento dell'immagine.
+     * Aggiorna il valore dell'inclinazione, verificando che i valori
+     * registrati dal drone non superino l'inclinazione massima permessa 
+     * dalla costante ImageModel.MAXDEG.
+     * @param rotate è l'inclinazione in gradi.
+     */
+    public void moving(int rotate) {
 
-            if (rotDeg > -MAXDEG) {
+        if (rotate < 0) {
 
-                rotDeg -= 5;
-            }
-        } else {
-
-            if (rotDeg < MAXDEG) {
-
-                rotDeg += 5;
-
-            }
-        }
-        repaint();
-    }
-    
-    
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        press = true;
-        type = e.getKeyCode();
-
-        if (type == 65) {
-
-            if (rotDeg > -40) {
-
-                rotDeg -= 5;
-            }
-        } else {
-            int dum = e.getKeyCode();
-            if (dum == 68) {
-                type = dum;
-            }
-            if (type == 68) {
-                if (rotDeg < 40) {
-
-                    rotDeg += 5;
-                }
-            }
-        }
-        repaint();
-    }
-    public void keyTyped(KeyEvent e) {
-    }
-    @Override
-    public void keyReleased(KeyEvent e) {
-        //try{
-        press = false;
-        while (!press && rotDeg != 0) {
-            if (rotDeg > 0) {
-               
-                rotDeg--;
+            if (rotate >= -MAXDEG) {
+                rotDeg=-rotate;
+                validate();
                 repaint();
-            } else {
-                rotDeg++;
+            }
+        }else {
+            if (rotate <= MAXDEG) {
+                rotDeg=-1*rotate;
+                validate();
                 repaint();
             }
         }
-        //}catch(InterruptedException ex){}
     }
 }

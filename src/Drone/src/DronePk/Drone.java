@@ -1,5 +1,4 @@
 package DronePk;
-
 import com.leapmotion.leap.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -300,11 +299,11 @@ public class Drone extends Thread implements KeyListener {
         sendMessage();
 
         //debug
-        System.out.println("IP: " + ip
+        /*System.out.println("IP: " + ip
                 + ", Port: " + porta);
         System.out.println("Message sent: " + message);
         System.out.println("Message received: " + getMessageReceived());
-        System.out.println("------------------------");
+        System.out.println("------------------------");*/
     }
 
     /**

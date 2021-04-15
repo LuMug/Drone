@@ -20,11 +20,14 @@ public class FunzionePanel extends javax.swing.JPanel {
 
     private LeapMotionProject lm;
 
+    ImageFrame vista = new ImageFrame();
+
     /**
      * Creates new form FunzionePanel
      */
     public FunzionePanel() {
         initComponents();
+
         drone = new Drone(this);
         drone.start();
         drone.command();
@@ -101,11 +104,12 @@ public class FunzionePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void vistaDroneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaDroneActionPerformed
-        ImageFrame vista = new ImageFrame();
+
         vista.setVisible(true);
         vista.imgTh = true;
         Thread vistaThread = new Thread(vista);
         vistaThread.start();
+
     }//GEN-LAST:event_vistaDroneActionPerformed
 
     private void decollaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decollaActionPerformed
@@ -114,6 +118,8 @@ public class FunzionePanel extends javax.swing.JPanel {
 
     private void atterraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atterraActionPerformed
         drone.atterra();
+        //vista.imgTh = false;
+
     }//GEN-LAST:event_atterraActionPerformed
 
     private void sequenzaTastiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sequenzaTastiActionPerformed
@@ -140,7 +146,7 @@ public class FunzionePanel extends javax.swing.JPanel {
 
     private void caricamento() {
         // sleep(2000);
-        batteriaL.setText(drone.batteria()+"%");
+        batteriaL.setText(drone.batteria() + "%");
 
     }
 }
