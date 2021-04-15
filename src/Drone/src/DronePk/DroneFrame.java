@@ -17,9 +17,9 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener {
     public DroneFrame() {
         initComponents();
         this.addKeyListener(this);
-        
-
+        funzionePanel1.setComandiPanel(comandiPanel1);
     }
+    
     private Drone drone;
 
     @SuppressWarnings("unchecked")
@@ -105,5 +105,4 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener {
     public void keyReleased(KeyEvent e) {
        drone.keyReleased(e);
     }
-
 }

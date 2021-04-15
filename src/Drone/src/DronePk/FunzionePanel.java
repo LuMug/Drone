@@ -1,9 +1,6 @@
 package DronePk;
 
 import ImageFrame.ImageFrame;
-import static java.lang.Thread.sleep;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Panel che si occupa dei bottoni.
@@ -21,6 +18,8 @@ public class FunzionePanel extends javax.swing.JPanel {
     private LeapMotionProject lm;
 
     ImageFrame vista = new ImageFrame();
+    
+    private ComandiPanel comandiPanel;
 
     /**
      * Creates new form FunzionePanel
@@ -147,6 +146,13 @@ public class FunzionePanel extends javax.swing.JPanel {
     private void caricamento() {
         // sleep(2000);
         batteriaL.setText(drone.batteria() + "%");
-
+    }
+    
+    public void setComandiPanel(ComandiPanel comandiPanel) {
+        this.comandiPanel = comandiPanel;
+    }
+    
+    public ComandiPanel getComandiPanel() {
+        return comandiPanel;
     }
 }
