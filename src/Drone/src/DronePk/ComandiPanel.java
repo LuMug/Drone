@@ -1,5 +1,7 @@
 package DronePk;
 
+import javax.swing.text.DefaultCaret;
+
 /**
  * Panel che contiene gli ultimi comandi eseguiti. 
  * 
@@ -13,6 +15,8 @@ public class ComandiPanel extends javax.swing.JPanel {
      */
     public ComandiPanel() {
         initComponents();
+        DefaultCaret caret = (DefaultCaret) commandsText.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
     }
     
     public void refreshCommands(String command) {
@@ -43,12 +47,10 @@ public class ComandiPanel extends javax.swing.JPanel {
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        jScrollPane1.setAutoscrolls(true);
 
         commandsText.setEditable(false);
         commandsText.setColumns(20);
         commandsText.setRows(5);
-        commandsText.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(commandsText);
 
         add(jScrollPane1, java.awt.BorderLayout.CENTER);
