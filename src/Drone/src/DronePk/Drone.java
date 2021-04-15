@@ -1,4 +1,5 @@
 package DronePk;
+
 import com.leapmotion.leap.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -16,7 +17,7 @@ import javax.swing.JPanel;
  * @author Gianni Grasso
  * @version 28.01.2021
  */
-public class Drone extends Thread implements KeyListener {
+public class Drone extends Thread {
 
     private int moveStep = 25;
     private int altStep = 25;
@@ -92,8 +93,10 @@ public class Drone extends Thread implements KeyListener {
      * Stringa per ottenere il comando da ImageFrame.
      */
     private String istru;
-    
+
     private ComandiPanel comandiPanel;
+
+    private int speed = 50;
 
     /**
      * Getter dell'ip del drone.
@@ -239,62 +242,6 @@ public class Drone extends Thread implements KeyListener {
         this.stato = !this.stato;
     }
 
-    public void keyPressed(KeyEvent e) {
-        try {
-            Thread.sleep(750);
-        } catch (InterruptedException ex) {
-            System.out.println("Errore nel Thread.sleep");
-        }
-        int leftRight = 0;
-        int backForward = 0;
-        int upDown = 0;
-        int yaw = 0;
-
-        String message;
-        int keyCode = e.getKeyCode();
-        if (keyCode == 37) {
-            leftRight -= moveStep;
-            System.out.println("Sinistra");
-        }
-        if (keyCode == 38) {
-            backForward += moveStep;
-            System.out.println("Avanti");
-        }
-        if (keyCode == 39) {
-            leftRight += moveStep;
-            System.out.println("Destra");
-        }
-        if (keyCode == 40) {
-            backForward -= moveStep;
-            System.out.println("Indietro");
-        }
-        if (keyCode == 83) {
-            upDown -= altStep;
-            System.out.println("Giù");
-        }
-        if (keyCode == 87) {
-            upDown += altStep;
-            System.out.println("Su");
-        }
-        if (keyCode == 65) {
-            yaw -= yawStep;
-            System.out.println("Ruota sx");
-        }
-        if (keyCode == 68) {
-            yaw += yawStep;
-            System.out.println("Ruota dx");
-        }
-        message = "rc " + leftRight + " " + backForward + " " + upDown + " " + yaw;
-        invioMessaggio(message);
-    }
-
-    public void keyTyped(KeyEvent e) {
-    }
-
-    public void keyReleased(KeyEvent e) {
-        invioMessaggio("rc 0 0 0 0");
-    }
-
     public void invioMessaggio(String message) {
         setInfo(ipDrone, porta, message);
         istru = message;
@@ -348,12 +295,66 @@ public class Drone extends Thread implements KeyListener {
     public String batteria() {
         return status.getbatteria();
     }
-    
+
     public void setComandiPanel(ComandiPanel comandiPanel) {
         this.comandiPanel = comandiPanel;
     }
-    
+
     public void refreshCommandsD(String message) {
         comandiPanel.refreshCommands(message);
+    }
+
+    public void keyTypedD(KeyEvent e) {
+    }
+
+    public void keyPressedF(KeyEvent e) {
+        if (e.getExtendedKeyCode() == 87) {
+            invioMessaggio("rc " + speed + " 0 0 0");
+        }
+        if (e.getExtendedKeyCode() == 65) {
+            invioMessaggio("rc 0 -" + speed + " 0 0");
+        }
+        if (e.getExtendedKeyCode() == 83) {
+            invioMessaggio("rc -" + speed + " 0 0 0");
+        }
+        if (e.getExtendedKeyCode() == 68) {
+            invioMessaggio("rc 0 " + speed + " 0 0");
+        }
+        if (e.getExtendedKeyCode() == 37) {
+            invioMessaggio("rc 0 0 0 -" + speed);
+        }
+        if (e.getExtendedKeyCode() == 39) {
+            invioMessaggio("rc 0 0 0 " + speed);
+        }
+        if (e.getExtendedKeyCode() == 40) {
+            invioMessaggio("rc 0 0 -" + speed + " 0");
+        }
+        if (e.getExtendedKeyCode() == 38) {
+            invioMessaggio("rc 0 0 " + speed + " 0");
+        }
+        if (e.getExtendedKeyCode() == 78) {
+            if (speed > 10) {
+                speed -= 10;
+                comandiPanel.refreshCommands("SPEED DEPRECATED TO: " + speed + "\n");
+            }
+        }
+        if (e.getExtendedKeyCode() == 77) {
+            if (speed < 100) {
+                speed += 10;
+                comandiPanel.refreshCommands("SPEED INCREMENTED TO: " + speed + "\n");
+            }
+        }
+        
+        //Futura implementazione dell'atterraggio e decollo da tastiera.
+//        if (e.getExtendedKeyCode() == 84) {
+//            DECOLLA
+//        }
+//        if (e.getExtendedKeyCode() == 76) {
+//            ATTERRA
+//        }
+    }
+
+    public void keyReleasedF(KeyEvent e) {
+        invioMessaggio("rc 0 0 0 0");
     }
 }

@@ -17,9 +17,9 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener {
     public DroneFrame() {
         initComponents();
         this.addKeyListener(this);
+        this.setFocusable(true);
+        this.requestFocus();
     }
-    
-    private Drone drone;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -94,17 +94,17 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-       drone.keyTyped(e);
+       funzionePanel1.keyTypedF(e);
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-       drone.keyPressed(e);
+       funzionePanel1.keyPressedF(e);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-       drone.keyReleased(e);
+       funzionePanel1.keyReleasedF(e);
     }
 
     public FunzionePanel getFunzionePanel() {
@@ -114,6 +114,4 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener {
     public ComandiPanel getComandiPanel() {
         return comandiPanel1;
     }
-
-    
 }
