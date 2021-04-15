@@ -15,14 +15,11 @@ public class LeapMotionProject extends Listener {
     private FunzionePanel funzionePanel;
 
     private boolean inFlight = false;
-    
-    private ComandiPanel comandiPanel;
 
     public LeapMotionProject(Drone drone, FunzionePanel funzionePanel) {
         this.drone = drone;
         this.funzionePanel = funzionePanel;
         funzionePanel.setLM(this);
-        this.comandiPanel = funzionePanel.getComandiPanel();
     }
 
     public void onFrame(Controller controller) {
@@ -164,7 +161,6 @@ public class LeapMotionProject extends Listener {
             }
             command = "rc " + rollSpeed + " " + pitchSpeed + " " + highSpeed + " " + yawSpeed;
             sendMessage(command);
-            comandiPanel.writeText(command);
         }
     }
 

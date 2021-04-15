@@ -49,8 +49,4 @@ public class ComandiPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-
-    public void writeText(String text) {
-        CommandsText.append(text);
-    }
 }
