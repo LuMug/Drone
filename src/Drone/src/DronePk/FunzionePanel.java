@@ -1,9 +1,6 @@
 package DronePk;
 
 import ImageFrame.ImageFrame;
-import static java.lang.Thread.sleep;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Panel che si occupa dei bottoni.
@@ -27,15 +24,18 @@ public class FunzionePanel extends javax.swing.JPanel {
      */
     public FunzionePanel() {
         initComponents();
-
         drone = new Drone(this);
-        drone.start();
-        drone.command();
-        caricamento();
     }
 
     public void setLM(LeapMotionProject lm) {
         this.lm = lm;
+    }
+    
+    public void setComandiPanel(ComandiPanel comandiPanel) {
+        drone.setComandiPanel(comandiPanel);
+        drone.start();
+        drone.command();
+        caricamento();
     }
 
     /**
@@ -47,8 +47,10 @@ public class FunzionePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        seqNameSave = new javax.swing.JTextField();
         sequenzaTasti = new javax.swing.JButton();
-        seqName = new javax.swing.JTextField();
+        seqNameExecute = new javax.swing.JTextField();
         Statistiche = new javax.swing.JButton();
         vistaDrone = new javax.swing.JButton();
         decolla = new javax.swing.JButton();
@@ -58,6 +60,12 @@ public class FunzionePanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setText("Salva sequenza");
+        add(jLabel1);
+
+        seqNameSave.setText("EXAMPLE");
+        add(seqNameSave);
+
         sequenzaTasti.setText("ESEGUI SEQUENZA");
         sequenzaTasti.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,8 +74,8 @@ public class FunzionePanel extends javax.swing.JPanel {
         });
         add(sequenzaTasti);
 
-        seqName.setText("EXAMPLE");
-        add(seqName);
+        seqNameExecute.setText("EXAMPLE");
+        add(seqNameExecute);
 
         Statistiche.setText("STATISTICHE");
         add(Statistiche);
@@ -96,7 +104,7 @@ public class FunzionePanel extends javax.swing.JPanel {
         });
         add(atterra);
 
-        batteriaText.setText("Batteria");
+        batteriaText.setText("Batteria --%");
         add(batteriaText);
 
         batteriaL.setText("          ");
@@ -129,8 +137,22 @@ public class FunzionePanel extends javax.swing.JPanel {
     /**
      * Ritorna il nome della sequenza del textbox.
      */
-    public String getSeqName() {
-        return seqName.getText();
+    public String getSeqNameExecute() {
+        String text = seqNameExecute.getText();
+        if(text.equals("")){
+            return "EXAMPLE";
+        }else{
+            return text;
+        }
+    }
+    
+    public String getSeqNameSave() {
+        String text = seqNameSave.getText();
+        if(text.equals("")){
+            return "EXAMPLE";
+        }else{
+            return text;
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -139,14 +161,15 @@ public class FunzionePanel extends javax.swing.JPanel {
     private javax.swing.JLabel batteriaL;
     private javax.swing.JLabel batteriaText;
     private javax.swing.JButton decolla;
-    private javax.swing.JTextField seqName;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField seqNameExecute;
+    private javax.swing.JTextField seqNameSave;
     private javax.swing.JButton sequenzaTasti;
     private javax.swing.JButton vistaDrone;
     // End of variables declaration//GEN-END:variables
-
+    
     private void caricamento() {
         // sleep(2000);
         batteriaL.setText(drone.batteria() + "%");
-
     }
 }

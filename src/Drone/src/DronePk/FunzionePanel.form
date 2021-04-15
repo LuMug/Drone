@@ -21,6 +21,16 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
   <SubComponents>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Salva sequenza"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="seqNameSave">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="EXAMPLE"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JButton" name="sequenzaTasti">
       <Properties>
         <Property name="text" type="java.lang.String" value="ESEGUI SEQUENZA"/>
@@ -29,7 +39,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sequenzaTastiActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="seqName">
+    <Component class="javax.swing.JTextField" name="seqNameExecute">
       <Properties>
         <Property name="text" type="java.lang.String" value="EXAMPLE"/>
       </Properties>
@@ -65,7 +75,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="batteriaText">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Batteria"/>
+        <Property name="text" type="java.lang.String" value="Batteria --%"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="batteriaL">

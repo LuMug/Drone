@@ -90,7 +90,7 @@ public class LeapMotionProject extends Listener {
         if (!leftHandIndexFinger.isExtended()) {
             if (!comReqSeq) {
                 comReqSeq = true;
-                cr = new CommandsRecorder(funzionePanel.getSeqName());
+                cr = new CommandsRecorder(funzionePanel.getSeqNameSave());
             }
         } else if (!leftHandMiddleFinger.isExtended()) {
             if (comReqSeq) {
@@ -179,7 +179,7 @@ public class LeapMotionProject extends Listener {
     }
 
     public void runSequence() {
-        csr = new CommandSequenceRunner(funzionePanel.getSeqName(), drone);
+        csr = new CommandSequenceRunner(funzionePanel.getSeqNameExecute(), drone);
         csr.sequenceRepeater();
     }
 

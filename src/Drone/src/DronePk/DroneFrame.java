@@ -17,9 +17,8 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener {
     public DroneFrame() {
         initComponents();
         this.addKeyListener(this);
-        
-
     }
+    
     private Drone drone;
 
     @SuppressWarnings("unchecked")
@@ -80,7 +79,9 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DroneFrame().setVisible(true);
+                DroneFrame df = new DroneFrame();
+                df.setVisible(true);
+                df.getFunzionePanel().setComandiPanel(df.getComandiPanel());
             }
         });
     }
@@ -106,4 +107,13 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener {
        drone.keyReleased(e);
     }
 
+    public FunzionePanel getFunzionePanel() {
+        return funzionePanel1;
+    }
+
+    public ComandiPanel getComandiPanel() {
+        return comandiPanel1;
+    }
+
+    
 }

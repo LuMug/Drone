@@ -92,6 +92,8 @@ public class Drone extends Thread implements KeyListener {
      * Stringa per ottenere il comando da ImageFrame.
      */
     private String istru;
+    
+    private ComandiPanel comandiPanel;
 
     /**
      * Getter dell'ip del drone.
@@ -297,13 +299,7 @@ public class Drone extends Thread implements KeyListener {
         setInfo(ipDrone, porta, message);
         istru = message;
         sendMessage();
-
-        //debug
-        /*System.out.println("IP: " + ip
-                + ", Port: " + porta);
-        System.out.println("Message sent: " + message);
-        System.out.println("Message received: " + getMessageReceived());
-        System.out.println("------------------------");*/
+        comandiPanel.refreshCommands(message + "\n");
     }
 
     /**
@@ -351,5 +347,9 @@ public class Drone extends Thread implements KeyListener {
 
     public String batteria() {
         return status.getbatteria();
+    }
+    
+    public void setComandiPanel(ComandiPanel comandiPanel) {
+        this.comandiPanel = comandiPanel;
     }
 }
