@@ -174,13 +174,13 @@ public class LeapMotionProject extends Listener {
         try {
             if (inFlight) {
                 drone.invioMessaggio(command);
-                Thread.sleep(100);
+                Thread.sleep(125);
                 if (comReqSeq) {
                     cr.sequenceWriter(command);
                 }
             }
-        } catch (InterruptedException e) {
-            System.out.println(e);
+        } catch (InterruptedException ie) {
+            System.out.println(ie);
         }
     }
 

@@ -1,24 +1,18 @@
 package DronePk;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 /**
  * Frame che si occupa di contenere il panel dell'aplicazione.
  *
  * @author Alessandro Aloise
  * @version 28.01.2021
  */
-public class DroneFrame extends javax.swing.JFrame implements KeyListener {
+public class DroneFrame extends javax.swing.JFrame {
 
     /**
      * Il costruttore della applicazione.
      */
     public DroneFrame() {
         initComponents();
-        this.addKeyListener(this);
-        this.setFocusable(true);
-        this.requestFocus();
     }
 
     @SuppressWarnings("unchecked")
@@ -27,24 +21,10 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener {
 
         comandiPanel1 = new DronePk.ComandiPanel();
         funzionePanel1 = new DronePk.FunzionePanel();
-        livePanel = new DronePk.LivePanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().add(comandiPanel1, java.awt.BorderLayout.LINE_START);
-        getContentPane().add(funzionePanel1, java.awt.BorderLayout.SOUTH);
-
-        javax.swing.GroupLayout livePanelLayout = new javax.swing.GroupLayout(livePanel);
-        livePanel.setLayout(livePanelLayout);
-        livePanelLayout.setHorizontalGroup(
-            livePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 746, Short.MAX_VALUE)
-        );
-        livePanelLayout.setVerticalGroup(
-            livePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 389, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(livePanel, java.awt.BorderLayout.CENTER);
+        getContentPane().add(funzionePanel1, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -82,6 +62,8 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener {
                 DroneFrame df = new DroneFrame();
                 df.setVisible(true);
                 df.getFunzionePanel().setComandiPanel(df.getComandiPanel());
+                Drone drone = df.getFunzionePanel().getDrone();
+                df.getComandiPanel().setDrone(drone);
             }
         });
     }
@@ -89,23 +71,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private DronePk.ComandiPanel comandiPanel1;
     private DronePk.FunzionePanel funzionePanel1;
-    private DronePk.LivePanel livePanel;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-       funzionePanel1.keyTypedF(e);
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-       funzionePanel1.keyPressedF(e);
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-       funzionePanel1.keyReleasedF(e);
-    }
 
     public FunzionePanel getFunzionePanel() {
         return funzionePanel1;

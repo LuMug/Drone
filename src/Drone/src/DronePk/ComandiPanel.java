@@ -1,5 +1,7 @@
 package DronePk;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.text.DefaultCaret;
 
 /**
@@ -8,8 +10,12 @@ import javax.swing.text.DefaultCaret;
  * @author Alessandro Aloise
  * @version 28.01.2021
  */
-public class ComandiPanel extends javax.swing.JPanel {
+public class ComandiPanel extends javax.swing.JPanel implements KeyListener {
 
+    private Drone drone;
+    
+    private int speed = 50;
+    
     /**
      * Creates new form ComandiPanel
      */
@@ -17,6 +23,9 @@ public class ComandiPanel extends javax.swing.JPanel {
         initComponents();
         DefaultCaret caret = (DefaultCaret) commandsText.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        this.addKeyListener(this);
+        this.setFocusable(true);
+        this.requestFocus();
     }
     
     public void refreshCommands(String command) {
@@ -56,6 +65,83 @@ public class ComandiPanel extends javax.swing.JPanel {
         add(jScrollPane1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    @Override
+    public void keyTyped(KeyEvent e) {}
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getExtendedKeyCode() == 87) {
+            sendKeyboardCommand("rc 0 " + speed + " 0 0");
+        }
+        if (e.getExtendedKeyCode() == 65) {
+            sendKeyboardCommand("rc -" + speed + " 0 0 0");
+        }
+        if (e.getExtendedKeyCode() == 83) {
+            sendKeyboardCommand("rc 0 -" + speed + " 0 0");
+        }
+        if (e.getExtendedKeyCode() == 68) {
+            sendKeyboardCommand("rc " + speed + " 0 0 0");
+        }
+        if (e.getExtendedKeyCode() == 37) {
+            sendKeyboardCommand("rc 0 0 0 -" + speed);
+        }
+        if (e.getExtendedKeyCode() == 39) {
+            sendKeyboardCommand("rc 0 0 0 " + speed);
+        }
+        if (e.getExtendedKeyCode() == 40) {
+            sendKeyboardCommand("rc 0 0 -" + speed + " 0");
+        }
+        if (e.getExtendedKeyCode() == 38) {
+            sendKeyboardCommand("rc 0 0 " + speed + " 0");
+        }
+        if (e.getExtendedKeyCode() == 32) {
+            sendKeyboardCommand("rc 0 0 0 0");
+        }
+        if (e.getExtendedKeyCode() == 78) {
+            if (speed > 10) {
+                speed -= 10;
+                commandsText.append("SPEED DEPRECATED TO: " + speed + "\n");
+            }else{
+                commandsText.append("CAN'T DEPRECATE MORE\n");
+            }
+        }
+        if (e.getExtendedKeyCode() == 77) {
+            if (speed < 100) {
+                speed += 10;
+                commandsText.append("SPEED INCREMENTED TO: " + speed + "\n");
+            }else{
+                commandsText.append("CAN'T INCREMENT MORE\n");
+            }
+        }
+        
+        //Futura implementazione dell'atterraggio e decollo da tastiera.
+        if (e.getExtendedKeyCode() == 84) {
+            sendKeyboardCommand("takeoff");
+        }
+        if (e.getExtendedKeyCode() == 76) {
+            sendKeyboardCommand("land");
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {}
+    
+    public void setDrone(Drone drone) {
+        this.drone = drone;
+    }
+    
+    public Drone getDrone() {
+        return this.drone;
+    }
+    
+    public void sendKeyboardCommand(String command) {
+        try {
+            drone.invioMessaggio(command);
+            Thread.sleep(100);
+        }catch(InterruptedException e) {
+            System.out.println(e);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea commandsText;

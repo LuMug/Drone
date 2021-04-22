@@ -9,6 +9,8 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -302,59 +304,5 @@ public class Drone extends Thread {
 
     public void refreshCommandsD(String message) {
         comandiPanel.refreshCommands(message);
-    }
-
-    public void keyTypedD(KeyEvent e) {
-    }
-
-    public void keyPressedF(KeyEvent e) {
-        if (e.getExtendedKeyCode() == 87) {
-            invioMessaggio("rc " + speed + " 0 0 0");
-        }
-        if (e.getExtendedKeyCode() == 65) {
-            invioMessaggio("rc 0 -" + speed + " 0 0");
-        }
-        if (e.getExtendedKeyCode() == 83) {
-            invioMessaggio("rc -" + speed + " 0 0 0");
-        }
-        if (e.getExtendedKeyCode() == 68) {
-            invioMessaggio("rc 0 " + speed + " 0 0");
-        }
-        if (e.getExtendedKeyCode() == 37) {
-            invioMessaggio("rc 0 0 0 -" + speed);
-        }
-        if (e.getExtendedKeyCode() == 39) {
-            invioMessaggio("rc 0 0 0 " + speed);
-        }
-        if (e.getExtendedKeyCode() == 40) {
-            invioMessaggio("rc 0 0 -" + speed + " 0");
-        }
-        if (e.getExtendedKeyCode() == 38) {
-            invioMessaggio("rc 0 0 " + speed + " 0");
-        }
-        if (e.getExtendedKeyCode() == 78) {
-            if (speed > 10) {
-                speed -= 10;
-                comandiPanel.refreshCommands("SPEED DEPRECATED TO: " + speed + "\n");
-            }
-        }
-        if (e.getExtendedKeyCode() == 77) {
-            if (speed < 100) {
-                speed += 10;
-                comandiPanel.refreshCommands("SPEED INCREMENTED TO: " + speed + "\n");
-            }
-        }
-        
-        //Futura implementazione dell'atterraggio e decollo da tastiera.
-//        if (e.getExtendedKeyCode() == 84) {
-//            DECOLLA
-//        }
-//        if (e.getExtendedKeyCode() == 76) {
-//            ATTERRA
-//        }
-    }
-
-    public void keyReleasedF(KeyEvent e) {
-        invioMessaggio("rc 0 0 0 0");
     }
 }
