@@ -1,7 +1,6 @@
 package DronePk;
 
 import ImageFrame.ImageFrame;
-import java.awt.event.KeyEvent;
 
 /**
  * Panel che si occupa dei bottoni.
@@ -177,16 +176,8 @@ public class FunzionePanel extends javax.swing.JPanel {
     public void refreshCommandsF(String command) {
         drone.refreshCommandsD(command);
     }
-
-    public void keyTypedF(KeyEvent e) {
-        drone.keyTypedD(e);
-    }
-
-    public void keyPressedF(KeyEvent e) {
-        drone.keyPressedF(e);
-    }
-
-    public void keyReleasedF(KeyEvent e) {
-        drone.keyReleasedF(e);
+    
+    public Drone getDrone() {
+        return this.drone;
     }
 }
