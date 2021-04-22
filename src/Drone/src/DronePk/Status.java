@@ -10,11 +10,9 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
- * Classe che stampa come output i valori del drone.
+ * Classe che si occupa di scrivere un file di log.
  *
  * @version 11.03.2021
  * @author Alessandro Aloise
@@ -26,30 +24,123 @@ public class Status extends Thread {
     public String pitch = "";
     public String roll = "";
     public String yaw = "";
+   
+    /**
+     * Velocità asse X.
+     */
     public String spX = "";
+    
+    /**
+     * Velocità asse Y.
+     */
     public String spY = "";
+    
+    /**
+     * Velocità asse Z.
+     */
     public String spZ = "";
+    
+    /**
+     * Temperatura minima in F non formattata..
+     */
     public String templ = "";
+    
+    /**
+     * Temperatura minima in F°.
+     */
     public double temMinF;
+    
+   /**
+     * Temperatura minima in C°.
+     */
     public double temMinC;
+    
+    /**
+     * Temperatura massima in F non formattata..
+     */
     public String temph = "";
+    
+    /**
+     * Temperatura massimo in F.
+     */
     public double temMaxF;
+   
+    /**
+     * Temperatura massima in C°.
+     */ 
     public double temMaxC;
+    
+    /**
+     * Tempo di volo in cm.
+     */ 
     public String tof = "";
+    
+    /**
+     * Altezza a qui si trova il dorne.
+     */ 
     public String altezza = "";
+    
+    /**
+     * Batteria del drone
+     */
     public String bat = "";
+   
+    /**
+     * Pressione barometrica.
+     */
     public String baro = "";
+    
+    /**
+     * Tempo di volo rimanente in min.
+     */
     public String time = "";
+    
+    /**
+     * Accelerazione sull'asse X.
+     */
     public String agx = "";
+    
+   /**
+     * Accelerazione sull'asse Y.
+     */
     public String agy = "";
+    
+    /**
+     * Accelerazione sull'asse Z.
+     */
     public String agz = "";
+    
+    /**
+     * Porta del drone.
+     */
     public int port;
    
+    /**
+     * Ip del drone.
+     */
     public String ip;
+    
+    
+    /**
+     * Data formatter.
+     */
     DateFormat dateFormat;
+    
+    /**
+     * Variabile per prendere la data.
+     */ 
     Date data = new Date();
+    
+    
+    /**
+     * Creazione di una nuova istanza di Image Frame.
+     */ 
     ImageFrame view=new ImageFrame();
 
+    
+    /**
+     * Metodo run della thread.
+     */ 
     public void run() {
         dateFormat = DateFormat.getDateInstance(DateFormat.LONG, Locale.ITALY);
         log.creazioneFile();
@@ -116,35 +207,29 @@ public class Status extends Thread {
                 }
             }
         } catch (SocketException ex) {
-            Logger.getLogger(Status.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error:"+ ex);
         } catch (IOException | InterruptedException ex) {
-            Logger.getLogger(Status.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Eroor:"+ ex);
         }
     }
 
-    public String getValori() {
-        String valori = "Batteria:" + bat
-                + " TemeraturaMax:" + temMaxC
-                + " VelocitaX:" + spX
-                + " VelocitaY:" + spY
-                + " VelocitaZ:" + spZ
-                + " Altezza:" + altezza
-                + " AccelerazioneX:" + agx
-                + " AccelerazioneY:" + agy
-                + " AccelerazioneZ:" + agz
-                + "TempoCm" + time;
-        System.out.println("Valori:"+valori);
-        return valori;
-    }
-
+    /**
+     * Metodo che ritorna il valore della batteria.
+     */
     public String getbatteria() {
         return bat;
     }
-
+    
+    /**
+     * Metodo che si occupa di scrivere la IP nel file.
+     */
     public void setIp(String ip) {
         this.ip = ip;
     }
 
+    /**
+     * Metodo che si occupa di scrivere la porta nel file.
+     */
     void setport(int porta) {
         this.port = porta;
     }
