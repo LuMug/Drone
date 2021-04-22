@@ -106,13 +106,23 @@ public class ComandiPanel extends javax.swing.JPanel {
                 commandsText.append("CAN'T INCREMENT MORE\n");
             }
         }
-
-        //Futura implementazione dell'atterraggio e decollo da tastiera.
         if (e.getExtendedKeyCode() == 84) {
             sendKeyboardCommand("takeoff");
         }
         if (e.getExtendedKeyCode() == 76) {
             sendKeyboardCommand("land");
+        }
+        if (e.getExtendedKeyCode() == 85) {
+            sendKeyboardCommand("flip f");
+        }
+        if (e.getExtendedKeyCode() == 74) {
+            sendKeyboardCommand("flip b");
+        }
+        if (e.getExtendedKeyCode() == 72) {
+            sendKeyboardCommand("flip l");
+        }
+        if (e.getExtendedKeyCode() == 75) {
+            sendKeyboardCommand("flip r");
         }
     }
 

@@ -75,7 +75,6 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("Premuto");
         comandiPanel1.keyPressedC(e);
     }
 
@@ -86,7 +85,6 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
     
     @Override
     public boolean isFocusTraversable() {
-        System.out.println("setFocus");
         return true;
     }
 

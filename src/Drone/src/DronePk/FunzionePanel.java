@@ -15,9 +15,9 @@ public class FunzionePanel extends javax.swing.JPanel {
      */
     private Drone drone;
 
-   /**
-    * Istanza di Leap Motion Project.
-    */
+    /**
+     * Istanza di Leap Motion Project.
+     */
     private LeapMotionProject lm;
 
     ImageFrame vista = new ImageFrame();
@@ -32,13 +32,13 @@ public class FunzionePanel extends javax.swing.JPanel {
 
     /**
      * Metodo che si occupa di impstare il Leap Motion Project.
-     * 
+     *
      * @param lm istanza di Leap Motion Project.
      */
     public void setLM(LeapMotionProject lm) {
         this.lm = lm;
     }
-    
+
     /**
      * Metodo che si occupa di impstare Comandi Panel.
      */
@@ -138,26 +138,28 @@ public class FunzionePanel extends javax.swing.JPanel {
 
     /**
      * Ritorna il nome della sequenza del textbox.
-     * @return 
+     *
+     * @return
      */
     public String getSeqNameExecute() {
         String text = seqNameExecute.getText();
-        if(text.equals("")){
+        if (text.equals("")) {
             return "EXAMPLE";
-        }else{
+        } else {
             return text;
         }
     }
-    
+
     /**
-     * Metodo che si occupa di salvare il 
-     * @return 
+     * Metodo che si occupa di salvare il
+     *
+     * @return
      */
     public String getSeqNameSave() {
         String text = seqNameSave.getText();
-        if(text.equals("")){
+        if (text.equals("")) {
             return "EXAMPLE";
-        }else{
+        } else {
             return text;
         }
     }
@@ -174,27 +176,31 @@ public class FunzionePanel extends javax.swing.JPanel {
     private javax.swing.JButton sequenzaTasti;
     private javax.swing.JButton vistaDrone;
     // End of variables declaration//GEN-END:variables
-    
-   /**
-    * Metodo che si occupa di scrivere la percenutale della batteria.
-    */
+
+    /**
+     * Metodo che si occupa di scrivere la percenutale della batteria.
+     */
     private void caricamento() {
-        // sleep(2000);
-        batteriaL.setText(drone.batteria() + "%");
+        try {
+            Thread.sleep(2000);
+            batteriaL.setText(drone.batteria() + "%");
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
     }
-    
+
     /**
      * Metodo che si ocucpa di fare l'aggiormaneto.
-     * 
+     *
      * @param command il command
      */
     public void refreshCommandsF(String command) {
         drone.refreshCommandsD(command);
     }
-    
+
     /**
      * Metodo che si occupa di ritornare il drone.
-     */ 
+     */
     public Drone getDrone() {
         return this.drone;
     }

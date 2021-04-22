@@ -209,7 +209,7 @@ public class Status extends Thread {
         } catch (SocketException ex) {
             System.out.println("Error:"+ ex);
         } catch (IOException | InterruptedException ex) {
-            System.out.println("Eroor:"+ ex);
+            System.out.println("Error:"+ ex);
         }
     }
 

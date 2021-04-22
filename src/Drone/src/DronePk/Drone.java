@@ -7,7 +7,6 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
-import javax.swing.JPanel;
 
 /**
  * La classe Drone rappresenta il modello astratto di un drone.
