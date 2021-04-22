@@ -40,6 +40,7 @@ public class DroneFrame extends javax.swing.JFrame {
                 df.getFunzionePanel().setComandiPanel(df.getComandiPanel());
                 Drone drone = df.getFunzionePanel().getDrone();
                 df.getComandiPanel().setDrone(drone);
+                df.setSize(800, 600);
             }
         });
     }

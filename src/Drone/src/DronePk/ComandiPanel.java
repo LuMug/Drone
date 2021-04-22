@@ -5,17 +5,19 @@ import java.awt.event.KeyListener;
 import javax.swing.text.DefaultCaret;
 
 /**
- * Panel che contiene gli ultimi comandi eseguiti. 
- * 
+ * Panel che contiene gli ultimi comandi eseguiti.
+ *
  * @author Alessandro Aloise
  * @version 28.01.2021
  */
 public class ComandiPanel extends javax.swing.JPanel implements KeyListener {
 
     private Drone drone;
-    
+
     private int speed = 50;
     
+    private long initialTime;
+
     /**
      * Metodo che si occupa di istanziare e creare il panel.
      */
@@ -27,7 +29,7 @@ public class ComandiPanel extends javax.swing.JPanel implements KeyListener {
         this.setFocusable(true);
         this.requestFocus();
     }
-    
+
     public void refreshCommands(String command) {
         commandsText.append(command);
     }
@@ -61,7 +63,8 @@ public class ComandiPanel extends javax.swing.JPanel implements KeyListener {
     }// </editor-fold>//GEN-END:initComponents
 
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -96,7 +99,7 @@ public class ComandiPanel extends javax.swing.JPanel implements KeyListener {
             if (speed > 10) {
                 speed -= 10;
                 commandsText.append("SPEED DEPRECATED TO: " + speed + "\n");
-            }else{
+            } else {
                 commandsText.append("CAN'T DEPRECATE MORE\n");
             }
         }
@@ -104,11 +107,11 @@ public class ComandiPanel extends javax.swing.JPanel implements KeyListener {
             if (speed < 100) {
                 speed += 10;
                 commandsText.append("SPEED INCREMENTED TO: " + speed + "\n");
-            }else{
+            } else {
                 commandsText.append("CAN'T INCREMENT MORE\n");
             }
         }
-        
+
         //Futura implementazione dell'atterraggio e decollo da tastiera.
         if (e.getExtendedKeyCode() == 84) {
             sendKeyboardCommand("takeoff");
@@ -119,22 +122,21 @@ public class ComandiPanel extends javax.swing.JPanel implements KeyListener {
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {}
-    
+    public void keyReleased(KeyEvent e) {
+    }
+
     public void setDrone(Drone drone) {
         this.drone = drone;
     }
-    
+
     public Drone getDrone() {
         return this.drone;
     }
-    
+
     public void sendKeyboardCommand(String command) {
-        try {
+        if (System.currentTimeMillis() - initialTime >= 125) {
             drone.invioMessaggio(command);
-            Thread.sleep(100);
-        }catch(InterruptedException e) {
-            System.out.println(e);
+            initialTime = System.currentTimeMillis();
         }
     }
 
