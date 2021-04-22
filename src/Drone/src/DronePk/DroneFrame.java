@@ -1,18 +1,27 @@
 package DronePk;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 /**
  * Frame che si occupa di contenere il panel dell'aplicazione.
  *
  * @author Alessandro Aloise
  * @version 28.01.2021
  */
-public class DroneFrame extends javax.swing.JFrame {
+public class DroneFrame extends javax.swing.JFrame implements KeyListener, MouseListener {
 
     /**
      * Il costruttore della applicazione.
      */
     public DroneFrame() {
         initComponents();
+        this.addKeyListener(this);
+        this.setFocusable(true);
+        this.addMouseListener(this);
+        this.requestFocus();
     }
 
     @SuppressWarnings("unchecked")
@@ -41,6 +50,7 @@ public class DroneFrame extends javax.swing.JFrame {
                 Drone drone = df.getFunzionePanel().getDrone();
                 df.getComandiPanel().setDrone(drone);
                 df.setSize(800, 600);
+                df.setFocusable(true);
             }
         });
     }
@@ -56,5 +66,49 @@ public class DroneFrame extends javax.swing.JFrame {
 
     public ComandiPanel getComandiPanel() {
         return comandiPanel1;
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        comandiPanel1.keyTypedC(e);
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println("Premuto");
+        comandiPanel1.keyPressedC(e);
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        comandiPanel1.keyReleasedC(e);
+    }
+    
+    @Override
+    public boolean isFocusTraversable() {
+        System.out.println("setFocus");
+        return true;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        isFocusTraversable();
+        this.requestFocus();
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
     }
 }

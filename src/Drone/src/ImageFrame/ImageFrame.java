@@ -164,14 +164,5 @@ public class ImageFrame extends JFrame implements Runnable {
         }
 
     }
-    
-    /**
-     * Metodo si sistema, permette di rendere visualizzabile e operativo
-     * il frame.
-     * @return sempre true, il frame è sempre attivo.
-     */
-    @Override
-    public boolean isFocusTraversable() {
-        return true;
-    }
+
 }

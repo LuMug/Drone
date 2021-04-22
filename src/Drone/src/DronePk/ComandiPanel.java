@@ -10,12 +10,12 @@ import javax.swing.text.DefaultCaret;
  * @author Alessandro Aloise
  * @version 28.01.2021
  */
-public class ComandiPanel extends javax.swing.JPanel implements KeyListener {
+public class ComandiPanel extends javax.swing.JPanel {
 
     private Drone drone;
 
     private int speed = 50;
-    
+
     private long initialTime;
 
     /**
@@ -25,9 +25,6 @@ public class ComandiPanel extends javax.swing.JPanel implements KeyListener {
         initComponents();
         DefaultCaret caret = (DefaultCaret) commandsText.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-        this.addKeyListener(this);
-        this.setFocusable(true);
-        this.requestFocus();
     }
 
     public void refreshCommands(String command) {
@@ -62,12 +59,10 @@ public class ComandiPanel extends javax.swing.JPanel implements KeyListener {
         add(jScrollPane1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyTypedC(KeyEvent e) {
     }
 
-    @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressedC(KeyEvent e) {
         if (e.getExtendedKeyCode() == 87) {
             sendKeyboardCommand("rc 0 " + speed + " 0 0");
         }
@@ -93,7 +88,7 @@ public class ComandiPanel extends javax.swing.JPanel implements KeyListener {
             sendKeyboardCommand("rc 0 0 " + speed + " 0");
         }
         if (e.getExtendedKeyCode() == 32) {
-            sendKeyboardCommand("rc 0 0 0 0");
+            drone.invioMessaggio("rc 0 0 0 0");
         }
         if (e.getExtendedKeyCode() == 78) {
             if (speed > 10) {
@@ -121,8 +116,8 @@ public class ComandiPanel extends javax.swing.JPanel implements KeyListener {
         }
     }
 
-    @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyReleasedC(KeyEvent e) {
+        drone.invioMessaggio("rc 0 0 0 0");
     }
 
     public void setDrone(Drone drone) {
