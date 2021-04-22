@@ -50,12 +50,11 @@
 ## Introduzione
 
 ### Informazioni sul progetto
-
-Allievi coinvolti nel progetto: Samuele Ganci, Alessandro Aloise, Michea Colautti, Gianni Grasso.
-Classe: I3AA, I3AC, Scuola Arti e Mestieri Trevano, sezione informatica.
-Docenti responsabili: Luca Muggiasca.
-Data inizio: 14 gennaio 2021.
-Data di consegna: 13 maggio 2021.
+- Allievi coinvolti nel progetto: Samuele Ganci, Alessandro Aloise, Michea Colautti, Gianni Grasso.
+- Classe: I3AA, I3AC, Scuola Arti e Mestieri Trevano, sezione Informatica. 
+- Docenti responsabili: Luca Muggiasca, Geo Petrini.
+- Data inizio: 14 gennaio 2021.
+- Data di fine: 13 maggio 2021.
 
 ### Abstract
 
@@ -70,10 +69,11 @@ Data di consegna: 13 maggio 2021.
 
 ### Scopo
 
-  Lo scopo del progetto, è di creare un software in grado di interagire con le nostre
-  mani, di rilevarne i movimenti e trasformando quest'ultimi in dati, inviarli ad un drone.
-  Molto più semplicemente, grazie ad un dispositivo di nome Leap Motion, muovendo
-  semplicemente le mani, dobbiamo essere in grado di muovere nello spazio un drone.
+  Lo scopo del progetto, è di creare un software in grado di collegare i movimenti delle nostre mani ad un drone.
+  In pratica, grazie a un sesore chiamato `Leap Motion`, la nostra applicazione deve essere in grado di catturare e analizzare i movimenti 
+  delle mani e, dopo averli processati, trasmetterli al drone. Per farlo dobbiamo usare la tecnologia `UDP` (**U**ser **D**atagram **P**rotocol) e 
+  l'`SDK` installata di fabbrica sul drone.
+  Dobbiamo, oltre a creare il sistema di pilotaggio, instaurare una comunicazione che permetta lo scambio di dati del drone; non solo dati come l'inclinazione,       l'altitudine, ma anche dati statistici come la batteria.
   
 ## Analisi
 
@@ -95,36 +95,36 @@ Data di consegna: 13 maggio 2021.
 
 ### Analisi e specifica dei requisiti
 
-  ||**ID: Req-001**|
-  |----|-
-  |**Nome**| Interfaccia controllo Drone |
-  |**Priorità**|1|
-  |**Versione**|1.1|
-  |**Note**|Utilizzare Java. La connessione al drone deve avvenire tramite protocollo UDP|
-  ||**Sotto requisiti**|
-  |**001**|Realizzare un'interfaccia utile a pilotare il drone con i tasti virtuali del programma|
-  |**002**|Implementare il pilotaggio con i tasti fisici del PC|
-  |**003**|Implementare il pilotaggio con il Leap Motion, la mano sinistra si occupa del movimento verticale, mentre la destra si occupa di tutti gli altri movimenti|
-  |**004**|Realizzare il frame con lo streaming del video del drone|
-  |**005**|Implementare la funzione di salvataggio di sequenze di comandi. Successivamente fare in modo di farle riprodurre dal drone in modo autonomo|
-  
-  ||**ID: Req-002**|
-  |----|-
-  |**Nome**| Interfaccia posizione Drone |
-  |**Priorità**|1|
-  |**Versione**|1.0|
-  |**Note**|Utilizzare Java|
-  ||**Sotto requisiti**|
-  |**001**|Realizzare un'interfaccia con 4 riquadri, raffiguranti rispettivamente l’imbardata, il beccheggio, il rollio e l’altitudine del drone. Le immagini devono essere in 2D e stilizzate |
-  
-  ||**ID: Req-003**|
-  |----|-
-  |**Nome**| Interfaccia statistiche |
-  |**Priorità**|1|
-  |**Versione**|1.0|
-  |**Note**|Inizialmente sito web, su accordo è stato modificato in interfaccia. Utilizzare Java|
-  ||**Sotto requisiti**|
-  |**001**|Realizzare un'ulteriore interfaccia che rappresenta i dati ritornati dal drone sottoforma di statistica.|
+   
+|               |**ID: Req-001**|
+|--------------|-----------------------------|
+|**Nome**      | Interfaccia controllo Drone |
+|**Priorità**  | 1                            |
+|**Versione**  | 1.1                        |
+|**Note**      | Utilizzare Java. La connessione al drone deve avvenire tramite protocollo UDP|
+|**001**       | Realizzare un'interfaccia utile a pilotare il drone con i tasti virtuali del programma|
+|**002**       | Implementare il pilotaggio con i tasti fisici del PC|
+|**003**       | Implementare il pilotaggio con il Leap Motion, la mano sinistra si occupa del movimento verticale, mentre la destra si occupa di tutti gli altri movimenti|
+|**004**       | Realizzare il frame con lo streaming del video del drone|
+|**005**       | Implementare la funzione di salvataggio di sequenze di comandi. Successivamente fare in modo di farle riprodurre dal drone in modo autonomo|  
+
+|       |**ID: Req-002**|
+|-------|-----------|
+|**Nome**| Interfaccia posizione Drone |
+|**Priorità**|1|
+|**Versione**|1.0|
+|**Note**|Utilizzare Java|
+|        |**Sotto requisiti**|
+|**001**|Realizzare un'interfaccia con 4 riquadri, raffiguranti rispettivamente l’imbardata, il beccheggio, il rollio e l’altitudine del drone. Le immagini devono essere in 2D e stilizzate |
+
+|    |**ID: Req-003**|
+|----|---------------|
+|**Nome**| Interfaccia statistiche |
+|**Priorità**|1|
+|**Versione**|1.0|
+|**Note**|Inizialmente sito web, su accordo è stato modificato in interfaccia. Utilizzare Java|
+|        |**Sotto requisiti**|
+|**001**|Realizzare un'ulteriore interfaccia che rappresenta i dati ritornati dal drone sottoforma di statistica.|
 
 ### Use case
 
@@ -133,18 +133,9 @@ Ecco il nostro Use Case
 
 ### Pianificazione
 
-Prima di stabilire una pianificazione bisogna avere almeno una vaga idea
-del modello di sviluppo che si intende adottare. In questa sezione
-bisognerà inserire il modello concettuale di sviluppo che si seguirà
-durante il progetto. Gli elementi di riferimento per una buona
-pianificazione derivano da una scomposizione top-down della problematica
-del progetto.
+Per la pianificazione alleghiamo il Gantt preventivo da noi stabilito:
+![Use Case](../Documenti/Gantt/GANTT_Preventivo_Completo.jpg)
 
-La pianificazione può essere rappresentata mediante un diagramma di
-Gantt.
-
-Se si usano altri metodi di pianificazione (es scrum), dovranno apparire
-in questo capitolo.
 
 ### Analisi dei mezzi
 
