@@ -15,10 +15,21 @@ import java.nio.file.StandardOpenOption;
  */
 public class CommandsRecorder {
 
+    /**
+     * Costante per il percorso del file.
+     */
     public static final String root = "SequencesRecorded";
 
+    /**
+     * Variabile per la Path file.
+     */
     private Path file;
 
+    /**
+     * Metodo che si occupa di registrare la sequenza di comandi.
+     * 
+     * @param fileName Il nome del file.
+     */
     public CommandsRecorder(String fileName) {
         file = Paths.get(root + "/" + fileName + ".txt");
         try {
@@ -26,6 +37,10 @@ public class CommandsRecorder {
         } catch (IOException e) {}
     }
 
+    /**
+     * Metodo che si occuopa di scrivere la sequenza.
+     * @param sequence sequenza da scrivere nel file.
+     */
     public void sequenceWriter(String sequence) {
         try {
             Files.write(file, ((sequence + "\r\n")).getBytes(), StandardOpenOption.APPEND);

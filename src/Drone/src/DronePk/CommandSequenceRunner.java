@@ -12,17 +12,36 @@ import java.util.List;
  * @version 25 febbraio 2021
  */
 public class CommandSequenceRunner {
+    
+    /**
+     * Costante per il percorso del file.
+     */
     public static final String root = "SequencesRecorded";
 
+    /**
+     * Variabile per la Path file.
+     */
     private Path file;
     
+    /**
+     * Istanza della classe drone.
+     */
     private Drone drone;
 
+    /**
+     * Metodo che si occupa di generare il file.
+     * 
+     * @param fileName Nome del file.
+     * @param drone assegnazione dell'istanza drone. 
+     */
     public CommandSequenceRunner(String fileName, Drone drone) {
         file = Paths.get(root + "/" + fileName + ".txt");
         this.drone = drone;
     }
 
+    /**
+     * Metodo che si occupa di ripetere la sequenza.
+     */
     public void sequenceRepeater() {
         try {
             List<String> lines = Files.readAllLines(file);
