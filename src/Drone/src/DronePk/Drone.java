@@ -1,16 +1,12 @@
 package DronePk;
 
 import com.leapmotion.leap.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -21,14 +17,24 @@ import javax.swing.JPanel;
  */
 public class Drone extends Thread {
 
-    private int moveStep = 25;
-    private int altStep = 25;
-    private int yawStep = 25;
-
+    /**
+     * Costante Ip del drone.
+     */
     private String ip = "192.168.10.1";
+    
+    /**
+     * Porta per il Socket.
+     */
     private int portD = 8889;
 
+    /**
+     * Nuova istanza di status.
+     */
     Status status = new Status();
+    
+    /**
+     * Nuova istanza di log.
+     */
     Log log = new Log();
 
     /**
@@ -96,8 +102,14 @@ public class Drone extends Thread {
      */
     private String istru;
 
+    /**
+     * Istanza di comandiPanel.
+     */
     private ComandiPanel comandiPanel;
 
+    /**
+     * Variabile per la gestione della verlocità.
+     */
     private int speed = 50;
 
     /**
@@ -149,23 +161,20 @@ public class Drone extends Thread {
         }
 
         port = socket.getLocalPort();
-        setPortAsTitle(jp);
         messageListener = jp;
         status.start();
         LivePanel live = new LivePanel();
         Thread liveThread = new Thread(live);
         liveThread.start();
-
         setUp();
     }
 
     /**
-     * Ritorna il messaggio ricevuto.
+     * Merodo che ritorna il messaggio ricevuto.
      *
      * @return Il messaggio ricevuto.
      */
     public String getMessageReceived() {
-        //System.out.println(messageReceived);
         return messageReceived;
     }
 
@@ -182,7 +191,6 @@ public class Drone extends Thread {
                 socket.receive(packet);
                 messageReceived = new String(packet.getData(), 0, packet.getLength());
                 System.out.println(messageReceived);
-                // messageListener.messageReceived();
             }
         } catch (SocketException ex) {
             System.out.println("ERRORE: " + ex.getMessage());
@@ -206,15 +214,6 @@ public class Drone extends Thread {
         } catch (IOException ex) {
             System.out.println("ERRORE: " + ex.getMessage());
         }
-    }
-
-    /**
-     * Imposta la porta come titolo del frame.
-     *
-     * @param jp Il panel in cui impostare il titolo.
-     */
-    public void setPortAsTitle(JPanel jp) {
-        System.out.println(socket.getLocalPort());
     }
 
     /**
@@ -262,6 +261,9 @@ public class Drone extends Thread {
         return istru;
     }
 
+    /**
+     * Metodo che si occupa di impostare i valori di base.
+     */
     public void setUp() {
         setIpDrone(ip);
         setPorta(portD);
@@ -269,24 +271,27 @@ public class Drone extends Thread {
         status.setport(portD);
     }
 
+    /**
+     * Metodo che si occupa di far deccollare il drone.
+     */
     public void decolla() {
-        /**
-         * Fa decollare il drone.
-         */
         String message = "takeoff";
         invioMessaggio(message);
         setStato();
     }
 
+    /**
+     * Metodo che si occupa di far atterare il drone.
+     */ 
     public void atterra() {
-        /**
-         * Fa atterrare il drone.
-         */
         String message = "land";
         invioMessaggio(message);
         setStato();
     }
 
+    /**
+     * Metodo che si occupa di sbloccare SKD del drone.
+     */ 
     public void command() {
         String message = "command";
         invioMessaggio(message);
@@ -294,14 +299,29 @@ public class Drone extends Thread {
         invioMessaggio(liveMessage);
     }
 
+    /**
+     * Metodo che si occupa di ritornare il valore della batteria.
+     * 
+     * @return Il valore della batteria. 
+     */
     public String batteria() {
         return status.getbatteria();
     }
 
+    /**
+     * Metodo che si occupa di Impostare Comandi Panel. 
+     * 
+     * @param comandiPanel Istanza di comandi Panel.
+     */
     public void setComandiPanel(ComandiPanel comandiPanel) {
         this.comandiPanel = comandiPanel;
     }
 
+    /**
+     * Metodo che si occupa dell'aggiornamento dei comandi da tastiera.
+     * 
+     * @param message Messaggio. 
+     */
     public void refreshCommandsD(String message) {
         comandiPanel.refreshCommands(message);
     }
