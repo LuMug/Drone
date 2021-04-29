@@ -11,21 +11,20 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**
- * Pannello numero 4 del frame principale. 
- * Questo pannello si occupa di gestire l'incremento/decremento del valore 
- * dell'altitudine.
+ * Pannello numero 4 del frame principale. Questo pannello si occupa di gestire
+ * l'incremento/decremento del valore dell'altitudine.
+ *
  * @author Michea Colautti
  * @version 04.04.21
  */
 public class ImagePanelAlt extends ImageModel {
 
-
     /**
      * Label contenente l'altitudine e l'unità di misura.
      */
     public JLabel alt;
-    
-     /**
+
+    /**
      * Label contenente lèetichetta dell'altezza.
      */
     public JLabel mis;
@@ -62,14 +61,13 @@ public class ImagePanelAlt extends ImageModel {
         alt.setFont(font1);
         alt.setHorizontalAlignment(JTextField.CENTER);
         add(alt);
-        
 
     }
 
     /**
-     * Metodo per disegnare le componenti sul frame. 
-     * Permette di disegnare le due frecce e il JLabel contenente 
-     * l'altitudine nelle varie unità di misura.
+     * Metodo per disegnare le componenti sul frame. Permette di disegnare le
+     * due frecce e il JLabel contenente l'altitudine nelle varie unità di
+     * misura.
      *
      * @param g è il parametro di default per la grafica.
      */
@@ -87,10 +85,11 @@ public class ImagePanelAlt extends ImageModel {
         int x = 0, y = 0;
 
         mis.setText("    H: ");
+        double stAlt = altitude;
 
         String text = altitude + " cm" + '\n'
                 + altitude / 100 + " m" + "\n"
-                + +altitude * 3.281 + " ft";
+                + stAlt / 30.48 + " ft";
 
         alt.setText("<html>" + text.replaceAll("<", "&lt;")
                 .replaceAll(">", "&gt;")
@@ -99,9 +98,10 @@ public class ImagePanelAlt extends ImageModel {
     }
 
     /**
-     * Metodo setter dell'altitudine.
-     * Similmente ai setter presenti in ImageFrame questo metodo serve
-     * per aggiornare l'altitudine. Metodo richimato da 'ImageFrame'.
+     * Metodo setter dell'altitudine. Similmente ai setter presenti in
+     * ImageFrame questo metodo serve per aggiornare l'altitudine. Metodo
+     * richimato da 'ImageFrame'.
+     *
      * @param newAlt è il nuovo valore dell'altitudine.
      */
     public void setAltitude(int newAlt) {
