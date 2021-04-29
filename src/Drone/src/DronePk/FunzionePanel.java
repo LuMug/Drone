@@ -1,6 +1,8 @@
 package DronePk;
 
 import ImageFrame.ImageFrame;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Panel che si occupa dei bottoni.
@@ -163,14 +165,14 @@ public class FunzionePanel extends javax.swing.JPanel {
      */
     private void caricamento() {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(200);
             if(drone.batteria().isBlank()) {
                 batteriaL.setText("0%");
             }else{
                 batteriaL.setText(drone.batteria() + "%");
             }
-        } catch (InterruptedException e) {
-            System.out.println(e);
+                } catch (InterruptedException ex) {
+            Logger.getLogger(FunzionePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
