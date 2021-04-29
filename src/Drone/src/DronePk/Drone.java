@@ -10,7 +10,6 @@ import java.net.UnknownHostException;
 
 /**
  * La classe Drone rappresenta il modello astratto di un drone.
- *
  * @author Gianni Grasso
  * @version 28.01.2021
  */
@@ -29,42 +28,42 @@ public class Drone extends Thread {
     /**
      * Nuova istanza di status.
      */
-    Status status = new Status();
+    private Status status = new Status();
     
     /**
      * Nuova istanza di log.
      */
-    Log log = new Log();
+    private Log log = new Log();
 
     /**
      * Rappresenta lo stato del drone (acceso o spento).
      */
-    public boolean stato;
+    private boolean stato;
 
     /**
      * Rappresenta l'indirizzo IP del drone.
      */
-    public String ipDrone;
+    private String ipDrone;
 
     /**
      * Rappresenta la porta UDP del drone.
      */
-    public int porta;
+    private int porta;
 
     /**
      * Il socket di dati.
      */
-    DatagramSocket socket = null;
+    private DatagramSocket socket = null;
 
     /**
      * Il pacchetto di dati.
      */
-    DatagramPacket packet;
+    private DatagramPacket packet;
 
     /**
-     * Array di byte. Il buffer dei dati da mandare.
+     * Array di byte, il buffer dei dati da mandare.
      */
-    byte[] sendBuf = new byte[256];
+    private byte[] sendBuf = new byte[256];
 
     /**
      * La porta corrente.
@@ -113,7 +112,6 @@ public class Drone extends Thread {
 
     /**
      * Getter dell'ip del drone.
-     *
      * @return l'ip attuale del drone
      */
     public String getIpDrone() {
@@ -122,7 +120,6 @@ public class Drone extends Thread {
 
     /**
      * Setter dell'ip del drone.
-     *
      * @param ipDrone il nuovo ip del drone
      */
     public void setIpDrone(String ipDrone) {
@@ -131,7 +128,6 @@ public class Drone extends Thread {
 
     /**
      * Getter della porta del drone.
-     *
      * @return la porta attuale del drone
      */
     public int getPorta() {
@@ -140,7 +136,6 @@ public class Drone extends Thread {
 
     /**
      * Setter della porta del drone.
-     *
      * @param porta la nuova porta del drone
      */
     public void setPorta(int porta) {
@@ -149,7 +144,6 @@ public class Drone extends Thread {
 
     /**
      * Metodo costruttore personalizzato con 1 parametro.
-     *
      * @param jp Il frame in cui avviene la comunicazione.
      */
     public Drone(FunzionePanel jp) {
@@ -158,7 +152,6 @@ public class Drone extends Thread {
         } catch (SocketException ex) {
 
         }
-
         port = socket.getLocalPort();
         messageListener = jp;
         status.start();
@@ -169,8 +162,7 @@ public class Drone extends Thread {
     }
 
     /**
-     * Merodo che ritorna il messaggio ricevuto.
-     *
+     * Metodo che ritorna il messaggio ricevuto.
      * @return Il messaggio ricevuto.
      */
     public String getMessageReceived() {
@@ -217,7 +209,6 @@ public class Drone extends Thread {
 
     /**
      * Imposta le informazioni di destinazione.
-     *
      * @param ip L'indirizzo ip.
      * @param port La porta.
      * @param message Il messaggio.
@@ -242,22 +233,15 @@ public class Drone extends Thread {
         this.stato = !this.stato;
     }
 
+    /**
+     * Metodo che invia i comandi al drone.
+     * @param message da inviare
+     */
     public void invioMessaggio(String message) {
         setInfo(ipDrone, porta, message);
         istru = message;
         sendMessage();
         comandiPanel.refreshCommands(message + "\n");
-    }
-
-    /**
-     * Meotodo per ottenre la stringa con il comando da ImageFrame.
-     *
-     * @return la stringa con il comando
-     */
-    public String getIstruction() {
-        System.out.println(istru);
-        System.out.println("rehbehivi");
-        return istru;
     }
 
     /**
@@ -300,7 +284,6 @@ public class Drone extends Thread {
 
     /**
      * Metodo che si occupa di ritornare il valore della batteria.
-     * 
      * @return Il valore della batteria. 
      */
     public String batteria() {
@@ -308,8 +291,7 @@ public class Drone extends Thread {
     }
 
     /**
-     * Metodo che si occupa di Impostare Comandi Panel. 
-     * 
+     * Metodo che si occupa di impostare il Comandi Panel. 
      * @param comandiPanel Istanza di comandi Panel.
      */
     public void setComandiPanel(ComandiPanel comandiPanel) {
@@ -317,9 +299,8 @@ public class Drone extends Thread {
     }
 
     /**
-     * Metodo che si occupa dell'aggiornamento dei comandi da tastiera.
-     * 
-     * @param message Messaggio. 
+     * Metodo che si occupa dell'aggiornamento del comandi panel.
+     * @param message da stampare
      */
     public void refreshCommandsD(String message) {
         comandiPanel.refreshCommands(message);

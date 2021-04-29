@@ -4,7 +4,6 @@ import ImageFrame.ImageFrame;
 
 /**
  * Panel che si occupa dei bottoni.
- *
  * @author Alessandro Aloise
  * @version 28.01.2021
  */
@@ -16,7 +15,7 @@ public class FunzionePanel extends javax.swing.JPanel {
     private Drone drone;
 
     /**
-     * Istanza di Leap Motion Project.
+     * Istanza del leap motion.
      */
     private LeapMotionProject lm;
 
@@ -31,16 +30,16 @@ public class FunzionePanel extends javax.swing.JPanel {
     }
 
     /**
-     * Metodo che si occupa di impstare il Leap Motion Project.
-     *
-     * @param lm istanza di Leap Motion Project.
+     * Metodo che si occupa di impostare il Leap Motion.
+     * @param lm da impostare.
      */
     public void setLM(LeapMotionProject lm) {
         this.lm = lm;
     }
 
     /**
-     * Metodo che si occupa di impstare Comandi Panel.
+     * Metodo che si occupa di impostare il comandi panel.
+     * @param comandiPanel da impostare.
      */
     public void setComandiPanel(ComandiPanel comandiPanel) {
         drone.setComandiPanel(comandiPanel);
@@ -49,6 +48,9 @@ public class FunzionePanel extends javax.swing.JPanel {
         caricamento();
     }
 
+    /**
+     * Coduce autogenerato da netbeans.
+     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -113,6 +115,10 @@ public class FunzionePanel extends javax.swing.JPanel {
         add(batteriaL);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Richiamato quando viene premuto il pulsante associato.
+     * @param evt variabile contenente le info dell'evento
+     */
     private void vistaDroneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaDroneActionPerformed
         vista.setVisible(true);
         vista.imgTh = true;
@@ -120,22 +126,33 @@ public class FunzionePanel extends javax.swing.JPanel {
         vistaThread.start();
     }//GEN-LAST:event_vistaDroneActionPerformed
 
+    /**
+     * Richiamato quando viene premuto il pulsante associato.
+     * @param evt variabile contenente le info dell'evento
+     */
     private void decollaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decollaActionPerformed
         drone.decolla();
     }//GEN-LAST:event_decollaActionPerformed
 
+    /**
+     * Richiamato quando viene premuto il pulsante associato.
+     * @param evt variabile contenente le info dell'evento
+     */
     private void atterraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atterraActionPerformed
         drone.atterra();
     }//GEN-LAST:event_atterraActionPerformed
 
+    /**
+     * Richiamato quando viene premuto il pulsante associato.
+     * @param evt variabile contenente le info dell'evento
+     */
     private void sequenzaTastiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sequenzaTastiActionPerformed
         lm.runSequence();
     }//GEN-LAST:event_sequenzaTastiActionPerformed
 
     /**
-     * Ritorna il nome della sequenza del textbox.
-     *
-     * @return
+     * Ritorna il testo scritto nel textbox.
+     * @return testo
      */
     public String getSeqNameExecute() {
         String text = seqNameExecute.getText();
@@ -147,9 +164,8 @@ public class FunzionePanel extends javax.swing.JPanel {
     }
 
     /**
-     * Metodo che si occupa di salvare il
-     *
-     * @return
+     * Ritorna il testo scritto nel textbox.
+     * @return testo
      */
     public String getSeqNameSave() {
         String text = seqNameSave.getText();
@@ -159,19 +175,7 @@ public class FunzionePanel extends javax.swing.JPanel {
             return text;
         }
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton atterra;
-    private javax.swing.JLabel batteriaL;
-    private javax.swing.JLabel batteriaText;
-    private javax.swing.JButton decolla;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField seqNameExecute;
-    private javax.swing.JTextField seqNameSave;
-    private javax.swing.JButton sequenzaTasti;
-    private javax.swing.JButton vistaDrone;
-    // End of variables declaration//GEN-END:variables
-
+    
     /**
      * Metodo che si occupa di scrivere la percenutale della batteria.
      */
@@ -185,18 +189,30 @@ public class FunzionePanel extends javax.swing.JPanel {
     }
 
     /**
-     * Metodo che si ocucpa di fare l'aggiormaneto.
-     *
-     * @param command il command
+     * Metodo utile ad aggiornare il comandiPanel.
+     * @param command da stampare
      */
     public void refreshCommandsF(String command) {
         drone.refreshCommandsD(command);
     }
 
     /**
-     * Metodo che si occupa di ritornare il drone.
+     * Metodo utile a ritornare il drone impostato.
+     * @return drone impostato
      */
     public Drone getDrone() {
         return this.drone;
     }
+    
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton atterra;
+    private javax.swing.JLabel batteriaL;
+    private javax.swing.JLabel batteriaText;
+    private javax.swing.JButton decolla;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField seqNameExecute;
+    private javax.swing.JTextField seqNameSave;
+    private javax.swing.JButton sequenzaTasti;
+    private javax.swing.JButton vistaDrone;
+    // End of variables declaration//GEN-END:variables
 }

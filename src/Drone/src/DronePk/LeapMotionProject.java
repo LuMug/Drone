@@ -4,24 +4,51 @@ import com.leapmotion.leap.*;
 
 public class LeapMotionProject extends Listener {
 
+    /**
+     * Contiene il drone impostato.
+     */
     private Drone drone;
 
+    /**
+     * Contiene se si sta registrando la sequenza o meno.
+     */
     private boolean comReqSeq = false;
 
+    /**
+     * Contiene la classe per registrare la sequenza.
+     */
     private CommandsRecorder cr;
 
+    /**
+     * Contiene la classe per far eseguire la sequenza.
+     */
     private CommandSequenceRunner csr;
 
+    /**
+     * Contiene il pannello funzioni panel.
+     */
     private FunzionePanel funzionePanel;
 
+    /**
+     * Definisce se il drone e' in volo o meno.
+     */
     private boolean inFlight = false;
 
+    /**
+     * Costruttore personalizzato.
+     * @param drone da impostare
+     * @param funzionePanel da impostare
+     */
     public LeapMotionProject(Drone drone, FunzionePanel funzionePanel) {
         this.drone = drone;
         this.funzionePanel = funzionePanel;
         funzionePanel.setLM(this);
     }
 
+    /**
+     * Metodo richiamato ogni volta che il leap motion registra un nuovo dato.
+     * @param controller che gestisce il leap motion
+     */
     public void onFrame(Controller controller) {
         Frame frame = controller.frame();
         Hand rightHand = null;
@@ -170,6 +197,10 @@ public class LeapMotionProject extends Listener {
         }
     }
 
+    /**
+     * Metodo utile ad inviare i comandi al drone.
+     * @param command da inviare.
+     */
     public void sendMessage(String command) {
         try {
             if (inFlight) {
@@ -184,15 +215,34 @@ public class LeapMotionProject extends Listener {
         }
     }
 
+    /**
+     * Serve ad eseguire la sequenza registrata.
+     */
     public void runSequence() {
         csr = new CommandSequenceRunner(funzionePanel.getSeqNameExecute(), drone);
         csr.sequenceRepeater();
     }
 
+    /**
+     * Converte il valore di un range in un valore di un altro range.
+     * @param value da mappare nel primo range
+     * @param r1Min valore minimo del primo range
+     * @param r1Max valore massimo del primo range
+     * @param r2Min valore minimo del secondo range
+     * @param r2Max valore massimo del secondo range
+     * @return valore mappato nel secondo range
+     */
     public int convertRange(double value, double r1Min, double r1Max, double r2Min, double r2Max) {
         return (int) (((value - r1Min) * (r2Max - r2Min)) / (r1Max - r1Min) + r2Min);
     }
 
+    /**
+     * Ritorna se il valore passato e' all'interno del range, minimo e massimo escluso.
+     * @param value da controllare
+     * @param min da controllare
+     * @param max da controllare
+     * @return se il valore e' o meno nel range
+     */
     public boolean betweenExcluded(double value, double min, double max) {
         if (value > min && value < max) {
             return true;

@@ -15,12 +15,34 @@ import java.net.SocketException;
  */
 public class LivePanel extends javax.swing.JPanel implements Runnable {
 
+    /**
+     * Definisce se la stream e' accesa o spenta.
+     */
     private boolean isStreamOn;
+
+    /**
+     * Contiene il socket del server.
+     */
     private DatagramSocket serverSocket;
+
+    /**
+     * Array per la ricezione dei dati.
+     */
     private byte[] receiveData = new byte[1470];
+
+    /**
+     * Contiene l'stanza del drone.
+     */
     private Drone drone;
 
+    /**
+     * Contiene il riferimento al file.
+     */
     public static File file;
+
+    /**
+     * Variabile utile a scrivere nel file.
+     */
     public static FileWriter fw;
 
     /**
@@ -32,6 +54,9 @@ public class LivePanel extends javax.swing.JPanel implements Runnable {
         creaFile();
     }
 
+    /**
+     * Codice autogenerato da netbeans.
+     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -48,9 +73,9 @@ public class LivePanel extends javax.swing.JPanel implements Runnable {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    // End of variables declaration//GEN-END:variables
+    /**
+     * Metodo chiamato dalla thread.
+     */
     public void run() {
         try {
             serverSocket = new DatagramSocket(11111);
@@ -86,21 +111,35 @@ public class LivePanel extends javax.swing.JPanel implements Runnable {
         serverSocket.close();
     }
 
+    /**
+     * Metodo che ritorna se la stream e' accesa o meno.
+     * @return se la stream e' accesa o meno.
+     */
     public boolean isStreamOn() {
         return isStreamOn;
     }
 
+    /**
+     * Serve ad impostare lo stato della live.
+     * @param streamOn accendere o spegnere la live
+     */
     public void setStreamOn(boolean streamOn) {
         isStreamOn = streamOn;
     }
 
+    /**
+     * Metodo che crea il file.
+     */
     public void creaFile() {
         try {
             file = new File("Prova.mp4");
             file.createNewFile();
             fw = new FileWriter(file);
         } catch (IOException ex) {
-            System.out.println("Error:"+ex);
+            System.out.println("Error:" + ex);
         }
     }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // End of variables declaration//GEN-END:variables
 }

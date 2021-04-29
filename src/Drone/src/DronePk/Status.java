@@ -13,16 +13,29 @@ import java.util.StringTokenizer;
 
 /**
  * Classe che si occupa di scrivere un file di log.
- *
  * @version 11.03.2021
  * @author Alessandro Aloise
  */
 public class Status extends Thread {
 
+    /**
+     * Istanza della classe di log.
+     */
     Log log = new Log();
 
+    /**
+     * Contiene il valore della posizione del drone.
+     */
     public String pitch = "";
+    
+    /**
+     * Contiene il valore della posizione del drone.
+     */
     public String roll = "";
+    
+    /**
+     * Contiene il valore della posizione del drone.
+     */
     public String yaw = "";
    
     /**

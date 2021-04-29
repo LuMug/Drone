@@ -7,7 +7,6 @@ import java.awt.event.MouseListener;
 
 /**
  * Frame che si occupa di contenere il panel dell'aplicazione.
- *
  * @author Alessandro Aloise
  * @version 28.01.2021
  */

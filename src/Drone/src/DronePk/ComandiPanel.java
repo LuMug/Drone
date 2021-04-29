@@ -1,21 +1,28 @@
 package DronePk;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import javax.swing.text.DefaultCaret;
 
 /**
  * Panel che contiene gli ultimi comandi eseguiti.
- *
  * @author Alessandro Aloise
  * @version 28.01.2021
  */
 public class ComandiPanel extends javax.swing.JPanel {
 
+    /**
+     * Contiene l'istanza del drone.
+     */
     private Drone drone;
 
+    /**
+     * Contiene la veloctà corrente.
+     */
     private int speed = 50;
 
+    /**
+     * Contiene il tempo iniziale di un ciclo.
+     */
     private long initialTime;
 
     /**
@@ -27,10 +34,17 @@ public class ComandiPanel extends javax.swing.JPanel {
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
     }
 
+    /**
+     * Serve ad aggiornare comandi Panel.
+     * @param command da scrivere
+     */
     public void refreshCommands(String command) {
         commandsText.append(command);
     }
 
+    /**
+     * Codice autogenerato da netbeans.
+     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -59,9 +73,16 @@ public class ComandiPanel extends javax.swing.JPanel {
         add(jScrollPane1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Richiamato quando un tasto viene premuto e rilasciato.
+     * @param e variabile contenente le info dell'evento.
+     */
     public void keyTypedC(KeyEvent e) {
     }
-
+/**
+     * Richiamato quando un tasto viene premuto.
+     * @param e variabile contenente le info dell'evento.
+     */
     public void keyPressedC(KeyEvent e) {
         if (e.getExtendedKeyCode() == 87) {
             sendKeyboardCommand("rc 0 " + speed + " 0 0");
@@ -126,18 +147,35 @@ public class ComandiPanel extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Richiamato quando un tasto viene rilasciato.
+     * @param e variabile contenente le info dell'evento.
+     */
     public void keyReleasedC(KeyEvent e) {
         drone.invioMessaggio("rc 0 0 0 0");
     }
 
+    /**
+     * Serve a impostare un drone.
+     * @param drone da impostare
+     */
     public void setDrone(Drone drone) {
         this.drone = drone;
     }
 
+    /**
+     * Serve a ritornare il drone impostato.
+     * @return drone impostato
+     */
     public Drone getDrone() {
         return this.drone;
     }
 
+    /**
+     * Metodo utile ad inviare i comandi da tastiera al drone, limitandoli a
+     * 1 ogni 125 millisecondi.
+     * @param command da inviare
+     */
     public void sendKeyboardCommand(String command) {
         if (System.currentTimeMillis() - initialTime >= 125) {
             drone.invioMessaggio(command);
