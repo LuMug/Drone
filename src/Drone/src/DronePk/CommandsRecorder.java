@@ -24,6 +24,11 @@ public class CommandsRecorder {
      * Variabile per la Path file.
      */
     private Path file;
+    
+    /**
+     * Variabile di controllo.
+     */
+    private boolean check = false;
 
     /**
      * Metodo che si occupa di registrare la sequenza di comandi.
@@ -45,7 +50,12 @@ public class CommandsRecorder {
      */
     public void sequenceWriter(String sequence) {
         try {
-            Files.write(file, ((sequence + "\r\n")).getBytes(), StandardOpenOption.APPEND);
+            if(sequence.equals("takeoff")) {
+                check = true;
+            }
+            if(check) {
+                Files.write(file, ((sequence + "\r\n")).getBytes(), StandardOpenOption.APPEND);
+            }
         } catch (IOException e) {
         }
     }

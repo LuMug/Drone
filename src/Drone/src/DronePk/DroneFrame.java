@@ -24,6 +24,9 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
         this.requestFocus();
     }
 
+    /**
+     * Codice autogenerato di netbeans.
+     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -55,58 +58,103 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private DronePk.ComandiPanel comandiPanel1;
-    private DronePk.FunzionePanel funzionePanel1;
-    // End of variables declaration//GEN-END:variables
-
+    
+    /**
+     * Ritorna il funzioni panel impostato.
+     * @return funzioni panel impostato.
+     */
     public FunzionePanel getFunzionePanel() {
         return funzionePanel1;
     }
 
+    /**
+     * Ritorna il comandi panel impostato.
+     * @return comandi panel impostato.
+     */
     public ComandiPanel getComandiPanel() {
         return comandiPanel1;
     }
 
+    /**
+     * Richiamato quando un pulsante viene premuto e rilasciato.
+     * @param e variabile contenente le info dell'evento
+     */
     @Override
     public void keyTyped(KeyEvent e) {
         comandiPanel1.keyTypedC(e);
     }
 
+    /**
+     * Richiamato quando un pulsante viene premuto.
+     * @param e variabile contenente le info dell'evento
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         comandiPanel1.keyPressedC(e);
     }
 
+    /**
+     * Richiamato quando un pulsante viene rilasciato.
+     * @param e variabile contenente le info dell'evento
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         comandiPanel1.keyReleasedC(e);
     }
 
+    /**
+     * Serve a settare il focus sul frame.
+     * @return cio' che si ha settato
+     */
     @Override
     public boolean isFocusTraversable() {
         return true;
     }
 
+    /**
+     * Richiamato quando un tasto del mouse viene premuto e rilasciato.
+     * @param e variabile contenente le info dell'evento
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         isFocusTraversable();
         this.requestFocus();
     }
 
+    /**
+     * Richiamato quando un tasto del mouse viene premuto.
+     * @param e variabile contenente le info dell'evento
+     */
     @Override
     public void mousePressed(MouseEvent e) {
     }
 
+    /**
+     * Richiamato quando un tasto del mouse viene rilasciato.
+     * @param e variabile contenente le info dell'evento
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
     }
 
+    /**
+     * Richiamato quando il mouse entra nel frame.
+     * @param e variabile contenente le info dell'evento 
+     */
     @Override
     public void mouseEntered(MouseEvent e) {
     }
 
+    /**
+     * Richiamato quando il mouse esce dal frame
+     * @param e variabile contenente le info dell'evento
+     */
     @Override
     public void mouseExited(MouseEvent e) {
     }
+    
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private DronePk.ComandiPanel comandiPanel1;
+    private DronePk.FunzionePanel funzionePanel1;
+    // End of variables declaration//GEN-END:variables
 }
