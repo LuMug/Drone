@@ -161,9 +161,6 @@ public class Drone extends Thread {
         port = socket.getLocalPort();
         messageListener = jp;
         status.start();
-        LivePanel live = new LivePanel();
-        Thread liveThread = new Thread(live);
-        liveThread.start();
         setUp();
     }
 

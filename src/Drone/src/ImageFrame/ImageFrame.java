@@ -165,7 +165,6 @@ public class ImageFrame extends JPanel implements Runnable {
      */
     public void run() {
         while (imgTh) {
-
             imagePanelFront.moving(roll);
             imagePanelLat.moving(pitch);
             imagePanelAlt.setAltitude(alt);

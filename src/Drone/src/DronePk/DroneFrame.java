@@ -34,7 +34,6 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
         vista.setVisible(true);
         vista.imgTh = true;
         Thread vistaThread = new Thread(vista);
-        System.out.println("ndjendjn");
         vistaThread.start();
         
     }
