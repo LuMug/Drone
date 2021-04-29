@@ -100,7 +100,7 @@
 |--------------|-----------------------------|
 |**Nome**      | Interfaccia controllo Drone |
 |**Priorità**  | 1                            |
-|**Versione**  | 1.1                        |
+|**Versione**  | 1.1                         |
 |**Note**      | Utilizzare Java. La connessione al drone deve avvenire tramite protocollo UDP|
 |**001**       | Realizzare un'interfaccia utile a pilotare il drone con i tasti virtuali del programma|
 |**002**       | Implementare il pilotaggio con i tasti fisici del PC|
@@ -134,7 +134,7 @@ Ecco il nostro Use Case
 ### Pianificazione
 
 Per la pianificazione alleghiamo il Gantt preventivo da noi stabilito:
-![Use Case](../Documenti/Gantt/GANTT_Preventivo_Completo.jpg)
+![Ganttpreventivo](../Documenti/Gantt/GANTT_Preventivo_Completo.jpg)
 
 
 ### Analisi dei mezzi
@@ -153,10 +153,34 @@ Per la pianificazione alleghiamo il Gantt preventivo da noi stabilito:
 
 ## Progettazione
 
-Questo capitolo descrive esaustivamente come deve essere realizzato il
-prodotto fin nei suoi dettagli. Una buona progettazione permette
-all’esecutore di evitare fraintendimenti e imprecisioni
-nell’implementazione del prodotto.
+**Interfaccia principale**
+La prima interfaccia che abbiamo definito è stata quella generale, ovvero il pannello che l'utente avrebbe visto una volta avvviata l'applicazione.
+![Progettazzione int1](../Documenti/Progettazione/Design_Interfacce/DesingHome.png)
+Come vedremo dopo, benchè la struttura sia rimasta essenzialmente quella, quest'interfaccia ha subito alcune modifiche nel contenutno.
+Questo è accuduto poichè procedendo con il progetto sono cambiate alcune idee e priorità.
+
+
+**Interfaccia vista drone**
+
+Un altra interfacccia importante da progettare era quella dellla vista del drone. Quest'ultima è molto semplice, ed è rimasta essenzialmente la stessa, ma è stato importante pensare come rappresentare i dati che ci venivano richiesti, ovvero la rappresentazione grafica del drone. Inizialmente abbiamo pensato a delle foto ferme, con delle frecce che indicassero i movimenti. Tuttavia ci siamo accorti che creare uno schizzo del drone e muovere quello era molto più.
+
+![Progettazzione int2](../Documenti/Progettazione/Design_Interfacce/DesingVistaDrone.png)
+
+
+**Schema di flusso**
+
+Dopo aver progettato le due intefacce prinicipli abbiamo pensato di creare uno schema di flusso dell'applicazione.
+Sapevamo più o meno come procedere e come impostare il nostro progetto, ma abbbiamo comunque voluto mettere le nostre idee su "carta".
+
+![Progettazzione int2](../Documenti/Progettazione/Schema_Flusso/SchemaFlusso.png)
+
+In quest'immagine s si può vedere la struttura schematizzata della nostra applicazione. 
+
+1. Il Leap Motion, tramite la sua liberia dedicata, passa i dati al computer e il nostro programma li legge, e li interpreta.
+2. Dopo avere ottenuto i dati grezzi, il programma gli eleabora, converte dati come l'inclinazione della mano o la velocità della stessa, in istruzioni che il drone può interpretare.
+3. Come terzo passaggio i dati vengono inviati tramite socket al drone, un socket UDP.
+4. Una volta inviati i droni vengono elaborati dall'SDK presente sul chip nel drone.
+5. Quando e mentre i dati vengono elaboarti dal drone, ersso risponde con dei messaggi di conferma. Ma non solo. Infatti il drone invia anche dati sulla sua batteria, sulla sua posizione [x,y,z], ma anche dati sulla sua inclinazione. Questi dati vengono interpreatati dal nostro programma e elaborati. Questo ci permette, per esempio, di far funzionare la rappresentazione grafica del drone. 
 
 ### Design dell’architettura del sistema
 
