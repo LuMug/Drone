@@ -18,9 +18,13 @@
 
   - [Pianificazione](#pianificazione)
 
-3. [Progettazione](#progettazione)
+3. [Progettazione](##Progettazione)
+  - [Design delle interfacce](###design-delle-interfacce)
+  - - [Interfaccia principale](####Interfaccia-principale)
+  - - [Design dell’architettura del sistema](#design-dell’architettura-del-sistema)
+  - - [Interfaccia vista drone](####Interfaccia-vista-drone)
 
-  - [Design dell’architettura del sistema](#design-dell’architettura-del-sistema)
+
 
   - [Design dei dati e database](#design-dei-dati-e-database)
 
@@ -156,14 +160,14 @@ Per la pianificazione alleghiamo il Gantt preventivo da noi stabilito:
 
 ### Design delle interfacce
 
-####Interfaccia principale
+###Interfaccia principale
 La prima interfaccia che abbiamo definito è stata quella generale, ovvero il pannello che l'utente avrebbe visto una volta avviata l'applicazione.
 ![Progettazione int1](../Documenti/Progettazione/Design_Interfacce/DesingHome.png)
 Come vedremo dopo, benché la struttura sia rimasta essenzialmente quella, quest'interfaccia ha subito alcune modifiche nel contenuto.
 Questo è accaduto poiché procedendo con il progetto sono cambiate alcune idee e priorità.
 
 
-####Interfaccia vista drone
+####[Interfaccia vista drone(####Interfaccia-vista-drone)
 
 Un’altra interfaccia importante da progettare era quella della vista del drone. Quest'ultima è molto semplice, ed è rimasta essenzialmente la stessa, ma è stato importante pensare come rappresentare i dati che ci venivano richiesti, ovvero la rappresentazione grafica del drone. Inizialmente abbiamo pensato a delle foto ferme, con delle frecce che indicassero i movimenti. Tuttavia ci siamo accorti che creare uno schizzo del drone e muovere quello era molto più.
 
@@ -171,8 +175,6 @@ Un’altra interfaccia importante da progettare era quella della vista del drone
 
 ### Design procedurale
 
-
-####Schema di flusso
 
 Dopo aver progettato le due interfacce principali abbiamo pensato di creare uno schema di flusso dell'applicazione.
 Sapevamo più o meno come procedere e come impostare il nostro progetto, ma abbiamo comunque voluto mettere le nostre idee su "carta".
@@ -190,6 +192,8 @@ In quest'immagine s si può vedere la struttura schematizzata della nostra appli
 ### Design dell’architettura del sistema
 
 ***<Inseriere diagramma delle classi>***
+
+Per il nostro progetto abbiamo deciso di procedere in maniera modulare. Infatti il progetto finale è una combinazione di più
 
 
 ## Implementazione

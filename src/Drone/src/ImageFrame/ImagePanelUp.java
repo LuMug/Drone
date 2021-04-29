@@ -47,7 +47,6 @@ public class ImagePanelUp extends ImageModel {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, getWidth(), getHeight());
         g.setColor(Color.BLACK);
-        g.drawLine(0, ImageFrame.DEF_H / 2, ImageFrame.DEF_W, ImageFrame.DEF_H);
 
         panelH = getHeight();
         panelW = getWidth();

@@ -46,7 +46,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="vistaDrone">
       <Properties>
-        <Property name="text" type="java.lang.String" value="VISTA DRONE"/>
+        <Property name="label" type="java.lang.String" value="VISUALIZZA LIVE"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="vistaDroneActionPerformed"/>

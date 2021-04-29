@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  * Frame principale dell'intero package Questo frame si occupa di contenre i 4
@@ -14,7 +15,7 @@ import javax.swing.JFrame;
  * @author Michea Colautti
  * @version 04.04.21
  */
-public class ImageFrame extends JFrame implements Runnable {
+public class ImageFrame extends JPanel implements Runnable {
 
     
     /**
@@ -113,7 +114,6 @@ public class ImageFrame extends JFrame implements Runnable {
         setMaximumSize(new Dimension(DEF_W, DEF_H));
         GridLayout ImageFrameLayout = new GridLayout(2, 2);
         setLayout(ImageFrameLayout);
-        setResizable(false);
         imagePanelFront = new ImagePanelFront();
         imagePanelLat = new ImagePanelLat();
         imagePanelUp = new ImagePanelUp();
@@ -122,7 +122,6 @@ public class ImageFrame extends JFrame implements Runnable {
         add(imagePanelUp);
         add(imagePanelFront);
         add(imagePanelAlt);
-        pack();
 
     }
 

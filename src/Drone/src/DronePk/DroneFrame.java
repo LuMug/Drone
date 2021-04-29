@@ -22,6 +22,8 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
         this.setFocusable(true);
         this.addMouseListener(this);
         this.requestFocus();
+        add(imageFrame1);
+        
     }
 
     /**
@@ -31,6 +33,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        imageFrame1 = new ImageFrame.ImageFrame();
         comandiPanel1 = new DronePk.ComandiPanel();
         funzionePanel1 = new DronePk.FunzionePanel();
 
@@ -156,5 +159,6 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private DronePk.ComandiPanel comandiPanel1;
     private DronePk.FunzionePanel funzionePanel1;
+    private ImageFrame.ImageFrame imageFrame1;
     // End of variables declaration//GEN-END:variables
 }
