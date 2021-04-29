@@ -5,6 +5,7 @@ import javax.swing.text.DefaultCaret;
 
 /**
  * Panel che contiene gli ultimi comandi eseguiti.
+ *
  * @author Alessandro Aloise
  * @version 28.01.2021
  */
@@ -36,6 +37,7 @@ public class ComandiPanel extends javax.swing.JPanel {
 
     /**
      * Serve ad aggiornare comandi Panel.
+     *
      * @param command da scrivere
      */
     public void refreshCommands(String command) {
@@ -75,12 +77,15 @@ public class ComandiPanel extends javax.swing.JPanel {
 
     /**
      * Richiamato quando un tasto viene premuto e rilasciato.
+     *
      * @param e variabile contenente le info dell'evento.
      */
     public void keyTypedC(KeyEvent e) {
     }
-/**
+
+    /**
      * Richiamato quando un tasto viene premuto.
+     *
      * @param e variabile contenente le info dell'evento.
      */
     public void keyPressedC(KeyEvent e) {
@@ -149,6 +154,7 @@ public class ComandiPanel extends javax.swing.JPanel {
 
     /**
      * Richiamato quando un tasto viene rilasciato.
+     *
      * @param e variabile contenente le info dell'evento.
      */
     public void keyReleasedC(KeyEvent e) {
@@ -157,6 +163,7 @@ public class ComandiPanel extends javax.swing.JPanel {
 
     /**
      * Serve a impostare un drone.
+     *
      * @param drone da impostare
      */
     public void setDrone(Drone drone) {
@@ -165,6 +172,7 @@ public class ComandiPanel extends javax.swing.JPanel {
 
     /**
      * Serve a ritornare il drone impostato.
+     *
      * @return drone impostato
      */
     public Drone getDrone() {
@@ -172,8 +180,9 @@ public class ComandiPanel extends javax.swing.JPanel {
     }
 
     /**
-     * Metodo utile ad inviare i comandi da tastiera al drone, limitandoli a
-     * 1 ogni 125 millisecondi.
+     * Metodo utile ad inviare i comandi da tastiera al drone, limitandoli a 1
+     * ogni 125 millisecondi.
+     *
      * @param command da inviare
      */
     public void sendKeyboardCommand(String command) {

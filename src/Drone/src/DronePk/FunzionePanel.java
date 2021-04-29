@@ -4,6 +4,7 @@ import ImageFrame.ImageFrame;
 
 /**
  * Panel che si occupa dei bottoni.
+ *
  * @author Alessandro Aloise
  * @version 28.01.2021
  */
@@ -31,6 +32,7 @@ public class FunzionePanel extends javax.swing.JPanel {
 
     /**
      * Metodo che si occupa di impostare il Leap Motion.
+     *
      * @param lm da impostare.
      */
     public void setLM(LeapMotionProject lm) {
@@ -39,6 +41,7 @@ public class FunzionePanel extends javax.swing.JPanel {
 
     /**
      * Metodo che si occupa di impostare il comandi panel.
+     *
      * @param comandiPanel da impostare.
      */
     public void setComandiPanel(ComandiPanel comandiPanel) {
@@ -117,6 +120,7 @@ public class FunzionePanel extends javax.swing.JPanel {
 
     /**
      * Richiamato quando viene premuto il pulsante associato.
+     *
      * @param evt variabile contenente le info dell'evento
      */
     private void vistaDroneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaDroneActionPerformed
@@ -128,6 +132,7 @@ public class FunzionePanel extends javax.swing.JPanel {
 
     /**
      * Richiamato quando viene premuto il pulsante associato.
+     *
      * @param evt variabile contenente le info dell'evento
      */
     private void decollaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decollaActionPerformed
@@ -136,6 +141,7 @@ public class FunzionePanel extends javax.swing.JPanel {
 
     /**
      * Richiamato quando viene premuto il pulsante associato.
+     *
      * @param evt variabile contenente le info dell'evento
      */
     private void atterraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atterraActionPerformed
@@ -144,6 +150,7 @@ public class FunzionePanel extends javax.swing.JPanel {
 
     /**
      * Richiamato quando viene premuto il pulsante associato.
+     *
      * @param evt variabile contenente le info dell'evento
      */
     private void sequenzaTastiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sequenzaTastiActionPerformed
@@ -152,6 +159,7 @@ public class FunzionePanel extends javax.swing.JPanel {
 
     /**
      * Ritorna il testo scritto nel textbox.
+     *
      * @return testo
      */
     public String getSeqNameExecute() {
@@ -165,6 +173,7 @@ public class FunzionePanel extends javax.swing.JPanel {
 
     /**
      * Ritorna il testo scritto nel textbox.
+     *
      * @return testo
      */
     public String getSeqNameSave() {
@@ -175,7 +184,7 @@ public class FunzionePanel extends javax.swing.JPanel {
             return text;
         }
     }
-    
+
     /**
      * Metodo che si occupa di scrivere la percenutale della batteria.
      */
@@ -190,6 +199,7 @@ public class FunzionePanel extends javax.swing.JPanel {
 
     /**
      * Metodo utile ad aggiornare il comandiPanel.
+     *
      * @param command da stampare
      */
     public void refreshCommandsF(String command) {
@@ -198,12 +208,13 @@ public class FunzionePanel extends javax.swing.JPanel {
 
     /**
      * Metodo utile a ritornare il drone impostato.
+     *
      * @return drone impostato
      */
     public Drone getDrone() {
         return this.drone;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton atterra;
     private javax.swing.JLabel batteriaL;

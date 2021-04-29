@@ -10,6 +10,7 @@ import java.net.UnknownHostException;
 
 /**
  * La classe Drone rappresenta il modello astratto di un drone.
+ *
  * @author Gianni Grasso
  * @version 28.01.2021
  */
@@ -19,7 +20,7 @@ public class Drone extends Thread {
      * Costante Ip del drone.
      */
     private String ip = "192.168.10.1";
-    
+
     /**
      * Porta per il Socket.
      */
@@ -29,7 +30,7 @@ public class Drone extends Thread {
      * Nuova istanza di status.
      */
     private Status status = new Status();
-    
+
     /**
      * Nuova istanza di log.
      */
@@ -112,6 +113,7 @@ public class Drone extends Thread {
 
     /**
      * Getter dell'ip del drone.
+     *
      * @return l'ip attuale del drone
      */
     public String getIpDrone() {
@@ -120,6 +122,7 @@ public class Drone extends Thread {
 
     /**
      * Setter dell'ip del drone.
+     *
      * @param ipDrone il nuovo ip del drone
      */
     public void setIpDrone(String ipDrone) {
@@ -128,6 +131,7 @@ public class Drone extends Thread {
 
     /**
      * Getter della porta del drone.
+     *
      * @return la porta attuale del drone
      */
     public int getPorta() {
@@ -136,6 +140,7 @@ public class Drone extends Thread {
 
     /**
      * Setter della porta del drone.
+     *
      * @param porta la nuova porta del drone
      */
     public void setPorta(int porta) {
@@ -144,6 +149,7 @@ public class Drone extends Thread {
 
     /**
      * Metodo costruttore personalizzato con 1 parametro.
+     *
      * @param jp Il frame in cui avviene la comunicazione.
      */
     public Drone(FunzionePanel jp) {
@@ -163,6 +169,7 @@ public class Drone extends Thread {
 
     /**
      * Metodo che ritorna il messaggio ricevuto.
+     *
      * @return Il messaggio ricevuto.
      */
     public String getMessageReceived() {
@@ -209,6 +216,7 @@ public class Drone extends Thread {
 
     /**
      * Imposta le informazioni di destinazione.
+     *
      * @param ip L'indirizzo ip.
      * @param port La porta.
      * @param message Il messaggio.
@@ -235,6 +243,7 @@ public class Drone extends Thread {
 
     /**
      * Metodo che invia i comandi al drone.
+     *
      * @param message da inviare
      */
     public void invioMessaggio(String message) {
@@ -265,7 +274,7 @@ public class Drone extends Thread {
 
     /**
      * Metodo che si occupa di far atterare il drone.
-     */ 
+     */
     public void atterra() {
         String message = "land";
         invioMessaggio(message);
@@ -274,7 +283,7 @@ public class Drone extends Thread {
 
     /**
      * Metodo che si occupa di sbloccare SKD del drone.
-     */ 
+     */
     public void command() {
         String message = "command";
         invioMessaggio(message);
@@ -284,14 +293,16 @@ public class Drone extends Thread {
 
     /**
      * Metodo che si occupa di ritornare il valore della batteria.
-     * @return Il valore della batteria. 
+     *
+     * @return Il valore della batteria.
      */
     public String batteria() {
         return status.getbatteria();
     }
 
     /**
-     * Metodo che si occupa di impostare il Comandi Panel. 
+     * Metodo che si occupa di impostare il Comandi Panel.
+     *
      * @param comandiPanel Istanza di comandi Panel.
      */
     public void setComandiPanel(ComandiPanel comandiPanel) {
@@ -300,6 +311,7 @@ public class Drone extends Thread {
 
     /**
      * Metodo che si occupa dell'aggiornamento del comandi panel.
+     *
      * @param message da stampare
      */
     public void refreshCommandsD(String message) {

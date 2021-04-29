@@ -113,6 +113,7 @@ public class LivePanel extends javax.swing.JPanel implements Runnable {
 
     /**
      * Metodo che ritorna se la stream e' accesa o meno.
+     *
      * @return se la stream e' accesa o meno.
      */
     public boolean isStreamOn() {
@@ -121,6 +122,7 @@ public class LivePanel extends javax.swing.JPanel implements Runnable {
 
     /**
      * Serve ad impostare lo stato della live.
+     *
      * @param streamOn accendere o spegnere la live
      */
     public void setStreamOn(boolean streamOn) {

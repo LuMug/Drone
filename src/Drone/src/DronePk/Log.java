@@ -9,25 +9,26 @@ import java.util.Locale;
 
 /**
  * Classe che si occupa di log.
+ *
  * @author Alessandro Aloise
  * @version 11.03.2021
  */
 public class Log {
 
     /**
-     * Variabile per scrivere sul file. 
-     */ 
+     * Variabile per scrivere sul file.
+     */
     public static FileWriter fw;
-    
+
     /**
      * Variabile per creare il file.
      */
     public static File file;
 
     /**
-     * Metodo che si occupa di creare il file di log.
-     *  File di log nome file: Log_data.text
-     */ 
+     * Metodo che si occupa di creare il file di log. File di log nome file:
+     * Log_data.text
+     */
     public void creazioneFile() {
         try {
             Date data = new Date();
@@ -44,8 +45,9 @@ public class Log {
 
     /**
      * Metodo che si ocucpa di scrivere dentro il file.
+     *
      * @param testo da scrivere
-     */ 
+     */
     public void scritturaFile(String testo) {
         try {
             fw.write(testo + '\n');
@@ -58,7 +60,7 @@ public class Log {
 
     /**
      * Metodo che si occupa di chiudere il file dopo averci scritto.
-     */ 
+     */
     public void chiusuraFile() {
         try {
             fw.close();

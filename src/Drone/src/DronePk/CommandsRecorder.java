@@ -27,23 +27,26 @@ public class CommandsRecorder {
 
     /**
      * Metodo che si occupa di registrare la sequenza di comandi.
-     * 
+     *
      * @param fileName Il nome del file.
      */
     public CommandsRecorder(String fileName) {
         file = Paths.get(root + "/" + fileName + ".txt");
         try {
             Files.write(file, "".getBytes());
-        } catch (IOException e) {}
+        } catch (IOException e) {
+        }
     }
 
     /**
      * Metodo che si occuopa di scrivere la sequenza.
+     *
      * @param sequence sequenza da scrivere nel file.
      */
     public void sequenceWriter(String sequence) {
         try {
             Files.write(file, ((sequence + "\r\n")).getBytes(), StandardOpenOption.APPEND);
-        } catch (IOException e) {}
+        } catch (IOException e) {
+        }
     }
 }

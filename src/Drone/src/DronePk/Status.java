@@ -13,6 +13,7 @@ import java.util.StringTokenizer;
 
 /**
  * Classe che si occupa di scrivere un file di log.
+ *
  * @version 11.03.2021
  * @author Alessandro Aloise
  */
@@ -27,133 +28,130 @@ public class Status extends Thread {
      * Contiene il valore della posizione del drone.
      */
     public String pitch = "";
-    
+
     /**
      * Contiene il valore della posizione del drone.
      */
     public String roll = "";
-    
+
     /**
      * Contiene il valore della posizione del drone.
      */
     public String yaw = "";
-   
+
     /**
      * Velocità asse X.
      */
     public String spX = "";
-    
+
     /**
      * Velocità asse Y.
      */
     public String spY = "";
-    
+
     /**
      * Velocità asse Z.
      */
     public String spZ = "";
-    
+
     /**
      * Temperatura minima in F non formattata..
      */
     public String templ = "";
-    
+
     /**
      * Temperatura minima in F°.
      */
     public double temMinF;
-    
-   /**
+
+    /**
      * Temperatura minima in C°.
      */
     public double temMinC;
-    
+
     /**
      * Temperatura massima in F non formattata..
      */
     public String temph = "";
-    
+
     /**
      * Temperatura massimo in F.
      */
     public double temMaxF;
-   
+
     /**
      * Temperatura massima in C°.
-     */ 
+     */
     public double temMaxC;
-    
+
     /**
      * Tempo di volo in cm.
-     */ 
+     */
     public String tof = "";
-    
+
     /**
      * Altezza a qui si trova il dorne.
-     */ 
+     */
     public String altezza = "";
-    
+
     /**
      * Batteria del drone
      */
     public String bat = "";
-   
+
     /**
      * Pressione barometrica.
      */
     public String baro = "";
-    
+
     /**
      * Tempo di volo rimanente in min.
      */
     public String time = "";
-    
+
     /**
      * Accelerazione sull'asse X.
      */
     public String agx = "";
-    
-   /**
+
+    /**
      * Accelerazione sull'asse Y.
      */
     public String agy = "";
-    
+
     /**
      * Accelerazione sull'asse Z.
      */
     public String agz = "";
-    
+
     /**
      * Porta del drone.
      */
     public int port;
-   
+
     /**
      * Ip del drone.
      */
     public String ip;
-    
-    
+
     /**
      * Data formatter.
      */
     DateFormat dateFormat;
-    
+
     /**
      * Variabile per prendere la data.
-     */ 
+     */
     Date data = new Date();
-    
-    
+
     /**
      * Creazione di una nuova istanza di Image Frame.
-     */ 
-    ImageFrame view=new ImageFrame();
+     */
+    ImageFrame view = new ImageFrame();
 
-    
     /**
      * Metodo run della thread.
-     */ 
+     */
     public void run() {
         dateFormat = DateFormat.getDateInstance(DateFormat.LONG, Locale.ITALY);
         log.creazioneFile();
@@ -185,7 +183,7 @@ public class Status extends Thread {
                 temMaxF = Integer.parseInt(temph.substring(6));
                 temMaxC = (temMaxF - 32) * 0.5;
                 tof = st.nextToken();
-                altezza = st.nextToken().substring(2);                 
+                altezza = st.nextToken().substring(2);
                 bat = st.nextToken().substring(4);
                 baro = st.nextToken().substring(5);
                 time = st.nextToken().substring(5);
@@ -220,9 +218,9 @@ public class Status extends Thread {
                 }
             }
         } catch (SocketException ex) {
-            System.out.println("Error:"+ ex);
+            System.out.println("Error:" + ex);
         } catch (IOException | InterruptedException ex) {
-            System.out.println("Error:"+ ex);
+            System.out.println("Error:" + ex);
         }
     }
 
@@ -232,7 +230,7 @@ public class Status extends Thread {
     public String getbatteria() {
         return bat;
     }
-    
+
     /**
      * Metodo che si occupa di scrivere la IP nel file.
      */

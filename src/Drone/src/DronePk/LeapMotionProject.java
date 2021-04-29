@@ -36,6 +36,7 @@ public class LeapMotionProject extends Listener {
 
     /**
      * Costruttore personalizzato.
+     *
      * @param drone da impostare
      * @param funzionePanel da impostare
      */
@@ -47,6 +48,7 @@ public class LeapMotionProject extends Listener {
 
     /**
      * Metodo richiamato ogni volta che il leap motion registra un nuovo dato.
+     *
      * @param controller che gestisce il leap motion
      */
     public void onFrame(Controller controller) {
@@ -134,7 +136,6 @@ public class LeapMotionProject extends Listener {
                 && betweenExcluded(roll, -0.40, 0.40)
                 && betweenExcluded(yaw, -0.35, 0.15)
                 && betweenExcluded(highCommand, 175, 225)) {
-
             command = "rc 0 0 0 0";
             sendMessage(command);
         } else {
@@ -199,6 +200,7 @@ public class LeapMotionProject extends Listener {
 
     /**
      * Metodo utile ad inviare i comandi al drone.
+     *
      * @param command da inviare.
      */
     public void sendMessage(String command) {
@@ -225,6 +227,7 @@ public class LeapMotionProject extends Listener {
 
     /**
      * Converte il valore di un range in un valore di un altro range.
+     *
      * @param value da mappare nel primo range
      * @param r1Min valore minimo del primo range
      * @param r1Max valore massimo del primo range
@@ -237,7 +240,9 @@ public class LeapMotionProject extends Listener {
     }
 
     /**
-     * Ritorna se il valore passato e' all'interno del range, minimo e massimo escluso.
+     * Ritorna se il valore passato e' all'interno del range, minimo e massimo
+     * escluso.
+     *
      * @param value da controllare
      * @param min da controllare
      * @param max da controllare

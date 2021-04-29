@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 
 /**
  * Frame che si occupa di contenere il panel dell'aplicazione.
+ *
  * @author Alessandro Aloise
  * @version 28.01.2021
  */
@@ -81,7 +82,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
     public void keyReleased(KeyEvent e) {
         comandiPanel1.keyReleasedC(e);
     }
-    
+
     @Override
     public boolean isFocusTraversable() {
         return true;
