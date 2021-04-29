@@ -1,5 +1,6 @@
 package DronePk;
 
+import ImageFrame.ImageFrame;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -14,6 +15,12 @@ import java.awt.event.MouseListener;
 public class DroneFrame extends javax.swing.JFrame implements KeyListener, MouseListener {
 
     /**
+     * Contiene il frame delle statistiche.
+     */
+    private ImageFrame vista;
+
+    
+    /**
      * Il costruttore della applicazione.
      */
     public DroneFrame() {
@@ -22,7 +29,13 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
         this.setFocusable(true);
         this.addMouseListener(this);
         this.requestFocus();
-        add(imageFrame1);
+        vista=new ImageFrame();
+        add(vista);
+        vista.setVisible(true);
+        vista.imgTh = true;
+        Thread vistaThread = new Thread(vista);
+        System.out.println("ndjendjn");
+        vistaThread.start();
         
     }
 
@@ -33,7 +46,6 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        imageFrame1 = new ImageFrame.ImageFrame();
         comandiPanel1 = new DronePk.ComandiPanel();
         funzionePanel1 = new DronePk.FunzionePanel();
 
@@ -159,6 +171,5 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private DronePk.ComandiPanel comandiPanel1;
     private DronePk.FunzionePanel funzionePanel1;
-    private ImageFrame.ImageFrame imageFrame1;
     // End of variables declaration//GEN-END:variables
 }

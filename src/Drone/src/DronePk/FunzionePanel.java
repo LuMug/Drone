@@ -21,11 +21,6 @@ public class FunzionePanel extends javax.swing.JPanel {
     private LeapMotionProject lm;
 
     /**
-     * Contiene il frame delle statistiche.
-     */
-    private ImageFrame vista = new ImageFrame();
-
-    /**
      * Contiene la classe per far eseguire la sequenza.
      */
     private CommandSequenceRunner csr;
@@ -119,10 +114,7 @@ public class FunzionePanel extends javax.swing.JPanel {
      * @param evt variabile contenente le info dell'evento
      */
     private void vistaDroneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaDroneActionPerformed
-        vista.setVisible(true);
-        vista.imgTh = true;
-        Thread vistaThread = new Thread(vista);
-        vistaThread.start();
+        
     }//GEN-LAST:event_vistaDroneActionPerformed
 
     /**
