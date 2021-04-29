@@ -19,38 +19,27 @@ import javax.swing.JTextField;
  */
 public class ImagePanelAlt extends ImageModel {
 
-    /**
-     * L'immagine contenete la freccia verso l'alto.
-     */
-    public BufferedImage up;
-
-    /**
-     * L'immagine contenete la freccia verso il basso.
-     */
-    public BufferedImage down;
 
     /**
      * Label contenente l'altitudine e l'unità di misura.
      */
     public JLabel alt;
+    
+     /**
+     * Label contenente lèetichetta dell'altezza.
+     */
+    public JLabel mis;
 
     /**
      * Valore contenente l'altitudine.
      */
-    private int altitude = 0;
+    private double altitude = 0;
 
     /**
      * Costruttore della classe. Permette di istanziare le due immagini e
      * richiama 'initComponents'.
      */
     public ImagePanelAlt() {
-        try {
-            up = ImageIO.read(new File("src/ImageFrame/bin/Frecce/Up.png"));
-            down = ImageIO.read(new File("src/ImageFrame/bin/Frecce/Down.png"));
-
-        } catch (IOException ex) {
-            System.out.println("Errore");
-        }
         initComponents();
 
     }
@@ -62,13 +51,18 @@ public class ImagePanelAlt extends ImageModel {
      */
     private void initComponents() {
 
-        GridLayout ImageFrameLayout = new GridLayout(0, 3);
+        GridLayout ImageFrameLayout = new GridLayout(0, 2);
         setLayout(ImageFrameLayout);
-        Font font1 = new Font("SansSerif", Font.BOLD, 25);
+        Font font1 = new Font("SansSerif", Font.BOLD, 40);
+        mis = new JLabel();
+        mis.setFont(font1);
+        mis.setHorizontalAlignment(JTextField.LEFT);
+        add(mis);
         alt = new JLabel(altitude + "");
         alt.setFont(font1);
         alt.setHorizontalAlignment(JTextField.CENTER);
         add(alt);
+        
 
     }
 
@@ -92,12 +86,8 @@ public class ImagePanelAlt extends ImageModel {
 
         int x = 0, y = 0;
 
-        up = resize(up, panelW, panelH);
-        down = resize(down, panelW, panelH);
-        x = (this.getWidth() - up.getWidth(null)) / 2;
-        y = (this.getHeight() - down.getHeight(null)) / 2;
-        g.drawImage(up, x, y, this);
-        g.drawImage(down, x + panelW, y, this);
+        mis.setText("    H: ");
+
         String text = altitude + " cm" + '\n'
                 + altitude / 100 + " m" + "\n"
                 + +altitude * 3.281 + " ft";

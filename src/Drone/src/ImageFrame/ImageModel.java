@@ -125,13 +125,14 @@ public class ImageModel extends JPanel {
      * @param g è il parametro di default per la grafica.
      */
     public void paintComponent(Graphics g) {
+        g.drawLine(0, ImageFrame.DEF_H/2, ImageFrame.DEF_W, ImageFrame.DEF_H);
+        g.drawLine(200,250,700,500);
 
         panelH = getHeight();
         panelW = getWidth();
         g.clearRect(0, 0, panelW, panelH);
-        g.setColor(Color.BLACK);
-        g.drawRect(0, 0, getWidth(), getHeight());
-
+        g.setColor(Color.black);
+        
         int x, y = 0;
 
         image = resize(imageBig, panelW - 75, panelH - 75);

@@ -7,9 +7,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * Pannello numero 2 del frame principale. 
- * Questo pannello si occupa di gestire la visione superiore del drone. 
- * NB: ho usato un approccio diverso rispetto ai
+ * Pannello numero 2 del frame principale. Questo pannello si occupa di gestire
+ * la visione superiore del drone. NB: ho usato un approccio diverso rispetto ai
  * due pannelli 'ImagePanelLat' e 'ImagePanelFront', poichè il drone, visto
  * dalla prospettiva rappresentata tramite quest'immagine, si comporta in modo
  * diverso rispetto ai casi precedenti. Quidndi cambia anche il modo in cui
@@ -44,10 +43,11 @@ public class ImagePanelUp extends ImageModel {
      * 360 gradi.
      */
     public void paintComponent(Graphics g) {
+
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, getWidth(), getHeight());
         g.setColor(Color.BLACK);
-        g.drawRect(0, 0, getWidth(), getHeight());
+        g.drawLine(0, ImageFrame.DEF_H / 2, ImageFrame.DEF_W, ImageFrame.DEF_H);
 
         panelH = getHeight();
         panelW = getWidth();

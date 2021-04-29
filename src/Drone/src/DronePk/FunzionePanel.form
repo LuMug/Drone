@@ -44,11 +44,6 @@
         <Property name="text" type="java.lang.String" value="EXAMPLE"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="Statistiche">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="STATISTICHE"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="vistaDrone">
       <Properties>
         <Property name="text" type="java.lang.String" value="VISTA DRONE"/>

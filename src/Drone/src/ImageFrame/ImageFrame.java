@@ -1,4 +1,4 @@
-package ImageFrame;
+    package ImageFrame;
 
 import DronePk.Drone;
 import java.awt.Dimension;
@@ -66,6 +66,19 @@ public class ImageFrame extends JFrame implements Runnable {
      * Flag per la vista del drone.
      */
     public boolean imgTh = false;
+    
+    
+    /**
+     * Largehzza predefinita del Frame.
+     */
+    protected static final int DEF_W=700;
+    
+    
+    /**
+     * Altezza predefinita del Frame.
+     */
+    protected static final int DEF_H=500;
+
 
     /**
      * Metodo costruttore.
@@ -96,8 +109,8 @@ public class ImageFrame extends JFrame implements Runnable {
      */
     private void initComponents() {
 
-        setMinimumSize(new Dimension(700, 500));
-        setMaximumSize(new Dimension(700, 500));
+        setMinimumSize(new Dimension(DEF_W, DEF_H));
+        setMaximumSize(new Dimension(DEF_W, DEF_H));
         GridLayout ImageFrameLayout = new GridLayout(2, 2);
         setLayout(ImageFrameLayout);
         setResizable(false);

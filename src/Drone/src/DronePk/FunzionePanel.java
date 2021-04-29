@@ -57,7 +57,6 @@ public class FunzionePanel extends javax.swing.JPanel {
         seqNameSave = new javax.swing.JTextField();
         sequenzaTasti = new javax.swing.JButton();
         seqNameExecute = new javax.swing.JTextField();
-        Statistiche = new javax.swing.JButton();
         vistaDrone = new javax.swing.JButton();
         decolla = new javax.swing.JButton();
         atterra = new javax.swing.JButton();
@@ -82,9 +81,6 @@ public class FunzionePanel extends javax.swing.JPanel {
 
         seqNameExecute.setText("EXAMPLE");
         add(seqNameExecute);
-
-        Statistiche.setText("STATISTICHE");
-        add(Statistiche);
 
         vistaDrone.setText("VISTA DRONE");
         vistaDrone.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +161,6 @@ public class FunzionePanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Statistiche;
     private javax.swing.JButton atterra;
     private javax.swing.JLabel batteriaL;
     private javax.swing.JLabel batteriaText;
