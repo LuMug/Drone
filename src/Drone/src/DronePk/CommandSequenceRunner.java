@@ -12,7 +12,7 @@ import java.util.List;
  * @author Samuele Ganci
  * @version 25 febbraio 2021
  */
-public class CommandSequenceRunner {
+public class CommandSequenceRunner extends Thread {
 
     /**
      * Costante per il percorso del file.
@@ -43,15 +43,17 @@ public class CommandSequenceRunner {
     /**
      * Metodo che si occupa di ripetere la sequenza.
      */
-    public void sequenceRepeater() {
+    public void run() {
         try {
             if (Files.exists(file)) {
                 List<String> lines = Files.readAllLines(file);
                 for (String line : lines) {
                     drone.invioMessaggio(line);
+                    Thread.sleep(125);
                 }
             }
         } catch (IOException ex) {
+        } catch (InterruptedException ex) {
         }
     }
 }

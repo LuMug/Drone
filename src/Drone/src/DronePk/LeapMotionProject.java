@@ -20,11 +20,6 @@ public class LeapMotionProject extends Listener {
     private CommandsRecorder cr;
 
     /**
-     * Contiene la classe per far eseguire la sequenza.
-     */
-    private CommandSequenceRunner csr;
-
-    /**
      * Contiene il pannello funzioni panel.
      */
     private FunzionePanel funzionePanel;
@@ -215,14 +210,6 @@ public class LeapMotionProject extends Listener {
         } catch (InterruptedException ie) {
             System.out.println(ie);
         }
-    }
-
-    /**
-     * Serve ad eseguire la sequenza registrata.
-     */
-    public void runSequence() {
-        csr = new CommandSequenceRunner(funzionePanel.getSeqNameExecute(), drone);
-        csr.sequenceRepeater();
     }
 
     /**

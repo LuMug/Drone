@@ -52,22 +52,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="vistaDroneActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="decolla">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="DECOLLA"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="decollaActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="atterra">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="ATTERA"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="atterraActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="batteriaText">
       <Properties>
         <Property name="text" type="java.lang.String" value="Batteria"/>

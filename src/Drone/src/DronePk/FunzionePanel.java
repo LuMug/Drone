@@ -20,7 +20,20 @@ public class FunzionePanel extends javax.swing.JPanel {
      */
     private LeapMotionProject lm;
 
-    ImageFrame vista = new ImageFrame();
+    /**
+     * Contiene il frame delle statistiche.
+     */
+    private ImageFrame vista = new ImageFrame();
+
+    /**
+     * Contiene la classe per far eseguire la sequenza.
+     */
+    private CommandSequenceRunner csr;
+    
+    /**
+     * Definisce se e' avviata una sequenza o meno.
+     */
+    private boolean started = false;
 
     /**
      * Creates new form FunzionePanel.
@@ -63,8 +76,6 @@ public class FunzionePanel extends javax.swing.JPanel {
         sequenzaTasti = new javax.swing.JButton();
         seqNameExecute = new javax.swing.JTextField();
         vistaDrone = new javax.swing.JButton();
-        decolla = new javax.swing.JButton();
-        atterra = new javax.swing.JButton();
         batteriaText = new javax.swing.JLabel();
         batteriaL = new javax.swing.JLabel();
 
@@ -95,22 +106,6 @@ public class FunzionePanel extends javax.swing.JPanel {
         });
         add(vistaDrone);
 
-        decolla.setText("DECOLLA");
-        decolla.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                decollaActionPerformed(evt);
-            }
-        });
-        add(decolla);
-
-        atterra.setText("ATTERA");
-        atterra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                atterraActionPerformed(evt);
-            }
-        });
-        add(atterra);
-
         batteriaText.setText("Batteria");
         add(batteriaText);
 
@@ -135,26 +130,12 @@ public class FunzionePanel extends javax.swing.JPanel {
      *
      * @param evt variabile contenente le info dell'evento
      */
-    private void decollaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decollaActionPerformed
-        drone.decolla();
-    }//GEN-LAST:event_decollaActionPerformed
-
-    /**
-     * Richiamato quando viene premuto il pulsante associato.
-     *
-     * @param evt variabile contenente le info dell'evento
-     */
-    private void atterraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atterraActionPerformed
-        drone.atterra();
-    }//GEN-LAST:event_atterraActionPerformed
-
-    /**
-     * Richiamato quando viene premuto il pulsante associato.
-     *
-     * @param evt variabile contenente le info dell'evento
-     */
     private void sequenzaTastiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sequenzaTastiActionPerformed
-        lm.runSequence();
+        if (!started) {
+            csr = new CommandSequenceRunner(getSeqNameExecute(), drone);
+            csr.start();
+            started = true;
+        }
     }//GEN-LAST:event_sequenzaTastiActionPerformed
 
     /**
@@ -191,7 +172,11 @@ public class FunzionePanel extends javax.swing.JPanel {
     private void caricamento() {
         try {
             Thread.sleep(2000);
-            batteriaL.setText(drone.batteria() + "%");
+            if(drone.batteria().isBlank()) {
+                batteriaL.setText("0%");
+            }else{
+                batteriaL.setText(drone.batteria() + "%");
+            }
         } catch (InterruptedException e) {
             System.out.println(e);
         }
@@ -216,10 +201,8 @@ public class FunzionePanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton atterra;
     private javax.swing.JLabel batteriaL;
     private javax.swing.JLabel batteriaText;
-    private javax.swing.JButton decolla;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField seqNameExecute;
     private javax.swing.JTextField seqNameSave;
