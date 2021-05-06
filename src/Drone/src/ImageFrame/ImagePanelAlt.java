@@ -76,10 +76,12 @@ public class ImagePanelAlt extends ImageModel {
         panelW = getWidth();
 
         g.clearRect(0, 0, panelW, panelH);
-
+        
         if (panelW > panelH) {
             panelW = panelH;
-            panelW /= 2;
+            
+        }else{
+            panelH=panelW;
         }
 
         int x = 0, y = 0;

@@ -1,5 +1,6 @@
 package ImageFrame;
 
+import DronePk.DroneFrame;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -55,6 +56,7 @@ public class ImageModel extends JPanel {
      */
     public static final int MAXDEG = 40;
 
+    
     
     /**
      * Costruttore vuoto, ogni casse figlia avrà il suo 
@@ -125,14 +127,13 @@ public class ImageModel extends JPanel {
      * @param g è il parametro di default per la grafica.
      */
     public void paintComponent(Graphics g) {
-        g.drawLine(0, ImageFrame.DEF_H/2, ImageFrame.DEF_W, ImageFrame.DEF_H);
-        g.drawLine(200,250,700,500);
-
         panelH = getHeight();
         panelW = getWidth();
-        g.clearRect(0, 0, panelW, panelH);
+
+
+        g.clearRect(0, 0, panelW, panelH);      
+        panelH=(int) (panelW/1.5);
         g.setColor(Color.black);
-        
         int x, y = 0;
 
         image = resize(imageBig, panelW - 75, panelH - 75);

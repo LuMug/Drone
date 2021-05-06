@@ -68,17 +68,6 @@ public class ImageFrame extends JPanel implements Runnable {
      */
     public boolean imgTh = false;
     
-    
-    /**
-     * Largehzza predefinita del Frame.
-     */
-    protected static final int DEF_W=700;
-    
-    
-    /**
-     * Altezza predefinita del Frame.
-     */
-    protected static final int DEF_H=500;
 
 
     /**
@@ -110,8 +99,6 @@ public class ImageFrame extends JPanel implements Runnable {
      */
     private void initComponents() {
 
-        setMinimumSize(new Dimension(DEF_W, DEF_H));
-        setMaximumSize(new Dimension(DEF_W, DEF_H));
         GridLayout ImageFrameLayout = new GridLayout(2, 2);
         setLayout(ImageFrameLayout);
         imagePanelFront = new ImagePanelFront();
@@ -124,6 +111,8 @@ public class ImageFrame extends JPanel implements Runnable {
         add(imagePanelAlt);
 
     }
+    
+
 
     /**
      * Setter dell'altitudine, richiamato da DronePk.Status

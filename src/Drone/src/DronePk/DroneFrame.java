@@ -1,10 +1,15 @@
 package DronePk;
 
 import ImageFrame.ImageFrame;
+import java.awt.Dimension;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 /**
  * Frame che si occupa di contenere il panel dell'aplicazione.
@@ -12,14 +17,13 @@ import java.awt.event.MouseListener;
  * @author Alessandro Aloise
  * @version 28.01.2021
  */
-public class DroneFrame extends javax.swing.JFrame implements KeyListener, MouseListener {
+public class DroneFrame extends javax.swing.JFrame implements KeyListener, MouseListener, ComponentListener {
 
     /**
      * Contiene il frame delle statistiche.
      */
     private ImageFrame vista;
 
-    
     /**
      * Il costruttore della applicazione.
      */
@@ -29,13 +33,15 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
         this.setFocusable(true);
         this.addMouseListener(this);
         this.requestFocus();
-        vista=new ImageFrame();
+        vista = new ImageFrame();
         add(vista);
         vista.setVisible(true);
         vista.imgTh = true;
         Thread vistaThread = new Thread(vista);
         vistaThread.start();
-        
+        this.setMinimumSize(new Dimension(800, 400));
+        getContentPane().addComponentListener(this);
+
     }
 
     /**
@@ -72,9 +78,9 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
         });
     }
 
-    
     /**
      * Ritorna il funzioni panel impostato.
+     *
      * @return funzioni panel impostato.
      */
     public FunzionePanel getFunzionePanel() {
@@ -83,6 +89,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
 
     /**
      * Ritorna il comandi panel impostato.
+     *
      * @return comandi panel impostato.
      */
     public ComandiPanel getComandiPanel() {
@@ -91,6 +98,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
 
     /**
      * Richiamato quando un pulsante viene premuto e rilasciato.
+     *
      * @param e variabile contenente le info dell'evento
      */
     @Override
@@ -100,6 +108,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
 
     /**
      * Richiamato quando un pulsante viene premuto.
+     *
      * @param e variabile contenente le info dell'evento
      */
     @Override
@@ -109,6 +118,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
 
     /**
      * Richiamato quando un pulsante viene rilasciato.
+     *
      * @param e variabile contenente le info dell'evento
      */
     @Override
@@ -118,6 +128,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
 
     /**
      * Serve a settare il focus sul frame.
+     *
      * @return cio' che si ha settato
      */
     @Override
@@ -127,6 +138,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
 
     /**
      * Richiamato quando un tasto del mouse viene premuto e rilasciato.
+     *
      * @param e variabile contenente le info dell'evento
      */
     @Override
@@ -137,6 +149,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
 
     /**
      * Richiamato quando un tasto del mouse viene premuto.
+     *
      * @param e variabile contenente le info dell'evento
      */
     @Override
@@ -145,6 +158,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
 
     /**
      * Richiamato quando un tasto del mouse viene rilasciato.
+     *
      * @param e variabile contenente le info dell'evento
      */
     @Override
@@ -153,7 +167,8 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
 
     /**
      * Richiamato quando il mouse entra nel frame.
-     * @param e variabile contenente le info dell'evento 
+     *
+     * @param e variabile contenente le info dell'evento
      */
     @Override
     public void mouseEntered(MouseEvent e) {
@@ -161,14 +176,34 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
 
     /**
      * Richiamato quando il mouse esce dal frame
+     *
      * @param e variabile contenente le info dell'evento
      */
     @Override
     public void mouseExited(MouseEvent e) {
     }
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private DronePk.ComandiPanel comandiPanel1;
     private DronePk.FunzionePanel funzionePanel1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void componentResized(ComponentEvent e) {
+        if(getWidth()<800 && getHeight()<500){
+            this.setResizable(false);
+           
+        }else{
+            this.setResizable(true);
+        }
+    }
+
+    @Override
+    public void componentMoved(ComponentEvent e) {}
+    @Override
+    public void componentShown(ComponentEvent e) {}
+    @Override
+    public void componentHidden(ComponentEvent e) {}
+
 }

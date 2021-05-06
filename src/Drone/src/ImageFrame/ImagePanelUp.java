@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 /**
@@ -50,12 +52,19 @@ public class ImagePanelUp extends ImageModel {
 
         panelH = getHeight();
         panelW = getWidth();
+        if (panelW > panelH) {
+            panelW = panelH;
 
-        image = resize(imageBig, panelW - 175, panelH - 75);
+        } else {
+            panelH = panelW;
+        }
+
+        image = resize(imageBig, panelW - 85, panelH - 85);
         int x = (this.getWidth() - image.getWidth()) / 2;
         int y = (this.getHeight() - image.getHeight()) / 2;
+
         rotatedImage = rotate(image, deg);
-        g.drawImage(rotatedImage, x, y - 25, this);
+        g.drawImage(rotatedImage, x - 20, y - 25, this);
 
     }
 }
