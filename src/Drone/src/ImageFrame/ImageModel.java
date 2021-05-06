@@ -10,11 +10,10 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 /**
- * Modello di un immagine. 
- * Questa classe rappresente il modello di base per
- * mostrare un immagine in Java, contiene anche il metodi per la rotazione
- * e il ridimensionamento.
- * 
+ * Modello di un immagine. Questa classe rappresente il modello di base per
+ * mostrare un immagine in Java, contiene anche il metodi per la rotazione e il
+ * ridimensionamento.
+ *
  * @author Michea Colautti
  * @version 04.04.21
  */
@@ -45,7 +44,6 @@ public class ImageModel extends JPanel {
      */
     public int panelW;
 
-    
     /**
      * I gradi di rotazione delle immagini.
      */
@@ -56,18 +54,15 @@ public class ImageModel extends JPanel {
      */
     public static final int MAXDEG = 40;
 
-    
-    
     /**
-     * Costruttore vuoto, ogni casse figlia avrà il suo 
-     * personalizzato. 
+     * Costruttore vuoto, ogni casse figlia avrà il suo personalizzato.
      */
     public ImageModel() {
     }
 
-    
     /**
      * Questo metodo mi peremtte di ridimensionare una BufferdImage.
+     *
      * @param img è l'immagine che va ridimensionata.
      * @param newW è la nuova larghezza dell'immagine.
      * @param newH è la nuova altezza dell'immagine.
@@ -88,9 +83,9 @@ public class ImageModel extends JPanel {
         return dimg;
     }
 
-    
     /**
      * Questo metodo mi permette di ruotare una BuffeerdImage.
+     *
      * @param img è l'immagine da ruotare.
      * @param angle è l'angolo di rotazione.
      * @return l'immagine ruotata.
@@ -121,18 +116,27 @@ public class ImageModel extends JPanel {
     }
 
     /**
-     * Metodo per disegnare le componenti sul frame.
-     * Si adatta sia per 'ImagePanelFront' che per 'ImagePanelLat'.
-     * Permette quindi di ridimensionare le immagini e di ruotarle.
+     * Metodo per disegnare le componenti sul frame. Si adatta sia per
+     * 'ImagePanelFront' che per 'ImagePanelLat'. Permette quindi di
+     * ridimensionare le immagini e di ruotarle.
+     *
      * @param g è il parametro di default per la grafica.
      */
     public void paintComponent(Graphics g) {
         panelH = getHeight();
         panelW = getWidth();
 
+        g.clearRect(0, 0, panelW, panelH);
+        if (panelW > panelH) {
+            panelW = panelH;
+            panelW = (int) (panelH * 1.5);
 
-        g.clearRect(0, 0, panelW, panelH);      
-        panelH=(int) (panelW/1.5);
+        } else {
+            panelH = panelW-75;
+            panelH = (int) (panelW / 1.5);
+
+        }
+
         g.setColor(Color.black);
         int x, y = 0;
 

@@ -1,16 +1,12 @@
     package ImageFrame;
 
 import DronePk.Drone;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
  * Frame principale dell'intero package Questo frame si occupa di contenre i 4
- * frame con le info del drone.
+ * panel con le info del drone.
  *
  * @author Michea Colautti
  * @version 04.04.21
