@@ -42,8 +42,8 @@ public class FunzionePanel extends javax.swing.JPanel {
      */
     public FunzionePanel() {
         initComponents();
-        drone = new Drone(this);
         browser = new Browser();
+        drone = new Drone(this);
     }
 
     /**
@@ -101,7 +101,12 @@ public class FunzionePanel extends javax.swing.JPanel {
         seqNameExecute.setText("EXAMPLE");
         add(seqNameExecute);
 
-        vistaDrone.setText("VISTA DRONE");
+        vistaDrone.setLabel("VISUALIZZA LIVE");
+        vistaDrone.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                vistaDroneMouseClicked(evt);
+            }
+        });
         vistaDrone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vistaDroneActionPerformed(evt);
@@ -122,7 +127,7 @@ public class FunzionePanel extends javax.swing.JPanel {
      * @param evt variabile contenente le info dell'evento
      */
     private void vistaDroneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaDroneActionPerformed
-        browser.openBrowser();
+      
     }//GEN-LAST:event_vistaDroneActionPerformed
 
     /**
@@ -137,6 +142,10 @@ public class FunzionePanel extends javax.swing.JPanel {
             started = true;
         }
     }//GEN-LAST:event_sequenzaTastiActionPerformed
+
+    private void vistaDroneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vistaDroneMouseClicked
+        browser.openBrowser();
+    }//GEN-LAST:event_vistaDroneMouseClicked
 
     /**
      * Ritorna il testo scritto nel textbox.
@@ -172,11 +181,7 @@ public class FunzionePanel extends javax.swing.JPanel {
     private void caricamento() {
         try {
             Thread.sleep(200);
-            if (drone.batteria().isBlank()) {
-                batteriaL.setText("0%");
-            } else {
                 batteriaL.setText(drone.batteria() + "%");
-            }
         } catch (InterruptedException ex) {
             Logger.getLogger(FunzionePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
