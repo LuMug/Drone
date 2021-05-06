@@ -284,8 +284,6 @@ public class Drone extends Thread {
     public void command() {
         String message = "command";
         invioMessaggio(message);
-        String liveMessage = "streamon";
-        invioMessaggio(liveMessage);
     }
 
     /**
