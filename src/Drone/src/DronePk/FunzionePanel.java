@@ -18,6 +18,11 @@ public class FunzionePanel extends javax.swing.JPanel {
     private Drone drone;
 
     /**
+     * Istanziamento dell'oggetto drone.
+     */
+    private Browser browser;
+
+    /**
      * Istanza del leap motion.
      */
     private LeapMotionProject lm;
@@ -26,7 +31,7 @@ public class FunzionePanel extends javax.swing.JPanel {
      * Contiene la classe per far eseguire la sequenza.
      */
     private CommandSequenceRunner csr;
-    
+
     /**
      * Definisce se e' avviata una sequenza o meno.
      */
@@ -38,6 +43,7 @@ public class FunzionePanel extends javax.swing.JPanel {
     public FunzionePanel() {
         initComponents();
         drone = new Drone(this);
+        browser = new Browser();
     }
 
     /**
@@ -116,7 +122,7 @@ public class FunzionePanel extends javax.swing.JPanel {
      * @param evt variabile contenente le info dell'evento
      */
     private void vistaDroneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaDroneActionPerformed
-        
+        browser.openBrowser();
     }//GEN-LAST:event_vistaDroneActionPerformed
 
     /**
@@ -166,12 +172,12 @@ public class FunzionePanel extends javax.swing.JPanel {
     private void caricamento() {
         try {
             Thread.sleep(200);
-            if(drone.batteria().isBlank()) {
+            if (drone.batteria().isBlank()) {
                 batteriaL.setText("0%");
-            }else{
+            } else {
                 batteriaL.setText(drone.batteria() + "%");
             }
-                } catch (InterruptedException ex) {
+        } catch (InterruptedException ex) {
             Logger.getLogger(FunzionePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
