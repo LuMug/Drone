@@ -59,12 +59,12 @@ public class ImagePanelUp extends ImageModel {
             panelH = panelW;
         }
 
-        image = resize(imageBig, panelW - 85, panelH - 85);
+        image = resize(imageBig, panelW-50, panelH-50);
         int x = (this.getWidth() - image.getWidth()) / 2;
         int y = (this.getHeight() - image.getHeight()) / 2;
 
         rotatedImage = rotate(image, deg);
-        g.drawImage(rotatedImage, x - 20, y - 25, this);
+        g.drawImage(rotatedImage, x, y, this);
 
     }
 }
