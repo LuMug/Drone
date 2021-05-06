@@ -18,6 +18,11 @@ import java.awt.event.MouseListener;
 public class DroneFrame extends javax.swing.JFrame implements KeyListener, MouseListener, ComponentListener {
 
     /**
+     * Contiene il riferimento all'emergencyListener.
+     */
+    private EmergencyListener emergencyListener = new EmergencyListener();
+
+    /**
      * Contiene il frame delle statistiche.
      */
     private ImageFrame vista;
@@ -27,10 +32,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
      */
     public DroneFrame() {
         initComponents();
-        this.addKeyListener(this);
-        this.setFocusable(true);
         this.addMouseListener(this);
-        this.requestFocus();
         vista = new ImageFrame();
         add(vista);
         vista.setVisible(true);
@@ -39,7 +41,39 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
         vistaThread.start();
         this.setMinimumSize(new Dimension(800, 400));
         getContentPane().addComponentListener(this);
+        switchKeyListenerOn();
+    }
 
+    /**
+     * Serve ad aggiungere il listener da tastiera.
+     */
+    public void switchKeyListenerOn() {
+        this.requestFocus();
+        this.setFocusable(true);
+        this.addKeyListener(this);
+    }
+
+    /**
+     * Serve a rimuovere il listener per la tastiera.
+     */
+    public void switchKeyListenerOff() {
+        this.removeKeyListener(this);
+    }
+
+    /**
+     * Serve ad aggiungere il listener di emergenza.
+     */
+    public void switchEmergencyListenerOn() {
+        this.requestFocus();
+        this.setFocusable(true);
+        this.addKeyListener(emergencyListener);
+    }
+
+    /**
+     * Serve a rimuovere il listener di emergenza.
+     */
+    public void switchEmergencyListenerOff() {
+        this.removeKeyListener(emergencyListener);
     }
 
     /**
@@ -58,23 +92,6 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                DroneFrame df = new DroneFrame();
-                df.setVisible(true);
-                df.getFunzionePanel().setComandiPanel(df.getComandiPanel());
-                Drone drone = df.getFunzionePanel().getDrone();
-                df.getComandiPanel().setDrone(drone);
-                df.setSize(800, 600);
-                df.setFocusable(true);
-            }
-        });
-    }
 
     /**
      * Ritorna il funzioni panel impostato.
@@ -181,30 +198,79 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
     public void mouseExited(MouseEvent e) {
     }
 
+    /**
+     * Richiamato quando il componente viene ridimensionato.
+     *
+     * @param e variabile contenente le info dell'evento
+     */
+    @Override
+    public void componentResized(ComponentEvent e) {
+        if (getWidth() < 800) {
+            this.setSize(800, getHeight());
+        }
+        if (getHeight() < 500) {
+            this.setSize(getWidth(), 500);
+        }
+    }
+
+    /**
+     * Richiamato quando il componente viene mosso.
+     *
+     * @param e variabile di sistema contenente le informazioni dell'evento
+     */
+    @Override
+    public void componentMoved(ComponentEvent e) {
+    }
+
+    /**
+     * Richiamato quando il componente viene mostrato.
+     *
+     * @param e variabile di sistema contenente le informazioni dell'evento
+     */
+    @Override
+    public void componentShown(ComponentEvent e) {
+    }
+
+    /**
+     * Richiamato quando il componente viene nascosto.
+     *
+     * @param e variabile di sistema contenente le informazioni dell'evento
+     */
+    @Override
+    public void componentHidden(ComponentEvent e) {
+    }
+
+    /**
+     * Serve a ritornare il listener impostato.
+     *
+     * @return listener imopostato
+     */
+    public EmergencyListener getEmergencyListener() {
+        return emergencyListener;
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                DroneFrame df = new DroneFrame();
+                df.setVisible(true);
+                df.getFunzionePanel().setComandiPanel(df.getComandiPanel());
+                Drone drone = df.getFunzionePanel().getDrone();
+                df.getEmergencyListener().setDrone(drone);
+                df.getComandiPanel().setDrone(drone);
+                df.getComandiPanel().setFunzionePanel(df.getFunzionePanel());
+                df.getComandiPanel().setDroneFrame(df);
+                df.setSize(800, 600);
+                df.setFocusable(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private DronePk.ComandiPanel comandiPanel1;
     private DronePk.FunzionePanel funzionePanel1;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void componentResized(ComponentEvent e) {
-
-        if(getWidth()<800){
-            this.setSize(800, getHeight());
-           
-        }
-        if(getHeight()<500){
-            this.setSize(getWidth(), 500);
-           
-        }
-    }
-
-    @Override
-    public void componentMoved(ComponentEvent e) {}
-    @Override
-    public void componentShown(ComponentEvent e) {}
-    @Override
-    public void componentHidden(ComponentEvent e) {}
-
 }

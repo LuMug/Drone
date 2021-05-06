@@ -28,12 +28,12 @@
     </Component>
     <Component class="javax.swing.JTextField" name="seqNameSave">
       <Properties>
-        <Property name="text" type="java.lang.String" value="EXAMPLE"/>
+        <Property name="text" type="java.lang.String" value="Example"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="sequenzaTasti">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ESEGUI SEQUENZA"/>
+        <Property name="text" type="java.lang.String" value="Esegui sequenza"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sequenzaTastiActionPerformed"/>
@@ -41,12 +41,12 @@
     </Component>
     <Component class="javax.swing.JTextField" name="seqNameExecute">
       <Properties>
-        <Property name="text" type="java.lang.String" value="EXAMPLE"/>
+        <Property name="text" type="java.lang.String" value="Example"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="vistaDrone">
       <Properties>
-        <Property name="label" type="java.lang.String" value="VISUALIZZA LIVE"/>
+        <Property name="text" type="java.lang.String" value="Visualizza live"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="vistaDroneMouseClicked"/>
@@ -60,7 +60,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="batteriaL">
       <Properties>
-        <Property name="text" type="java.lang.String" value="          "/>
+        <Property name="text" type="java.lang.String" value="0%"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="speedText">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Velocit&#xe0; tastiera"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="speedL">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="50%"/>
       </Properties>
     </Component>
   </SubComponents>

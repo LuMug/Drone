@@ -1,6 +1,8 @@
 package DronePk;
 
+import com.leapmotion.leap.Controller;
 import java.awt.event.KeyEvent;
+import javax.swing.JRadioButton;
 import javax.swing.text.DefaultCaret;
 
 /**
@@ -10,6 +12,26 @@ import javax.swing.text.DefaultCaret;
  * @version 28.01.2021
  */
 public class ComandiPanel extends javax.swing.JPanel {
+
+    /**
+     * Contiene l'istanza di funzioni panel.
+     */
+    private FunzionePanel funzionePanel;
+
+    /**
+     * Contiene l'istanza del leap motion.
+     */
+    private LeapMotionProject leapListener;
+
+    /**
+     * Contiene l'stanza del controller per il leapMotion.
+     */
+    private Controller leapController;
+
+    /**
+     * Contiene l'stanza del droneFrame
+     */
+    private DroneFrame droneFrame;
 
     /**
      * Contiene l'istanza del drone.
@@ -51,9 +73,16 @@ public class ComandiPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         commandsText = new javax.swing.JTextArea();
+        jPanel1 = new javax.swing.JPanel();
+        keyboardButton = new javax.swing.JRadioButton();
+        leapmotionButton = new javax.swing.JRadioButton();
+
+        buttonGroup.add(keyboardButton);
+        buttonGroup.add(leapmotionButton);
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new java.awt.BorderLayout());
@@ -73,7 +102,52 @@ public class ComandiPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(commandsText);
 
         add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        keyboardButton.setSelected(true);
+        keyboardButton.setText("Tastiera");
+        keyboardButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                keyboardButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(keyboardButton);
+
+        leapmotionButton.setText("Leap Motion");
+        leapmotionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                leapmotionButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(leapmotionButton);
+
+        add(jPanel1, java.awt.BorderLayout.PAGE_END);
     }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     * Richiamato quando viene cliccato il pulsante.
+     *
+     * @param evt variabile contenente le informazioni dell'evento
+     */
+    private void keyboardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keyboardButtonActionPerformed
+        leapController.removeListener(leapListener);
+        leapListener.delete();
+        leapController.delete();
+        droneFrame.switchEmergencyListenerOff();
+        droneFrame.switchKeyListenerOn();
+    }//GEN-LAST:event_keyboardButtonActionPerformed
+
+    /**
+     * Richiamato quando viene cliccato il pulsante.
+     *
+     * @param evt variabile contenente le informazioni dell'evento
+     */
+    private void leapmotionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leapmotionButtonActionPerformed
+        droneFrame.switchKeyListenerOff();
+        droneFrame.switchEmergencyListenerOn();
+        leapController = new Controller();
+        leapListener = new LeapMotionProject(drone, funzionePanel);
+        leapController.addListener(leapListener);
+    }//GEN-LAST:event_leapmotionButtonActionPerformed
 
     /**
      * Richiamato quando un tasto viene premuto e rilasciato.
@@ -119,17 +193,13 @@ public class ComandiPanel extends javax.swing.JPanel {
         if (e.getExtendedKeyCode() == 78) {
             if (speed > 10) {
                 speed -= 10;
-                commandsText.append("SPEED DEPRECATED TO: " + speed + "\n");
-            } else {
-                commandsText.append("CAN'T DEPRECATE MORE\n");
+                funzionePanel.writeSpeed(speed);
             }
         }
         if (e.getExtendedKeyCode() == 77) {
             if (speed < 100) {
                 speed += 10;
-                commandsText.append("SPEED INCREMENTED TO: " + speed + "\n");
-            } else {
-                commandsText.append("CAN'T INCREMENT MORE\n");
+                funzionePanel.writeSpeed(speed);
             }
         }
         if (e.getExtendedKeyCode() == 84) {
@@ -149,6 +219,9 @@ public class ComandiPanel extends javax.swing.JPanel {
         }
         if (e.getExtendedKeyCode() == 75) {
             sendKeyboardCommand("flip r");
+        }
+        if (e.getExtendedKeyCode() == 10) {
+            drone.invioMessaggio("emergency");
         }
     }
 
@@ -192,9 +265,49 @@ public class ComandiPanel extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Ritorna il riferimento del JRadioButton.
+     *
+     * @return radio button della tastiera
+     */
+    public JRadioButton getKeyboardButton() {
+        return keyboardButton;
+    }
+
+    /**
+     * Ritorna il riferimento del JRadioButton.
+     *
+     * @return radio button del leap motion
+     */
+    public JRadioButton getLeapmotionButton() {
+        return leapmotionButton;
+    }
+
+    /**
+     * Serve ad impostare il droneFrame.
+     *
+     * @param droneFrame da impostare
+     */
+    public void setDroneFrame(DroneFrame droneFrame) {
+        this.droneFrame = droneFrame;
+    }
+
+    /**
+     * Serve ad impostare il funzione panel.
+     *
+     * @param funzionePanel da impostare
+     */
+    public void setFunzionePanel(FunzionePanel funzionePanel) {
+        this.funzionePanel = funzionePanel;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup;
     private javax.swing.JTextArea commandsText;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton keyboardButton;
+    private javax.swing.JRadioButton leapmotionButton;
     // End of variables declaration//GEN-END:variables
 }

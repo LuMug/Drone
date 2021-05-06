@@ -92,11 +92,6 @@ public class Drone extends Thread {
     private String messageReceived = new String();
 
     /**
-     * Istanza del frame.
-     */
-    private FunzionePanel messageListener;
-
-    /**
      * Stringa per ottenere il comando da ImageFrame.
      */
     private String istru;
@@ -149,17 +144,14 @@ public class Drone extends Thread {
 
     /**
      * Metodo costruttore personalizzato con 1 parametro.
-     *
-     * @param jp Il frame in cui avviene la comunicazione.
      */
-    public Drone(FunzionePanel jp) {
+    public Drone() {
         try {
             socket = new DatagramSocket();
         } catch (SocketException ex) {
-
+            System.out.println("ERRORE: " + ex.getMessage());
         }
         port = socket.getLocalPort();
-        messageListener = jp;
         status.start();
         setUp();
     }
@@ -177,9 +169,8 @@ public class Drone extends Thread {
      * Metodo che viene chiamato dalle thread e serve per ricevere i messaggi.
      */
     public void run() {
-        LeapMotionProject leapListener = new LeapMotionProject(this, messageListener);
-        Controller leapController = new Controller();
-        leapController.addListener(leapListener);
+        LeapMotionProject leapListener = null;
+        Controller leapController = null;
         try {
             while (true) {
                 DatagramPacket packet = new DatagramPacket(sendBuf, sendBuf.length);
@@ -189,10 +180,8 @@ public class Drone extends Thread {
             }
         } catch (SocketException ex) {
             System.out.println("ERRORE: " + ex.getMessage());
-            leapController.removeListener(leapListener);
         } catch (IOException ex) {
             System.out.println("ERRORE: " + ex.getMessage());
-            leapController.removeListener(leapListener);
         }
     }
 
@@ -226,9 +215,8 @@ public class Drone extends Thread {
             }
             messageToSend = message;
         } catch (UnknownHostException | NullPointerException ex) {
-            System.err.println("ERRORE: IP inserito non valido!");
+            System.out.println("ERRORE: " + ex.getMessage());
         }
-
     }
 
     /**
