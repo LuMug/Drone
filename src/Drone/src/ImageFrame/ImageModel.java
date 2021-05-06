@@ -127,15 +127,11 @@ public class ImageModel extends JPanel {
         panelW = getWidth();
 
         g.clearRect(0, 0, panelW, panelH);
-        if (panelW > panelH) {
-            panelW = panelH;
-            panelW = (int) (panelH * 1.5);
+ 
+        panelH = (int)(panelW/1.5);
 
-        } else {
-            panelH = panelW-75;
-            panelH = (int) (panelW / 1.5);
 
-        }
+        
 
         g.setColor(Color.black);
         int x, y = 0;
