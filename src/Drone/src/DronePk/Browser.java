@@ -17,7 +17,12 @@ public class Browser {
     public void script() throws IOException {
         String os= System.getProperty("os.name").toLowerCase();
         if (os.contains("os")) {
-            System.out.println("mac");
+             
+          
+            
+            ProcessBuilder builder = new ProcessBuilder();
+            builder.command("sh","-c","./RunLiveMac.sh");
+            Process process=builder.start();
         } else {
             String path = "cmd /c start RunLiveWin.bat";
             Runtime rn = Runtime.getRuntime();
