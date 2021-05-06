@@ -1,6 +1,7 @@
 package DronePk;
 
 import ImageFrame.ImageFrame;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -144,7 +145,12 @@ public class FunzionePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_sequenzaTastiActionPerformed
 
     private void vistaDroneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vistaDroneMouseClicked
-        browser.openBrowser();
+        try {
+            browser.script();
+            browser.openBrowser();
+        } catch (IOException ex) {
+            Logger.getLogger(FunzionePanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_vistaDroneMouseClicked
 
     /**
@@ -180,7 +186,7 @@ public class FunzionePanel extends javax.swing.JPanel {
      */
     private void caricamento() {
         try {
-            Thread.sleep(200);
+            Thread.sleep(300);
                 batteriaL.setText(drone.batteria() + "%");
         } catch (InterruptedException ex) {
             Logger.getLogger(FunzionePanel.class.getName()).log(Level.SEVERE, null, ex);
