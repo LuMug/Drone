@@ -1,3 +1,3 @@
-cd tello-live-Nodsj
+cd tello-live-Nodejs
 node index.js
 
