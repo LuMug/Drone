@@ -8,8 +8,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 /**
  * Frame che si occupa di contenere il panel dell'aplicazione.
@@ -191,11 +189,14 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
 
     @Override
     public void componentResized(ComponentEvent e) {
-        if(getWidth()<800 && getHeight()<500){
-            this.setResizable(false);
+
+        if(getWidth()<800){
+            this.setSize(800, getHeight());
            
-        }else{
-            this.setResizable(true);
+        }
+        if(getHeight()<500){
+            this.setSize(getWidth(), 500);
+           
         }
     }
 
