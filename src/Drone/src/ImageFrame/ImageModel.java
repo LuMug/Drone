@@ -4,6 +4,7 @@ import DronePk.DroneFrame;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
@@ -113,6 +114,24 @@ public class ImageModel extends JPanel {
         g2d.drawImage(img, 0, 0, this);
         g2d.dispose();
         return rotated;
+    }
+
+    /**
+     * Metodo utile per convertire un immagine di tipo Image in
+     * una BufferedImage.
+     * @param img l'immagine di tipo Image
+     * @return l'immagine di tipo BufferedImage
+     */
+    public static BufferedImage toBufferedImage(Image img) {
+        if (img instanceof BufferedImage) {
+            return (BufferedImage) img;
+        }
+        BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D bGr = bimage.createGraphics();
+        bGr.drawImage(img, 0, 0, null);
+        bGr.dispose();
+        return bimage;
     }
 
     /**

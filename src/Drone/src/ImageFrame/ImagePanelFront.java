@@ -1,8 +1,10 @@
 package ImageFrame;
 
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
 
 /**
  * Pannello numero 1 del frame principale Questo pannello si occupa di gestire
@@ -11,26 +13,27 @@ import javax.imageio.ImageIO;
  * @author Michea Colautti
  * @version 04.04.21
  */
-public class ImagePanelFront extends ImageModel{
+public class ImagePanelFront extends ImageModel {
 
-    
     /**
      * Costruttore della classe. Permette di istanziare l'immagine.
-    */
+     */
     public ImagePanelFront() {
-        try {
-            imageBig = ImageIO.read(new File("bin/DroneFrontale.png"));
-
-        } catch (IOException ex) {
-            System.out.println("Errore");
-        }
+        //aggiunto riferimento a bin in class path e path di libreria
+        ImageIcon icon;
+        icon = new ImageIcon(getClass().getClassLoader().getResource("DroneFrontale.png"));
+        Image image = icon.getImage();
+        imageBig=toBufferedImage(image);
     }
 
+
+
     /**
-     * Metodo per il movimento dell'immagine.
-     * Aggiorna il valore dell'inclinazione, verificando che i valori
-     * registrati dal drone non superino l'inclinazione massima permessa 
-     * dalla costante ImageModel.MAXDEG.
+     * Metodo per il movimento dell'immagine. Aggiorna il valore
+     * dell'inclinazione, verificando che i valori registrati dal drone non
+     * superino l'inclinazione massima permessa dalla costante
+     * ImageModel.MAXDEG.
+     *
      * @param rotate è l'inclinazione in gradi.
      */
     public void moving(int rotate) {
@@ -38,13 +41,13 @@ public class ImagePanelFront extends ImageModel{
         if (rotate < 0) {
 
             if (rotate >= -MAXDEG) {
-                rotDeg=-rotate;
+                rotDeg = -rotate;
                 validate();
                 repaint();
             }
-        }else {
+        } else {
             if (rotate <= MAXDEG) {
-                rotDeg=-1*rotate;
+                rotDeg = -1 * rotate;
                 validate();
                 repaint();
             }

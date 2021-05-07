@@ -2,9 +2,11 @@ package ImageFrame;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  * Pannello numero 2 del frame principale. Questo pannello si occupa di gestire
@@ -23,17 +25,18 @@ public class ImagePanelUp extends ImageModel {
      * I gradi di rotazione dell'immagine.
      */
     public int deg;
+    
+    private ImageIcon icon;
 
     /**
      * Costruttore della classe. Permette di istanziare l'immagine.
      */
     public ImagePanelUp() {
-        try {
-            imageBig = ImageIO.read(new File("bin/DroneSuperiore.png"));
-
-        } catch (IOException ex) {
-            System.out.println("Errore");
-        }
+        //aggiunto riferimento a bin in class path e path di libreria
+        ImageIcon icon;
+        icon = new ImageIcon(getClass().getClassLoader().getResource("DroneSuperiore.png"));
+        Image image = icon.getImage();
+        imageBig=toBufferedImage(image);
     }
 
     @Override
@@ -58,12 +61,13 @@ public class ImagePanelUp extends ImageModel {
         }
 
         if (imageBig != null) {
-            image = resize(imageBig, panelW - 50, panelH - 50);
+            image = resize(imageBig, panelW - 75, panelH - 75);
             int x = (this.getWidth() - image.getWidth()) / 2;
             int y = (this.getHeight() - image.getHeight()) / 2;
 
             rotatedImage = rotate(image, deg);
             g.drawImage(rotatedImage, x, y, this);
+            
         }
 
     }

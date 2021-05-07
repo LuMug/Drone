@@ -1,8 +1,11 @@
 package ImageFrame;
 
+import static ImageFrame.ImageModel.toBufferedImage;
+import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  * Pannello numero 3 del frame principale. 
@@ -17,12 +20,11 @@ public class ImagePanelLat extends ImageModel {
      * Costruttore della classe. Permette di istanziare l'immagine.
      */
     public ImagePanelLat() {
-        try {
-            imageBig = ImageIO.read(new File("bin/DroneLaterale.png"));
-
-        } catch (IOException ex) {
-            System.out.println("Errore");
-        }
+        //aggiunto riferimento a bin in class path e path di libreria
+        ImageIcon icon;
+        icon = new ImageIcon(getClass().getClassLoader().getResource("DroneLaterale.png"));
+        Image image = icon.getImage();
+        imageBig=toBufferedImage(image);
     }
 
     /**
