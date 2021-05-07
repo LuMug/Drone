@@ -127,24 +127,24 @@ public class ImageModel extends JPanel {
         panelW = getWidth();
 
         g.clearRect(0, 0, panelW, panelH);
- 
-        panelH = (int)(panelW/1.5);
 
-
-        
+        panelH = (int) (panelW / 1.5);
 
         g.setColor(Color.black);
         int x, y = 0;
 
-        image = resize(imageBig, panelW - 75, panelH - 75);
-        x = (this.getWidth() - image.getWidth()) / 2;
-        y = (this.getHeight() - image.getHeight()) / 2;
+        if (imageBig != null) {
+            image = resize(imageBig, panelW - 75, panelH - 75);
 
-        image = rotate(image, rotDeg);
-        if (rotDeg > 0) {
-            g.drawImage(image, x, y - rotDeg, this);
-        } else {
-            g.drawImage(image, x, y + rotDeg, this);
+            x = (this.getWidth() - image.getWidth()) / 2;
+            y = (this.getHeight() - image.getHeight()) / 2;
+
+            image = rotate(image, rotDeg);
+            if (rotDeg > 0) {
+                g.drawImage(image, x, y - rotDeg, this);
+            } else {
+                g.drawImage(image, x, y + rotDeg, this);
+            }
         }
 
     }

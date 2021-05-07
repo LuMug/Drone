@@ -1,6 +1,6 @@
 package DronePk;
 
-import ImageFrame.ImageFrame;
+
 import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
@@ -22,10 +22,6 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
      */
     private EmergencyListener emergencyListener = new EmergencyListener();
 
-    /**
-     * Contiene il frame delle statistiche.
-     */
-    private ImageFrame vista;
 
     /**
      * Il costruttore della applicazione.
@@ -33,12 +29,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
     public DroneFrame() {
         initComponents();
         this.addMouseListener(this);
-        vista = new ImageFrame();
-        add(vista);
-        vista.setVisible(true);
-        vista.imgTh = true;
-        Thread vistaThread = new Thread(vista);
-        vistaThread.start();
+
         this.setMinimumSize(new Dimension(800, 400));
         getContentPane().addComponentListener(this);
         switchKeyListenerOn();
@@ -83,12 +74,15 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        imageFrame1 = new ImageFrame.ImageFrame();
         comandiPanel1 = new DronePk.ComandiPanel();
         funzionePanel1 = new DronePk.FunzionePanel();
+        imageFrame2 = new ImageFrame.ImageFrame();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().add(comandiPanel1, java.awt.BorderLayout.LINE_START);
         getContentPane().add(funzionePanel1, java.awt.BorderLayout.PAGE_END);
+        getContentPane().add(imageFrame2, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -272,5 +266,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private DronePk.ComandiPanel comandiPanel1;
     private DronePk.FunzionePanel funzionePanel1;
+    private ImageFrame.ImageFrame imageFrame1;
+    private ImageFrame.ImageFrame imageFrame2;
     // End of variables declaration//GEN-END:variables
 }
