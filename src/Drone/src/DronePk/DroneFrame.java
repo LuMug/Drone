@@ -77,12 +77,12 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
         imageFrame1 = new ImageFrame.ImageFrame();
         comandiPanel1 = new DronePk.ComandiPanel();
         funzionePanel1 = new DronePk.FunzionePanel();
-        imageFrame2 = new ImageFrame.ImageFrame();
+        imageFrame3 = new ImageFrame.ImageFrame();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().add(comandiPanel1, java.awt.BorderLayout.LINE_START);
         getContentPane().add(funzionePanel1, java.awt.BorderLayout.PAGE_END);
-        getContentPane().add(imageFrame2, java.awt.BorderLayout.CENTER);
+        getContentPane().add(imageFrame3, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -267,6 +267,6 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
     private DronePk.ComandiPanel comandiPanel1;
     private DronePk.FunzionePanel funzionePanel1;
     private ImageFrame.ImageFrame imageFrame1;
-    private ImageFrame.ImageFrame imageFrame2;
+    private ImageFrame.ImageFrame imageFrame3;
     // End of variables declaration//GEN-END:variables
 }
