@@ -10,13 +10,13 @@
 
   - [Analisi del dominio](#analisi-del-dominio)
   
-  - [Analisi dei mezzi](#analisi-dei-mezzi)
-
   - [Analisi e specifica dei requisiti](#analisi-e-specifica-dei-requisiti)
 
   - [Use case](#use-case)
 
   - [Pianificazione](#pianificazione)
+
+  - [Analisi dei mezzi](#analisi-dei-mezzi)
 
 3. [Progettazione](##Progettazione)
   - [Design delle interfacce](###design-delle-interfacce)
@@ -54,7 +54,7 @@
 ## Introduzione
 
 ### Informazioni sul progetto
-- Allievi coinvolti nel progetto: Samuele Ganci, Alessandro Aloise, Michea Colautti, Gianni Grasso.
+- Allievi coinvolti nel progetto:  Gianni Grasso, Samuele Ganci, Alessandro Aloise, Michea Colautti.
 - Classe: I3AA, I3AC, Scuola Arti e Mestieri Trevano, sezione Informatica. 
 - Docenti responsabili: Luca Muggiasca, Geo Petrini.
 - Data inizio: 14 gennaio 2021.
@@ -73,8 +73,8 @@
 
 ### Scopo
 
-  Lo scopo del progetto, è di creare un software in grado di collegare i movimenti delle nostre mani ad un drone.
-  In pratica, grazie a un sesore chiamato `Leap Motion`, la nostra applicazione deve essere in grado di catturare e analizzare i movimenti 
+  Lo scopo del progetto è di creare un software in grado di collegare i movimenti delle nostre mani ad un drone.
+  In pratica, grazie a un sensore chiamato `Leap Motion`, la nostra applicazione deve essere in grado di catturare e analizzare i movimenti 
   delle mani e, dopo averli processati, trasmetterli al drone. Per farlo dobbiamo usare la tecnologia `UDP` (**U**ser **D**atagram **P**rotocol) e 
   l'`SDK` installata di fabbrica sul drone.
   Dobbiamo, oltre a creare il sistema di pilotaggio, instaurare una comunicazione che permetta lo scambio di dati del drone; non solo dati come l'inclinazione,       l'altitudine, ma anche dati statistici come la batteria.
@@ -198,24 +198,15 @@ Per il nostro progetto abbiamo deciso di procedere in maniera modulare. Infatti 
 
 ## Implementazione
 
-In questo capitolo dovrà essere mostrato come è stato realizzato il
-lavoro. Questa parte può differenziarsi dalla progettazione in quanto il
-risultato ottenuto non per forza può essere come era stato progettato.
+Per lo sviluppo di questo progetto il lavoro è stato suddiviso in tre principali sezioni, lo sviluppo delle classi relative al drone, ovvero la parte che concerne la comunicazione tra drone e utente, l'interfaccia principale e le diverse funzioni implementate, lo sviluppo delle classi relative al Leap Motion, ovvero la parte logica per quello che concerne la comunicazione tra drone e Leap Motion, la calibrazione dei comandi e la sensibilità dei movimenti del drone, e infine lo sviluppo delle classi  dell'Image Frame, ovvero la parte relativa alle varie interfacce contenenti le statistiche del drone e le rappresentazioni grafiche dei movimenti.
 
-Sulla base di queste informazioni il lavoro svolto dovrà essere
-riproducibile.
-
-In questa parte è richiesto l’inserimento di codice sorgente/print
-screen di maschere solamente per quei passaggi particolarmente
-significativi e/o critici.
-
-Inoltre dovranno essere descritte eventuali varianti di soluzione o
-scelte di prodotti con motivazione delle scelte.
-
-Non deve apparire nessuna forma di guida d’uso di librerie o di
-componenti utilizzati. Eventualmente questa va allegata.
-
-Per eventuali dettagli si possono inserire riferimenti ai diari.
+Per la sezione di progetto dedicata al drone sono state realizzate le seguenti classi:
+-Drone
+-CommandSequencer
+-CommandRecorder
+-Log
+-Status
+Il funzionamento della comunicazione tra drone e utenti è piuttosto semplice, il drone possiede un proprio wi-fi e di conseguenza ha un suo ip e diverse porte sulla quale connettersi, alcune delle quali servono per la ricezione e l'invio di informazioni. È stata creata un'interfaccia principale
 
 ## Test
 
