@@ -1,13 +1,10 @@
 package ImageFrame;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 
 /**
- * Pannello numero 1 del frame principale Questo pannello si occupa di gestire
+ * Pannello numero 1 del frame principale. Questo pannello si occupa di gestire
  * la visione anteriore del drone.
  *
  * @author Michea Colautti
