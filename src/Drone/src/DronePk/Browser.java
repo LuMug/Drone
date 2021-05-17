@@ -21,7 +21,7 @@ public class Browser {
           
             
             ProcessBuilder builder = new ProcessBuilder();
-            builder.command("sh","-c","./RunLiveMac.sh");
+            builder.command("sh","-c"," ./RunLiveMac.sh");
             Process process=builder.start();
         } else {
             String path = "cmd /c start RunLiveWin.bat";
