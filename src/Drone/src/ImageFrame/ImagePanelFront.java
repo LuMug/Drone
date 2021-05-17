@@ -4,7 +4,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
- * Pannello numero 1 del frame principale Questo pannello si occupa di gestire
+ * Pannello numero 1 del frame principale. Questo pannello si occupa di gestire
  * la visione anteriore del drone.
  *
  * @author Michea Colautti
