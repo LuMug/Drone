@@ -213,9 +213,38 @@ Il funzionamento della comunicazione tra drone e utenti è piuttosto semplice, i
 Per prima cosa è stata realizzata la comunicazione tra leap motion e drone, quindi la parte relativa al pannello centrale, per poter instaurare una comunicazione tra leap motion e drone è stato creato un socket grazie alla quale l'utente client invia dei pacchetti su una determinata porta del drone, questi pacchetti sono delle semplici stringhe contenenti dei comandi che vengono interpretate dal drone tramite un suo protocollo interno. Quello che succede quindi, è che il leap motion continua a passare i dati che legge al drone, spedendoli in tempo reale tramite il socket, il drone riceve quindi questi pacchetti e si muove di conseguenza.
 
 
+### Log
+
+La classe `log` è una classe molto semplice. Abbiamo deciso di implementarla dopo un po', su consiglio del docente, ma ci è stata molto utile. Log funziona solo graziea a `Status`, essa infatti crea un istanza di `Log`, per poi ottenere tutti i dati che il drone invia in un unica lunga stringa. Ma di come questa stringa viene gestita parleremo meglio in `Status`...
+Ad oogni modo, questa stringa viene formattata e inviata a `Log` nel segunete modo:
+
+```
+log.scritturaFile(finale);
+```
+`finale` è appunto la stringa formattata.
+Quello che `Log` fa, una volta invocato, è creare un file nella posizione designata, ovvero la nostra cartella log, e asseganrli come nome la data corrente. Poi una volta creato il file verrà aperto, scritto e poi richiuso.
+
+Riportiamo qui le 2 parti più interessanti, ovvero la creazione e la scrittura.
+
+***Creazione del file***
+```
+Date data = new Date();
+DateFormat dateFormat;
+dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.ITALY);
+String path = "log/Log_" + dateFormat.format(data).replace(' ', '_') + ".txt";
+file = new File(path);
+```
+
+***Scrittura del file***
+```
+fw.write(testo + '\n');
+fw.flush();
+
+```
+NB: In quest'ultima porzione di codice biosngna gestire la `IOException`.
 
 
-###ImageFrame
+### ImageFrame
 
 Per quanto riguarda invece l’implementazione della rappresentazione grafica del drone e della sua posizione sono state implementate queste classi:
 
