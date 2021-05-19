@@ -255,9 +255,78 @@ Perciò, per ragioni di sicurezza, abbiamo dovuto implementare un modo di cattur
 
 
 
+
+## Status
+Come suggerisce il nome, questa classe si occupa della gestione degli stati del drone, o meglio dei vari valori che fornisce il drone. Questa classe è una Thread, questo ci permette di avere in continuazione i dati che vengono salvati in un log, all'interno del metodo `public void run()`
+
+Nelle righe di codice sottostanti troviamo la formattazione della data e la creazione del file di log, nel caso non esista ancora.
+```java
+dateFormat = DateFormat.getDateInstance(DateFormat.LONG, Locale.ITALY);
+log.creazioneFile();
+```
+
+Nelle righe di codice sottostanti possiamo vedere come andiamo a prendere il pacchetto che riceviamo dal drone e come lo andiamo a scomporre per prendere tutti i vari dati.
+```java
+packet = new DatagramPacket(buf, buf.length, address, port);
+String received = new String(packet.getData(), 0, packet.getLength());
+socket.receive(packet);
+StringTokenizer st = new StringTokenizer(received, " ;");
+```
+Andando a analizzare un po' più approfonditamente: quello che facciamo e convertire il pacchetto che riceviamo in una stringa e poi andiamo a dividerla in base a quando troviamo il punto e virgola, in modo tale da avere tutti i vari dati singolaramente, ma non ancora del tutto puliti.
+
+Per poterli finire di pulire dobbiamo fare il seguente passaggio:
+```java
+pitch = st.nextToken().substring(6);
+roll = st.nextToken().substring(5);
+yaw = st.nextToken().substring(4);
+spX = st.nextToken().substring(4);
+spY = st.nextToken().substring(4);
+spZ = st.nextToken().substring(4);
+```
+Dato che il valore che riceviamo davanti ha ancora l'etichetta, dobbiamo pulire definitivamente con il metodo `substring()`: passando quanti caratteri vogliamo togliere rimuove i caratteri assegnati dalla parte iniziale della stringa lasciandoci i dati cosi puliti.
+
+Nel caso della temperatura abbiamo un dato in fahrenheit mentre noi la vogliamo avere in gradi C°, quindi per fare la conversione facciamo il seguente calcolo
+```java
+temMinF = Integer.parseInt(templ.substring(6));
+temMinC = (temMinF - 32) * 0.5;
+
+```
+Come prima cosa puliamo il dato e dopo di che facciamo il classico calcolo per la conversione della temperatura.
+
+Dopo di che sempre nel metodo `public void run()` abbiamo il codice che troviamo qui sotto che serve per la gestione delle immagini.
+```java
+view.setPitch(Integer.parseInt(pitch));
+view.setRoll(Integer.parseInt(roll));
+view.setYaw(Integer.parseInt(yaw));
+view.setAlt(Integer.parseInt(altezza));
+```
+Questi setter servono fornire i dati per spostare le immagini in tempo reale.
+
+Dopo di che troviamo la scrittura del log:
+```java
+String valori = " Bat:" + bat
+        + " TMax:" + temMaxC
+        + " pitch:" + pitch
+        + " roll:" + roll
+        + " yaw:" + yaw
+        + " Vx:" + spX
+        + " Vy:" + spY
+        + " Vz:" + spZ
+        + " h:" + altezza
+        + " Ax:" + agx
+        + " Ay:" + agy
+        + " Az:" + agz
+        + " TCm: " + time;
+String finale = dateFormat.format(data) + " " + ip + ":" + port + valori;
+log.scritturaFile(finale);
+```
+Queso codice formatta la stringa e agginge delle informazioni da mettere nel log e poi fa un append al log già creato in precedenza.
+
+
+
 ### Log
 
-La classe `log` è una classe molto semplice. Abbiamo deciso di implementarla dopo un po', su consiglio del docente, ma ci è stata molto utile. Log funziona solo graziea a `Status`, essa infatti crea un istanza di `Log`, per poi ottenere tutti i dati che il drone invia in un unica lunga stringa. Ma di come questa stringa viene gestita parleremo meglio in `Status`...
+La classe `log` è una classe molto semplice. Abbiamo deciso di implementarla dopo un po', su consiglio del docente, ma ci è stata molto utile. Log funziona solo grazie a a `Status`, come abbiamo detto quis sopra, essa infatti crea un istanza di `Log`, per poi ottenere tutti i dati che il drone invia in un unica lunga stringa. 
 Ad oogni modo, questa stringa viene formattata e inviata a `Log` nel segunete modo:
 
 ```
@@ -266,16 +335,7 @@ log.scritturaFile(finale);
 `finale` è appunto la stringa formattata.
 Quello che `Log` fa, una volta invocato, è creare un file nella posizione designata, ovvero la nostra cartella log, e asseganrli come nome la data corrente. Poi una volta creato il file verrà aperto, scritto e poi richiuso.
 
-Riportiamo qui le 2 parti più interessanti, ovvero la creazione e la scrittura.
-
-***Creazione del file***
-```
-Date data = new Date();
-DateFormat dateFormat;
-dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.ITALY);
-String path = "log/Log_" + dateFormat.format(data).replace(' ', '_') + ".txt";
-file = new File(path);
-```
+Siccome la creazione del file è già stata affrontata in log, riportiamo solo il metodo più interessante:
 
 ***Scrittura del file***
 ```
