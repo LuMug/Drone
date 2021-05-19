@@ -167,7 +167,7 @@ Come vedremo dopo, benché la struttura sia rimasta essenzialmente quella, quest
 Questo è accaduto poiché procedendo con il progetto sono cambiate alcune idee e priorità.
 
 
-####[Interfaccia vista drone(####Interfaccia-vista-drone)
+####[Interfaccia vista drone](####Interfaccia-vista-drone)
 
 Un’altra interfaccia importante da progettare era quella della vista del drone. Quest'ultima è molto semplice, ed è rimasta essenzialmente la stessa, ma è stato importante pensare come rappresentare i dati che ci venivano richiesti, ovvero la rappresentazione grafica del drone. Inizialmente abbiamo pensato a delle foto ferme, con delle frecce che indicassero i movimenti. Tuttavia ci siamo accorti che creare uno schizzo del drone e muovere quello era molto più.
 
@@ -201,12 +201,133 @@ Per il nostro progetto abbiamo deciso di procedere in maniera modulare. Infatti 
 Per lo sviluppo di questo progetto il lavoro è stato suddiviso in tre principali sezioni, lo sviluppo delle classi relative al drone, ovvero la parte che concerne la comunicazione tra drone e utente, l'interfaccia principale e le diverse funzioni implementate, lo sviluppo delle classi relative al Leap Motion, ovvero la parte logica per quello che concerne la comunicazione tra drone e Leap Motion, la calibrazione dei comandi e la sensibilità dei movimenti del drone, e infine lo sviluppo delle classi  dell'Image Frame, ovvero la parte relativa alle varie interfacce contenenti le statistiche del drone e le rappresentazioni grafiche dei movimenti.
 
 Per la sezione di progetto dedicata al drone sono state realizzate le seguenti classi:
--Drone
--CommandSequencer
--CommandRecorder
--Log
--Status
-Il funzionamento della comunicazione tra drone e utenti è piuttosto semplice, il drone possiede un proprio wi-fi e di conseguenza ha un suo ip e diverse porte sulla quale connettersi, alcune delle quali servono per la ricezione e l'invio di informazioni. È stata creata un'interfaccia principale
+1. Drone
+2. CommandSequencer
+3. CommandRecorder
+4. Log
+5. Status
+
+
+Il funzionamento della comunicazione tra drone e utenti è piuttosto semplice, il drone possiede un proprio wi-fi e di conseguenza ha un suo ip e diverse porte sulla quale connettersi, alcune delle quali servono per la ricezione e l'invio di informazioni. È stata creata un'interfaccia principale.
+
+
+
+###ImageFrame
+
+Per quanto riguarda invece l’implementazione della rappresentazione grafica del drone e della sua posizione sono state implementate queste classi:
+
+1.	ImageFrame
+2.	ImagePanelUp
+3.	ImagePanelLat
+4.	ImagePanelFront
+5.	ImagePanelAlt
+6.	ImageModel
+
+Come il nome suggerisce, i 4 dati principali del drone (imbardata, beccheggio, rollio e altitudine) sono rappresentati nei 4 panelli.
+
+ImageModel è invece un pannello speciale, che definisce il modello per la rappresentazione di un pannello: al suo interno sono infatti contenuti i metodi per ridimensionare le immagini, per ruotarle e per disegnarle.
+
+Per far si che i pannelli potessero utilizzare i metodi, abbiamo dovuto creare una relazione tra i pannelli e il modello stesso. Per questo i pannelli estendono la classe modello.
+
+ImageFrame, come il nome suggerisce, è nato inizialmente per essere il Frame principale. Questo però è cambiato quando abbiamo deciso di implementare la Live, che avrebbe occupato gran parte della finestra come mostrato dalla progettazione, in  NodeJs e con una pagina web. Per questo ImageFrame è diventato un panello, che ha preso il posto della Live. Abbiamo mantenuto il nome tuttavia perché era ormai molto integrato con il resto dell’app, inoltre l’aggiunta di “Frame” nel nome suggerisce che sia un contenitore, aveva quindi più senso per noi lasciare lo stesso nome. 
+
+Qui l’inizializzazione della classe ImageFrame:
+
+```java
+private void initComponents() {
+
+GridLayout ImageFrameLayout = new GridLayout(2, 2);
+	setLayout(ImageFrameLayout);
+	imagePanelFront = new ImagePanelFront();
+	imagePanelLat = new ImagePanelLat();
+	imagePanelUp = new ImagePanelUp();
+	imagePanelAlt = new ImagePanelAlt();
+	add(imagePanelLat);
+	add(imagePanelUp);
+	add(imagePanelFront);
+	add(imagePanelAlt);
+}    
+```
+Come si può vedere al pannello principale vengono aggiunti i 4 pannelli secondari.
+
+
+Per funzionare ImageFrame sfrutta la classe già menzionata “Status”. In essa sono contenuti dei metodi Setter che ci permettono di aggiornare i vari valori pich, yaw, roll, alt all’interno della classe. Questi setter, combinati con l’uso di una Thread, permettono l’aggiornamento continuo della rappresentazione del drone.
+
+La Thread in questione viene fatta partire nell’esatto istante in cui l’applicazione si apre. A questo punto viene settata a true anche la variabile che consente la gestione della Thread. 
+
+Una volta partita la Thread, vengono continuamente richiamati i metodi dedicati al movimento delle 4 immagini nei pannelli secondari, ImagePanelUp differisce rispetto agli altri pannelli in quanto la classe ha un suo metodo paintCompoents, questò perché l’immagine del drone visto dall’alto, a volo di uccello in pratica, ha un formato differente rispetto a ImagePaenlFront e ImagePaenlLat. Queste ultime due sono infatti rettangolari, mentre ImagePanelUp è quadrata.
+
+Il codice della Thread è riportato qui sotto.
+
+```java
+public void run() {
+	while (imgTh) {
+		imagePanelFront.moving(roll);
+		imagePanelLat.moving(pitch);
+		imagePanelAlt.setAltitude(alt);
+		imagePanelUp.deg = yaw;
+		imagePanelUp.validate();
+		imagePanelUp.repaint();       
+	}
+}
+
+```
+Dopo aver spiegato ImageFrame, passiamo a ImageModel
+
+Come detto questa classe definisce un modello per la rappresentazione delle immagini. 
+Al suo intenro sono infatti contenute le istanze di BufferedImage che ci serviranno nel programma, le istanze sono 3:
+
+`public BufferedImage imageBig`: è l’immagine originale, che verrà direttaemnte presa dal file png.
+
+`public BufferedImage rotatedImage`: è l’immagine temporanea che verrà ruotata.
+
+`public BufferedImage image`: è l’immagine finale che poi verrà rappresentata.
+
+Oltre alle istanze sono presenti altri 2 metodi di supporto.
+Il primo è quello per il ridimensionamento delle immagini, esse infatti erano troppo grosse per poter stare nel nostro panello, era necessario ridurne di molto la dimensione.
+
+Quello che fa il metodo ` resize` in pratica è prendere come argomento un immagine, che sarà ImageBig, e due attributi di tipo int che specificano larghezza e altezza. In seguito il metodo crea una nuova BufferdImage con dimensioni nuove, ma con lo stesso contenuto dell’immagine originale, poi la ritorna.
+
+Il secondo metodo, `rotate`, funziona in maniera simile a quello precedente: prende una BufferdImage come input e un int che specifica la rotazione in gradi, poi tramite formule matematiche e l’uso di `Graphics2D`, usato anche da `resize` tra parentesi, permette di ruotare l’immagine con il metodo apposito. L’immagine ruotata viene poi ritornata.
+
+Un terzo metodo fondamentale è `toBufferedImage`. Esso, data un’immagine di tipo `Image` come input permette di convertirla in BufferdImage.
+Questo metodo si è reso necessario quando abbiamo creato il jar finale, e ci siamo accorti che le immagini non venivano mostrate, in quanto erano compresse nel file jar stesso.
+Questo ci ha costretti a rendere delle immagini delle risorse della classe stessa, per poi essere prese e convertite, in quanto non era possibile creare delle BufferdImage direttamente. 
+Ma esploreremo questo aspetto meglio più avanti.
+
+L’ultimo metodo fondamnetale è, ovviamente, ` paintComponent`. Questo metodo viene usato da `ImagePanelFront` e `ImagePanelLat`; poiché i due pannelli contengono 2 immagini pressochè identiche nei rapporti di dimensione.
+
+Questo metodo prende come prima cosa le dimensioni del pannello, per poi calcolare l’altezza dell’immagine in base alla larghezza data. Abbiamo infatti stabilito che l’altezza dovesse essere 1.5 volte in meno rispetto alla larghezza. In questo modo possiamo mantenere il rapporot giusto senza avere l’immagine stirata.
+Dopo aver calcolato le dimensioni dell’immagine, essa può essere ridimensionata, viene ridotta arbitrariamente di 75,  per poi essere disegnata.
+
+Abbiamo posto una particlare attenzione alla rappresentazione delle immagini ruotata, infatti abbiamo fatto variare la posizione y, aggiungendo o togliendo i gradi di rotazione.
+Testando abbiamo scoperto infatti che questo aitua a mantenere l’immagine al centro del pannello. 
+
+Qui c’è il codice di paintCompoent da noi creato:
+
+```java
+public void paintComponent(Graphics g) {
+	panelH = getHeight();
+	panelW = getWidth();
+	g.clearRect(0, 0, panelW, panelH);
+	panelH = (int) (panelW / 1.5);
+	g.setColor(Color.black);
+	int x, y = 0;
+	if (imageBig != null) {	
+		image = resize(imageBig, panelW - 75, panelH - 75);
+		x = (this.getWidth() - image.getWidth()) / 2;
+		y = (this.getHeight() - image.getHeight()) / 2;
+		image = rotate(image, rotDeg);
+		if (rotDeg > 0) {
+			g.drawImage(image, x, y - rotDeg, this);
+		} else {
+			g.drawImage(image, x, y + rotDeg, this);
+		}
+	}
+}
+```
+
+
 
 ## Test
 
