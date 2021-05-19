@@ -160,14 +160,14 @@ Per la pianificazione alleghiamo il Gantt preventivo da noi stabilito:
 
 ### Design delle interfacce
 
-###Interfaccia principale
+### Interfaccia principale
 La prima interfaccia che abbiamo definito è stata quella generale, ovvero il pannello che l'utente avrebbe visto una volta avviata l'applicazione.
 ![Progettazione int1](../Documenti/Progettazione/Design_Interfacce/DesingHome.png)
 Come vedremo dopo, benché la struttura sia rimasta essenzialmente quella, quest'interfaccia ha subito alcune modifiche nel contenuto.
 Questo è accaduto poiché procedendo con il progetto sono cambiate alcune idee e priorità.
 
 
-####[Interfaccia vista drone](####Interfaccia-vista-drone)
+#### [Interfaccia vista drone](####Interfaccia-vista-drone)
 
 Un’altra interfaccia importante da progettare era quella della vista del drone. Quest'ultima è molto semplice, ed è rimasta essenzialmente la stessa, ma è stato importante pensare come rappresentare i dati che ci venivano richiesti, ovvero la rappresentazione grafica del drone. Inizialmente abbiamo pensato a delle foto ferme, con delle frecce che indicassero i movimenti. Tuttavia ci siamo accorti che creare uno schizzo del drone e muovere quello era molto più.
 
