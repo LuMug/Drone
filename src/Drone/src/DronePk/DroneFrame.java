@@ -1,6 +1,5 @@
 package DronePk;
 
-
 import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
@@ -30,9 +29,15 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
         this.addMouseListener(this);
         this.setMinimumSize(new Dimension(800, 400));
         getContentPane().addComponentListener(this);
-        Thread imgView=new Thread(imageFrame);
+        Thread imgView = new Thread(imageFrame);
         imgView.start();
         switchKeyListenerOn();
+        funzionePanel.setComandiPanel(comandiPanel);
+        Drone drone = funzionePanel.getDrone();
+        emergencyListener.setDrone(drone);
+        comandiPanel.setDrone(drone);
+        comandiPanel.setFunzionePanel(funzionePanel);
+        comandiPanel.setDroneFrame(this);
     }
 
     /**
@@ -250,12 +255,6 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
             public void run() {
                 DroneFrame df = new DroneFrame();
                 df.setVisible(true);
-                df.getFunzionePanel().setComandiPanel(df.getComandiPanel());
-                Drone drone = df.getFunzionePanel().getDrone();
-                df.getEmergencyListener().setDrone(drone);
-                df.getComandiPanel().setDrone(drone);
-                df.getComandiPanel().setFunzionePanel(df.getFunzionePanel());
-                df.getComandiPanel().setDroneFrame(df);
                 df.setSize(800, 600);
                 df.setFocusable(true);
             }
