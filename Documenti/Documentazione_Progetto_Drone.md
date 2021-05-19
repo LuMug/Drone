@@ -208,7 +208,9 @@ Per la sezione di progetto dedicata al drone sono state realizzate le seguenti c
 5. Status
 
 
-Il funzionamento della comunicazione tra drone e utenti è piuttosto semplice, il drone possiede un proprio wi-fi e di conseguenza ha un suo ip e diverse porte sulla quale connettersi, alcune delle quali servono per la ricezione e l'invio di informazioni. È stata creata un'interfaccia principale.
+Il funzionamento della comunicazione tra drone e utenti è piuttosto semplice, il drone possiede un proprio wi-fi e di conseguenza ha un suo ip e diverse porte sulla quale connettersi, alcune delle quali servono per la ricezione e l'invio di informazioni. È stata creata un'interfaccia principale grazie alla quale l'utente può interagire e usare tutte le funzionalità che offre il software. L'interfaccia principale è suddivisa in diverse sezioni, una sezione laterale per i comandi eseguiti, una barra in basso per eseguire alcune funzioni e visualizzare alcune statistiche come batteria e velocità, infine la parte principale al centro in cui si vedono tutti i dati relativi alla posizione e ai movimenti del drone.
+Per prima cosa è stata realizzata la comunicazione tra leap motion e drone, quindi la parte relativa al pannello centrale, per poter instaurare una comunicazione tra leap motion e drone è stato creato un socket grazie alla quale l'utente client invia dei pacchetti su una determinata porta del drone, questi pacchetti sono delle semplici stringhe contenenti dei comandi che vengono interpretate dal drone tramite un suo protocollo interno. Quello che succede quindi, è che il leap motion continua a passare i dati che legge al drone, spedendoli in tempo reale tramite il socket, il drone riceve quindi questi pacchetti e si muove di conseguenza.
+
 
 
 
@@ -253,7 +255,13 @@ Come si può vedere al pannello principale vengono aggiunti i 4 pannelli seconda
 
 Per funzionare ImageFrame sfrutta la classe già menzionata “Status”. In essa sono contenuti dei metodi Setter che ci permettono di aggiornare i vari valori pich, yaw, roll, alt all’interno della classe. Questi setter, combinati con l’uso di una Thread, permettono l’aggiornamento continuo della rappresentazione del drone.
 
-La Thread in questione viene fatta partire nell’esatto istante in cui l’applicazione si apre. A questo punto viene settata a true anche la variabile che consente la gestione della Thread. 
+La Thread in questione viene fatta partire nell’esatto istante in cui l’applicazione si apre, infatti sfruttando l'istanza già creata dal Gui Builder, abbiamo istanziato una Thread con `ImageFrame` come parametro e poi l'abbiamo fatta partire.
+
+```java
+Thread imgView=new Thread(imageFrame1);
+imgView.start();
+
+```
 
 Una volta partita la Thread, vengono continuamente richiamati i metodi dedicati al movimento delle 4 immagini nei pannelli secondari, ImagePanelUp differisce rispetto agli altri pannelli in quanto la classe ha un suo metodo paintCompoents, questò perché l’immagine del drone visto dall’alto, a volo di uccello in pratica, ha un formato differente rispetto a ImagePaenlFront e ImagePaenlLat. Queste ultime due sono infatti rettangolari, mentre ImagePanelUp è quadrata.
 
@@ -261,14 +269,12 @@ Il codice della Thread è riportato qui sotto.
 
 ```java
 public void run() {
-	while (imgTh) {
-		imagePanelFront.moving(roll);
-		imagePanelLat.moving(pitch);
-		imagePanelAlt.setAltitude(alt);
-		imagePanelUp.deg = yaw;
-		imagePanelUp.validate();
-		imagePanelUp.repaint();       
-	}
+	imagePanelFront.moving(roll);
+	imagePanelLat.moving(pitch);
+	imagePanelAlt.setAltitude(alt);
+	imagePanelUp.deg = yaw;
+	imagePanelUp.validate();
+	imagePanelUp.repaint();       
 }
 
 ```
@@ -326,6 +332,61 @@ public void paintComponent(Graphics g) {
 	}
 }
 ```
+Ora è arrivato il momento di passare ai 4 frame dell'applicazione. Per trattare questa parte di codice abbiamo deciso di dividere la nostra documentazione in 3 parti distinte.
+
+1. `ImagePanelLat`+`ImagePanelFront`
+2. `ImagePanelUp`
+3. `ImagePanelAlt`
+
+Questo perché i primi due pannelli possiedono un codice pressoché identico, è quindi possibile semplificare la spiegazione.
+
+***ImagePanelLat/Front***
+
+Questi pannelli esportano essenzialmente 2 elementi, un metodo costruttore personalizzato e un metodo per gestire il movimento. Partiamo dal costruttore.
+
+Come anticipato precedentemente, il costruttore ci permette di prendere l'immagine da file, per poi convertirla per essere utilizzata. Tuttavia prelevare quest'immagine ci pone di fronte a qualche difficoltà: una volta creato il file Jar infatti, non sarà più possibile prelevare le immagini semplicemente con il loro percorso, in quanto esse vengono compresse. 
+Per ovviare a questo problema bisogna eseguire 2 semplici passaggi.
+
+Come prima cosa dobbiamo spostare le immagini dalla loro cartella di origine, per posizionarle in un'altra cartella, idealmente in un posto facile e accessibile.
+Dopo aver messo le immagini nella nuova locazione, bisogna aggiungere la cartella delle immagini come `ClassPath` al progetto di NetBeans, aggiungendolo alle altre librerie già presenti.
+
+Il secondo passo sarà prelevare le immagini come “risorsa di classe”, e questo può essere fatto nel seguente modo:
+
+```java
+ public ImagePanelFront() {
+	ImageIcon icon;
+	icon = new ImageIcon(getClass().getClassLoader().getResource("DroneFrontale.png"));
+	Image image = icon.getImage();
+	imageBig=toBufferedImage(image);
+}
+```
+È importante che le immagini siano prese dapprima come `Icon`, in quanto questo tipo di immagine è il più consigliato per essere usato come contenitore per delle risorse di immagini. 
+In seguito questa icona è convertirla in un immagine e, tramite il metodo citato prima, in una `BufferdImage`.
+
+Il secondo metodo importante è, come detto, il metodo per il movimento. Il principio è molto semplice, viene passato un parametro con la pendenza in gradi, dopo aver verificato se la pendenza è minore rispetto alla massima consentita, l'immagine viene ruotata e aggiornata.
+
+Abbiamo fatto un controllo sull'inclinazione massima in quanto ci siamo accorti che in alcuni casi l'immagine del drone fuoriusciva dai bordi del pannello. Per questo abbiamo deciso di imporre un limite che consigliasse l'integrità dell'immagine con una rappresentazione realistica del drone inclinato.
+
+Ecco il metodo per il moviemento da noi implementato:
+
+```java
+public void moving(int rotate) {
+	if (rotate < 0) {
+		if (rotate >= -MAXDEG) {
+			rotDeg = -rotate;
+			validate();
+			repaint();
+		}
+	} else {
+		if (rotate <= MAXDEG) {
+			rotDeg = -1 * rotate;
+			validate();
+			repaint();
+		}
+	}
+}
+```
+
 
 
 

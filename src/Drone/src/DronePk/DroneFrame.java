@@ -22,9 +22,6 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
      */
     private EmergencyListener emergencyListener = new EmergencyListener();
 
-
-
-
     /**
      * Il costruttore della applicazione.
      */
