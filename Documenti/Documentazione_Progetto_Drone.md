@@ -216,6 +216,43 @@ Per prima cosa è stata realizzata la comunicazione tra leap motion e drone, qui
 
 ### DroneFrame
 
+`DroneFrame` è una classe fondamentale, si tratta infatti del frame principale dell’applicazione. In esso sono contenuti tutti i due pannelli del package `DronePk`.
+1.	`ComandiPanel`
+2.	`FunzioniPanel`
+Nel frame è inoltre contenuto il frame del package `ImageFrame`, `ImageFrame` appunto.
+
+In riferimento a `ImageFrame` riteniamo opportuno riportate il costruttore del frame principale, in quanto al suo interno ci sono istruzioni molto interessanti:
+Oltre a tutti i metodi per aggiungere le interfacce che citeremo qui sotto, c’è l’importante creazione della Thread di `ImageFrame` che, come specificheremo in seguito, viene eseguita qui per un semplice motivo, la rappresentazione del drone deve avvenire fin dal primo momento di vita dell’applicazione.
+
+```
+public DroneFrame() {
+	initComponents();
+	this.addMouseListener(this);
+	this.setMinimumSize(new Dimension(800, 400));
+	getContentPane().addComponentListener(this);
+	Thread imgView = new Thread(imageFrame);
+	imgView.start();
+	switchKeyListenerOn();
+	setReferences();
+}
+```
+
+`DroneFrame` estende, come il nome suggerisce, `JFrame` ed implementa 3 interfacce:
+1.	`KeyListener`
+2.	`MouseListener`
+3.	`ComponentListene`
+
+Questo frame avrebbe potuto essere molto semplice, tuttavia abbiamo voluto aggiungere la possibilità di guidare il drone da tastiera. Questo ha portato ad una serie di complicazioni. Infatti per catturare i comandi da tastiera si necessita, chiaramente, di `KeyListener`. Per questo abbiamo i metodi qui, in modo possiamo poi inviare un segnale al pannello apposito, che si occuperà della gestione dei movimenti. Come esempio riportiamo il metodo KeyTyped:
+```   
+@Override
+public void keyTyped(KeyEvent e) {
+	comandiPanel.keyTypedC(e);
+}
+```
+
+Tuttavia il progetto prevedeva che il drone si potesse guidare principalmente da `Leap Motion`
+Perciò, per ragioni di sicurezza, abbiamo dovuto implementare un modo di catturare i tasti sempre. Questo però andava in contrasto con una nostra altra scelta: se il drone era in uso tramite `Leap Motion`, gli input da tastiera erano da ignorare, in quanto potevano causare problemi che, in alcuni nostri test, hanno portato il drone a schiantarsi.
+
 
 
 ### Log
@@ -499,6 +536,7 @@ if (imageBig != null) {
 }
 ```
 ***ImagePanelAlt***
+
 Quest ultimo panelo è il più semplice di tutti. Infatti non contiene nemmeno un immagine, 
 tramite il parametro che viene aggiornato, anche il `JLabel` contenete il dato viene aggiornato.
 Per una maggior completezza il dato dell'altezza è dato in metri, centimetri e piedi.
