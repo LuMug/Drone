@@ -211,7 +211,7 @@ public class Status extends Thread {
                 String finale = dateFormat.format(data) + " " + ip + ":" + port + valori;
                 log.scritturaFile(finale);
 
-                if (temMinC <= 100) {
+                if (temMinC == 100) {
                     fine = false;
                     socket.close();
                     log.chiusuraFile();
