@@ -89,33 +89,78 @@
 
 |               |**ID: Req-001**|
 |--------------|-----------------------------|
-|**Nome**      | Interfaccia controllo Drone |
+|**Nome**      |Utilizzo di DatagramPacket |
 |**Priorità**  | 1                            |
 |**Versione**  | 1.1                         |
-|**Note**      | Utilizzare Java. La connessione al drone deve avvenire tramite protocollo UDP|
-|**001**       | Realizzare un'interfaccia utile a pilotare il drone con i tasti virtuali del programma|
-|**002**       | Implementare il pilotaggio con i tasti fisici del PC|
-|**003**       | Implementare il pilotaggio con il Leap Motion, la mano sinistra si occupa del movimento verticale, mentre la destra si occupa di tutti gli altri movimenti|
-|**004**       | Realizzare il frame con lo streaming del video del drone|
-|**005**       | Implementare la funzione di salvataggio di sequenze di comandi. Successivamente fare in modo di farle riprodurre dal drone in modo autonomo|  
+|**Note**      | Utilizzare la connessione al drone deve avvenire tramite  UDP|
 
-|       |**ID: Req-002**|
+
+|               |**ID: Req-002**|
+|--------------|-----------------------------|
+|**Nome**      | Interfaccia controllo Drone |
+|**Priorità**  | 3                            |
+|**Versione**  | 1.1                         |
+|**Note**      | Panel o frame diviso in 4 con delle imagini 2d del drone per vedere come si muove.|
+
+
+
+|               |**ID: Req-003**|
+|--------------|-----------------------------|
+|**Nome**      | Gestione tastiera *Extra* |
+|**Priorità**  | 2                           |
+|**Versione**  | 1.1                         |
+|**Note**      | Comandare il drone con la tastiera.|
+
+
+|               |**ID: Req-004**|
+|--------------|-----------------------------|
+|**Nome**      | Leap Motion |
+|**Priorità**  | 2                           |
+|**Versione**  | 1.1                         |
+|**Note**      | Implementare il pilotaggio con il Leap Motion, la mano sinistra si occupa del movimento verticale, mentre la destra si occupa di tutti gli altri movimenti.|
+
+
+
+|       |**ID: Req-005**|
 |-------|-----------|
-|**Nome**| Interfaccia posizione Drone |
+|**Nome**| Live video |
 |**Priorità**|1|
 |**Versione**|1.0|
-|**Note**|Utilizzare Java|
-|        |**Sotto requisiti**|
-|**001**|Realizzare un'interfaccia con 4 riquadri, raffiguranti rispettivamente l’imbardata, il beccheggio, il rollio e l’altitudine del drone. Le immagini devono essere in 2D e stilizzate |
+|**Note**|Realizzare il frame con lo streaming del video del drone.|
 
-|    |**ID: Req-003**|
-|----|---------------|
+
+|       |**ID: Req-006**|
+|-------|-----------|
+|**Nome**| Sequenza di comandi |
+|**Priorità**|1|
+|**Versione**|1.0|
+|**Note**|Implementare la funzione di salvataggio di sequenze di comandi. Successivamente fare in modo di farle riprodurre dal drone in modo autonomo.|  
+
+
+|       |**ID: Req-007**|
+|-------|-----------|
 |**Nome**| Interfaccia statistiche |
 |**Priorità**|1|
 |**Versione**|1.0|
-|**Note**|Inizialmente sito web, su accordo è stato modificato in interfaccia. Utilizzare Java|
-|        |**Sotto requisiti**|
-|**001**|Realizzare un'ulteriore interfaccia che rappresenta i dati ritornati dal drone sottoforma di statistica.|
+|**Note**|Inizialmente sito web, su accordo è stato modificato in interfaccia. Utilizzare Java.|  
+
+
+|       |**ID: Req-008**|
+|-------|-----------|
+|**Nome**| Tasto di emergenza |
+|**Priorità**|2|
+|**Versione**|1.0|
+|**Note**|È stato deciso che ci deve essere un tasto per le emrgenze.|
+
+|       |**ID: Req-009**|
+|-------|-----------|
+|**Nome**| Bottone per scelta *Extra* |
+|**Priorità**|4|
+|**Versione**|1.0|
+|**Note**|Necessità di poter scegliere cosa usare se la tastiera o il Leap Motion.|
+
+
+
 
 ### Use case
 
