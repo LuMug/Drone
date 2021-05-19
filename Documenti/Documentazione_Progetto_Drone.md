@@ -213,6 +213,11 @@ Il funzionamento della comunicazione tra drone e utenti è piuttosto semplice, i
 Per prima cosa è stata realizzata la comunicazione tra leap motion e drone, quindi la parte relativa al pannello centrale, per poter instaurare una comunicazione tra leap motion e drone è stato creato un socket grazie alla quale l'utente client invia dei pacchetti su una determinata porta del drone, questi pacchetti sono delle semplici stringhe contenenti dei comandi che vengono interpretate dal drone tramite un suo protocollo interno. Quello che succede quindi, è che il leap motion continua a passare i dati che legge al drone, spedendoli in tempo reale tramite il socket, il drone riceve quindi questi pacchetti e si muove di conseguenza.
 
 
+
+### DroneFrame
+
+
+
 ### Log
 
 La classe `log` è una classe molto semplice. Abbiamo deciso di implementarla dopo un po', su consiglio del docente, ma ci è stata molto utile. Log funziona solo graziea a `Status`, essa infatti crea un istanza di `Log`, per poi ottenere tutti i dati che il drone invia in un unica lunga stringa. Ma di come questa stringa viene gestita parleremo meglio in `Status`...
@@ -242,6 +247,53 @@ fw.flush();
 
 ```
 NB: In quest'ultima porzione di codice biosngna gestire la `IOException`.
+
+
+### Browser
+Come suggerisce il nome questa classe si occupa della gestione del browser, in fatti in questa classe verranno attivati script diversi, la scelta verrà fatta in base al sistema operativo in uso. In entrambi i casi la live verrà visualizzata  in modo automatico. Infatti in questa classe abbiamo solo due metodi che sono `script()` e `openBrowser()`
+
+Parliamo prima del metodo `script()`
+```java
+public void script() throws IOException {
+    String os= System.getProperty("os.name").toLowerCase();
+    if (os.contains("os")) {
+
+        ProcessBuilder builder = new ProcessBuilder();
+        builder.command("sh","-c"," ./RunLiveMac.sh");
+        Process process=builder.start();
+    } else {
+        String path = "cmd /c start RunLiveWin.bat";
+        Runtime rn = Runtime.getRuntime();
+        Process pr = rn.exec(path);
+    }
+}
+```
+Questo metodo ci permette di identificare su che sistema operativo sta girando il nostro programma e, in base se é MacOS o Windows, fa partire due script diversi che si occupano di entrare in una cartella predefinita e attivare del codice di NodeJs.
+
+
+Questo metodo serve a aprire una pagina internet.
+```java
+public void openBrowser() {
+       String url = "http://localhost:3000/index.html";
+       if (Desktop.isDesktopSupported()) {
+           Desktop desktop = Desktop.getDesktop();
+           try {
+               desktop.browse(new URI(url));
+           } catch (IOException | URISyntaxException e) {
+               System.out.println("Error:" + e);
+           }
+       } else {
+           Runtime runtime = Runtime.getRuntime();
+           try {
+               runtime.exec("xdg-open " + url);
+           } catch (IOException e) {
+               System.out.println("Error:" + e);
+           }
+       }
+   }
+```
+Come possiamo vedere andiamo a parire la pagina `http://localhost:3000/index.html` su qui andremo a vedere la live che sarà stata caricata dallo script precedentemente accennato.
+
 
 
 ### ImageFrame
