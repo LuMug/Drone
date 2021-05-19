@@ -206,6 +206,7 @@ Per la sezione di progetto dedicata al drone sono state realizzate le seguenti c
 3. CommandRecorder
 4. Log
 5. Status
+6. Browser
 
 
 Il funzionamento della comunicazione tra drone e utenti è piuttosto semplice, il drone possiede un proprio wi-fi e di conseguenza ha un suo ip e diverse porte sulla quale connettersi, alcune delle quali servono per la ricezione e l'invio di informazioni. È stata creata un'interfaccia principale grazie alla quale l'utente può interagire e usare tutte le funzionalità che offre il software. L'interfaccia principale è suddivisa in diverse sezioni, una sezione laterale per i comandi eseguiti, una barra in basso per eseguire alcune funzioni e visualizzare alcune statistiche come batteria e velocità, infine la parte principale al centro in cui si vedono tutti i dati relativi alla posizione e ai movimenti del drone.
@@ -387,6 +388,46 @@ public void moving(int rotate) {
 }
 ```
 
+***ImagePanelUp***
+Questa classe differisce leggermente dalle due precedenti, infatti a cambiare è il rapporto dell’immagine.
+
+Tuttavia la logica è pressoché la stessa, il costruttore prende l’immagine allo stesso modo, ma al posto di esserci un metodo di movimento che sfrutta il `paintComponent` definito nel modello `ImagePanelUp` ha un suo metodo paint.
+Esso è molto simile a quello visto nel modello di panello, con la differenza del calcolo della dimensione dell’immagine. In questa classe l’immagine assume la dimensione più piccola possibile, data dalla larghezza e dall’altezza del pannello.
+```java
+  if (panelW > panelH) {
+            panelW = panelH;
+
+        } else {
+            panelH = panelW;
+        }
+```
+
+Il codice che permette invece di disegnare l’immagine è invece molto simile a quello mostrato in `ImageModel`. Esso permette di ridimensionare l’immagine, ruotarla e disegnarla; ecco un estratto del codice:
+
+```java
+if (imageBig != null) {
+	image = resize(imageBig, panelW - 75, panelH - 75);
+	int x = (this.getWidth() - image.getWidth()) / 2;
+	int y = (this.getHeight() - image.getHeight()) / 2;
+	rotatedImage = rotate(image, deg);
+	g.drawImage(rotatedImage, x, y, this);           
+}
+```
+***ImagePanelAlt***
+Quest ultimo panelo è il più semplice di tutti. Infatti non contiene nemmeno un immagine, 
+tramite il parametro che viene aggiornato, anche il `JLabel` contenete il dato viene aggiornato.
+Per una maggior completezza il dato dell'altezza è dato in metri, centimetri e piedi.
+Vine creata una stringa con dentro tutti questi valori e poi essa viene assegnata al JLabel.
+```java
+String text = altitude + " cm" + '\n'
+	+ altitude / 100 + " m" + "\n"
+	+ stAlt / 30.48 + " ft";
+	
+	alt.setText("<html>" + text.replaceAll("<", "&lt;")
+		.replaceAll(">", "&gt;")
+		.replaceAll("\n", "<br/>") + "</html>");
+```
+Per la formattazione abbiamo usato i tag HTML, ma poi essi vengono rimossi una volta inserita la stringa nel Label.
 
 
 
