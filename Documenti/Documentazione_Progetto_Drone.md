@@ -547,16 +547,16 @@ Come possiamo vedere andiamo a parire la pagina `http://localhost:3000/index.htm
 
 
 
-### ImageFrame
+###ImageFrame
 
 Per quanto riguarda invece l’implementazione della rappresentazione grafica del drone e della sua posizione sono state implementate queste classi:
 
 1.	ImageFrame
-2.	ImagePanelUp
-3.	ImagePanelLat
-4.	ImagePanelFront
-5.	ImagePanelAlt
-6.	ImageModel
+2. ImageModel
+3. ImagePanelFront
+4.	ImagePanelLat
+5.	ImagePanelUp
+6.	ImagePanelAlt
 
 Come il nome suggerisce, i 4 dati principali del drone (imbardata, beccheggio, rollio e altitudine) sono rappresentati nei 4 panelli.
 
@@ -564,7 +564,7 @@ ImageModel è invece un pannello speciale, che definisce il modello per la rappr
 
 Per far si che i pannelli potessero utilizzare i metodi, abbiamo dovuto creare una relazione tra i pannelli e il modello stesso. Per questo i pannelli estendono la classe modello.
 
-***ImageFrame***
+### ImageFrame
 
 ImageFrame, come il nome suggerisce, è nato inizialmente per essere il Frame principale. Questo però è cambiato quando abbiamo deciso di implementare la Live, che avrebbe occupato gran parte della finestra come mostrato dalla progettazione, in  NodeJs e con una pagina web. Per questo ImageFrame è diventato un panello, che ha preso il posto della Live. Abbiamo mantenuto il nome tuttavia perché era ormai molto integrato con il resto dell’app, inoltre l’aggiunta di “Frame” nel nome suggerisce che sia un contenitore, aveva quindi più senso per noi lasciare lo stesso nome. 
 
@@ -615,8 +615,7 @@ public void run() {
 ```
 Dopo aver spiegato ImageFrame, passiamo a ImageModel
 
-***ImageModel***
-
+### ImageModel
 Come detto questa classe definisce un modello per la rappresentazione delle immagini. 
 Al suo intenro sono infatti contenute le istanze di BufferedImage che ci serviranno nel programma, le istanze sono 3:
 
@@ -677,7 +676,7 @@ Ora è arrivato il momento di passare ai 4 frame dell'applicazione. Per trattare
 
 Questo perché i primi due pannelli possiedono un codice pressoché identico, è quindi possibile semplificare la spiegazione.
 
-***ImagePanelLat/Front***
+### ImagePanelFront/Lat
 
 Questi pannelli esportano essenzialmente 2 elementi, un metodo costruttore personalizzato e un metodo per gestire il movimento. Partiamo dal costruttore.
 
@@ -724,7 +723,10 @@ public void moving(int rotate) {
 }
 ```
 
-***ImagePanelUp***
+> Il codice qui riportato corrisponde a `ImagePanelFront`, per creare il suo corrispettivo `ImagePanelLat` è sufficente sostitutire nel costruttore `DroneFrontale.png` con `DroneLaterale.png `
+
+
+### ImagePanelUp
 Questa classe differisce leggermente dalle due precedenti, infatti a cambiare è il rapporto dell’immagine.
 
 Tuttavia la logica è pressoché la stessa, il costruttore prende l’immagine allo stesso modo, ma al posto di esserci un metodo di movimento che sfrutta il `paintComponent` definito nel modello `ImagePanelUp` ha un suo metodo paint.
@@ -749,7 +751,7 @@ if (imageBig != null) {
 	g.drawImage(rotatedImage, x, y, this);           
 }
 ```
-***ImagePanelAlt***
+### ImagePanelAlt
 
 Quest ultimo panelo è il più semplice di tutti. Infatti non contiene nemmeno un immagine, 
 tramite il parametro che viene aggiornato, anche il `JLabel` contenete il dato viene aggiornato.
