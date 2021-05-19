@@ -207,6 +207,7 @@ Per la sezione di progetto dedicata al drone sono state realizzate le seguenti c
 4. Log
 5. Status
 6. Browser
+7. ComandiPanel
 
 
 Il funzionamento della comunicazione tra drone e utenti è piuttosto semplice, il drone possiede un proprio wi-fi e di conseguenza ha un suo ip e diverse porte sulla quale connettersi, alcune delle quali servono per la ricezione e l'invio di informazioni. È stata creata un'interfaccia principale grazie alla quale l'utente può interagire e usare tutte le funzionalità che offre il software. L'interfaccia principale è suddivisa in diverse sezioni, una sezione laterale per i comandi eseguiti, una barra in basso per eseguire alcune funzioni e visualizzare alcune statistiche come batteria e velocità, infine la parte principale al centro in cui si vedono tutti i dati relativi alla posizione e ai movimenti del drone.
@@ -253,10 +254,57 @@ public void keyTyped(KeyEvent e) {
 Tuttavia il progetto prevedeva che il drone si potesse guidare principalmente da `Leap Motion`
 Perciò, per ragioni di sicurezza, abbiamo dovuto implementare un modo di catturare i tasti sempre. Questo però andava in contrasto con una nostra altra scelta: se il drone era in uso tramite `Leap Motion`, gli input da tastiera erano da ignorare, in quanto potevano causare problemi che, in alcuni nostri test, hanno portato il drone a schiantarsi.
 
+La classe ComandiPanel è un pannello contenente una Text Area centrale e due Radio Button nella parte inferiore, uno che per abilitare i controlli da tastiera e uno per i controlli da Leap Motion. La parte sottostante del pannello infatti servirà per fare selezionare all'utente quale modalità di pilotaggio adoperare mentre la parte principale composta dal campo di testo ha lo scopo di stampare le sequenze di comandi salvate in precedenza dall'utente, in pratica vengono stampati in ordine cronologico i comandi di tutti i movimeni eseguiti dal drone nella sequenza salvata. Inoltre questa classe contiene anche il key listener, che permette di muovere il drone con l'utilizzo della tastiera.
 
 
 
-## Status
+### ComandiPanel
+La classe ComandiPanel viene istanziato con il suo metodo costruttore nel seguente modo:
+```java
+public ComandiPanel() {
+        initComponents();
+        DefaultCaret caret = (DefaultCaret) commandsText.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+    }
+```
+
+Per quanto riguarda la parte inferiore del pannello sono stati creati i seguenti metodi per passare da una tipologia di controlli all'altro:
+```java
+private void keyboardButtonActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        leapController.removeListener(leapListener);
+        leapListener.delete();
+        leapController.delete();
+        droneFrame.switchEmergencyListenerOff();
+        droneFrame.switchKeyListenerOn();
+    }   
+```
+Si occupa di invocare i metodi del LeapMotion per disattivarne le funzionalità (comandi da tastiera).
+
+
+```java
+private void leapmotionButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        droneFrame.switchKeyListenerOff();
+        droneFrame.switchEmergencyListenerOn();
+        leapController = new Controller();
+        leapListener = new LeapMotionProject(drone, funzionePanel);
+        leapController.addListener(leapListener);
+    }   
+```
+Si occupa di invocare i metodi del LeapMotion per attivarne le funzionalità (comandi da Leap Motion).
+
+
+Invece per permettere all'utente di comandare il drone utilizzando la tastiera come input è stato implementato un Key Listener che invia i comandi opportuni in base al tasto premuto dall'utente, quando un tasto viene rilasciato invece, viene inviato al drone il comando per fermarsi sul posto. Inoltre per evitare di sovraccaricare di richieste il drone, è stato creato un metodo per limitare l'invio di richieste a una ogni 125 millisecondi.
+```java
+public void sendKeyboardCommand(String command) {
+        if (System.currentTimeMillis() - initialTime >= 125) {
+            drone.invioMessaggio(command);
+            initialTime = System.currentTimeMillis();
+        }
+    } 
+```
+
+
+### Status
 Come suggerisce il nome, questa classe si occupa della gestione degli stati del drone, o meglio dei vari valori che fornisce il drone. Questa classe è una Thread, questo ci permette di avere in continuazione i dati che vengono salvati in un log, all'interno del metodo `public void run()`
 
 Nelle righe di codice sottostanti troviamo la formattazione della data e la creazione del file di log, nel caso non esista ancora.
