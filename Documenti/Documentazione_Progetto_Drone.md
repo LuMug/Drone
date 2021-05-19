@@ -89,8 +89,8 @@
 
 |               |**ID: Req-001**|
 |--------------|-----------------------------|
-|**Nome**      |Utilizzo di DatagramPacket |
-|**Priorità**  | 1                            |
+|**Nome**      | Utilizzo di DatagramPacket   |
+|**Priorità**  | 1                           |
 |**Versione**  | 1.1                         |
 |**Note**      | Utilizzare la connessione al drone deve avvenire tramite  UDP|
 
@@ -1093,30 +1093,55 @@ l’errore con eventuali ipotesi di correzione.
 
 ### Mancanze/limitazioni conosciute
 
-Descrizione con motivazione di eventuali elementi mancanti o non
-completamente implementati, al di fuori dei test case. Non devono essere
-riportati gli errori e i problemi riscontrati e poi risolti durante il
-progetto.
+
+In generale, siamo piuttosto soddisfatti del nostro progetto. Pensiamo infatti di aver lavorato piuttosto bene, anche se riconosciamo di aver avuto dei momenti in cui abbiamo lavorato non al massimo delle nostre capacità. 
+Alla fine il progetto è uscito più o meno come ce lo aspettavamo, anche se dobbiamo dire che abbiamo sottovalutato alcuni aspetti del progetto, come la Live, mentre ne abbiamo sopravalutati altri, come la guida del Drone.
+
+Infatti quest’ultimo aspetto ci aveva preoccupato, e non poco. Invece già alla seconda lezione ci siamo trovati capaci di guidare il drone con delle movenze molto rozze. Quello che ha preso tempo è stato infatti rendere le movenze del drone fluide. 
+
+Abbiamo individuato 2 mancanze principali nel nostro programma:
+
+1.	L’assenza della live in java
+2.	L’impossibilità di guidare il drone con una mano singola.
+
+Partendo dal primo, la live ci ha causato innumerevoli problemi, ci ha preso settimane di prove e ricerche. Eravamo convinti di potercela fare, ma alla fine abbiamo dovuto optare per una altro tipo di approccio. Abbiamo per questo cercare un codice online e utilizzare quello; dobbiamo dire che non è stato facile trovare un codice compatibile alle nostre esigenze, molti non funzionavano o non facevano quello che noi volevamo. Tuttavia abbiamo finalmente trovato un codice in NodeJS che si integrava abbastanza bene con il nostro operato. Abbiamo ritenuto essenziale però cercare di integrare il codice esterno al nostro, per questo abbiamo fatto si che la live si aprisse in automatico al click del bottone, anche se questo ci ha richiesto uno sforzo nella scrittura di due diversi script.
+
+La seconda mancanza è un “requisito” che ci è venuto in mente dopo, sotto suggerimento del docente.
+Questo requisito consisteva nel guidare il drone con una mano sola, e usare l’altra per far flippare il drone. 
+Sarebbe stato molto bello avere questa possibilità, ma siamo comunque felici di come il nostro progetto è andato.
+
+
+
 
 ## Consuntivo
 
-Consuntivo del tempo di lavoro effettivo e considerazioni riguardo le
-differenze rispetto alla pianificazione (cap 1.7) (ad esempio Gannt
-consuntivo).
+![Ganttpreventivo](../Documenti/Gantt/GANTT_Consuntivo_Completo.png)
+
 
 ## Conclusioni
 
-Quali sono le implicazioni della mia soluzione? Che impatto avrà?
-Cambierà il mondo? È un successo importante? È solo un’aggiunta
-marginale o è semplicemente servita per scoprire che questo percorso è
-stato una perdita di tempo? I risultati ottenuti sono generali,
-facilmente generalizzabili o sono specifici di un caso particolare? ecc
+
+Durante tutta la durata di questo progetto, abbiamo imparato tutti moltissime nuove importanti nozioni. Non solo per quanto riguarda Java e dintorni, ma anche per la gestione del tempo, per la divisione del lavoro,  e per lo spirito di gruppo. Quest’ultimo aspetto è stato molto importane per noi, fortunatamente siamo un gruppo di ragazzi che, in generale, vanno molto d’accordo. Chiaramente abbiamo avuto le nostre frizioni, ma è normale quando si lavora in gruppo. Quello che conta è che abbiamo raggiunto molti dei nostri obbiettivi, anche per quanto riguarda la divisione del lavoro siamo felici di come abbiamo lavorato.
+L’uso di strumenti come Trello, o anche il Gantt, ci hanno aiutato bene a spartire i compiti e a creare un ambiente di lavoro funzionante. Una cosa che poteva andare meglio è sicuramente la gestione di GitHub e dei commit. Troppe volte non abbiamo fatto dei commit puntuali come avremmo voluto, e questo ha portato a perdita di lavoro e di codice importane, che poi abbiamo dovuto recuperare.
+L’aspetto più critico è stato però il tempo, infatti avremmo preferito avere una gestione del tempo più omogenea, senza picchi di produttività in alcuni giorni e perdite di tempo prezioso in altri, ma siamo sicuri che questo ci aiuterà in futuro.
+Sicuramente il nostro progetto non cambierà la società o il modo di vedere i droni, ma chissà…
+Forse se avremo la possibilità di andare a Expo Professioni e di portare il nostro progetto, avremo anche la possibilità di esporre il nostro progetto a giovani e non.
+Se per i giovani potremmo diventare l’incipit per intraprendere un percorso nell’informatica. Pensiamo che trasmettere le nostre passioni ad altre persone sia una cosa bellissima.
+
+Invece per le persone più grandi, sarebbe bello che il nostro progetto divenisse quasi un “biglietto da visita”, per colloqui futuri, oppure per attirare semplicemente l’attenzione.
+
 
 ### Sviluppi futuri
-  Migliorie o estensioni che possono essere sviluppate sul prodotto.
+
+Come sviluppi futuri parlando con i docenti e parlando un po' riflettendo noi sono saltate fuori delle idee molto interessanti. 
+
+Partendo dal cambiare la gestione del LeapMotion con una mano per renderlo più facile oppure aggiungere la possiblità di registrare ciò che il drone vede e poterlo cosi riguardare. 
+
+Su questo ultimo punto si stava parlando tra di noi di aggiungere in futuro un riconoscimento facciale per far seguire le persone dal drone.
+
 
 ### Considerazioni personali
-  Cosa ho imparato in questo progetto? ecc
+>da fare
 
 
 ## Sitografia
