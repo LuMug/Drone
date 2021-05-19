@@ -60,31 +60,10 @@ public class ImageFrame extends JPanel implements Runnable {
     private Drone drone;
     
     /**
-     * Flag per la vista del drone.
-     */
-    public boolean imgTh = false;
-    
-
-
-    /**
      * Metodo costruttore.
      */
     public ImageFrame() {
         initComponents();
-
-    }
-
-    /**
-     * Metodo main, rende visibile il frame.
-     * @param args l'array di argomenti, non usato.
-     */
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ImageFrame().setVisible(true);
-            }
-        });
     }
 
     
@@ -94,7 +73,6 @@ public class ImageFrame extends JPanel implements Runnable {
      * al frame 
      */
     private void initComponents() {
-
         GridLayout ImageFrameLayout = new GridLayout(2, 2);
         setLayout(ImageFrameLayout);
         imagePanelFront = new ImagePanelFront();
@@ -105,7 +83,6 @@ public class ImageFrame extends JPanel implements Runnable {
         add(imagePanelUp);
         add(imagePanelFront);
         add(imagePanelAlt);
-
     }
     
 
@@ -149,16 +126,11 @@ public class ImageFrame extends JPanel implements Runnable {
      * predisposti per il movimento passando il valore adeguato.
      */
     public void run() {
-        while (imgTh) {
             imagePanelFront.moving(roll);
             imagePanelLat.moving(pitch);
             imagePanelAlt.setAltitude(alt);
             imagePanelUp.deg = yaw;
             imagePanelUp.validate();
-            imagePanelUp.repaint();
-           
-        }
-
+            imagePanelUp.repaint();  
     }
-
 }

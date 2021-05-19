@@ -23,6 +23,8 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
     private EmergencyListener emergencyListener = new EmergencyListener();
 
 
+
+
     /**
      * Il costruttore della applicazione.
      */
@@ -31,7 +33,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
         this.addMouseListener(this);
         this.setMinimumSize(new Dimension(800, 400));
         getContentPane().addComponentListener(this);
-        Thread imgView=new Thread(imageFrame1);
+        Thread imgView=new Thread(imageFrame);
         imgView.start();
         switchKeyListenerOn();
     }
@@ -74,15 +76,15 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        imageFrame = new ImageFrame.ImageFrame();
+        comandiPanel = new DronePk.ComandiPanel();
+        funzionePanel = new DronePk.FunzionePanel();
 
-        imageFrame1 = new ImageFrame.ImageFrame();
-        comandiPanel1 = new DronePk.ComandiPanel();
-        funzionePanel1 = new DronePk.FunzionePanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().add(comandiPanel1, java.awt.BorderLayout.LINE_START);
-        getContentPane().add(funzionePanel1, java.awt.BorderLayout.PAGE_END);
-        getContentPane().add(imageFrame1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(comandiPanel, java.awt.BorderLayout.LINE_START);
+        getContentPane().add(funzionePanel, java.awt.BorderLayout.PAGE_END);
+        getContentPane().add(imageFrame, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -93,7 +95,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
      * @return funzioni panel impostato.
      */
     public FunzionePanel getFunzionePanel() {
-        return funzionePanel1;
+        return funzionePanel;
     }
 
     /**
@@ -102,7 +104,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
      * @return comandi panel impostato.
      */
     public ComandiPanel getComandiPanel() {
-        return comandiPanel1;
+        return comandiPanel;
     }
 
     /**
@@ -112,7 +114,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
      */
     @Override
     public void keyTyped(KeyEvent e) {
-        comandiPanel1.keyTypedC(e);
+        comandiPanel.keyTypedC(e);
     }
 
     /**
@@ -122,7 +124,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
      */
     @Override
     public void keyPressed(KeyEvent e) {
-        comandiPanel1.keyPressedC(e);
+        comandiPanel.keyPressedC(e);
     }
 
     /**
@@ -132,7 +134,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
      */
     @Override
     public void keyReleased(KeyEvent e) {
-        comandiPanel1.keyReleasedC(e);
+        comandiPanel.keyReleasedC(e);
     }
 
     /**
@@ -264,8 +266,9 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private DronePk.ComandiPanel comandiPanel1;
-    private DronePk.FunzionePanel funzionePanel1;
-    private ImageFrame.ImageFrame imageFrame1;
+    private ImageFrame.ImageFrame imageFrame;
+    private DronePk.ComandiPanel comandiPanel;
+    private DronePk.FunzionePanel funzionePanel;
+
     // End of variables declaration//GEN-END:variables
 }
