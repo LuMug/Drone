@@ -209,12 +209,92 @@ Per la sezione di progetto dedicata al drone sono state realizzate le seguenti c
 6. Log
 7. Browser
 
-
+### DronePK in genrale
 
 Il funzionamento della comunicazione tra drone e utenti è piuttosto semplice, il drone possiede un proprio wi-fi e di conseguenza ha un suo ip e diverse porte sulla quale connettersi, alcune delle quali servono per la ricezione e l'invio di informazioni. È stata creata un'interfaccia principale grazie alla quale l'utente può interagire e usare tutte le funzionalità che offre il software. L'interfaccia principale è suddivisa in diverse sezioni, una sezione laterale per i comandi eseguiti, una barra in basso per eseguire alcune funzioni e visualizzare alcune statistiche come batteria e velocità, infine la parte principale al centro in cui si vedono tutti i dati relativi alla posizione e ai movimenti del drone.
 Per prima cosa è stata realizzata la comunicazione tra leap motion e drone, quindi la parte relativa al pannello centrale, per poter instaurare una comunicazione tra leap motion e drone è stato creato un socket grazie alla quale l'utente client invia dei pacchetti su una determinata porta del drone, questi pacchetti sono delle semplici stringhe contenenti dei comandi che vengono interpretate dal drone tramite un suo protocollo interno. Quello che succede quindi, è che il leap motion continua a passare i dati che legge al drone, spedendoli in tempo reale tramite il socket, il drone riceve quindi questi pacchetti e si muove di conseguenza.
 
+### Drone
+Questa classe é una delle parti fondamentali del progetto, infatti tutta la comunicazione parte da qui. La creazione del Socket è in questa classe, più moltissime altre cose che ora andremo a vedere.
 
+Come prima parte di codice che andiamo a vedere è il costruttore che troviamo qui sotto:
+
+```java
+public Drone() {
+	try {
+		socket = new DatagramSocket();
+	} catch (SocketException ex) {
+		System.out.println("ERRORE: " + ex.getMessage());
+	}
+	port = socket.getLocalPort();
+    status.start();
+    setUp();
+}
+```
+Questo costruttore racchiude la crazione del `DatagramSocket` e l'assegnazione della porta, inoltre nella parte sottostante del costruttore troviamo anche l'avvio di una Thread e un metdo che si chiama `setUp()` che si occupa di impostare i valori di base.
+
+Passando invece al metodo `public void run()` questo metodo si occupa della reciezzione del pacchetto dal drone.
+
+```java
+public void run() {
+	try {
+		while (true) {
+			DatagramPacket packet = new DatagramPacket(sendBuf, sendBuf.length);
+			socket.receive(packet);
+			messageReceived = new String(packet.getData(), 0, packet.getLength());
+			System.out.println(messageReceived);
+		}
+	} catch (SocketException ex) {
+		System.out.println("ERRORE: " + ex.getMessage());
+	} catch (IOException ex) {
+		System.out.println("ERRORE: " + ex.getMessage());
+	}
+}
+```
+
+Questo metodo rimane in attesa che il drone gli mandi un pacchetto, quando lo ha ricevuto lo stampa sulla console. L'atto di stampare è servito più a noi come debug per vedere se tutto andava bene.
+
+Per quanto riguarda la spedizione dei pacchetti al drone abbiamo usato il seguente metodo:
+
+```java
+public void sendMessage() {
+    try {
+        byte[] data = messageToSend.getBytes();
+        DatagramPacket packet = new DatagramPacket(data, data.length, destinationIp, destinationPort);
+        socket.send(packet);
+    } catch (SocketException ex) {
+        System.out.println("ERRORE: " + ex.getMessage());
+    } catch (IOException ex) {
+        System.out.println("ERRORE: " + ex.getMessage());
+    }
+}
+```
+
+Questo metodo come prima cosa crea un array di byte e ci inserisce il messagio da mandare, in secondo luogo impacchetta il messagio all'interno di un  DatagramPacket e dopo lo manda.
+
+Abbiamo deciso di creare un metodo a qui gli si passa una stinga e lui in automatico fa tutti i passaggi per spedirlo e aggiorna tutto ciò che c'é da aggiornare che é il seguente :
+
+```java
+public void invioMessaggio(String message) {
+        setInfo(ipDrone, porta, message);
+        istru = message;
+        sendMessage();
+        comandiPanel.refreshCommands(message + "\n");
+    }
+```
+Questo metodo imposta vari parametri come: ip del drone, la porta e il messaggio. IN seguti, pittosto semplicemente, lo spedisce usando altri metodoti che abbiamo creato, oltre a questo aggiorna anche tutto ciò che è inerente a questo messaggio.
+
+
+Abbiamo anche crato dei metodi appoiti per decollare, atterrare e per mandare il command il messaggio che serve a "sbloccare " l'SKD dentro il drone, ne vediamo uno dato che tutti gli altri saranno uguali.
+
+```java
+public void decolla() {
+    String message = "takeoff";
+    invioMessaggio(message);
+    setStato();
+}
+```
+Come stavamo dicendo, questo metodo in base al comando scritto manda il messaggio e cambia lo stato del drone in modo tale che se il drone è già decollato, non si può mandare più volte lo stesso comando per non rischiare di causare problemi al drone.
 
 ### DroneFrame
 
@@ -995,37 +1075,8 @@ facilmente generalizzabili o sono specifici di un caso particolare? ecc
 ### Considerazioni personali
   Cosa ho imparato in questo progetto? ecc
 
-## Bibliografia
 
-### Bibliografia per articoli di riviste
-1.  Cognome e nome (o iniziali) dell’autore o degli autori, o nome
-    dell’organizzazione,
-
-2.  Titolo dell’articolo (tra virgolette),
-
-3.  Titolo della rivista (in italico),
-
-4.  Anno e numero
-
-5.  Pagina iniziale dell’articolo,
-
-### Bibliografia per libri
-
-
-1.  Cognome e nome (o iniziali) dell’autore o degli autori, o nome
-    dell’organizzazione,
-
-2.  Titolo del libro (in italico),
-
-3.  ev. Numero di edizione,
-
-4.  Nome dell’editore,
-
-5.  Anno di pubblicazione,
-
-6.  ISBN.
-
-### Sitografia
+## Sitografia
 
 1.  URL del sito (se troppo lungo solo dominio, evt completo nel
     diario),
@@ -1044,18 +1095,7 @@ facilmente generalizzabili o sono specifici di un caso particolare? ecc
 Elenco degli allegati, esempio:
 
 -   Diari di lavoro
-
--   Codici sorgente/documentazione macchine virtuali
-
--   Istruzioni di installazione del prodotto (con credenziali
-    di accesso) e/o di eventuali prodotti terzi
-
--   Documentazione di prodotti di terzi
-
--   Eventuali guide utente / Manuali di utilizzo
-
--   Mandato e/o Qdc
-
+-	Istruzioni uso del programma
+- 	Qdc
 -   Prodotto
-
--   …
+- 	Design delle interfacce
