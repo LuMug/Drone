@@ -1,31 +1,21 @@
 1. [Introduzione](#introduzione)
 
   - [Informazioni sul progetto](#informazioni-sul-progetto)
-
   - [Abstract](#abstract)
-
   - [Scopo](#scopo)
 
 2. [Analisi](#analisi)
-
   - [Analisi del dominio](#analisi-del-dominio)
-  
   - [Analisi e specifica dei requisiti](#analisi-e-specifica-dei-requisiti)
-
   - [Use case](#use-case)
-
   - [Pianificazione](#pianificazione)
-
   - [Analisi dei mezzi](#analisi-dei-mezzi)
 
 3. [Progettazione](##Progettazione)
   - [Design delle interfacce](###design-delle-interfacce)
-  - - [Interfaccia principale](####Interfaccia-principale)
-  - - [Design dell’architettura del sistema](#design-dell’architettura-del-sistema)
-  - - [Interfaccia vista drone](####Interfaccia-vista-drone)
-
-
-
+  - [Interfaccia principale](####Interfaccia-principale)
+  - [Design dell’architettura del sistema](#design-dell’architettura-del-sistema)
+  - [Interfaccia vista drone](####Interfaccia-vista-drone)
   - [Design dei dati e database](#design-dei-dati-e-database)
 
 4. [Implementazione](#implementazione)
@@ -33,9 +23,7 @@
 5. [Test](#test)
 
   - [Protocollo di test](#protocollo-di-test)
-
   - [Risultati test](#risultati-test)
-
   - [Mancanze/limitazioni conosciute](#mancanze/limitazioni-conosciute)
 
 6. [Consuntivo](#consuntivo)
@@ -43,7 +31,6 @@
 7. [Conclusioni](#conclusioni)
 
   - [Sviluppi futuri](#sviluppi-futuri)
-
   - [Considerazioni personali](#considerazioni-personali)
 
 8. [Sitografia](#sitografia)
@@ -55,7 +42,7 @@
 
 ### Informazioni sul progetto
 - Allievi coinvolti nel progetto:  Gianni Grasso, Samuele Ganci, Alessandro Aloise, Michea Colautti.
-- Classe: I3AA, I3AC, Scuola Arti e Mestieri Trevano, sezione Informatica. 
+- Classe: I3AA, I3AC, Scuola Arti e Mestieri Trevano, sezione Informatica.
 - Docenti responsabili: Luca Muggiasca, Geo Petrini.
 - Data inizio: 14 gennaio 2021.
 - Data di fine: 13 maggio 2021.
@@ -74,11 +61,11 @@
 ### Scopo
 
   Lo scopo del progetto è di creare un software in grado di collegare i movimenti delle nostre mani ad un drone.
-  In pratica, grazie a un sensore chiamato `Leap Motion`, la nostra applicazione deve essere in grado di catturare e analizzare i movimenti 
-  delle mani e, dopo averli processati, trasmetterli al drone. Per farlo dobbiamo usare la tecnologia `UDP` (**U**ser **D**atagram **P**rotocol) e 
+  In pratica, grazie a un sensore chiamato `Leap Motion`, la nostra applicazione deve essere in grado di catturare e analizzare i movimenti
+  delle mani e, dopo averli processati, trasmetterli al drone. Per farlo dobbiamo usare la tecnologia `UDP` (**U**ser **D**atagram **P**rotocol) e
   l'`SDK` installata di fabbrica sul drone.
   Dobbiamo, oltre a creare il sistema di pilotaggio, instaurare una comunicazione che permetta lo scambio di dati del drone; non solo dati come l'inclinazione,       l'altitudine, ma anche dati statistici come la batteria.
-  
+
 ## Analisi
 
 ### Analisi del dominio
@@ -88,18 +75,18 @@
   essere visualizzato a schermo il video del drone in streaming. Una mano si occupa di imbardata,
   beccheggio e rollio, l'altra invece dell'altitudine. Deve inoltre essere possibile registrare una
   sequenza di comandi per poi poterla far riprodurre dal drone successivamente in modo autonomo.
-  
+
   Deve essere inoltre creata un'ulteriore interfaccia che deve avere 4 riquadri, che rappresenteranno
   in 2D in forma stilizzata rispettivamente l'imbardata, il beccheggio, il rollio e l'altitudine del drone.
-  
+
   Le interfacce perciò si devono occupare dei dati ricevuti dal drone, e successivamente
   fare in modo di renderli reperibili in una pagina web sotto forma di statistica.
-  
+
   Il tutto deve essere programmato in Java.
 
 ### Analisi e specifica dei requisiti
 
-   
+
 |               |**ID: Req-001**|
 |--------------|-----------------------------|
 |**Nome**      | Interfaccia controllo Drone |
@@ -148,7 +135,7 @@ Per la pianificazione alleghiamo il Gantt preventivo da noi stabilito:
  - Leap Motion SDK 3.2.1
  - Tello SDK 2.0
  - Apache Netbeans IDE 12.0
- 
+
  **Hardware**
 - Laptop personali
 - PC scolastici
@@ -181,7 +168,7 @@ Sapevamo più o meno come procedere e come impostare il nostro progetto, ma abbi
 
 ![Progettazione int2](../Documenti/Progettazione/Schema_Flusso/SchemaFlusso.png)
 
-In quest'immagine s si può vedere la struttura schematizzata della nostra applicazione. 
+In quest'immagine s si può vedere la struttura schematizzata della nostra applicazione.
 
 1. Il Leap Motion, tramite la sua Liberia dedicata, passa i dati al computer e il nostro programma li legge, e li interpreta.
 2. Dopo avere ottenuto i dati grezzi, il programma gli elabora, converte dati come l'inclinazione della mano o la velocità della stessa, in istruzioni che il drone può interpretare.
@@ -196,20 +183,20 @@ In quest'immagine s si può vedere la struttura schematizzata della nostra appli
 Per il nostro progetto abbiamo deciso di procedere in maniera modulare. Infatti il progetto finale è una combinazione di più
 
 
-## Implementazione
+# Implementazione
 
 Per lo sviluppo di questo progetto il lavoro è stato suddiviso in tre principali sezioni, lo sviluppo delle classi relative al drone, ovvero la parte che concerne la comunicazione tra drone e utente, l'interfaccia principale e le diverse funzioni implementate, lo sviluppo delle classi relative al Leap Motion, ovvero la parte logica per quello che concerne la comunicazione tra drone e Leap Motion, la calibrazione dei comandi e la sensibilità dei movimenti del drone, e infine lo sviluppo delle classi  dell'Image Frame, ovvero la parte relativa alle varie interfacce contenenti le statistiche del drone e le rappresentazioni grafiche dei movimenti.
 
 Per la sezione di progetto dedicata al drone sono state realizzate le seguenti classi:
-1. DroneFrane
-2. Drone
+1. Drone
+2. DroneFrane
 3. ComandiPanel
 4. FunzioniPanel
 5. Status
 6. Log
 7. Browser
 
-### DronePK in genrale
+## DronePK in genrale
 
 Il funzionamento della comunicazione tra drone e utenti è piuttosto semplice, il drone possiede un proprio wi-fi e di conseguenza ha un suo ip e diverse porte sulla quale connettersi, alcune delle quali servono per la ricezione e l'invio di informazioni. È stata creata un'interfaccia principale grazie alla quale l'utente può interagire e usare tutte le funzionalità che offre il software. L'interfaccia principale è suddivisa in diverse sezioni, una sezione laterale per i comandi eseguiti, una barra in basso per eseguire alcune funzioni e visualizzare alcune statistiche come batteria e velocità, infine la parte principale al centro in cui si vedono tutti i dati relativi alla posizione e ai movimenti del drone.
 Per prima cosa è stata realizzata la comunicazione tra leap motion e drone, quindi la parte relativa al pannello centrale, per poter instaurare una comunicazione tra leap motion e drone è stato creato un socket grazie alla quale l'utente client invia dei pacchetti su una determinata porta del drone, questi pacchetti sono delle semplici stringhe contenenti dei comandi che vengono interpretate dal drone tramite un suo protocollo interno. Quello che succede quindi, è che il leap motion continua a passare i dati che legge al drone, spedendoli in tempo reale tramite il socket, il drone riceve quindi questi pacchetti e si muove di conseguenza.
@@ -280,7 +267,7 @@ public void invioMessaggio(String message) {
         istru = message;
         sendMessage();
         comandiPanel.refreshCommands(message + "\n");
-    }
+}
 ```
 Questo metodo imposta vari parametri come: ip del drone, la porta e il messaggio. IN seguti, pittosto semplicemente, lo spedisce usando altri metodoti che abbiamo creato, oltre a questo aggiorna anche tutto ciò che è inerente a questo messaggio.
 
@@ -327,7 +314,6 @@ public DroneFrame() {
 Questo frame avrebbe potuto essere molto semplice, tuttavia abbiamo voluto aggiungere la possibilità di guidare il drone da tastiera. Questo ha portato ad una serie di complicazioni. Infatti per catturare i comandi da tastiera si necessita, chiaramente, di `KeyListener`. Per questo abbiamo i metodi qui, in modo possiamo poi inviare un segnale al pannello apposito, che si occuperà della gestione dei movimenti. Come esempio riportiamo il metodo KeyTyped:
 
 ```java
-@Override
 public void keyTyped(KeyEvent e) {
 	comandiPanel.keyTypedC(e);
 }
@@ -349,8 +335,7 @@ Un altro aspetto abbastanza importante di questa classe è l’implementazione d
 il metodo `componentResized()` viene invocato ogni volta che il frame viene ridimensionata, al suo interno abbiamo messo queste istruzioni:
 
 ```java
-@Override
-	public void componentResized(ComponentEvent e) {
+public void componentResized(ComponentEvent e) {
 	if (getWidth() < 800) {
 		this.setSize(800, getHeight());
 	}
@@ -358,21 +343,19 @@ il metodo `componentResized()` viene invocato ogni volta che il frame viene ridi
 		this.setSize(getWidth(), 500);
 	}
 }
-``` 
+```
 
 Il codice non è per nulla complesso, se la larghezza o l’altezza scendono sotto un certo limite, il frame viene ridimensionato. Questo metodo fa sfarfallare un po’ il tutto se si insiste a ridimensionare la finestra, ma fa il suo dovere.
 
 
-L’ultima parte degna di nota è l’uso di un `MouseListener`, quando viene effettuato un click, il focus torna alla finestra principale. Questa istruzione era pensata più per quando il panello delle immagini era eterno, ma abbiamo deciso di tenerlo per completezza funzionalità del codice. 
+L’ultima parte degna di nota è l’uso di un `MouseListener`, quando viene effettuato un click, il focus torna alla finestra principale. Questa istruzione era pensata più per quando il panello delle immagini era eterno, ma abbiamo deciso di tenerlo per completezza funzionalità del codice.
 
-```java 
-@Override
+```java
 public void mouseClicked(MouseEvent e) {
 	isFocusTraversable();
 	this.requestFocus();
 }
 
-@Override
 public boolean isFocusTraversable() {
 	return true;
 }
@@ -386,7 +369,7 @@ public ComandiPanel() {
 	initComponents();
 	DefaultCaret caret = (DefaultCaret) commandsText.getCaret();
 	caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-    }
+}
 ```
 
 Per quanto riguarda la parte inferiore del pannello sono stati creati i seguenti metodi per passare da una tipologia di controlli all'altro:
@@ -398,7 +381,7 @@ private void keyboardButtonActionPerformed(java.awt.event.ActionEvent evt) {
 	leapController.delete();
 	droneFrame.switchEmergencyListenerOff();
 	droneFrame.switchKeyListenerOn();
-    }   
+}   
 ```
 Si occupa di invocare i metodi del LeapMotion per disattivarne le funzionalità (comandi da tastiera).
 
@@ -410,7 +393,7 @@ private void leapmotionButtonActionPerformed(java.awt.event.ActionEvent evt) {
 	leapController = new Controller();
 	leapListener = new LeapMotionProject(drone, funzionePanel);
 	leapController.addListener(leapListener);
-    }   
+}   
 ```
 Si occupa di invocare i metodi del LeapMotion per attivarne le funzionalità (comandi da Leap Motion).
 
@@ -423,7 +406,7 @@ public void sendKeyboardCommand(String command) {
 		drone.invioMessaggio(command);
 		initialTime = System.currentTimeMillis();
 	}
-} 
+}
 ```
 
 ### FunzioniPanel
@@ -449,7 +432,7 @@ private void vistaDroneMouseClicked(java.awt.event.MouseEvent evt) {
 	} catch (IOException ex) {
 		Logger.getLogger(FunzionePanel.class.getName()).log(Level.SEVERE, null, ex);
 	}
-} 
+}
 ```
 Questo metodo si appoggia ad uno script creato in phyton che apre una finestra del browser collegata a una determinata porta sulla quale è possibile visualizzare la live in tempo reale.
 
@@ -463,7 +446,7 @@ private void sequenzaTastiActionPerformed(java.awt.event.ActionEvent evt) {
 		started = true;
 	}
 }  
-``` 
+```
 
 Un altro metodo fondamentale per questo pannello è caricamento, grazie alla quale viene settato il valore del label relativo alla batteria del drone, per farlo il metodo si è appoggiato alla classe Log, che si occupa della gestione delle statistiche del drone:
 
@@ -476,7 +459,7 @@ private void caricamento() {
 		Logger.getLogger(FunzionePanel.class.getName()).log(Level.SEVERE, null, ex);
 	}
 }
-``` 
+```
 
 ### Status
 Come suggerisce il nome, questa classe si occupa della gestione degli stati del drone, o meglio dei vari valori che fornisce il drone. Questa classe è una Thread, questo ci permette di avere in continuazione i dati che vengono salvati in un log, all'interno del metodo `public void run()`
@@ -557,7 +540,7 @@ Queso codice formatta la stringa e agginge delle informazioni da mettere nel log
 
 ### Log
 
-La classe `log` è una classe molto semplice. Abbiamo deciso di implementarla dopo un po', su consiglio del docente, ma ci è stata molto utile. Log funziona solo grazie a a `Status`, come abbiamo detto quis sopra, essa infatti crea un istanza di `Log`, per poi ottenere tutti i dati che il drone invia in un unica lunga stringa. 
+La classe `log` è una classe molto semplice. Abbiamo deciso di implementarla dopo un po', su consiglio del docente, ma ci è stata molto utile. Log funziona solo grazie a a `Status`, come abbiamo detto quis sopra, essa infatti crea un istanza di `Log`, per poi ottenere tutti i dati che il drone invia in un unica lunga stringa.
 Ad oogni modo, questa stringa viene formattata e inviata a `Log` nel segunete modo:
 
 ```java
@@ -627,7 +610,7 @@ Come possiamo vedere andiamo a parire la pagina `http://localhost:3000/index.htm
 
 
 
-###ImageFrame
+### ImageFrame
 
 Per quanto riguarda invece l’implementazione della rappresentazione grafica del drone e della sua posizione sono state implementate queste classi:
 
@@ -646,7 +629,7 @@ Per far si che i pannelli potessero utilizzare i metodi, abbiamo dovuto creare u
 
 ### ImageFrame
 
-ImageFrame, come il nome suggerisce, è nato inizialmente per essere il Frame principale. Questo però è cambiato quando abbiamo deciso di implementare la Live, che avrebbe occupato gran parte della finestra come mostrato dalla progettazione, in  NodeJs e con una pagina web. Per questo ImageFrame è diventato un panello, che ha preso il posto della Live. Abbiamo mantenuto il nome tuttavia perché era ormai molto integrato con il resto dell’app, inoltre l’aggiunta di “Frame” nel nome suggerisce che sia un contenitore, aveva quindi più senso per noi lasciare lo stesso nome. 
+ImageFrame, come il nome suggerisce, è nato inizialmente per essere il Frame principale. Questo però è cambiato quando abbiamo deciso di implementare la Live, che avrebbe occupato gran parte della finestra come mostrato dalla progettazione, in  NodeJs e con una pagina web. Per questo ImageFrame è diventato un panello, che ha preso il posto della Live. Abbiamo mantenuto il nome tuttavia perché era ormai molto integrato con il resto dell’app, inoltre l’aggiunta di “Frame” nel nome suggerisce che sia un contenitore, aveva quindi più senso per noi lasciare lo stesso nome.
 
 Qui l’inizializzazione della classe ImageFrame:
 
@@ -696,7 +679,7 @@ public void run() {
 Dopo aver spiegato ImageFrame, passiamo a ImageModel
 
 ### ImageModel
-Come detto questa classe definisce un modello per la rappresentazione delle immagini. 
+Come detto questa classe definisce un modello per la rappresentazione delle immagini.
 Al suo intenro sono infatti contenute le istanze di BufferedImage che ci serviranno nel programma, le istanze sono 3:
 
 `public BufferedImage imageBig`: è l’immagine originale, che verrà direttaemnte presa dal file png.
@@ -714,7 +697,7 @@ Il secondo metodo, `rotate`, funziona in maniera simile a quello precedente: pre
 
 Un terzo metodo fondamentale è `toBufferedImage`. Esso, data un’immagine di tipo `Image` come input permette di convertirla in BufferdImage.
 Questo metodo si è reso necessario quando abbiamo creato il jar finale, e ci siamo accorti che le immagini non venivano mostrate, in quanto erano compresse nel file jar stesso.
-Questo ci ha costretti a rendere delle immagini delle risorse della classe stessa, per poi essere prese e convertite, in quanto non era possibile creare delle BufferdImage direttamente. 
+Questo ci ha costretti a rendere delle immagini delle risorse della classe stessa, per poi essere prese e convertite, in quanto non era possibile creare delle BufferdImage direttamente.
 Ma esploreremo questo aspetto meglio più avanti.
 
 L’ultimo metodo fondamnetale è, ovviamente, ` paintComponent`. Questo metodo viene usato da `ImagePanelFront` e `ImagePanelLat`; poiché i due pannelli contengono 2 immagini pressochè identiche nei rapporti di dimensione.
@@ -723,7 +706,7 @@ Questo metodo prende come prima cosa le dimensioni del pannello, per poi calcola
 Dopo aver calcolato le dimensioni dell’immagine, essa può essere ridimensionata, viene ridotta arbitrariamente di 75,  per poi essere disegnata.
 
 Abbiamo posto una particlare attenzione alla rappresentazione delle immagini ruotata, infatti abbiamo fatto variare la posizione y, aggiungendo o togliendo i gradi di rotazione.
-Testando abbiamo scoperto infatti che questo aitua a mantenere l’immagine al centro del pannello. 
+Testando abbiamo scoperto infatti che questo aitua a mantenere l’immagine al centro del pannello.
 
 Qui c’è il codice di paintCompoent da noi creato:
 
@@ -735,7 +718,7 @@ public void paintComponent(Graphics g) {
 	panelH = (int) (panelW / 1.5);
 	g.setColor(Color.black);
 	int x, y = 0;
-	if (imageBig != null) {	
+	if (imageBig != null) {
 		image = resize(imageBig, panelW - 75, panelH - 75);
 		x = (this.getWidth() - image.getWidth()) / 2;
 		y = (this.getHeight() - image.getHeight()) / 2;
@@ -760,7 +743,7 @@ Questo perché i primi due pannelli possiedono un codice pressoché identico, è
 
 Questi pannelli esportano essenzialmente 2 elementi, un metodo costruttore personalizzato e un metodo per gestire il movimento. Partiamo dal costruttore.
 
-Come anticipato precedentemente, il costruttore ci permette di prendere l'immagine da file, per poi convertirla per essere utilizzata. Tuttavia prelevare quest'immagine ci pone di fronte a qualche difficoltà: una volta creato il file Jar infatti, non sarà più possibile prelevare le immagini semplicemente con il loro percorso, in quanto esse vengono compresse. 
+Come anticipato precedentemente, il costruttore ci permette di prendere l'immagine da file, per poi convertirla per essere utilizzata. Tuttavia prelevare quest'immagine ci pone di fronte a qualche difficoltà: una volta creato il file Jar infatti, non sarà più possibile prelevare le immagini semplicemente con il loro percorso, in quanto esse vengono compresse.
 Per ovviare a questo problema bisogna eseguire 2 semplici passaggi.
 
 Come prima cosa dobbiamo spostare le immagini dalla loro cartella di origine, per posizionarle in un'altra cartella, idealmente in un posto facile e accessibile.
@@ -776,7 +759,7 @@ Il secondo passo sarà prelevare le immagini come “risorsa di classe”, e que
 	imageBig=toBufferedImage(image);
 }
 ```
-È importante che le immagini siano prese dapprima come `Icon`, in quanto questo tipo di immagine è il più consigliato per essere usato come contenitore per delle risorse di immagini. 
+È importante che le immagini siano prese dapprima come `Icon`, in quanto questo tipo di immagine è il più consigliato per essere usato come contenitore per delle risorse di immagini.
 In seguito questa icona è convertirla in un immagine e, tramite il metodo citato prima, in una `BufferdImage`.
 
 Il secondo metodo importante è, come detto, il metodo per il movimento. Il principio è molto semplice, viene passato un parametro con la pendenza in gradi, dopo aver verificato se la pendenza è minore rispetto alla massima consentita, l'immagine viene ruotata e aggiornata.
@@ -833,7 +816,7 @@ if (imageBig != null) {
 ```
 ### ImagePanelAlt
 
-Quest ultimo panelo è il più semplice di tutti. Infatti non contiene nemmeno un immagine, 
+Quest ultimo panelo è il più semplice di tutti. Infatti non contiene nemmeno un immagine,
 tramite il parametro che viene aggiornato, anche il `JLabel` contenete il dato viene aggiornato.
 Per una maggior completezza il dato dell'altezza è dato in metri, centimetri e piedi.
 Vine creata una stringa con dentro tutti questi valori e poi essa viene assegnata al JLabel.
@@ -842,7 +825,7 @@ Vine creata una stringa con dentro tutti questi valori e poi essa viene assegnat
 String text = altitude + " cm" + '\n'
 	+ altitude / 100 + " m" + "\n"
 	+ stAlt / 30.48 + " ft";
-	
+
 	alt.setText("<html>" + text.replaceAll("<", "&lt;")
 		.replaceAll(">", "&gt;")
 		.replaceAll("\n", "<br/>") + "</html>");
@@ -859,7 +842,7 @@ tramite sole mani, dal decollo all'atterraggio. Come extra ha anche un sistema d
 comandi per una successiva esecuzione automatica da parte del programma.
 
 Vediamo più da vicino come è composta questa classe.
-Ecco qui il costruttore: 
+Ecco qui il costruttore:
 
 ```java
 public LeapMotionProject(Drone drone, FunzionePanel funzionePanel) {
@@ -945,7 +928,7 @@ public CommandsRecorder(String fileName) {
     try {
         Files.write(file, "".getBytes());
     } catch (IOException e) {
-    
+       System.out.println("Error:"+ e);
     }
 }
 ```
@@ -960,7 +943,7 @@ public void sequenceWriter(String sequence) {
     try {
 		Files.write(file, ((sequence + "\r\n")).getBytes(), StandardOpenOption.APPEND);
     } catch (IOException e) {
-    
+       System.out.println("Error:"+ e);
     }
 }
 ```
@@ -992,9 +975,10 @@ public void run() {
 			}
 		}
 	} catch (IOException ex) {
-	
+      System.out.println("Error:"+ e);
+
 	} catch (InterruptedException ex) {
-	
+        System.out.println("Error:"+ e);
 	}
 }
 ```
