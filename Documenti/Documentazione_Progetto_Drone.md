@@ -201,19 +201,100 @@ Per il nostro progetto abbiamo deciso di procedere in maniera modulare. Infatti 
 Per lo sviluppo di questo progetto il lavoro è stato suddiviso in tre principali sezioni, lo sviluppo delle classi relative al drone, ovvero la parte che concerne la comunicazione tra drone e utente, l'interfaccia principale e le diverse funzioni implementate, lo sviluppo delle classi relative al Leap Motion, ovvero la parte logica per quello che concerne la comunicazione tra drone e Leap Motion, la calibrazione dei comandi e la sensibilità dei movimenti del drone, e infine lo sviluppo delle classi  dell'Image Frame, ovvero la parte relativa alle varie interfacce contenenti le statistiche del drone e le rappresentazioni grafiche dei movimenti.
 
 Per la sezione di progetto dedicata al drone sono state realizzate le seguenti classi:
-1. Drone
-2. CommandSequencer
-3. CommandRecorder
-4. Log
+1. DroneFrane
+2. Drone
+3. ComandiPanel
+4. FunzioniPanel
 5. Status
-6. Browser
-7. ComandiPanel
+6. Log
+7. Browser
 
+### DronePK in genrale
 
 Il funzionamento della comunicazione tra drone e utenti è piuttosto semplice, il drone possiede un proprio wi-fi e di conseguenza ha un suo ip e diverse porte sulla quale connettersi, alcune delle quali servono per la ricezione e l'invio di informazioni. È stata creata un'interfaccia principale grazie alla quale l'utente può interagire e usare tutte le funzionalità che offre il software. L'interfaccia principale è suddivisa in diverse sezioni, una sezione laterale per i comandi eseguiti, una barra in basso per eseguire alcune funzioni e visualizzare alcune statistiche come batteria e velocità, infine la parte principale al centro in cui si vedono tutti i dati relativi alla posizione e ai movimenti del drone.
 Per prima cosa è stata realizzata la comunicazione tra leap motion e drone, quindi la parte relativa al pannello centrale, per poter instaurare una comunicazione tra leap motion e drone è stato creato un socket grazie alla quale l'utente client invia dei pacchetti su una determinata porta del drone, questi pacchetti sono delle semplici stringhe contenenti dei comandi che vengono interpretate dal drone tramite un suo protocollo interno. Quello che succede quindi, è che il leap motion continua a passare i dati che legge al drone, spedendoli in tempo reale tramite il socket, il drone riceve quindi questi pacchetti e si muove di conseguenza.
 
+### Drone
+Questa classe é una delle parti fondamentali del progetto, infatti tutta la comunicazione parte da qui. La creazione del Socket è in questa classe, più moltissime altre cose che ora andremo a vedere.
 
+Come prima parte di codice che andiamo a vedere è il costruttore che troviamo qui sotto:
+
+```java
+public Drone() {
+	try {
+		socket = new DatagramSocket();
+	} catch (SocketException ex) {
+		System.out.println("ERRORE: " + ex.getMessage());
+	}
+	port = socket.getLocalPort();
+    status.start();
+    setUp();
+}
+```
+Questo costruttore racchiude la crazione del `DatagramSocket` e l'assegnazione della porta, inoltre nella parte sottostante del costruttore troviamo anche l'avvio di una Thread e un metdo che si chiama `setUp()` che si occupa di impostare i valori di base.
+
+Passando invece al metodo `public void run()` questo metodo si occupa della reciezzione del pacchetto dal drone.
+
+```java
+public void run() {
+	try {
+		while (true) {
+			DatagramPacket packet = new DatagramPacket(sendBuf, sendBuf.length);
+			socket.receive(packet);
+			messageReceived = new String(packet.getData(), 0, packet.getLength());
+			System.out.println(messageReceived);
+		}
+	} catch (SocketException ex) {
+		System.out.println("ERRORE: " + ex.getMessage());
+	} catch (IOException ex) {
+		System.out.println("ERRORE: " + ex.getMessage());
+	}
+}
+```
+
+Questo metodo rimane in attesa che il drone gli mandi un pacchetto, quando lo ha ricevuto lo stampa sulla console. L'atto di stampare è servito più a noi come debug per vedere se tutto andava bene.
+
+Per quanto riguarda la spedizione dei pacchetti al drone abbiamo usato il seguente metodo:
+
+```java
+public void sendMessage() {
+    try {
+        byte[] data = messageToSend.getBytes();
+        DatagramPacket packet = new DatagramPacket(data, data.length, destinationIp, destinationPort);
+        socket.send(packet);
+    } catch (SocketException ex) {
+        System.out.println("ERRORE: " + ex.getMessage());
+    } catch (IOException ex) {
+        System.out.println("ERRORE: " + ex.getMessage());
+    }
+}
+```
+
+Questo metodo come prima cosa crea un array di byte e ci inserisce il messagio da mandare, in secondo luogo impacchetta il messagio all'interno di un  DatagramPacket e dopo lo manda.
+
+Abbiamo deciso di creare un metodo a qui gli si passa una stinga e lui in automatico fa tutti i passaggi per spedirlo e aggiorna tutto ciò che c'é da aggiornare che é il seguente :
+
+```java
+public void invioMessaggio(String message) {
+        setInfo(ipDrone, porta, message);
+        istru = message;
+        sendMessage();
+        comandiPanel.refreshCommands(message + "\n");
+    }
+```
+Questo metodo imposta vari parametri come: ip del drone, la porta e il messaggio. IN seguti, pittosto semplicemente, lo spedisce usando altri metodoti che abbiamo creato, oltre a questo aggiorna anche tutto ciò che è inerente a questo messaggio.
+
+
+Abbiamo anche crato dei metodi appoiti per decollare, atterrare e per mandare il command il messaggio che serve a "sbloccare " l'SKD dentro il drone, ne vediamo uno dato che tutti gli altri saranno uguali.
+
+```java
+public void decolla() {
+    String message = "takeoff";
+    invioMessaggio(message);
+    setStato();
+}
+```
+Come stavamo dicendo, questo metodo in base al comando scritto manda il messaggio e cambia lo stato del drone in modo tale che se il drone è già decollato, non si può mandare più volte lo stesso comando per non rischiare di causare problemi al drone.
 
 ### DroneFrame
 
@@ -225,7 +306,7 @@ Nel frame è inoltre contenuto il frame del package `ImageFrame`, `ImageFrame` a
 In riferimento a `ImageFrame` riteniamo opportuno riportate il costruttore del frame principale, in quanto al suo interno ci sono istruzioni molto interessanti:
 Oltre a tutti i metodi per aggiungere le interfacce che citeremo qui sotto, c’è l’importante creazione della Thread di `ImageFrame` che, come specificheremo in seguito, viene eseguita qui per un semplice motivo, la rappresentazione del drone deve avvenire fin dal primo momento di vita dell’applicazione.
 
-```
+```java
 public DroneFrame() {
 	initComponents();
 	this.addMouseListener(this);
@@ -244,7 +325,8 @@ public DroneFrame() {
 3.	`ComponentListene`
 
 Questo frame avrebbe potuto essere molto semplice, tuttavia abbiamo voluto aggiungere la possibilità di guidare il drone da tastiera. Questo ha portato ad una serie di complicazioni. Infatti per catturare i comandi da tastiera si necessita, chiaramente, di `KeyListener`. Per questo abbiamo i metodi qui, in modo possiamo poi inviare un segnale al pannello apposito, che si occuperà della gestione dei movimenti. Come esempio riportiamo il metodo KeyTyped:
-```   
+
+```java
 @Override
 public void keyTyped(KeyEvent e) {
 	comandiPanel.keyTypedC(e);
@@ -257,25 +339,65 @@ Perciò, per ragioni di sicurezza, abbiamo dovuto implementare un modo di cattur
 La classe ComandiPanel è un pannello contenente una Text Area centrale e due Radio Button nella parte inferiore, uno che per abilitare i controlli da tastiera e uno per i controlli da Leap Motion. La parte sottostante del pannello infatti servirà per fare selezionare all'utente quale modalità di pilotaggio adoperare mentre la parte principale composta dal campo di testo ha lo scopo di stampare le sequenze di comandi salvate in precedenza dall'utente, in pratica vengono stampati in ordine cronologico i comandi di tutti i movimeni eseguiti dal drone nella sequenza salvata. Inoltre questa classe contiene anche il key listener, che permette di muovere il drone con l'utilizzo della tastiera.
 
 
+A questo scopo abbiamo dovuto creare un `emergencyListener`, che abbiamo documentato con precisione nell'implementazione riguardante il `Leap Motion`.
+
+Per quanto riguarda l'impedire che un metodo di input ne sovrascriva un altro, abbiamo implementato una serie di metodi `switch`. Questi metodi vengono richiamata quando si vuole passare da un metodo di guida a un altro. Si puô inoltre accendere o spegnere lo switch per l'emergency o per i comandi da tastiera.
+
+
+Un altro aspetto abbastanza importante di questa classe è l’implementazione di `ComponentListener`. Questa interfaccia ci serve infatti per monitorare il Frame stesso. Noi abbiamo dovuto limitare la dimensione della finestra, specialmente per le immagini del drone, e per questo abbiamo dovuto porre un controllo sulla dimensione del Frame. Non volendo mettere la finestra bloccata, abbiamo optato per questa soluzione:
+
+il metodo `componentResized()` viene invocato ogni volta che il frame viene ridimensionata, al suo interno abbiamo messo queste istruzioni:
+
+```java
+@Override
+	public void componentResized(ComponentEvent e) {
+	if (getWidth() < 800) {
+		this.setSize(800, getHeight());
+	}
+	if (getHeight() < 500) {
+		this.setSize(getWidth(), 500);
+	}
+}
+``` 
+
+Il codice non è per nulla complesso, se la larghezza o l’altezza scendono sotto un certo limite, il frame viene ridimensionato. Questo metodo fa sfarfallare un po’ il tutto se si insiste a ridimensionare la finestra, ma fa il suo dovere.
+
+
+L’ultima parte degna di nota è l’uso di un `MouseListener`, quando viene effettuato un click, il focus torna alla finestra principale. Questa istruzione era pensata più per quando il panello delle immagini era eterno, ma abbiamo deciso di tenerlo per completezza funzionalità del codice. 
+
+```java 
+@Override
+public void mouseClicked(MouseEvent e) {
+	isFocusTraversable();
+	this.requestFocus();
+}
+
+@Override
+public boolean isFocusTraversable() {
+	return true;
+}
+```
+
 
 ### ComandiPanel
-La classe ComandiPanel viene istanziato con il suo metodo costruttore nel seguente modo:
+La classe ComandiPanel viene istanziata con il suo metodo costruttore nel seguente modo:
 ```java
 public ComandiPanel() {
-        initComponents();
-        DefaultCaret caret = (DefaultCaret) commandsText.getCaret();
-        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+	initComponents();
+	DefaultCaret caret = (DefaultCaret) commandsText.getCaret();
+	caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
     }
 ```
 
 Per quanto riguarda la parte inferiore del pannello sono stati creati i seguenti metodi per passare da una tipologia di controlli all'altro:
+
 ```java
 private void keyboardButtonActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        leapController.removeListener(leapListener);
-        leapListener.delete();
-        leapController.delete();
-        droneFrame.switchEmergencyListenerOff();
-        droneFrame.switchKeyListenerOn();
+	leapController.removeListener(leapListener);
+	leapListener.delete();
+	leapController.delete();
+	droneFrame.switchEmergencyListenerOff();
+	droneFrame.switchKeyListenerOn();
     }   
 ```
 Si occupa di invocare i metodi del LeapMotion per disattivarne le funzionalità (comandi da tastiera).
@@ -283,46 +405,102 @@ Si occupa di invocare i metodi del LeapMotion per disattivarne le funzionalità 
 
 ```java
 private void leapmotionButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        droneFrame.switchKeyListenerOff();
-        droneFrame.switchEmergencyListenerOn();
-        leapController = new Controller();
-        leapListener = new LeapMotionProject(drone, funzionePanel);
-        leapController.addListener(leapListener);
+	droneFrame.switchKeyListenerOff();
+	droneFrame.switchEmergencyListenerOn();
+	leapController = new Controller();
+	leapListener = new LeapMotionProject(drone, funzionePanel);
+	leapController.addListener(leapListener);
     }   
 ```
 Si occupa di invocare i metodi del LeapMotion per attivarne le funzionalità (comandi da Leap Motion).
 
 
 Invece per permettere all'utente di comandare il drone utilizzando la tastiera come input è stato implementato un Key Listener che invia i comandi opportuni in base al tasto premuto dall'utente, quando un tasto viene rilasciato invece, viene inviato al drone il comando per fermarsi sul posto. Inoltre per evitare di sovraccaricare di richieste il drone, è stato creato un metodo per limitare l'invio di richieste a una ogni 125 millisecondi.
+
 ```java
 public void sendKeyboardCommand(String command) {
-        if (System.currentTimeMillis() - initialTime >= 125) {
-            drone.invioMessaggio(command);
-            initialTime = System.currentTimeMillis();
-        }
-    } 
+	if (System.currentTimeMillis() - initialTime >= 125) {
+		drone.invioMessaggio(command);
+		initialTime = System.currentTimeMillis();
+	}
+} 
 ```
 
+### FunzioniPanel
+
+La classe FunzionePanel è un pannello contenente diversi elementi, Label, Button e Text Area. Tramite questo pannello si possono eseguire molte funzioni secondarie come il salvataggio con nome di una sequenza di comandi, l'esecuzione di una sequenza con un determinato nome e la visualizzazione della live, inoltre all'interno di esso vengono indicate le percentuali relative alla batteria del drone e alla velocità dalla tastiera.
+La classe FunzionePanel viene istanziata con il suo metodo costruttore nel seguente modo:
+
+```java
+public FunzionePanel() {
+	initComponents();
+	browser = new Browser();
+	drone = new Drone();
+}
+```
+
+Per quello che concerne il pulsante relativo alla visualizzazione della live è stato creato il seguente metodo:
+
+```java
+private void vistaDroneMouseClicked(java.awt.event.MouseEvent evt) {                                        
+	try {
+		browser.script();
+		browser.openBrowser();
+	} catch (IOException ex) {
+		Logger.getLogger(FunzionePanel.class.getName()).log(Level.SEVERE, null, ex);
+	}
+} 
+```
+Questo metodo si appoggia ad uno script creato in phyton che apre una finestra del browser collegata a una determinata porta sulla quale è possibile visualizzare la live in tempo reale.
+
+Per il pulsante relativo all'esecuzione delle sequenze è stato creato un semplice metodo:
+
+```java
+private void sequenzaTastiActionPerformed(java.awt.event.ActionEvent evt) {                                              
+	if (!started) {
+		csr = new CommandSequenceRunner(getSeqNameExecute(), drone);
+		csr.start();
+		started = true;
+	}
+}  
+``` 
+
+Un altro metodo fondamentale per questo pannello è caricamento, grazie alla quale viene settato il valore del label relativo alla batteria del drone, per farlo il metodo si è appoggiato alla classe Log, che si occupa della gestione delle statistiche del drone:
+
+```java
+private void caricamento() {
+	try {
+		Thread.sleep(300);
+			batteriaL.setText(drone.batteria() + "%");
+	} catch (InterruptedException ex) {
+		Logger.getLogger(FunzionePanel.class.getName()).log(Level.SEVERE, null, ex);
+	}
+}
+``` 
 
 ### Status
 Come suggerisce il nome, questa classe si occupa della gestione degli stati del drone, o meglio dei vari valori che fornisce il drone. Questa classe è una Thread, questo ci permette di avere in continuazione i dati che vengono salvati in un log, all'interno del metodo `public void run()`
 
 Nelle righe di codice sottostanti troviamo la formattazione della data e la creazione del file di log, nel caso non esista ancora.
+
 ```java
 dateFormat = DateFormat.getDateInstance(DateFormat.LONG, Locale.ITALY);
 log.creazioneFile();
 ```
 
 Nelle righe di codice sottostanti possiamo vedere come andiamo a prendere il pacchetto che riceviamo dal drone e come lo andiamo a scomporre per prendere tutti i vari dati.
+
 ```java
 packet = new DatagramPacket(buf, buf.length, address, port);
 String received = new String(packet.getData(), 0, packet.getLength());
 socket.receive(packet);
 StringTokenizer st = new StringTokenizer(received, " ;");
+
 ```
 Andando a analizzare un po' più approfonditamente: quello che facciamo e convertire il pacchetto che riceviamo in una stringa e poi andiamo a dividerla in base a quando troviamo il punto e virgola, in modo tale da avere tutti i vari dati singolaramente, ma non ancora del tutto puliti.
 
 Per poterli finire di pulire dobbiamo fare il seguente passaggio:
+
 ```java
 pitch = st.nextToken().substring(6);
 roll = st.nextToken().substring(5);
@@ -331,26 +509,31 @@ spX = st.nextToken().substring(4);
 spY = st.nextToken().substring(4);
 spZ = st.nextToken().substring(4);
 ```
+
 Dato che il valore che riceviamo davanti ha ancora l'etichetta, dobbiamo pulire definitivamente con il metodo `substring()`: passando quanti caratteri vogliamo togliere rimuove i caratteri assegnati dalla parte iniziale della stringa lasciandoci i dati cosi puliti.
 
 Nel caso della temperatura abbiamo un dato in fahrenheit mentre noi la vogliamo avere in gradi C°, quindi per fare la conversione facciamo il seguente calcolo
+
 ```java
 temMinF = Integer.parseInt(templ.substring(6));
 temMinC = (temMinF - 32) * 0.5;
-
 ```
+
 Come prima cosa puliamo il dato e dopo di che facciamo il classico calcolo per la conversione della temperatura.
 
 Dopo di che sempre nel metodo `public void run()` abbiamo il codice che troviamo qui sotto che serve per la gestione delle immagini.
+
 ```java
 view.setPitch(Integer.parseInt(pitch));
 view.setRoll(Integer.parseInt(roll));
 view.setYaw(Integer.parseInt(yaw));
 view.setAlt(Integer.parseInt(altezza));
 ```
+
 Questi setter servono fornire i dati per spostare le immagini in tempo reale.
 
 Dopo di che troviamo la scrittura del log:
+
 ```java
 String valori = " Bat:" + bat
         + " TMax:" + temMaxC
@@ -368,8 +551,8 @@ String valori = " Bat:" + bat
 String finale = dateFormat.format(data) + " " + ip + ":" + port + valori;
 log.scritturaFile(finale);
 ```
-Queso codice formatta la stringa e agginge delle informazioni da mettere nel log e poi fa un append al log già creato in precedenza.
 
+Queso codice formatta la stringa e agginge delle informazioni da mettere nel log e poi fa un append al log già creato in precedenza.
 
 
 ### Log
@@ -377,19 +560,20 @@ Queso codice formatta la stringa e agginge delle informazioni da mettere nel log
 La classe `log` è una classe molto semplice. Abbiamo deciso di implementarla dopo un po', su consiglio del docente, ma ci è stata molto utile. Log funziona solo grazie a a `Status`, come abbiamo detto quis sopra, essa infatti crea un istanza di `Log`, per poi ottenere tutti i dati che il drone invia in un unica lunga stringa. 
 Ad oogni modo, questa stringa viene formattata e inviata a `Log` nel segunete modo:
 
-```
+```java
 log.scritturaFile(finale);
 ```
+
 `finale` è appunto la stringa formattata.
 Quello che `Log` fa, una volta invocato, è creare un file nella posizione designata, ovvero la nostra cartella log, e asseganrli come nome la data corrente. Poi una volta creato il file verrà aperto, scritto e poi richiuso.
 
 Siccome la creazione del file è già stata affrontata in log, riportiamo solo il metodo più interessante:
 
 ***Scrittura del file***
-```
+
+```java
 fw.write(testo + '\n');
 fw.flush();
-
 ```
 NB: In quest'ultima porzione di codice biosngna gestire la `IOException`.
 
@@ -398,59 +582,61 @@ NB: In quest'ultima porzione di codice biosngna gestire la `IOException`.
 Come suggerisce il nome questa classe si occupa della gestione del browser, in fatti in questa classe verranno attivati script diversi, la scelta verrà fatta in base al sistema operativo in uso. In entrambi i casi la live verrà visualizzata  in modo automatico. Infatti in questa classe abbiamo solo due metodi che sono `script()` e `openBrowser()`
 
 Parliamo prima del metodo `script()`
+
 ```java
 public void script() throws IOException {
-    String os= System.getProperty("os.name").toLowerCase();
-    if (os.contains("os")) {
-
-        ProcessBuilder builder = new ProcessBuilder();
-        builder.command("sh","-c"," ./RunLiveMac.sh");
-        Process process=builder.start();
-    } else {
-        String path = "cmd /c start RunLiveWin.bat";
-        Runtime rn = Runtime.getRuntime();
-        Process pr = rn.exec(path);
-    }
+	String os= System.getProperty("os.name").toLowerCase();
+	if (os.contains("os")) {
+		ProcessBuilder builder = new ProcessBuilder();
+		builder.command("sh","-c"," ./RunLiveMac.sh");
+		Process process=builder.start();
+	} else {
+		String path = "cmd /c start RunLiveWin.bat";
+		Runtime rn = Runtime.getRuntime();
+		Process pr = rn.exec(path);
+	}
 }
 ```
 Questo metodo ci permette di identificare su che sistema operativo sta girando il nostro programma e, in base se é MacOS o Windows, fa partire due script diversi che si occupano di entrare in una cartella predefinita e attivare del codice di NodeJs.
 
 
 Questo metodo serve a aprire una pagina internet.
+
 ```java
 public void openBrowser() {
-       String url = "http://localhost:3000/index.html";
-       if (Desktop.isDesktopSupported()) {
-           Desktop desktop = Desktop.getDesktop();
-           try {
-               desktop.browse(new URI(url));
-           } catch (IOException | URISyntaxException e) {
-               System.out.println("Error:" + e);
-           }
-       } else {
-           Runtime runtime = Runtime.getRuntime();
-           try {
-               runtime.exec("xdg-open " + url);
-           } catch (IOException e) {
-               System.out.println("Error:" + e);
-           }
-       }
-   }
+	String url = "http://localhost:3000/index.html";
+	if (Desktop.isDesktopSupported()) {
+		Desktop desktop = Desktop.getDesktop();
+		try {
+			desktop.browse(new URI(url));
+		} catch (IOException | URISyntaxException e) {
+			System.out.println("Error:" + e);
+		}
+	} else {
+		Runtime runtime = Runtime.getRuntime();
+		try {
+			runtime.exec("xdg-open " + url);
+		} catch (IOException e) {
+			System.out.println("Error:" + e);
+		}
+	}
+}
 ```
+
 Come possiamo vedere andiamo a parire la pagina `http://localhost:3000/index.html` su qui andremo a vedere la live che sarà stata caricata dallo script precedentemente accennato.
 
 
 
-### ImageFrame
+###ImageFrame
 
 Per quanto riguarda invece l’implementazione della rappresentazione grafica del drone e della sua posizione sono state implementate queste classi:
 
 1.	ImageFrame
-2.	ImagePanelUp
-3.	ImagePanelLat
-4.	ImagePanelFront
-5.	ImagePanelAlt
-6.	ImageModel
+2. ImageModel
+3. ImagePanelFront
+4.	ImagePanelLat
+5.	ImagePanelUp
+6.	ImagePanelAlt
 
 Come il nome suggerisce, i 4 dati principali del drone (imbardata, beccheggio, rollio e altitudine) sono rappresentati nei 4 panelli.
 
@@ -458,7 +644,7 @@ ImageModel è invece un pannello speciale, che definisce il modello per la rappr
 
 Per far si che i pannelli potessero utilizzare i metodi, abbiamo dovuto creare una relazione tra i pannelli e il modello stesso. Per questo i pannelli estendono la classe modello.
 
-***ImageFrame***
+### ImageFrame
 
 ImageFrame, come il nome suggerisce, è nato inizialmente per essere il Frame principale. Questo però è cambiato quando abbiamo deciso di implementare la Live, che avrebbe occupato gran parte della finestra come mostrato dalla progettazione, in  NodeJs e con una pagina web. Per questo ImageFrame è diventato un panello, che ha preso il posto della Live. Abbiamo mantenuto il nome tuttavia perché era ormai molto integrato con il resto dell’app, inoltre l’aggiunta di “Frame” nel nome suggerisce che sia un contenitore, aveva quindi più senso per noi lasciare lo stesso nome. 
 
@@ -509,8 +695,7 @@ public void run() {
 ```
 Dopo aver spiegato ImageFrame, passiamo a ImageModel
 
-***ImageModel***
-
+### ImageModel
 Come detto questa classe definisce un modello per la rappresentazione delle immagini. 
 Al suo intenro sono infatti contenute le istanze di BufferedImage che ci serviranno nel programma, le istanze sono 3:
 
@@ -571,7 +756,7 @@ Ora è arrivato il momento di passare ai 4 frame dell'applicazione. Per trattare
 
 Questo perché i primi due pannelli possiedono un codice pressoché identico, è quindi possibile semplificare la spiegazione.
 
-***ImagePanelLat/Front***
+### ImagePanelFront/Lat
 
 Questi pannelli esportano essenzialmente 2 elementi, un metodo costruttore personalizzato e un metodo per gestire il movimento. Partiamo dal costruttore.
 
@@ -618,18 +803,21 @@ public void moving(int rotate) {
 }
 ```
 
-***ImagePanelUp***
+> Il codice qui riportato corrisponde a `ImagePanelFront`, per creare il suo corrispettivo `ImagePanelLat` è sufficente sostitutire nel costruttore `DroneFrontale.png` con `DroneLaterale.png `
+
+
+### ImagePanelUp
 Questa classe differisce leggermente dalle due precedenti, infatti a cambiare è il rapporto dell’immagine.
 
 Tuttavia la logica è pressoché la stessa, il costruttore prende l’immagine allo stesso modo, ma al posto di esserci un metodo di movimento che sfrutta il `paintComponent` definito nel modello `ImagePanelUp` ha un suo metodo paint.
 Esso è molto simile a quello visto nel modello di panello, con la differenza del calcolo della dimensione dell’immagine. In questa classe l’immagine assume la dimensione più piccola possibile, data dalla larghezza e dall’altezza del pannello.
-```java
-  if (panelW > panelH) {
-            panelW = panelH;
 
-        } else {
-            panelH = panelW;
-        }
+```java
+if (panelW > panelH) {
+	panelW = panelH;
+} else {
+	panelH = panelW;
+}
 ```
 
 Il codice che permette invece di disegnare l’immagine è invece molto simile a quello mostrato in `ImageModel`. Esso permette di ridimensionare l’immagine, ruotarla e disegnarla; ecco un estratto del codice:
@@ -643,7 +831,7 @@ if (imageBig != null) {
 	g.drawImage(rotatedImage, x, y, this);           
 }
 ```
-***ImagePanelAlt***
+### ImagePanelAlt
 
 Quest ultimo panelo è il più semplice di tutti. Infatti non contiene nemmeno un immagine, 
 tramite il parametro che viene aggiornato, anche il `JLabel` contenete il dato viene aggiornato.
@@ -672,6 +860,7 @@ comandi per una successiva esecuzione automatica da parte del programma.
 
 Vediamo più da vicino come è composta questa classe.
 Ecco qui il costruttore: 
+
 ```java
 public LeapMotionProject(Drone drone, FunzionePanel funzionePanel) {
     this.drone = drone;
@@ -695,6 +884,7 @@ Dal pacchetto si può ricavare qualsiasi tipo di informazione, ad esempio quali 
 nel campo visivo, la curvatura, il rollio, la piegatura delle dita e molto altro. La libreria di
 Leap Motion mette a disposizione vari oggetti e metodi per salvare i dati, principalmente per
 muovere il drone utilizziamo dita e mani, perciò tutto quello che serve è salvato nelle variabili seguenti.
+
 ```java
 Hand rightHand = null;
 Hand leftHand = null;
@@ -707,9 +897,10 @@ Finger leftHandMiddleFinger = null;
 Dalle variabili qui sopra, possiamo ricavare i valori delle rotazioni delle mani e delle dita,
 ma quest'ultimi non vanno bene per essere all'interno del range di velocità del drone, dunque, i valori
 delle mani e delle dita vengono convertiti, come fossero degli acceleratori, tramite il seguente metodo.
+
 ```java
 public int convertRange(double value, double r1Min, double r1Max, double r2Min, double r2Max) {
-    return (int) (((value - r1Min) * (r2Max - r2Min)) / (r1Max - r1Min) + r2Min);
+	return (int) (((value - r1Min) * (r2Max - r2Min)) / (r1Max - r1Min) + r2Min);
 }
 ```
 Il metodo, dopo avergli passato il valore da convertire, il range di cui fa parte e il range in cui vogliamo
@@ -718,25 +909,27 @@ convertirlo, ritorna il medesimo valore ma convertito nel secondo range.
 
 L'invio dei comandi invece avviene grazie al seguente metodo. Serve a limitare l'invio di comandi ogni
 125 millisecondi, inoltre gestisce la registrazione dei comandi.
+
 ```java
 public void sendMessage(String command) {
-    try {
-        if (inFlight) {
-            drone.invioMessaggio(command);
-            Thread.sleep(125);
-            if (comReqSeq) {
-                cr.sequenceWriter(command);
-            }
-        }
-    } catch (InterruptedException ie) {
-        System.out.println(ie);
-    }
+	try {
+		if (inFlight) {
+			drone.invioMessaggio(command);
+			Thread.sleep(125);
+			if (comReqSeq) {
+				cr.sequenceWriter(command);
+			}
+		}
+	} catch (InterruptedException ie) {
+		System.out.println(ie);
+	}
 }
 ```
 
 Una volta che tutti i valori sono stati convertiti dal range del Leap Motion al range del Drone, vengono stilati
 dei campi da riempire in una stringa che sarà poi quella finale del comando inviare al drone. Il risultato finale è
 come di seguito.
+
 ```java
 command = "rc " + rollSpeed + " " + pitchSpeed + " " + highSpeed + " " + yawSpeed;
 sendMessage(command);
@@ -745,12 +938,14 @@ sendMessage(command);
 ###CommandsRecorder
 Questa classe si occupa dellaa registrazione delle sequenze di comandi. Viene richiamata nella classe
 LeapMotionProject per salvare una sequenza. Ecco il costruttore.
+
 ```java
 public CommandsRecorder(String fileName) {
     file = Paths.get(root + "/" + fileName + ".txt");
     try {
         Files.write(file, "".getBytes());
     } catch (IOException e) {
+    
     }
 }
 ```
@@ -759,11 +954,13 @@ sequenza. Dopodiché crea un file vuoto con il nome dato in una cartella predefi
 Una volta creato l'oggetto esiste un metodo per scrivere una riga alla volta all'interno del file, ogni riga
 consiste in un comando, viene fornito uno alla volta in quanto è più pratico da utilizzare nella classe LeapMotionProject,
 dato che ogni comando al drone viene mandato singolarmente. Di seguito il metodo.
+
 ```java
 public void sequenceWriter(String sequence) {
     try {
-        Files.write(file, ((sequence + "\r\n")).getBytes(), StandardOpenOption.APPEND);
+		Files.write(file, ((sequence + "\r\n")).getBytes(), StandardOpenOption.APPEND);
     } catch (IOException e) {
+    
     }
 }
 ```
@@ -772,6 +969,7 @@ public void sequenceWriter(String sequence) {
 Questa classe, sempre utilizzata da LeapMotionProject, è utile a far eseguire al programma in modo automatico una
 sequenza di comandi registrata. Similmente a CommandsRecorder anche questa classe ha un costruttore a cui gli viene
 passato il nome del file, ma inoltre anche un oggetto drone, utile ad inviare al drone fisico i comandi.
+
 ```java
 public CommandSequenceRunner(String fileName, Drone drone) {
     file = Paths.get(root + "/" + fileName + ".txt");
@@ -785,17 +983,19 @@ ad intervalli di 125 millisecondi.
 
 ```java
 public void run() {
-    try {
-        if (Files.exists(file)) {
-            List<String> lines = Files.readAllLines(file);
+	try {
+		if (Files.exists(file)) {
+			List<String> lines = Files.readAllLines(file);
             for (String line : lines) {
-                drone.invioMessaggio(line);
-                Thread.sleep(125);
-            }
-        }
-    } catch (IOException ex) {
-    } catch (InterruptedException ex) {
-    }
+				drone.invioMessaggio(line);
+				Thread.sleep(125);
+			}
+		}
+	} catch (IOException ex) {
+	
+	} catch (InterruptedException ex) {
+	
+	}
 }
 ```
 
@@ -804,6 +1004,7 @@ Questa classe che implementa un `KeyListener` serve ad attivare solamente 2 tast
 rispettivamente per l'atterraggio di emergenza del drone e dello stoppaggio in aria. È stata creata questa classe
 in modo da implementare 2 differenti KeyListener nel programma, uno che serve a pilotare il drone tramite tastiera,
 e l'altro, cioè questo, che serve solamente per l'atterraggio di emergenza ed entra in funzione solamente con il LeapMotion. Il metodo costruttore è abbastanza semplice, riceve solamente un oggetto drone per poter inviare i comandi al drone.
+
 ```java
 public void setDrone(Drone drone) {
     this.drone = drone;
@@ -812,16 +1013,18 @@ public void setDrone(Drone drone) {
 
 La classe presenta altri 3 metodi, ma solo 2 sono utili, rispettivamente il `keyPressed`, richiamato qual'ora un pulsante
 viene premuto, ed il metodo `keyReleased`, richiamato quando un tasto viene rilasciato.
+
 ```java
 public void keyPressed(KeyEvent e) {
     if(e.getExtendedKeyCode() == 10) {
-        drone.invioMessaggio("emergency");
+		drone.invioMessaggio("emergency");
     }
     if(e.getExtendedKeyCode() == 32) {
         drone.invioMessaggio("rc 0 0 0 0");
     }
 }
 ```
+
 ```java
 public void keyReleased(KeyEvent e) {
     if(e.getExtendedKeyCode() == 10 || e.getExtendedKeyCode() == 32) {
@@ -829,7 +1032,6 @@ public void keyReleased(KeyEvent e) {
     }
 }
 ```
-
 
 
 ## Test
@@ -887,37 +1089,8 @@ facilmente generalizzabili o sono specifici di un caso particolare? ecc
 ### Considerazioni personali
   Cosa ho imparato in questo progetto? ecc
 
-## Bibliografia
 
-### Bibliografia per articoli di riviste
-1.  Cognome e nome (o iniziali) dell’autore o degli autori, o nome
-    dell’organizzazione,
-
-2.  Titolo dell’articolo (tra virgolette),
-
-3.  Titolo della rivista (in italico),
-
-4.  Anno e numero
-
-5.  Pagina iniziale dell’articolo,
-
-### Bibliografia per libri
-
-
-1.  Cognome e nome (o iniziali) dell’autore o degli autori, o nome
-    dell’organizzazione,
-
-2.  Titolo del libro (in italico),
-
-3.  ev. Numero di edizione,
-
-4.  Nome dell’editore,
-
-5.  Anno di pubblicazione,
-
-6.  ISBN.
-
-### Sitografia
+## Sitografia
 
 1.  URL del sito (se troppo lungo solo dominio, evt completo nel
     diario),
@@ -936,18 +1109,7 @@ facilmente generalizzabili o sono specifici di un caso particolare? ecc
 Elenco degli allegati, esempio:
 
 -   Diari di lavoro
-
--   Codici sorgente/documentazione macchine virtuali
-
--   Istruzioni di installazione del prodotto (con credenziali
-    di accesso) e/o di eventuali prodotti terzi
-
--   Documentazione di prodotti di terzi
-
--   Eventuali guide utente / Manuali di utilizzo
-
--   Mandato e/o Qdc
-
+-	Istruzioni uso del programma
+- 	Qdc
 -   Prodotto
-
--   …
+- 	Design delle interfacce
