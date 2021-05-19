@@ -601,6 +601,7 @@ Quest ultimo panelo è il più semplice di tutti. Infatti non contiene nemmeno u
 tramite il parametro che viene aggiornato, anche il `JLabel` contenete il dato viene aggiornato.
 Per una maggior completezza il dato dell'altezza è dato in metri, centimetri e piedi.
 Vine creata una stringa con dentro tutti questi valori e poi essa viene assegnata al JLabel.
+
 ```java
 String text = altitude + " cm" + '\n'
 	+ altitude / 100 + " m" + "\n"
@@ -610,7 +611,176 @@ String text = altitude + " cm" + '\n'
 		.replaceAll(">", "&gt;")
 		.replaceAll("\n", "<br/>") + "</html>");
 ```
+
 Per la formattazione abbiamo usato i tag HTML, ma poi essi vengono rimossi una volta inserita la stringa nel Label.
+
+
+### LeapMotionProject
+
+La classe principale che si occupa del pilotaggio del drone, oltre a DroneFrame che è utile
+per manovrare tramite tastiera, è LeapMotionProject, infatti questa classe permette un pilotaggio
+tramite sole mani, dal decollo all'atterraggio. Come extra ha anche un sistema di registrazione dei
+comandi per una successiva esecuzione automatica da parte del programma.
+
+Vediamo più da vicino come è composta questa classe.
+Ecco qui il costruttore: 
+```java
+public LeapMotionProject(Drone drone, FunzionePanel funzionePanel) {
+    this.drone = drone;
+    this.funzionePanel = funzionePanel;
+    funzionePanel.setLM(this);
+}
+```
+Come parametro gli viene passato un oggetto `drone`, che è utile per inviare i comandi
+da eseguire al drone fisico, inoltre, come altro parametro alla funzione c'è `funzionePanel`,
+che serve per avere il riferimento di quest'ultimo per poi passargli il riferimento della classe
+stessa di LeapMotionProject, da qui la riga di comando `funzionePanel.setLM(this)`.
+
+Il funzionamento di questa classe, che funziona come una sorta di listener, è dato dal metodo
+`public void onFrame(Controller controller)`, che viene richiamato da un controller del LeapMotion
+di una classe esterna qual'ora il Leap Motion rileva un movimento, di conseguenza un pacchetto di dati.
+Infatti questo metodo è utile per leggere il pacchetto istantaneo che invia il Leap Motion.
+Per leggere il pacchetto, chiamato frame, grazie al parametro `controller` utilizziamo il metodo
+`controller.frame()` per ricevere il frame ottenuto.
+
+Dal pacchetto si può ricavare qualsiasi tipo di informazione, ad esempio quali mani sono presenti
+nel campo visivo, la curvatura, il rollio, la piegatura delle dita e molto altro. La libreria di
+Leap Motion mette a disposizione vari oggetti e metodi per salvare i dati, principalmente per
+muovere il drone utilizziamo dita e mani, perciò tutto quello che serve è salvato nelle variabili seguenti.
+```java
+Hand rightHand = null;
+Hand leftHand = null;
+Finger rightHandIndexFinger = null;
+Finger rightHandMiddleFinger = null;
+Finger leftHandIndexFinger = null;
+Finger leftHandMiddleFinger = null;
+```
+
+Dalle variabili qui sopra, possiamo ricavare i valori delle rotazioni delle mani e delle dita,
+ma quest'ultimi non vanno bene per essere all'interno del range di velocità del drone, dunque, i valori
+delle mani e delle dita vengono convertiti, come fossero degli acceleratori, tramite il seguente metodo.
+```java
+public int convertRange(double value, double r1Min, double r1Max, double r2Min, double r2Max) {
+    return (int) (((value - r1Min) * (r2Max - r2Min)) / (r1Max - r1Min) + r2Min);
+}
+```
+Il metodo, dopo avergli passato il valore da convertire, il range di cui fa parte e il range in cui vogliamo
+convertirlo, ritorna il medesimo valore ma convertito nel secondo range.
+
+
+L'invio dei comandi invece avviene grazie al seguente metodo. Serve a limitare l'invio di comandi ogni
+125 millisecondi, inoltre gestisce la registrazione dei comandi.
+```java
+public void sendMessage(String command) {
+    try {
+        if (inFlight) {
+            drone.invioMessaggio(command);
+            Thread.sleep(125);
+            if (comReqSeq) {
+                cr.sequenceWriter(command);
+            }
+        }
+    } catch (InterruptedException ie) {
+        System.out.println(ie);
+    }
+}
+```
+
+Una volta che tutti i valori sono stati convertiti dal range del Leap Motion al range del Drone, vengono stilati
+dei campi da riempire in una stringa che sarà poi quella finale del comando inviare al drone. Il risultato finale è
+come di seguito.
+```java
+command = "rc " + rollSpeed + " " + pitchSpeed + " " + highSpeed + " " + yawSpeed;
+sendMessage(command);
+```
+
+###CommandsRecorder
+Questa classe si occupa dellaa registrazione delle sequenze di comandi. Viene richiamata nella classe
+LeapMotionProject per salvare una sequenza. Ecco il costruttore.
+```java
+public CommandsRecorder(String fileName) {
+    file = Paths.get(root + "/" + fileName + ".txt");
+    try {
+        Files.write(file, "".getBytes());
+    } catch (IOException e) {
+    }
+}
+```
+Come parametro gli viene fornito un fileName, che consiste nel nome del file in cui salvare i comandi della
+sequenza. Dopodiché crea un file vuoto con il nome dato in una cartella predefinita (`root`).
+Una volta creato l'oggetto esiste un metodo per scrivere una riga alla volta all'interno del file, ogni riga
+consiste in un comando, viene fornito uno alla volta in quanto è più pratico da utilizzare nella classe LeapMotionProject,
+dato che ogni comando al drone viene mandato singolarmente. Di seguito il metodo.
+```java
+public void sequenceWriter(String sequence) {
+    try {
+        Files.write(file, ((sequence + "\r\n")).getBytes(), StandardOpenOption.APPEND);
+    } catch (IOException e) {
+    }
+}
+```
+
+###CommandSequenceRunner
+Questa classe, sempre utilizzata da LeapMotionProject, è utile a far eseguire al programma in modo automatico una
+sequenza di comandi registrata. Similmente a CommandsRecorder anche questa classe ha un costruttore a cui gli viene
+passato il nome del file, ma inoltre anche un oggetto drone, utile ad inviare al drone fisico i comandi.
+```java
+public CommandSequenceRunner(String fileName, Drone drone) {
+    file = Paths.get(root + "/" + fileName + ".txt");
+    this.drone = drone;
+}
+```
+
+Una volta istanziato l'oggetto, è possibile far partire la sequenza passata nel metodo costruttore facendo
+partire la threat con il metodo `start()`. Il metodo `run()` della thread invierà i comandi scritti nel file
+ad intervalli di 125 millisecondi.
+
+```java
+public void run() {
+    try {
+        if (Files.exists(file)) {
+            List<String> lines = Files.readAllLines(file);
+            for (String line : lines) {
+                drone.invioMessaggio(line);
+                Thread.sleep(125);
+            }
+        }
+    } catch (IOException ex) {
+    } catch (InterruptedException ex) {
+    }
+}
+```
+
+###EmergencyListener
+Questa classe che implementa un `KeyListener` serve ad attivare solamente 2 tasti, cioè il tasto enter e spazio,
+rispettivamente per l'atterraggio di emergenza del drone e dello stoppaggio in aria. È stata creata questa classe
+in modo da implementare 2 differenti KeyListener nel programma, uno che serve a pilotare il drone tramite tastiera,
+e l'altro, cioè questo, che serve solamente per l'atterraggio di emergenza ed entra in funzione solamente con il LeapMotion. Il metodo costruttore è abbastanza semplice, riceve solamente un oggetto drone per poter inviare i comandi al drone.
+```java
+public void setDrone(Drone drone) {
+    this.drone = drone;
+}
+```
+
+La classe presenta altri 3 metodi, ma solo 2 sono utili, rispettivamente il `keyPressed`, richiamato qual'ora un pulsante
+viene premuto, ed il metodo `keyReleased`, richiamato quando un tasto viene rilasciato.
+```java
+public void keyPressed(KeyEvent e) {
+    if(e.getExtendedKeyCode() == 10) {
+        drone.invioMessaggio("emergency");
+    }
+    if(e.getExtendedKeyCode() == 32) {
+        drone.invioMessaggio("rc 0 0 0 0");
+    }
+}
+```
+```java
+public void keyReleased(KeyEvent e) {
+    if(e.getExtendedKeyCode() == 10 || e.getExtendedKeyCode() == 32) {
+        drone.invioMessaggio("rc 0 0 0 0");
+    }
+}
+```
 
 
 
