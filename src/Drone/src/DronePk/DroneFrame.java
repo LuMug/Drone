@@ -32,7 +32,6 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
         Thread imgView = new Thread(imageFrame);
         imgView.start();
         switchKeyListenerOn();
-        setReferences();
     }
 
     /**
@@ -261,6 +260,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 DroneFrame df = new DroneFrame();
+                df.setReferences();
                 df.setVisible(true);
                 df.setSize(800, 600);
                 df.setFocusable(true);

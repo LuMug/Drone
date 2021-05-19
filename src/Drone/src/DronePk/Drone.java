@@ -169,8 +169,6 @@ public class Drone extends Thread {
      * Metodo che viene chiamato dalle thread e serve per ricevere i messaggi.
      */
     public void run() {
-        LeapMotionProject leapListener = null;
-        Controller leapController = null;
         try {
             while (true) {
                 DatagramPacket packet = new DatagramPacket(sendBuf, sendBuf.length);
