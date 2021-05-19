@@ -261,6 +261,8 @@ ImageModel è invece un pannello speciale, che definisce il modello per la rappr
 
 Per far si che i pannelli potessero utilizzare i metodi, abbiamo dovuto creare una relazione tra i pannelli e il modello stesso. Per questo i pannelli estendono la classe modello.
 
+***ImageFrame***
+
 ImageFrame, come il nome suggerisce, è nato inizialmente per essere il Frame principale. Questo però è cambiato quando abbiamo deciso di implementare la Live, che avrebbe occupato gran parte della finestra come mostrato dalla progettazione, in  NodeJs e con una pagina web. Per questo ImageFrame è diventato un panello, che ha preso il posto della Live. Abbiamo mantenuto il nome tuttavia perché era ormai molto integrato con il resto dell’app, inoltre l’aggiunta di “Frame” nel nome suggerisce che sia un contenitore, aveva quindi più senso per noi lasciare lo stesso nome. 
 
 Qui l’inizializzazione della classe ImageFrame:
@@ -309,6 +311,8 @@ public void run() {
 
 ```
 Dopo aver spiegato ImageFrame, passiamo a ImageModel
+
+***ImageModel***
 
 Come detto questa classe definisce un modello per la rappresentazione delle immagini. 
 Al suo intenro sono infatti contenute le istanze di BufferedImage che ci serviranno nel programma, le istanze sono 3:
