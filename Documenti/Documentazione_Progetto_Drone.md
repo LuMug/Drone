@@ -201,13 +201,14 @@ Per il nostro progetto abbiamo deciso di procedere in maniera modulare. Infatti 
 Per lo sviluppo di questo progetto il lavoro è stato suddiviso in tre principali sezioni, lo sviluppo delle classi relative al drone, ovvero la parte che concerne la comunicazione tra drone e utente, l'interfaccia principale e le diverse funzioni implementate, lo sviluppo delle classi relative al Leap Motion, ovvero la parte logica per quello che concerne la comunicazione tra drone e Leap Motion, la calibrazione dei comandi e la sensibilità dei movimenti del drone, e infine lo sviluppo delle classi  dell'Image Frame, ovvero la parte relativa alle varie interfacce contenenti le statistiche del drone e le rappresentazioni grafiche dei movimenti.
 
 Per la sezione di progetto dedicata al drone sono state realizzate le seguenti classi:
-1. Drone
-2. CommandSequencer
-3. CommandRecorder
-4. Log
+1. DroneFrane
+2. Drone
+3. ComandiPanel
+4. FunzioniPanel
 5. Status
-6. Browser
-7. ComandiPanel
+6. Log
+7. Browser
+
 
 
 Il funzionamento della comunicazione tra drone e utenti è piuttosto semplice, il drone possiede un proprio wi-fi e di conseguenza ha un suo ip e diverse porte sulla quale connettersi, alcune delle quali servono per la ricezione e l'invio di informazioni. È stata creata un'interfaccia principale grazie alla quale l'utente può interagire e usare tutte le funzionalità che offre il software. L'interfaccia principale è suddivisa in diverse sezioni, una sezione laterale per i comandi eseguiti, una barra in basso per eseguire alcune funzioni e visualizzare alcune statistiche come batteria e velocità, infine la parte principale al centro in cui si vedono tutti i dati relativi alla posizione e ai movimenti del drone.
@@ -302,20 +303,21 @@ public boolean isFocusTraversable() {
 La classe ComandiPanel viene istanziata con il suo metodo costruttore nel seguente modo:
 ```java
 public ComandiPanel() {
-        initComponents();
-        DefaultCaret caret = (DefaultCaret) commandsText.getCaret();
-        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+	initComponents();
+	DefaultCaret caret = (DefaultCaret) commandsText.getCaret();
+	caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
     }
 ```
 
 Per quanto riguarda la parte inferiore del pannello sono stati creati i seguenti metodi per passare da una tipologia di controlli all'altro:
+
 ```java
 private void keyboardButtonActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        leapController.removeListener(leapListener);
-        leapListener.delete();
-        leapController.delete();
-        droneFrame.switchEmergencyListenerOff();
-        droneFrame.switchKeyListenerOn();
+	leapController.removeListener(leapListener);
+	leapListener.delete();
+	leapController.delete();
+	droneFrame.switchEmergencyListenerOff();
+	droneFrame.switchKeyListenerOn();
     }   
 ```
 Si occupa di invocare i metodi del LeapMotion per disattivarne le funzionalità (comandi da tastiera).
@@ -323,26 +325,78 @@ Si occupa di invocare i metodi del LeapMotion per disattivarne le funzionalità 
 
 ```java
 private void leapmotionButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        droneFrame.switchKeyListenerOff();
-        droneFrame.switchEmergencyListenerOn();
-        leapController = new Controller();
-        leapListener = new LeapMotionProject(drone, funzionePanel);
-        leapController.addListener(leapListener);
+	droneFrame.switchKeyListenerOff();
+	droneFrame.switchEmergencyListenerOn();
+	leapController = new Controller();
+	leapListener = new LeapMotionProject(drone, funzionePanel);
+	leapController.addListener(leapListener);
     }   
 ```
 Si occupa di invocare i metodi del LeapMotion per attivarne le funzionalità (comandi da Leap Motion).
 
 
 Invece per permettere all'utente di comandare il drone utilizzando la tastiera come input è stato implementato un Key Listener che invia i comandi opportuni in base al tasto premuto dall'utente, quando un tasto viene rilasciato invece, viene inviato al drone il comando per fermarsi sul posto. Inoltre per evitare di sovraccaricare di richieste il drone, è stato creato un metodo per limitare l'invio di richieste a una ogni 125 millisecondi.
+
 ```java
 public void sendKeyboardCommand(String command) {
-        if (System.currentTimeMillis() - initialTime >= 125) {
-            drone.invioMessaggio(command);
-            initialTime = System.currentTimeMillis();
-        }
-    } 
+	if (System.currentTimeMillis() - initialTime >= 125) {
+		drone.invioMessaggio(command);
+		initialTime = System.currentTimeMillis();
+	}
+} 
 ```
 
+### FunzioniPanel
+
+La classe FunzionePanel è un pannello contenente diversi elementi, Label, Button e Text Area. Tramite questo pannello si possono eseguire molte funzioni secondarie come il salvataggio con nome di una sequenza di comandi, l'esecuzione di una sequenza con un determinato nome e la visualizzazione della live, inoltre all'interno di esso vengono indicate le percentuali relative alla batteria del drone e alla velocità dalla tastiera.
+La classe FunzionePanel viene istanziata con il suo metodo costruttore nel seguente modo:
+
+```java
+public FunzionePanel() {
+	initComponents();
+	browser = new Browser();
+	drone = new Drone();
+}
+```
+
+Per quello che concerne il pulsante relativo alla visualizzazione della live è stato creato il seguente metodo:
+
+```java
+private void vistaDroneMouseClicked(java.awt.event.MouseEvent evt) {                                        
+	try {
+		browser.script();
+		browser.openBrowser();
+	} catch (IOException ex) {
+		Logger.getLogger(FunzionePanel.class.getName()).log(Level.SEVERE, null, ex);
+	}
+} 
+```
+Questo metodo si appoggia ad uno script creato in phyton che apre una finestra del browser collegata a una determinata porta sulla quale è possibile visualizzare la live in tempo reale.
+
+Per il pulsante relativo all'esecuzione delle sequenze è stato creato un semplice metodo:
+
+```java
+private void sequenzaTastiActionPerformed(java.awt.event.ActionEvent evt) {                                              
+	if (!started) {
+		csr = new CommandSequenceRunner(getSeqNameExecute(), drone);
+		csr.start();
+		started = true;
+	}
+}  
+``` 
+
+Un altro metodo fondamentale per questo pannello è caricamento, grazie alla quale viene settato il valore del label relativo alla batteria del drone, per farlo il metodo si è appoggiato alla classe Log, che si occupa della gestione delle statistiche del drone:
+
+```java
+private void caricamento() {
+	try {
+		Thread.sleep(300);
+			batteriaL.setText(drone.batteria() + "%");
+	} catch (InterruptedException ex) {
+		Logger.getLogger(FunzionePanel.class.getName()).log(Level.SEVERE, null, ex);
+	}
+}
+``` 
 
 ### Status
 Come suggerisce il nome, questa classe si occupa della gestione degli stati del drone, o meglio dei vari valori che fornisce il drone. Questa classe è una Thread, questo ci permette di avere in continuazione i dati che vengono salvati in un log, all'interno del metodo `public void run()`
@@ -451,17 +505,16 @@ Parliamo prima del metodo `script()`
 
 ```java
 public void script() throws IOException {
-    String os= System.getProperty("os.name").toLowerCase();
-    if (os.contains("os")) {
-
-        ProcessBuilder builder = new ProcessBuilder();
-        builder.command("sh","-c"," ./RunLiveMac.sh");
-        Process process=builder.start();
-    } else {
-        String path = "cmd /c start RunLiveWin.bat";
-        Runtime rn = Runtime.getRuntime();
-        Process pr = rn.exec(path);
-    }
+	String os= System.getProperty("os.name").toLowerCase();
+	if (os.contains("os")) {
+		ProcessBuilder builder = new ProcessBuilder();
+		builder.command("sh","-c"," ./RunLiveMac.sh");
+		Process process=builder.start();
+	} else {
+		String path = "cmd /c start RunLiveWin.bat";
+		Runtime rn = Runtime.getRuntime();
+		Process pr = rn.exec(path);
+	}
 }
 ```
 Questo metodo ci permette di identificare su che sistema operativo sta girando il nostro programma e, in base se é MacOS o Windows, fa partire due script diversi che si occupano di entrare in una cartella predefinita e attivare del codice di NodeJs.
@@ -471,23 +524,23 @@ Questo metodo serve a aprire una pagina internet.
 
 ```java
 public void openBrowser() {
-       String url = "http://localhost:3000/index.html";
-       if (Desktop.isDesktopSupported()) {
-           Desktop desktop = Desktop.getDesktop();
-           try {
-               desktop.browse(new URI(url));
-           } catch (IOException | URISyntaxException e) {
-               System.out.println("Error:" + e);
-           }
-       } else {
-           Runtime runtime = Runtime.getRuntime();
-           try {
-               runtime.exec("xdg-open " + url);
-           } catch (IOException e) {
-               System.out.println("Error:" + e);
-           }
-       }
-   }
+	String url = "http://localhost:3000/index.html";
+	if (Desktop.isDesktopSupported()) {
+		Desktop desktop = Desktop.getDesktop();
+		try {
+			desktop.browse(new URI(url));
+		} catch (IOException | URISyntaxException e) {
+			System.out.println("Error:" + e);
+		}
+	} else {
+		Runtime runtime = Runtime.getRuntime();
+		try {
+			runtime.exec("xdg-open " + url);
+		} catch (IOException e) {
+			System.out.println("Error:" + e);
+		}
+	}
+}
 ```
 
 Come possiamo vedere andiamo a parire la pagina `http://localhost:3000/index.html` su qui andremo a vedere la live che sarà stata caricata dallo script precedentemente accennato.
