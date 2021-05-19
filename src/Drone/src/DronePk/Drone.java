@@ -10,7 +10,7 @@ import java.net.UnknownHostException;
 /**
  * La classe Drone rappresenta il modello astratto di un drone.
  *
- * @author Gianni Grasso
+ * @author Alessandro Aloise
  * @version 28.01.2021
  */
 public class Drone extends Thread {

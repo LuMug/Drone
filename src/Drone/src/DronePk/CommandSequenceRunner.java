@@ -53,7 +53,9 @@ public class CommandSequenceRunner extends Thread {
                 }
             }
         } catch (IOException ex) {
+            System.out.println("Error:"+ ex);
         } catch (InterruptedException ex) {
+            System.out.println("Error:"+ ex);
         }
     }
 }

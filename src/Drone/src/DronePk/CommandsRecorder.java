@@ -35,6 +35,7 @@ public class CommandsRecorder {
         try {
             Files.write(file, "".getBytes());
         } catch (IOException e) {
+            System.out.println("Error:" + e);
         }
     }
 
@@ -47,6 +48,7 @@ public class CommandsRecorder {
         try {
             Files.write(file, ((sequence + "\r\n")).getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
+            System.out.println("Error:" + e);
         }
     }
 }
