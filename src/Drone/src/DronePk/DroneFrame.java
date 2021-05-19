@@ -32,12 +32,7 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
         Thread imgView = new Thread(imageFrame);
         imgView.start();
         switchKeyListenerOn();
-        funzionePanel.setComandiPanel(comandiPanel);
-        Drone drone = funzionePanel.getDrone();
-        emergencyListener.setDrone(drone);
-        comandiPanel.setDrone(drone);
-        comandiPanel.setFunzionePanel(funzionePanel);
-        comandiPanel.setDroneFrame(this);
+        setReferences();
     }
 
     /**
@@ -245,6 +240,18 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
      */
     public EmergencyListener getEmergencyListener() {
         return emergencyListener;
+    }
+    
+    /**
+     * Metodo utile a passare tutti i riferimenti a tutte le classi.
+     */
+    public void setReferences() {
+        funzionePanel.setComandiPanel(comandiPanel);
+        Drone drone = funzionePanel.getDrone();
+        emergencyListener.setDrone(drone);
+        comandiPanel.setDrone(drone);
+        comandiPanel.setFunzionePanel(funzionePanel);
+        comandiPanel.setDroneFrame(this);
     }
 
     /**
