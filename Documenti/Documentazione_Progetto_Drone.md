@@ -225,7 +225,7 @@ Nel frame è inoltre contenuto il frame del package `ImageFrame`, `ImageFrame` a
 In riferimento a `ImageFrame` riteniamo opportuno riportate il costruttore del frame principale, in quanto al suo interno ci sono istruzioni molto interessanti:
 Oltre a tutti i metodi per aggiungere le interfacce che citeremo qui sotto, c’è l’importante creazione della Thread di `ImageFrame` che, come specificheremo in seguito, viene eseguita qui per un semplice motivo, la rappresentazione del drone deve avvenire fin dal primo momento di vita dell’applicazione.
 
-```
+```java
 public DroneFrame() {
 	initComponents();
 	this.addMouseListener(this);
@@ -244,7 +244,8 @@ public DroneFrame() {
 3.	`ComponentListene`
 
 Questo frame avrebbe potuto essere molto semplice, tuttavia abbiamo voluto aggiungere la possibilità di guidare il drone da tastiera. Questo ha portato ad una serie di complicazioni. Infatti per catturare i comandi da tastiera si necessita, chiaramente, di `KeyListener`. Per questo abbiamo i metodi qui, in modo possiamo poi inviare un segnale al pannello apposito, che si occuperà della gestione dei movimenti. Come esempio riportiamo il metodo KeyTyped:
-```   
+
+```java
 @Override
 public void keyTyped(KeyEvent e) {
 	comandiPanel.keyTypedC(e);
@@ -257,9 +258,48 @@ Perciò, per ragioni di sicurezza, abbiamo dovuto implementare un modo di cattur
 La classe ComandiPanel è un pannello contenente una Text Area centrale e due Radio Button nella parte inferiore, uno che per abilitare i controlli da tastiera e uno per i controlli da Leap Motion. La parte sottostante del pannello infatti servirà per fare selezionare all'utente quale modalità di pilotaggio adoperare mentre la parte principale composta dal campo di testo ha lo scopo di stampare le sequenze di comandi salvate in precedenza dall'utente, in pratica vengono stampati in ordine cronologico i comandi di tutti i movimeni eseguiti dal drone nella sequenza salvata. Inoltre questa classe contiene anche il key listener, che permette di muovere il drone con l'utilizzo della tastiera.
 
 
+A questo scopo abbiamo dovuto creare un `emergencyListener`, che abbiamo documentato con precisione nell'implementazione riguardante il `Leap Motion`.
+
+Per quanto riguarda l'impedire che un metodo di input ne sovrascriva un altro, abbiamo implementato una serie di metodi `switch`. Questi metodi vengono richiamata quando si vuole passare da un metodo di guida a un altro. Si puô inoltre accendere o spegnere lo switch per l'emergency o per i comandi da tastiera.
+
+
+Un altro aspetto abbastanza importante di questa classe è l’implementazione di `ComponentListener`. Questa interfaccia ci serve infatti per monitorare il Frame stesso. Noi abbiamo dovuto limitare la dimensione della finestra, specialmente per le immagini del drone, e per questo abbiamo dovuto porre un controllo sulla dimensione del Frame. Non volendo mettere la finestra bloccata, abbiamo optato per questa soluzione:
+
+il metodo `componentResized()` viene invocato ogni volta che il frame viene ridimensionata, al suo interno abbiamo messo queste istruzioni:
+
+```java
+@Override
+	public void componentResized(ComponentEvent e) {
+	if (getWidth() < 800) {
+		this.setSize(800, getHeight());
+	}
+	if (getHeight() < 500) {
+		this.setSize(getWidth(), 500);
+	}
+}
+``` 
+
+Il codice non è per nulla complesso, se la larghezza o l’altezza scendono sotto un certo limite, il frame viene ridimensionato. Questo metodo fa sfarfallare un po’ il tutto se si insiste a ridimensionare la finestra, ma fa il suo dovere.
+
+
+L’ultima parte degna di nota è l’uso di un `MouseListener`, quando viene effettuato un click, il focus torna alla finestra principale. Questa istruzione era pensata più per quando il panello delle immagini era eterno, ma abbiamo deciso di tenerlo per completezza funzionalità del codice. 
+
+```java 
+@Override
+public void mouseClicked(MouseEvent e) {
+	isFocusTraversable();
+	this.requestFocus();
+}
+
+@Override
+public boolean isFocusTraversable() {
+	return true;
+}
+```
+
 
 ### ComandiPanel
-La classe ComandiPanel viene istanziato con il suo metodo costruttore nel seguente modo:
+La classe ComandiPanel viene istanziata con il suo metodo costruttore nel seguente modo:
 ```java
 public ComandiPanel() {
         initComponents();
@@ -308,21 +348,25 @@ public void sendKeyboardCommand(String command) {
 Come suggerisce il nome, questa classe si occupa della gestione degli stati del drone, o meglio dei vari valori che fornisce il drone. Questa classe è una Thread, questo ci permette di avere in continuazione i dati che vengono salvati in un log, all'interno del metodo `public void run()`
 
 Nelle righe di codice sottostanti troviamo la formattazione della data e la creazione del file di log, nel caso non esista ancora.
+
 ```java
 dateFormat = DateFormat.getDateInstance(DateFormat.LONG, Locale.ITALY);
 log.creazioneFile();
 ```
 
 Nelle righe di codice sottostanti possiamo vedere come andiamo a prendere il pacchetto che riceviamo dal drone e come lo andiamo a scomporre per prendere tutti i vari dati.
+
 ```java
 packet = new DatagramPacket(buf, buf.length, address, port);
 String received = new String(packet.getData(), 0, packet.getLength());
 socket.receive(packet);
 StringTokenizer st = new StringTokenizer(received, " ;");
+
 ```
 Andando a analizzare un po' più approfonditamente: quello che facciamo e convertire il pacchetto che riceviamo in una stringa e poi andiamo a dividerla in base a quando troviamo il punto e virgola, in modo tale da avere tutti i vari dati singolaramente, ma non ancora del tutto puliti.
 
 Per poterli finire di pulire dobbiamo fare il seguente passaggio:
+
 ```java
 pitch = st.nextToken().substring(6);
 roll = st.nextToken().substring(5);
@@ -331,26 +375,31 @@ spX = st.nextToken().substring(4);
 spY = st.nextToken().substring(4);
 spZ = st.nextToken().substring(4);
 ```
+
 Dato che il valore che riceviamo davanti ha ancora l'etichetta, dobbiamo pulire definitivamente con il metodo `substring()`: passando quanti caratteri vogliamo togliere rimuove i caratteri assegnati dalla parte iniziale della stringa lasciandoci i dati cosi puliti.
 
 Nel caso della temperatura abbiamo un dato in fahrenheit mentre noi la vogliamo avere in gradi C°, quindi per fare la conversione facciamo il seguente calcolo
+
 ```java
 temMinF = Integer.parseInt(templ.substring(6));
 temMinC = (temMinF - 32) * 0.5;
-
 ```
+
 Come prima cosa puliamo il dato e dopo di che facciamo il classico calcolo per la conversione della temperatura.
 
 Dopo di che sempre nel metodo `public void run()` abbiamo il codice che troviamo qui sotto che serve per la gestione delle immagini.
+
 ```java
 view.setPitch(Integer.parseInt(pitch));
 view.setRoll(Integer.parseInt(roll));
 view.setYaw(Integer.parseInt(yaw));
 view.setAlt(Integer.parseInt(altezza));
 ```
+
 Questi setter servono fornire i dati per spostare le immagini in tempo reale.
 
 Dopo di che troviamo la scrittura del log:
+
 ```java
 String valori = " Bat:" + bat
         + " TMax:" + temMaxC
@@ -368,8 +417,8 @@ String valori = " Bat:" + bat
 String finale = dateFormat.format(data) + " " + ip + ":" + port + valori;
 log.scritturaFile(finale);
 ```
-Queso codice formatta la stringa e agginge delle informazioni da mettere nel log e poi fa un append al log già creato in precedenza.
 
+Queso codice formatta la stringa e agginge delle informazioni da mettere nel log e poi fa un append al log già creato in precedenza.
 
 
 ### Log
@@ -377,19 +426,20 @@ Queso codice formatta la stringa e agginge delle informazioni da mettere nel log
 La classe `log` è una classe molto semplice. Abbiamo deciso di implementarla dopo un po', su consiglio del docente, ma ci è stata molto utile. Log funziona solo grazie a a `Status`, come abbiamo detto quis sopra, essa infatti crea un istanza di `Log`, per poi ottenere tutti i dati che il drone invia in un unica lunga stringa. 
 Ad oogni modo, questa stringa viene formattata e inviata a `Log` nel segunete modo:
 
-```
+```java
 log.scritturaFile(finale);
 ```
+
 `finale` è appunto la stringa formattata.
 Quello che `Log` fa, una volta invocato, è creare un file nella posizione designata, ovvero la nostra cartella log, e asseganrli come nome la data corrente. Poi una volta creato il file verrà aperto, scritto e poi richiuso.
 
 Siccome la creazione del file è già stata affrontata in log, riportiamo solo il metodo più interessante:
 
 ***Scrittura del file***
-```
+
+```java
 fw.write(testo + '\n');
 fw.flush();
-
 ```
 NB: In quest'ultima porzione di codice biosngna gestire la `IOException`.
 
@@ -398,6 +448,7 @@ NB: In quest'ultima porzione di codice biosngna gestire la `IOException`.
 Come suggerisce il nome questa classe si occupa della gestione del browser, in fatti in questa classe verranno attivati script diversi, la scelta verrà fatta in base al sistema operativo in uso. In entrambi i casi la live verrà visualizzata  in modo automatico. Infatti in questa classe abbiamo solo due metodi che sono `script()` e `openBrowser()`
 
 Parliamo prima del metodo `script()`
+
 ```java
 public void script() throws IOException {
     String os= System.getProperty("os.name").toLowerCase();
@@ -417,6 +468,7 @@ Questo metodo ci permette di identificare su che sistema operativo sta girando i
 
 
 Questo metodo serve a aprire una pagina internet.
+
 ```java
 public void openBrowser() {
        String url = "http://localhost:3000/index.html";
@@ -437,6 +489,7 @@ public void openBrowser() {
        }
    }
 ```
+
 Come possiamo vedere andiamo a parire la pagina `http://localhost:3000/index.html` su qui andremo a vedere la live che sarà stata caricata dallo script precedentemente accennato.
 
 
