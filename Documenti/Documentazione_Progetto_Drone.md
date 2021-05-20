@@ -491,7 +491,8 @@ private void caricamento() {
 ```
 
 #### Status
-Come suggerisce il nome, questa classe si occupa della gestione degli stati del drone, o meglio dei vari valori che fornisce il drone. Questa classe è una Thread, questo ci permette di avere in continuazione i dati che vengono salvati in un log, all'interno del metodo `public void run()`
+Come suggerisce il nome, questa classe si occupa della gestione degli stati del drone, o meglio dei vari valori che fornisce il drone. Questa classe è una Thread, questo ci permette di avere in continuazione i dati che vengono salvati in un log, all'interno del metodo `public void run()`.
+In
 
 Nelle righe di codice sottostanti troviamo la formattazione della data e la creazione del file di log, nel caso non esista ancora.
 
@@ -499,6 +500,10 @@ Nelle righe di codice sottostanti troviamo la formattazione della data e la crea
 dateFormat = DateFormat.getDateInstance(DateFormat.LONG, Locale.ITALY);
 log.creazioneFile();
 ```
+Quest'ultima parte di codice ci ha causato qualche probelma. Infatti ci simao accorti, usando il file Jar, che il programma non risusciva ad istanziare il file di log. Questo non gli permetteva di procedere con la creazione di status e, di conseguenza, non permetteva ai metodi setter delle immagini di funzioanre.
+Per questo abbiamo fatto in modo che il log venisse creato anche nel caso in cui si compilasse da jar. Abbiamo anche fatto si che, se per un quaalche motivo log non potesse essere creato, status funzioni compunque.
+
+Per farlo abbiamo aggiunto un semplice `try-catch`, circondando la creazione del file di log.
 
 Nelle righe di codice sottostanti possiamo vedere come andiamo a prendere il pacchetto che riceviamo dal drone e come lo andiamo a scomporre per prendere tutti i vari dati.
 
@@ -693,15 +698,18 @@ imgView.start();
 Una volta partita la Thread, vengono continuamente richiamati i metodi dedicati al movimento delle 4 immagini nei pannelli secondari, ImagePanelUp differisce rispetto agli altri pannelli in quanto la classe ha un suo metodo paintCompoents, questò perché l’immagine del drone visto dall’alto, a volo di uccello in pratica, ha un formato differente rispetto a ImagePaenlFront e ImagePaenlLat. Queste ultime due sono infatti rettangolari, mentre ImagePanelUp è quadrata.
 
 Il codice della Thread è riportato qui sotto.
+Si noti che la Thread gira in continuazione, infatti la rappresentazione grafica del drone inizia a funzionare nell'esatto momento in cui il package `ImageFrame` riceve i primi dati da `Status`
 
 ```java
 public void run() {
-	imagePanelFront.moving(roll);
-	imagePanelLat.moving(pitch);
-	imagePanelAlt.setAltitude(alt);
-	imagePanelUp.deg = yaw;
-	imagePanelUp.validate();
-	imagePanelUp.repaint();       
+	while(true){
+		imagePanelFront.moving(roll);
+		imagePanelLat.moving(pitch);
+		imagePanelAlt.setAltitude(alt);
+		imagePanelUp.deg = yaw;
+		imagePanelUp.validate();
+		imagePanelUp.repaint();  
+	}     
 }
 
 ```
@@ -748,7 +756,7 @@ public void paintComponent(Graphics g) {
 	g.setColor(Color.black);
 	int x, y = 0;
 	if (imageBig != null) {
-		image = resize(imageBig, panelW - 75, panelH - 75);
+		image = resize(imageBig, panelW - 95, panelH - 95);
 		x = (this.getWidth() - image.getWidth()) / 2;
 		y = (this.getHeight() - image.getHeight()) / 2;
 		image = rotate(image, rotDeg);
