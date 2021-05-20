@@ -213,9 +213,16 @@ In quest'immagine s si può vedere la struttura schematizzata della nostra appli
 
 ### Design di architettura del sistema
 
-***<Inseriere diagramma delle classi>***
+Per il nostro progetto abbiamo deciso di procedere in maniera modulare. Infatti il progetto finale è una combinazione di più modifiche e test messi insieme. Abbiamo iniziato da una base semplice e dunque solida, per poi implementare man man ogni funzionalità al programma di base.
+Abbiamo cominciato testando in modo parallelo il funzionamento del leap motion e del drone separatamente.
 
-Per il nostro progetto abbiamo deciso di procedere in maniera modulare. Infatti il progetto finale è una combinazione di più
+![Progetti di base](../Documenti/Architettura/Progetti.png)
+> Progetti di base
+
+Successivamente ad aver compreso il funzionamento di entrambi gli apparecchi abbiamo collassato il tutto in un solo progetto, nel progetto `drone`. All'interno di queso abbiamo pensato di creare 3 package, uno con tutti i file SDK per lavorare con il Leap Motion, uno contenente le classi che lavorano con le immagini per rappresentare la posizione del drone, ed infine un altro ancora per il pilotaggio del drone. Il risultato finale è come di seguito.
+
+![Divisione del progetto in packages](../Documenti/Architettura/Packages.png)
+> Divisione del progetto in packages
 
 
 ## Implementazione
@@ -1225,7 +1232,6 @@ Su questo ultimo punto si stava parlando tra di noi di aggiungere in futuro un r
 |Samuele|
 |-------|
 | Trovo che questo progetto è stato molto impegnativo e pieno di sorprese, è stato interessante dal punto di vista lavorativo creare un programma in grado di far guidare un drone tramite le mani. Il programma è stato continuamente aggiornato per migliorare le funzioni disponibili e il codice, siamo perifino riusciti a implementare un bel po' di extra. Però a volte questo progetto è stato molto stressante e frustrante, sopratutto quando il drone non funzionava. Sono soddisfatto del programma creato ma un po' meno per la documentazione. |
-
 
 |Michea|
 |-------|
