@@ -92,7 +92,7 @@
 |**Nome**      | Utilizzo di DatagramPacket   |
 |**Priorità**  | 1                           |
 |**Versione**  | 1.1                         |
-|**Note**      | Utilizzare la connessione al drone deve avvenire tramite  UDP|
+|**Note**      | La connessione al drone deve avvenire tramite  UDP|
 
 
 |               |**ID: Req-002**|
@@ -136,23 +136,14 @@
 |**Versione**|1.0|
 |**Note**|Implementare la funzione di salvataggio di sequenze di comandi. Successivamente fare in modo di farle riprodurre dal drone in modo autonomo.|  
 
-
 |       |**ID: Req-007**|
-|-------|-----------|
-|**Nome**| Interfaccia statistiche |
-|**Priorità**|1|
-|**Versione**|1.0|
-|**Note**|Inizialmente sito web, su accordo è stato modificato in interfaccia. Utilizzare Java.|  
-
-
-|       |**ID: Req-008**|
 |-------|-----------|
 |**Nome**| Tasto di emergenza |
 |**Priorità**|2|
 |**Versione**|1.0|
-|**Note**|È stato deciso che ci deve essere un tasto per le emrgenze.|
+|**Note**|È stato deciso che ci deve essere un tasto per le emergenze.|
 
-|       |**ID: Req-009**|
+|       |**ID: Req-008**|
 |-------|-----------|
 |**Nome**| Bottone per scelta *Extra* |
 |**Priorità**|4|
