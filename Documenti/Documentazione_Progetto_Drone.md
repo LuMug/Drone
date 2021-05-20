@@ -1100,8 +1100,8 @@ qual'ora si comandasse tramite quest'ultimo.
 |**Nome**| Live video |
 |**Riferimento**  | REQ-005                        |
 |**Descrizione**| Testare il frame con lo streaming del video del drone.|
-|**Procedura**   |  |
-|**Risultati attesi** | La live viene visualizzata in tempo reale a schermo |
+|**Procedura**   | Connettere il PC alla rete wi-fi del drone e premere il tasto `Visualizza live`. Attendere che il programma faccia partire lo script in modo automatico |
+|**Risultati attesi** | Viene aperta una pagina web dove viene visualizzata la live in tempo reale |
 
 |Test Case      | TC-006                               |
 |-------|-----------|
@@ -1215,24 +1215,29 @@ Su questo ultimo punto si stava parlando tra di noi di aggiungere in futuro un r
 
 
 ### Considerazioni personali
+
+|Samuele|
+|-------|
+| Trovo che questo progetto è stato molto impegnativo e pieno di sorprese, è stato interessante dal punto di vista lavorativo creare un programma in grado di far guidare un drone tramite le mani. Il programma è stato continuamente aggiornato per migliorare le funzioni disponibili e il codice, siamo perifino riusciti a implementare un bel po' di extra. Però a volte questo progetto è stato molto stressante e frustrante, sopratutto quando il drone non funzionava. Sono soddisfatto del programma creato ma un po' meno per la documentazione. |
+
+|Michea|
+|-------|
+|  |
+
+|Alessandro|
+|-------|
+|  |
+
 |Gianni|
 |-------|
 | Sono piuttosto soddisfatto di come sia andato il progetto, anche se abbiamo avuto diversi imprevisti e situazioni inaspettate abbiamo gestito bene il lavoro e siamo sempre riusciti ad andare avanti con lo sviluppo. Siamo riusciti a soddisfare tutti i requisiti del progetto, aggiungendo anche qualche funzionalità che inizialmente non era prevista, quindi dal punto di vista di come è stato svolto il lavoro sono molto contento, anche il lavoro dei miei compagni trovo che sia stato svolto molto bene, siamo riusciti ad organizzarci sempre e comunque nonostante i problemi riscontrati.|
 
-
 ## Sitografia
 
-1.  URL del sito (se troppo lungo solo dominio, evt completo nel
-    diario),
-
-2.  Eventuale titolo della pagina (in italico),
-
-3.  Data di consultazione (GG-MM-AAAA).
-
-**Esempio:**
-
--   http://standards.ieee.org/guides/style/section7.html, *IEEE
-    Standards Style Manual*, 07-06-2008.
+-   https://stackoverflow.com/, *Stackoverflow*, 20-05-2021.
+-   https://www.ultraleap.com/, *UltraLeap*, 20-05-2021.
+-   https://it.wikipedia.org/, *Wikipedia*, 20-05-2021.
+-   https://docs.oracle.com/, *Oracle*, 20-05-2021.
 
 ## Allegati
 
