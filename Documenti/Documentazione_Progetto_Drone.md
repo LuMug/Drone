@@ -1,5 +1,4 @@
 1. [Introduzione](#introduzione)
-
   - [Informazioni sul progetto](#informazioni-sul-progetto)
   - [Abstract](#abstract)
   - [Scopo](#scopo)
@@ -11,20 +10,19 @@
   - [Pianificazione](#pianificazione)
   - [Analisi dei mezzi](#analisi-dei-mezzi)
 
-3. [Progettazione](##Progettazione)
-  - [Design delle interfacce](###design-delle-interfacce)
-  - [Interfaccia principale](####Interfaccia-principale)
-  - [Design dell’architettura del sistema](#design-dell’architettura-del-sistema)
-  - [Interfaccia vista drone](####Interfaccia-vista-drone)
-  - [Design dei dati e database](#design-dei-dati-e-database)
+3. [Progettazione](#progettazione)
+  - [Design delle interfacce](#design-delle-interfacce)
+  	- [Interfaccia principale](#interfaccia-principale)
+	- [Interfaccia vista drone](#interfaccia-vista-drone)
+  - [Design procedurale](#design-procedurale)
+  - [Design di architettura del sistema](#design-di-architettura-del-sistema)
 
 4. [Implementazione](#implementazione)
 
 5. [Test](#test)
-
   - [Protocollo di test](#protocollo-di-test)
   - [Risultati test](#risultati-test)
-  - [Mancanze/limitazioni conosciute](#mancanze/limitazioni-conosciute)
+  - [Mancanze e limitazioni conosciute](#mancanze-e-limitazioni-conosciute)
 
 6. [Consuntivo](#consuntivo)
 
@@ -39,7 +37,6 @@
 
 
 ## Introduzione
-
 ### Informazioni sul progetto
 - Allievi coinvolti nel progetto:  Gianni Grasso, Samuele Ganci, Alessandro Aloise, Michea Colautti.
 - Classe: I3AA, I3AC, Scuola Arti e Mestieri Trevano, sezione Informatica.
@@ -178,19 +175,19 @@ Per la pianificazione alleghiamo il Gantt preventivo da noi stabilito:
 - Drone DJI Tello
 - Leap Motion
 
-## Progettazione
 
+## Progettazione
 
 ### Design delle interfacce
 
-### Interfaccia principale
+#### Interfaccia principale
 La prima interfaccia che abbiamo definito è stata quella generale, ovvero il pannello che l'utente avrebbe visto una volta avviata l'applicazione.
 ![Progettazione int1](../Documenti/Progettazione/Design_Interfacce/DesingHome.png)
 Come vedremo dopo, benché la struttura sia rimasta essenzialmente quella, quest'interfaccia ha subito alcune modifiche nel contenuto.
 Questo è accaduto poiché procedendo con il progetto sono cambiate alcune idee e priorità.
 
 
-#### [Interfaccia vista drone](####Interfaccia-vista-drone)
+#### Interfaccia vista drone
 
 Un’altra interfaccia importante da progettare era quella della vista del drone. Quest'ultima è molto semplice, ed è rimasta essenzialmente la stessa, ma è stato importante pensare come rappresentare i dati che ci venivano richiesti, ovvero la rappresentazione grafica del drone. Inizialmente abbiamo pensato a delle foto ferme, con delle frecce che indicassero i movimenti. Tuttavia ci siamo accorti che creare uno schizzo del drone e muovere quello era molto più.
 
@@ -212,14 +209,14 @@ In quest'immagine s si può vedere la struttura schematizzata della nostra appli
 4. Una volta inviati i droni vengono elaborati dall'SDK presente sul chip nel drone.
 5. Quando e mentre i dati vengono elaborati dal drone, esso risponde con dei messaggi di conferma. Ma non solo. Infatti il drone invia anche dati sulla sua batteria, sulla sua posizione [x,y,z], ma anche dati sulla sua inclinazione. Questi dati vengono interpretatati dal nostro programma e elaborati. Questo ci permette, per esempio, di far funzionare la rappresentazione grafica del drone.
 
-### Design dell’architettura del sistema
+### Design di architettura del sistema
 
 ***<Inseriere diagramma delle classi>***
 
 Per il nostro progetto abbiamo deciso di procedere in maniera modulare. Infatti il progetto finale è una combinazione di più
 
 
-# Implementazione
+## Implementazione
 
 Per lo sviluppo di questo progetto il lavoro è stato suddiviso in tre principali sezioni, lo sviluppo delle classi relative al drone, ovvero la parte che concerne la comunicazione tra drone e utente, l'interfaccia principale e le diverse funzioni implementate, lo sviluppo delle classi relative al Leap Motion, ovvero la parte logica per quello che concerne la comunicazione tra drone e Leap Motion, la calibrazione dei comandi e la sensibilità dei movimenti del drone, e infine lo sviluppo delle classi  dell'Image Frame, ovvero la parte relativa alle varie interfacce contenenti le statistiche del drone e le rappresentazioni grafiche dei movimenti.
 
@@ -232,12 +229,12 @@ Per la sezione di progetto dedicata al drone sono state realizzate le seguenti c
 6. Log
 7. Browser
 
-## DronePK in genrale
+### DronePK
 
 Il funzionamento della comunicazione tra drone e utenti è piuttosto semplice, il drone possiede un proprio wi-fi e di conseguenza ha un suo ip e diverse porte sulla quale connettersi, alcune delle quali servono per la ricezione e l'invio di informazioni. È stata creata un'interfaccia principale grazie alla quale l'utente può interagire e usare tutte le funzionalità che offre il software. L'interfaccia principale è suddivisa in diverse sezioni, una sezione laterale per i comandi eseguiti, una barra in basso per eseguire alcune funzioni e visualizzare alcune statistiche come batteria e velocità, infine la parte principale al centro in cui si vedono tutti i dati relativi alla posizione e ai movimenti del drone.
 Per prima cosa è stata realizzata la comunicazione tra leap motion e drone, quindi la parte relativa al pannello centrale, per poter instaurare una comunicazione tra leap motion e drone è stato creato un socket grazie alla quale l'utente client invia dei pacchetti su una determinata porta del drone, questi pacchetti sono delle semplici stringhe contenenti dei comandi che vengono interpretate dal drone tramite un suo protocollo interno. Quello che succede quindi, è che il leap motion continua a passare i dati che legge al drone, spedendoli in tempo reale tramite il socket, il drone riceve quindi questi pacchetti e si muove di conseguenza.
 
-### Drone
+#### Drone
 Questa classe é una delle parti fondamentali del progetto, infatti tutta la comunicazione parte da qui. La creazione del Socket è in questa classe, più moltissime altre cose che ora andremo a vedere.
 
 Come prima parte di codice che andiamo a vedere è il costruttore che troviamo qui sotto:
@@ -319,7 +316,7 @@ public void decolla() {
 ```
 Come stavamo dicendo, questo metodo in base al comando scritto manda il messaggio e cambia lo stato del drone in modo tale che se il drone è già decollato, non si può mandare più volte lo stesso comando per non rischiare di causare problemi al drone.
 
-### DroneFrame
+#### DroneFrame
 
 `DroneFrame` è una classe fondamentale, si tratta infatti del frame principale dell’applicazione. In esso sono contenuti tutti i due pannelli del package `DronePk`.
 1.	`ComandiPanel`
@@ -398,7 +395,7 @@ public boolean isFocusTraversable() {
 ```
 
 
-### ComandiPanel
+#### ComandiPanel
 La classe ComandiPanel viene istanziata con il suo metodo costruttore nel seguente modo:
 ```java
 public ComandiPanel() {
@@ -445,7 +442,7 @@ public void sendKeyboardCommand(String command) {
 }
 ```
 
-### FunzioniPanel
+#### FunzioniPanel
 
 La classe FunzionePanel è un pannello contenente diversi elementi, Label, Button e Text Area. Tramite questo pannello si possono eseguire molte funzioni secondarie come il salvataggio con nome di una sequenza di comandi, l'esecuzione di una sequenza con un determinato nome e la visualizzazione della live, inoltre all'interno di esso vengono indicate le percentuali relative alla batteria del drone e alla velocità dalla tastiera.
 La classe FunzionePanel viene istanziata con il suo metodo costruttore nel seguente modo:
@@ -497,7 +494,7 @@ private void caricamento() {
 }
 ```
 
-### Status
+#### Status
 Come suggerisce il nome, questa classe si occupa della gestione degli stati del drone, o meglio dei vari valori che fornisce il drone. Questa classe è una Thread, questo ci permette di avere in continuazione i dati che vengono salvati in un log, all'interno del metodo `public void run()`
 
 Nelle righe di codice sottostanti troviamo la formattazione della data e la creazione del file di log, nel caso non esista ancora.
@@ -574,7 +571,7 @@ log.scritturaFile(finale);
 Queso codice formatta la stringa e agginge delle informazioni da mettere nel log e poi fa un append al log già creato in precedenza.
 
 
-### Log
+#### Log
 
 La classe `log` è una classe molto semplice. Abbiamo deciso di implementarla dopo un po', su consiglio del docente, ma ci è stata molto utile. Log funziona solo grazie a a `Status`, come abbiamo detto quis sopra, essa infatti crea un istanza di `Log`, per poi ottenere tutti i dati che il drone invia in un unica lunga stringa.
 Ad oogni modo, questa stringa viene formattata e inviata a `Log` nel segunete modo:
@@ -597,7 +594,7 @@ fw.flush();
 NB: In quest'ultima porzione di codice biosngna gestire la `IOException`.
 
 
-### Browser
+#### Browser
 Come suggerisce il nome questa classe si occupa della gestione del browser, in fatti in questa classe verranno attivati script diversi, la scelta verrà fatta in base al sistema operativo in uso. In entrambi i casi la live verrà visualizzata  in modo automatico. Infatti in questa classe abbiamo solo due metodi che sono `script()` e `openBrowser()`
 
 Parliamo prima del metodo `script()`
@@ -646,7 +643,7 @@ Come possiamo vedere andiamo a parire la pagina `http://localhost:3000/index.htm
 
 
 
-### ImageFrame
+### ImageFramePK
 
 Per quanto riguarda invece l’implementazione della rappresentazione grafica del drone e della sua posizione sono state implementate queste classi:
 
@@ -663,7 +660,7 @@ ImageModel è invece un pannello speciale, che definisce il modello per la rappr
 
 Per far si che i pannelli potessero utilizzare i metodi, abbiamo dovuto creare una relazione tra i pannelli e il modello stesso. Per questo i pannelli estendono la classe modello.
 
-### ImageFrame
+#### ImageFrame
 
 ImageFrame, come il nome suggerisce, è nato inizialmente per essere il Frame principale. Questo però è cambiato quando abbiamo deciso di implementare la Live, che avrebbe occupato gran parte della finestra come mostrato dalla progettazione, in  NodeJs e con una pagina web. Per questo ImageFrame è diventato un panello, che ha preso il posto della Live. Abbiamo mantenuto il nome tuttavia perché era ormai molto integrato con il resto dell’app, inoltre l’aggiunta di “Frame” nel nome suggerisce che sia un contenitore, aveva quindi più senso per noi lasciare lo stesso nome.
 
@@ -714,7 +711,7 @@ public void run() {
 ```
 Dopo aver spiegato ImageFrame, passiamo a ImageModel
 
-### ImageModel
+#### ImageModel
 Come detto questa classe definisce un modello per la rappresentazione delle immagini.
 Al suo intenro sono infatti contenute le istanze di BufferedImage che ci serviranno nel programma, le istanze sono 3:
 
@@ -775,7 +772,7 @@ Ora è arrivato il momento di passare ai 4 frame dell'applicazione. Per trattare
 
 Questo perché i primi due pannelli possiedono un codice pressoché identico, è quindi possibile semplificare la spiegazione.
 
-### ImagePanelFront/Lat
+#### ImagePanelFront/Lat
 
 Questi pannelli esportano essenzialmente 2 elementi, un metodo costruttore personalizzato e un metodo per gestire il movimento. Partiamo dal costruttore.
 
@@ -825,7 +822,7 @@ public void moving(int rotate) {
 > Il codice qui riportato corrisponde a `ImagePanelFront`, per creare il suo corrispettivo `ImagePanelLat` è sufficente sostitutire nel costruttore `DroneFrontale.png` con `DroneLaterale.png `
 
 
-### ImagePanelUp
+#### ImagePanelUp
 Questa classe differisce leggermente dalle due precedenti, infatti a cambiare è il rapporto dell’immagine.
 
 Tuttavia la logica è pressoché la stessa, il costruttore prende l’immagine allo stesso modo, ma al posto di esserci un metodo di movimento che sfrutta il `paintComponent` definito nel modello `ImagePanelUp` ha un suo metodo paint.
@@ -850,7 +847,7 @@ if (imageBig != null) {
 	g.drawImage(rotatedImage, x, y, this);           
 }
 ```
-### ImagePanelAlt
+#### ImagePanelAlt
 
 Quest ultimo panelo è il più semplice di tutti. Infatti non contiene nemmeno un immagine,
 tramite il parametro che viene aggiornato, anche il `JLabel` contenete il dato viene aggiornato.
@@ -870,7 +867,7 @@ String text = altitude + " cm" + '\n'
 Per la formattazione abbiamo usato i tag HTML, ma poi essi vengono rimossi una volta inserita la stringa nel Label.
 
 
-### LeapMotionProject
+#### LeapMotionProject
 
 La classe principale che si occupa del pilotaggio del drone, oltre a DroneFrame che è utile
 per manovrare tramite tastiera, è LeapMotionProject, infatti questa classe permette un pilotaggio
@@ -954,7 +951,7 @@ command = "rc " + rollSpeed + " " + pitchSpeed + " " + highSpeed + " " + yawSpee
 sendMessage(command);
 ```
 
-###CommandsRecorder
+#### CommandsRecorder
 Questa classe si occupa dellaa registrazione delle sequenze di comandi. Viene richiamata nella classe
 LeapMotionProject per salvare una sequenza. Ecco il costruttore.
 
@@ -984,7 +981,7 @@ public void sequenceWriter(String sequence) {
 }
 ```
 
-###CommandSequenceRunner
+#### CommandSequenceRunner
 Questa classe, sempre utilizzata da LeapMotionProject, è utile a far eseguire al programma in modo automatico una
 sequenza di comandi registrata. Similmente a CommandsRecorder anche questa classe ha un costruttore a cui gli viene
 passato il nome del file, ma inoltre anche un oggetto drone, utile ad inviare al drone fisico i comandi.
@@ -1019,7 +1016,7 @@ public void run() {
 }
 ```
 
-###EmergencyListener
+#### EmergencyListener
 Questa classe che implementa un `KeyListener` serve ad attivare solamente 2 tasti, cioè il tasto enter e spazio,
 rispettivamente per l'atterraggio di emergenza del drone e dello stoppaggio in aria. È stata creata questa classe
 in modo da implementare 2 differenti KeyListener nel programma, uno che serve a pilotare il drone tramite tastiera,
@@ -1082,8 +1079,7 @@ dovrà risultare nel documento finale come riuscito (la procedura della
 correzione apparirà nel diario), altrimenti dovrà essere descritto
 l’errore con eventuali ipotesi di correzione.
 
-### Mancanze/limitazioni conosciute
-
+### Mancanze e limitazioni conosciute
 
 In generale, siamo piuttosto soddisfatti del nostro progetto. Pensiamo infatti di aver lavorato piuttosto bene, anche se riconosciamo di aver avuto dei momenti in cui abbiamo lavorato non al massimo delle nostre capacità. 
 Alla fine il progetto è uscito più o meno come ce lo aspettavamo, anche se dobbiamo dire che abbiamo sottovalutato alcuni aspetti del progetto, come la Live, mentre ne abbiamo sopravalutati altri, come la guida del Drone.
@@ -1100,8 +1096,6 @@ Partendo dal primo, la live ci ha causato innumerevoli problemi, ci ha preso set
 La seconda mancanza è un “requisito” che ci è venuto in mente dopo, sotto suggerimento del docente.
 Questo requisito consisteva nel guidare il drone con una mano sola, e usare l’altra per far flippare il drone. 
 Sarebbe stato molto bello avere questa possibilità, ma siamo comunque felici di come il nostro progetto è andato.
-
-
 
 
 ## Consuntivo
