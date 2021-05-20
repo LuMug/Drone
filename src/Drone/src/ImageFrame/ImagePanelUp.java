@@ -58,7 +58,7 @@ public class ImagePanelUp extends ImageModel {
         }
 
         if (imageBig != null) {
-            image = resize(imageBig, panelW - 75, panelH - 75);
+            image = resize(imageBig, panelW - 95, panelH - 95);
             int x = (this.getWidth() - image.getWidth()) / 2;
             int y = (this.getHeight() - image.getHeight()) / 2;
 

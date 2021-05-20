@@ -154,7 +154,13 @@ public class Status extends Thread {
      */
     public void run() {
         dateFormat = DateFormat.getDateInstance(DateFormat.LONG, Locale.ITALY);
-        log.creazioneFile();
+        try {
+            log.creazioneCarterlla();
+            log.creazioneFile();
+        } catch (Exception ex) {
+            System.out.println("Error:" + ex);
+        }
+
         DatagramSocket socket;
         byte[] buf = new byte[256];
         try {
@@ -209,9 +215,13 @@ public class Status extends Thread {
                         + " Az:" + agz
                         + " TCm: " + time;
                 String finale = dateFormat.format(data) + " " + ip + ":" + port + valori;
-                log.scritturaFile(finale);
+                try {
+                    log.scritturaFile(finale);
+                } catch (Exception ex) {
+                    System.out.println("Error:" + ex);
+                }
 
-                if (temMinC == 100) {
+                if (temMinC >= 100) {
                     fine = false;
                     socket.close();
                     log.chiusuraFile();

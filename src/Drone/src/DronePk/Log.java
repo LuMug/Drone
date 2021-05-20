@@ -24,6 +24,11 @@ public class Log {
      * Variabile per creare il file.
      */
     public static File file;
+    
+    /**
+     * Nome della cartella
+     */
+    private File theDir = new File("Log");
 
     /**
      * Metodo che si occupa di creare il file di log. File di log nome file:
@@ -68,4 +73,15 @@ public class Log {
             System.out.println("Error: stringa non valida");
         }
     }
+
+    public void creazioneCarterlla() {
+        if (!theDir.exists()) {
+            try {
+                theDir.mkdir();
+            } catch (SecurityException ex) {
+                System.out.println("Error:"+ ex);
+            }
+        }
+    }
+
 }

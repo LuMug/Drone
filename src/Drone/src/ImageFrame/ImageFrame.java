@@ -126,11 +126,13 @@ public class ImageFrame extends JPanel implements Runnable {
      * predisposti per il movimento passando il valore adeguato.
      */
     public void run() {
+        while(true){
             imagePanelFront.moving(roll);
             imagePanelLat.moving(pitch);
             imagePanelAlt.setAltitude(alt);
             imagePanelUp.deg = yaw;
             imagePanelUp.validate();
-            imagePanelUp.repaint();  
+            imagePanelUp.repaint(); 
+        }
     }
 }

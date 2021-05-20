@@ -231,7 +231,6 @@ public class DroneFrame extends javax.swing.JFrame implements KeyListener, Mouse
     @Override
     public void componentHidden(ComponentEvent e) {
     }
-
     /**
      * Serve a ritornare il listener impostato.
      *
