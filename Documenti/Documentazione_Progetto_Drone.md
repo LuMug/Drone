@@ -1215,7 +1215,9 @@ Su questo ultimo punto si stava parlando tra di noi di aggiungere in futuro un r
 
 
 ### Considerazioni personali
->da fare
+|Gianni|
+|-------|
+| Sono piuttosto soddisfatto di come sia andato il progetto, anche se abbiamo avuto diversi imprevisti e situazioni inaspettate abbiamo gestito bene il lavoro e siamo sempre riusciti ad andare avanti con lo sviluppo. Siamo riusciti a soddisfare tutti i requisiti del progetto, aggiungendo anche qualche funzionalità che inizialmente non era prevista, quindi dal punto di vista di come è stato svolto il lavoro sono molto contento, anche il lavoro dei miei compagni trovo che sia stato svolto molto bene, siamo riusciti ad organizzarci sempre e comunque nonostante i problemi riscontrati.|
 
 
 ## Sitografia
