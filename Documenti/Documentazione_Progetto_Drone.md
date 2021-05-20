@@ -1234,20 +1234,29 @@ Su questo ultimo punto si stava parlando tra di noi di aggiungere in futuro un r
 
 ## Sitografia
 
--   https://stackoverflow.com/, *Stackoverflow*, 20-05-2021.
+-   https://stackoverflow.com/, *StackOverFlow*, 20-05-2021.
 -   https://www.ultraleap.com/, *UltraLeap*, 20-05-2021.
 -   https://it.wikipedia.org/, *Wikipedia*, 20-05-2021.
 -   https://docs.oracle.com/, *Oracle*, 20-05-2021.
--   https://www.techwalla.com/articles/how-to-stream-udp-on-vlc, *Techwalla*, 20-05-2021.
--	https://www.daniweb.com/programming/software-development/threads/459762/embed-vlc-with-java, *DaniWeb*, 20-05-2021.
-
+-   https://www.techwalla.com/, *Techwalla*, 20-05-2021.
+-	https://www.daniweb.com/, *DaniWeb*, 20-05-2021.
+-	https://store.dji.com/, *DJI Store*, 20-05-2021.
+-	https://www.dji.com/, *DJI*, 20-05-2021.
+-	https://forum.dji.com/, *DJI Forum*, 20-05-2021.
+-	https://www.youtube.com/, *Youtube*, 20-05-2021.
+-	https://github.com/, *Github*, 20-05-2021.
+-	https://tellopilots.com/, *TelloPilots*, 20-05-2021.
+-	https://www.ryzerobotics.com/tello, *RyzerRobotics*, 20-05-2021.
+-	https://dl-cdn.ryzerobotics.com/, *RyzerRobotics*, 20-05-2021.
 
 ## Allegati
 
-Elenco degli allegati, esempio:
+Elenco degli allegati:
 
+-   Files di progettazione
+-   Gantt preventivo
+-   Gantt consuntivo
 -   Diari di lavoro
--	Istruzioni uso del programma
+-   Codice sorgente
+-   Prodotto finale
 - 	Qdc
--   Prodotto
-- 	Design delle interfacce
