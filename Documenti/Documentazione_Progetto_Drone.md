@@ -150,11 +150,13 @@
 
 Ecco il nostro Use Case
 ![Use Case](../Documenti/Progettazione/Use_Case/UseCase.png)
+> Use Case
 
 ### Pianificazione
 
 Per la pianificazione alleghiamo il Gantt preventivo da noi stabilito:
 ![Ganttpreventivo](../Documenti/Gantt/GANTT_Preventivo_Completo.jpg)
+> Gantt preventivo
 
 
 ### Analisi dei mezzi
@@ -179,6 +181,8 @@ Per la pianificazione alleghiamo il Gantt preventivo da noi stabilito:
 #### Interfaccia principale
 La prima interfaccia che abbiamo definito è stata quella generale, ovvero il pannello che l'utente avrebbe visto una volta avviata l'applicazione.
 ![Progettazione int1](../Documenti/Progettazione/Design_Interfacce/DesingHome.png)
+> Interfaccia drone
+
 Come vedremo dopo, benché la struttura sia rimasta essenzialmente quella, quest'interfaccia ha subito alcune modifiche nel contenuto.
 Questo è accaduto poiché procedendo con il progetto sono cambiate alcune idee e priorità.
 
@@ -188,6 +192,7 @@ Questo è accaduto poiché procedendo con il progetto sono cambiate alcune idee 
 Un’altra interfaccia importante da progettare era quella della vista del drone. Quest'ultima è molto semplice, ed è rimasta essenzialmente la stessa, ma è stato importante pensare come rappresentare i dati che ci venivano richiesti, ovvero la rappresentazione grafica del drone. Inizialmente abbiamo pensato a delle foto ferme, con delle frecce che indicassero i movimenti. Tuttavia ci siamo accorti che creare uno schizzo del drone e muovere quello era molto più.
 
 ![Progettazione int2](../Documenti/Progettazione/Design_Interfacce/DesingVistaDrone.png)
+> Interfaccia della posizione del drone
 
 ### Design procedurale
 
@@ -196,6 +201,7 @@ Dopo aver progettato le due interfacce principali abbiamo pensato di creare uno 
 Sapevamo più o meno come procedere e come impostare il nostro progetto, ma abbiamo comunque voluto mettere le nostre idee su "carta".
 
 ![Progettazione int2](../Documenti/Progettazione/Schema_Flusso/SchemaFlusso.png)
+> Funzionamento programma
 
 In quest'immagine s si può vedere la struttura schematizzata della nostra applicazione.
 
@@ -1190,7 +1196,7 @@ Sarebbe stato molto bello avere questa possibilità, ma siamo comunque felici di
 ## Consuntivo
 
 ![Ganttpreventivo](../Documenti/Gantt/GANTT_Consuntivo_Completo.png)
-
+> Gantt consuntivo
 
 ## Conclusioni
 
