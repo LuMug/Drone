@@ -102,8 +102,6 @@
 |**Versione**  | 1.1                         |
 |**Note**      | Panel o frame diviso in 4 con delle imagini 2d del drone per vedere come si muove.|
 
-
-
 |               |**ID: Req-003**|
 |--------------|-----------------------------|
 |**Nome**      | Gestione tastiera *Extra* |
@@ -145,12 +143,10 @@
 
 |       |**ID: Req-008**|
 |-------|-----------|
-|**Nome**| Bottone per scelta *Extra* |
+|**Nome**| Bottoni per scelta di pilotaggio *Extra* |
 |**Priorità**|4|
 |**Versione**|1.0|
 |**Note**|Necessità di poter scegliere cosa usare se la tastiera o il Leap Motion.|
-
-
 
 
 ### Use case
@@ -1058,29 +1054,114 @@ public void keyReleased(KeyEvent e) {
 
 ### Protocollo di test
 
-Definire in modo accurato tutti i test che devono essere realizzati per
-garantire l’adempimento delle richieste formulate nei requisiti. I test
-fungono da garanzia di qualità del prodotto. Ogni test deve essere
-ripetibile alle stesse condizioni.
-
+Per tutti i test viene chiesto come prerequisito avere un drone e un computer
+connessi tra loro. Naturalmente anche un LeapMotion connesso al dispositivo
+qual'ora si comandasse tramite quest'ultimo.
 
 |Test Case      | TC-001                               |
-|---------------|--------------------------------------|
-|**Nome**       |Import a card, but not shown with the GUI |
-|**Riferimento**|REQ-012                               |
-|**Descrizione**|Import a card with KIC, KID and KIK keys with no obfuscation, but not shown with the GUI |
-|**Prerequisiti**|Store on local PC: Profile\_1.2.001.xml (appendix n\_n) and Cards\_1.2.001.txt (appendix n\_n) |
-|**Procedura**   | - Go to “Cards manager” menu, in main page click “Import Profiles” link, Select the “1.2.001.xml” file, Import the Profile - Go to “Cards manager” menu, in main page click “Import Cards” link, Select the “1.2.001.txt” file, Delete the cards, Select the “1.2.001.txt” file, Import the cards |
-|**Risultati attesi** |Keys visible in the DB (OtaCardKey) but not visible in the GUI (Card details) |
+|--------------|-----------------------------|
+|**Nome**      | Utilizzo di DatagramPacket   |
+|**Riferimento**  | REQ-001                        |
+|**Descrizione**      | La connessione al drone deve avvenire tramite  UDP|
+|**Procedura**   | Connettere il PC alla rete wi-fi del drone e inviare un comando |
+|**Risultati attesi** | Il comando viene interpretato |
 
+|Test Case      | TC-002                               |
+|--------------|-----------------------------|
+|**Nome**      | Interfaccia controllo Drone |
+|**Riferimento**  | REQ-002                        |
+|**Descrizione**| Panel o frame diviso in 4 con delle imagini 2d del drone per vedere come si muove.|
+|**Procedura**   | Connettere il PC alla rete wi-fi del drone, successivamente fare un volo di test verificando di muovere il drone in tutte le direzioni |
+|**Risultati attesi** | Il frame risponde e aggiorna correttamente le immagini in base alla posizione del drone |
+
+|Test Case      | TC-003                               |
+|--------------|-----------------------------|
+|**Nome**      | Gestione tastiera *Extra* |
+|**Riferimento**  | REQ-003                        |
+|**Descrizione**      | Comandare il drone con la tastiera.|
+|**Procedura**   | Connettere il PC alla rete wi-fi del drone e inviare qualsiasi tipo di comando da tastiera (WASD, Frecce, UHJK, Enter, Spazio, M, N, T, L) |
+|**Risultati attesi** | I comandi vengono interpretati |
+
+|Test Case      | TC-004                               |
+|--------------|-----------------------------|
+|**Nome**      | Leap Motion |
+|**Riferimento**  | REQ-004                        |
+|**Descrizione**      | Testare il pilotaggio con il Leap Motion, la mano sinistra si occupa del movimento verticale, mentre la destra si occupa di tutti gli altri movimenti.|
+|**Procedura**   | Connettere il PC alla rete wi-fi del drone e il LeapMotion al PC. Premere sul frame il radio button `LeapMotion` e successivamente fare un volo di test in tutte le direzioni con quest'ultimo |
+|**Risultati attesi** | Il drone interpreta correttamente i comandi |
+
+|Test Case      | TC-005                               |
+|-------|-----------|
+|**Nome**| Live video |
+|**Riferimento**  | REQ-005                        |
+|**Descrizione**| Testare il frame con lo streaming del video del drone.|
+|**Procedura**   |  |
+|**Risultati attesi** | La live viene visualizzata in tempo reale a schermo |
+
+|Test Case      | TC-006                               |
+|-------|-----------|
+|**Nome**| Sequenza di comandi |
+|**Riferimento**  | REQ-006                        |
+|**Descrizione**| Testare la funzione di salvataggio di sequenze di comandi. Successivamente fare in modo di farle riprodurre dal drone in modo autonomo.| |**Procedura**   | Connettere il PC alla rete wi-fi del drone e il Leap Motion al PC. Selezionare `LeapMotion` sul frame. Prima di far partire il drone fornire il nome da dare alla sequenza in basso a sinistra nel frame. Piegare l'indice sinistro e fare un volo di test. All'atterraggio interrompere la sequenza con il medio sinistro. Fatto ciò testare che il drone svolga il volo appena fatto in modo autonomo, quindi fornire in basso a destra il nome della sequenza da eseguire e premere su `ESEGUI` |
+|**Risultati attesi** | Il drone salva ed esegue successivamente i comandi |
+
+|Test Case      | TC-007                               |
+|-------|-----------|
+|**Nome**| Tasto di emergenza |
+|**Riferimento**  | REQ-007                        |
+|**Descrizione**| Testare il tasto per le emergenze.|
+|**Procedura**   | Connettere il PC alla rete wi-fi del drone e il Leap Motion al PC. Testare che quando il drone è in volo, quando si preme il tasto enter (sia quando si pilota con tastiera, sia con Leap) il drone faccia un atterraggio di emergenza |
+|**Risultati attesi** | Il comando viene interpretato |
+
+|Test Case      | TC-008                               |
+|-------|-----------|
+|**Nome**| Bottoni per scelta di pilotaggio *Extra* |
+|**Riferimento**  | REQ-008                        |
+|**Descrizione**| Testare lo switch tra tastiera e Leap Motion.|
+|**Procedura**   | Connettere il PC alla rete wi-fi del drone e il Leap Motion al PC. Testare che il programma invia i comandi solo della tastiera o solo del leap motion a differenza di cosa si ha selezionato sul frame (`Tastiera` o `LeapMotion`) |
+|**Risultati attesi** | I comandi non vanno in conflitto |
 
 ### Risultati test
 
-Tabella riassuntiva in cui si inseriscono i test riusciti e non del
-prodotto finale. Se un test non riesce e viene corretto l’errore, questo
-dovrà risultare nel documento finale come riuscito (la procedura della
-correzione apparirà nel diario), altrimenti dovrà essere descritto
-l’errore con eventuali ipotesi di correzione.
+|Test Case      | TC-001     |
+|-------|-----------|
+|**Nome**| Bottoni per scelta di pilotaggio *Extra* |
+|**Esito**  | Positivo |
+
+|Test Case      | TC-002                               |
+|--------------|-----------------------------|
+|**Nome**      | Interfaccia controllo Drone |
+|**Esito**  | Positivo |
+
+|Test Case      | TC-003     |
+|--------------|-----------------------------|
+|**Nome**      | Gestione tastiera *Extra* |
+|**Esito**  | Positivo |
+
+|Test Case      | TC-004                               |
+|--------------|-----------------------------|
+|**Nome**      | Leap Motion |
+|**Esito**  | Positivo |
+
+|Test Case      | TC-005                               |
+|-------|-----------|
+|**Nome**| Live video |
+|**Esito**  | Positivo |
+
+|Test Case      | TC-006                               |
+|-------|-----------|
+|**Nome**| Sequenza di comandi |
+|**Esito**  | Positivo |
+
+|Test Case      | TC-007                               |
+|-------|-----------|
+|**Nome**| Tasto di emergenza |
+|**Esito**  | Positivo |
+
+|Test Case      | TC-008                               |
+|-------|-----------|
+|**Nome**| Bottoni per scelta di pilotaggio *Extra* |
+|**Esito**  | Positivo |
 
 ### Mancanze/limitazioni conosciute
 
