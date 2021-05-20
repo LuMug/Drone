@@ -1,4 +1,4 @@
-1. [Introduzione](#introduzione)
+|1. [Introduzione](#introduzione)
   - [Informazioni sul progetto](#informazioni-sul-progetto)
   - [Abstract](#abstract)
   - [Scopo](#scopo)
@@ -1176,10 +1176,10 @@ qual'ora si comandasse tramite quest'ultimo.
 
 ### Mancanze e limitazioni conosciute
 
-In generale, siamo piuttosto soddisfatti del nostro progetto. Pensiamo infatti di aver lavorato piuttosto bene, anche se riconosciamo di aver avuto dei momenti in cui abbiamo lavorato non al massimo delle nostre capacità. 
+In generale, siamo piuttosto soddisfatti del nostro progetto. Pensiamo infatti di aver lavorato piuttosto bene, anche se riconosciamo di aver avuto dei momenti in cui abbiamo lavorato non al massimo delle nostre capacità.
 Alla fine il progetto è uscito più o meno come ce lo aspettavamo, anche se dobbiamo dire che abbiamo sottovalutato alcuni aspetti del progetto, come la Live, mentre ne abbiamo sopravalutati altri, come la guida del Drone.
 
-Infatti quest’ultimo aspetto ci aveva preoccupato, e non poco. Invece già alla seconda lezione ci siamo trovati capaci di guidare il drone con delle movenze molto rozze. Quello che ha preso tempo è stato infatti rendere le movenze del drone fluide. 
+Infatti quest’ultimo aspetto ci aveva preoccupato, e non poco. Invece già alla seconda lezione ci siamo trovati capaci di guidare il drone con delle movenze molto rozze. Quello che ha preso tempo è stato infatti rendere le movenze del drone fluide.
 
 Abbiamo individuato 2 mancanze principali nel nostro programma:
 
@@ -1189,7 +1189,7 @@ Abbiamo individuato 2 mancanze principali nel nostro programma:
 Partendo dal primo, la live ci ha causato innumerevoli problemi, ci ha preso settimane di prove e ricerche. Eravamo convinti di potercela fare, ma alla fine abbiamo dovuto optare per una altro tipo di approccio. Abbiamo per questo cercare un codice online e utilizzare quello; dobbiamo dire che non è stato facile trovare un codice compatibile alle nostre esigenze, molti non funzionavano o non facevano quello che noi volevamo. Tuttavia abbiamo finalmente trovato un codice in NodeJS che si integrava abbastanza bene con il nostro operato. Abbiamo ritenuto essenziale però cercare di integrare il codice esterno al nostro, per questo abbiamo fatto si che la live si aprisse in automatico al click del bottone, anche se questo ci ha richiesto uno sforzo nella scrittura di due diversi script.
 
 La seconda mancanza è un “requisito” che ci è venuto in mente dopo, sotto suggerimento del docente.
-Questo requisito consisteva nel guidare il drone con una mano sola, e usare l’altra per far flippare il drone. 
+Questo requisito consisteva nel guidare il drone con una mano sola, e usare l’altra per far flippare il drone.
 Sarebbe stato molto bello avere questa possibilità, ma siamo comunque felici di come il nostro progetto è andato.
 
 
@@ -1213,9 +1213,9 @@ Invece per le persone più grandi, sarebbe bello che il nostro progetto diveniss
 
 ### Sviluppi futuri
 
-Come sviluppi futuri parlando con i docenti e parlando un po' riflettendo noi sono saltate fuori delle idee molto interessanti. 
+Come sviluppi futuri parlando con i docenti e parlando un po' riflettendo noi sono saltate fuori delle idee molto interessanti.
 
-Partendo dal cambiare la gestione del LeapMotion con una mano per renderlo più facile oppure aggiungere la possiblità di registrare ciò che il drone vede e poterlo cosi riguardare. 
+Partendo dal cambiare la gestione del LeapMotion con una mano per renderlo più facile oppure aggiungere la possiblità di registrare ciò che il drone vede e poterlo cosi riguardare.
 
 Su questo ultimo punto si stava parlando tra di noi di aggiungere in futuro un riconoscimento facciale per far seguire le persone dal drone.
 
@@ -1226,13 +1226,16 @@ Su questo ultimo punto si stava parlando tra di noi di aggiungere in futuro un r
 |-------|
 | Trovo che questo progetto è stato molto impegnativo e pieno di sorprese, è stato interessante dal punto di vista lavorativo creare un programma in grado di far guidare un drone tramite le mani. Il programma è stato continuamente aggiornato per migliorare le funzioni disponibili e il codice, siamo perifino riusciti a implementare un bel po' di extra. Però a volte questo progetto è stato molto stressante e frustrante, sopratutto quando il drone non funzionava. Sono soddisfatto del programma creato ma un po' meno per la documentazione. |
 
+
 |Michea|
 |-------|
-|  |
+| La cosa che più mi è piciuta nello sviluppo di questo progetto è stata indububbiamente la sifda che ci si è posta nell guida del drone.
+Il progetto è inziato molto bene, e trovo che tutti eravamo decisi a portare a temrine il lavoro, a fare si che il progeto funzionasse come volevamo.
+Il codice da noi elaborto poteva tuttavia essre molto migliore si così, alcuni aspetti non mi soddisfano appieno. Tuttavia sono molto felice di altri aspetti, come ad esmepio la possibilità di guidare il drone da tastiera.|
 
 |Alessandro|
 |-------|
-|  |
+| Penso che nel suo complesso il progetto sia stato piacevole. Penso che avremmo potuto dare di piu nel codice, soprattutto nella sua architettura, ma nel complesso sono soddisfatto su come sia uscito il progetto. L'aspetto della live è sttao molto impegnativo, ci ha richiesto molto sfozo, anche solo per riuscire ad adattare un codice online al nostro lavoro. Ma sono contento che siamo riusicti a portare quasi a termine questo progetto. Penso che avremmo potuto fare qualcosina in più per quanto riguarda la documentazione, che ad oggi trovo un po stringata.  |
 
 |Gianni|
 |-------|
