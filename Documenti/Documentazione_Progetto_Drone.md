@@ -1238,6 +1238,9 @@ Su questo ultimo punto si stava parlando tra di noi di aggiungere in futuro un r
 -   https://www.ultraleap.com/, *UltraLeap*, 20-05-2021.
 -   https://it.wikipedia.org/, *Wikipedia*, 20-05-2021.
 -   https://docs.oracle.com/, *Oracle*, 20-05-2021.
+-   https://www.techwalla.com/articles/how-to-stream-udp-on-vlc, *Techwalla*, 20-05-2021.
+-	https://www.daniweb.com/programming/software-development/threads/459762/embed-vlc-with-java, *DaniWeb*, 20-05-2021.
+
 
 ## Allegati
 
