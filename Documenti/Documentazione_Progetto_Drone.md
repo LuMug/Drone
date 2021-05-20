@@ -1,4 +1,4 @@
-|1. [Introduzione](#introduzione)
+1. [Introduzione](#introduzione)
   - [Informazioni sul progetto](#informazioni-sul-progetto)
   - [Abstract](#abstract)
   - [Scopo](#scopo)
@@ -1229,9 +1229,7 @@ Su questo ultimo punto si stava parlando tra di noi di aggiungere in futuro un r
 
 |Michea|
 |-------|
-| La cosa che più mi è piciuta nello sviluppo di questo progetto è stata indububbiamente la sifda che ci si è posta nell guida del drone.
-Il progetto è inziato molto bene, e trovo che tutti eravamo decisi a portare a temrine il lavoro, a fare si che il progeto funzionasse come volevamo.
-Il codice da noi elaborto poteva tuttavia essre molto migliore si così, alcuni aspetti non mi soddisfano appieno. Tuttavia sono molto felice di altri aspetti, come ad esmepio la possibilità di guidare il drone da tastiera.|
+| La cosa che più mi è piciuta nello sviluppo di questo progetto è stata indububbiamente la sifda che ci si è posta nell guida del drone. Il progetto è inziato molto bene, e trovo che tutti eravamo decisi a portare a temrine il lavoro, a fare si che il progeto funzionasse come volevamo. Il codice da noi elaborto poteva tuttavia essre molto migliore si così, alcuni aspetti non mi soddisfano appieno. Tuttavia sono molto felice di altri aspetti, come ad esmepio la possibilità di guidare il drone da tastiera.|
 
 |Alessandro|
 |-------|
